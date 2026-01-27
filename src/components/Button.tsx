@@ -4,7 +4,7 @@ import { Slot } from "@radix-ui/react-slot";
 
 export type ButtonVariant = "default" | "primary" | "secondary" | "warning" | "danger" | "success" | "ghost";
 export type ButtonSize = "small" | "medium" | "large";
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, Slottable {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
   block?: boolean;
   rounded?: boolean;
@@ -63,10 +63,6 @@ function Button({
     "bg-transparent text-dark": variant === "ghost",
   });
 
-  const borderStyles = classNames({
-    "border-2 border-dotted border-dark": variant === "ghost",
-  });
-
   const focusedStyles = classNames("focus:outline-none focus:ring-4", {
     "focus:ring-default-500/50": variant === "default",
     "focus:ring-primary-500/50": variant === "primary",
@@ -84,13 +80,21 @@ function Button({
     "hover:bg-warning-600": variant === "warning",
     "hover:bg-danger-600": variant === "danger",
     "hover:bg-success-600": variant === "success",
-    "hover:bg-dark/30": variant === "ghost",
+    "hover:bg-dark/10": variant === "ghost",
   });
 
-  const disabled = "disabled:opacity-50 disabled:cursor-not-allowed";
+  const disabled = classNames("disabled:opacity-50 disabled:cursor-not-allowed", {
+    "disabled:hover:bg-default-500": variant === "default",
+    "disabled:hover:bg-primary-500": variant === "primary",
+    "disabled:hover:bg-secondary-500": variant === "secondary",
+    "disabled:hover:bg-warning-500": variant === "warning",
+    "disabled:hover:bg-danger-500": variant === "danger",
+    "disabled:hover:bg-success-500": variant === "success",
+    "disabled:hover:bg-transparent": variant === "ghost",
+  });
 
   return (
-    <Component className={classNames(baseStyles, borderStyles, blockStyles, cornerRadius, fontStyles, hoverStyles, disabled, focusedStyles, sizeStyles, variantStyles, className)} {...componentProps}>
+    <Component className={classNames(baseStyles, blockStyles, cornerRadius, fontStyles, hoverStyles, disabled, focusedStyles, sizeStyles, variantStyles, className)} {...componentProps}>
       {children}
     </Component>
   );

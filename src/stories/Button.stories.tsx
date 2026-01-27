@@ -6,7 +6,7 @@ import { Button as ButtonComponent } from '../';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<typeof ButtonComponent> = {
-  title: 'Button',
+  title: 'Buttons',
   component: ButtonComponent,
   parameters: {
     layout: 'centered',
@@ -26,6 +26,7 @@ const meta: Meta<typeof ButtonComponent> = {
       control: 'select',
       options: ['button', 'submit', 'reset']
     },
+    disabled: { control: 'boolean' },
   },
   args: { onClick: fn() },
 };
@@ -47,7 +48,7 @@ export const Button: Story = {
     block: false,
     rounded: false,
     size: 'medium',
-    variant: 'default',
+    variant: 'primary',
     type: 'button',
   }
 };
