@@ -1,58 +1,96 @@
-import { Slot } from "@radix-ui/react-slot";
+import React from "react";
 import classNames from "classnames";
-import type React from "react";
+import { Slot } from "@radix-ui/react-slot";
 
-type ButtonVariant = "primary" | "secondary" | "tertiary" | "warning" | "danger" | "ghost";
-type ButtonSize = "small" | "medium" | "large";
+export type ButtonVariant = "default" | "primary" | "secondary" | "warning" | "danger" | "success" | "ghost";
+export type ButtonSize = "small" | "medium" | "large";
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, Slottable {
   asChild?: boolean;
+  block?: boolean;
+  rounded?: boolean;
   size?: ButtonSize;
   variant?: ButtonVariant;
 }
 
-function Button({ asChild, children, className, size = "medium", variant = "primary", type = "button", ...rest }: React.PropsWithChildren<ButtonProps>) {
+function Button({
+  asChild,
+  children,
+  className,
+  block = false,
+  rounded = false,
+  size = "medium",
+  variant = "default",
+  type = "button",
+  ...rest
+}: React.PropsWithChildren<ButtonProps>) {
   const Component = asChild ? Slot : 'button';
   const componentProps = asChild ? rest : { type, ...rest };
 
-  const base = classNames("inline-flex items-center justify-center rounded-full cursor-pointer");
+  const baseStyles = "inline-flex items-center justify-center cursor-pointer transition-colors duration-200";
 
-  const buttonSize = classNames({
-    "h-7 px-3 text-sm": size === "small",
-    "h-9 px-5 text-base": size === "medium",
-    "h-11 px-7 text-lg": size === "large",
+  const fontStyles = "font-sans font-normal tracking-normal";
+
+  const sizeStyles = classNames(rounded ? {
+    "px-4.5 gap-1.5 text-sm": size === "small",
+    "px-5.5 gap-2 text-base": size === "medium",
+    "px-6.5 gap-3 text-lg": size === "large",
+  } : {
+    "px-4 gap-1.5 text-sm": size === "small",
+    "px-5 gap-2 text-base": size === "medium",
+    "px-6 gap-3 text-lg": size === "large",
+  }, {
+    "h-8": size === "small",
+    "h-10": size === "medium",
+    "h-12": size === "large",
   });
 
-  const buttonVariants = classNames({
-    "bg-primary-600 text-white": variant === "primary",
-    "bg-secondary-600 text-white": variant === "secondary",
-    "bg-tertiary-600 text-white": variant === "tertiary",
-    "bg-warning-600 text-white": variant === "warning",
-    "bg-danger-600 text-white": variant === "danger",
-    "bg-neutral-600 text-white": variant === "ghost",
+  const blockStyles = classNames("w-auto sm:w-full", {
+    "w-full grow": block,
   });
 
-  const focused = classNames("focus:outline-none focus:ring-2 focus:ring-offset-2", {
-    "focus:ring-primary-500": variant === "primary",
-    "focus:ring-secondary-500": variant === "secondary",
-    "focus:ring-tertiary-500": variant === "tertiary",
-    "focus:ring-warning-500": variant === "warning",
-    "focus:ring-danger-500": variant === "danger",
-    "focus:ring-neutral-500": variant === "ghost",
+  const cornerRadius = classNames({
+    "rounded-md": !rounded,
+    "rounded-full": rounded,
   });
 
-  const hover = classNames({
-    "hover:bg-primary-500": variant === "primary",
-    "hover:bg-secondary-500": variant === "secondary",
-    "hover:bg-tertiary-500": variant === "tertiary",
-    "hover:bg-warning-500": variant === "warning",
-    "hover:bg-danger-500": variant === "danger",
-    "hover:bg-neutral-500": variant === "ghost",
-  })
+  const variantStyles = classNames({
+    "bg-default-500 text-light": variant === "default",
+    "bg-primary-500 text-light": variant === "primary",
+    "bg-secondary-500 text-light": variant === "secondary",
+    "bg-warning-500 text-light": variant === "warning",
+    "bg-danger-500 text-light": variant === "danger",
+    "bg-success-500 text-light": variant === "success",
+    "bg-transparent text-dark": variant === "ghost",
+  });
 
-  const disabled = classNames("disabled:opacity-50 disabled:cursor-not-allowed");
+  const borderStyles = classNames({
+    "border-2 border-dotted border-dark": variant === "ghost",
+  });
+
+  const focusedStyles = classNames("focus:outline-none focus:ring-4", {
+    "focus:ring-default-500/50": variant === "default",
+    "focus:ring-primary-500/50": variant === "primary",
+    "focus:ring-secondary-500/50": variant === "secondary",
+    "focus:ring-warning-500/50": variant === "warning",
+    "focus:ring-danger-500/50": variant === "danger",
+    "focus:ring-success-500/50": variant === "success",
+    "focus:ring-dark/30": variant === "ghost",
+  });
+
+  const hoverStyles = classNames({
+    "hover:bg-default-600": variant === "default",
+    "hover:bg-primary-600": variant === "primary",
+    "hover:bg-secondary-600": variant === "secondary",
+    "hover:bg-warning-600": variant === "warning",
+    "hover:bg-danger-600": variant === "danger",
+    "hover:bg-success-600": variant === "success",
+    "hover:bg-dark/30": variant === "ghost",
+  });
+
+  const disabled = "disabled:opacity-50 disabled:cursor-not-allowed";
 
   return (
-    <Component className={classNames(base, hover, disabled, focused, buttonSize, buttonVariants, className)} {...componentProps}>
+    <Component className={classNames(baseStyles, borderStyles, blockStyles, cornerRadius, fontStyles, hoverStyles, disabled, focusedStyles, sizeStyles, variantStyles, className)} {...componentProps}>
       {children}
     </Component>
   );
