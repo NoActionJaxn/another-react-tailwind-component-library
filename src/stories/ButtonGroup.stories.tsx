@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button, ButtonGroup as ButtonGroupComponent } from '../';
 
 const meta: Meta<typeof ButtonGroupComponent> = {
-  title: 'Buttons',
+  title: 'Components/ButtonGroup',
   component: ButtonGroupComponent,
   parameters: {
     layout: 'centered',
@@ -30,16 +30,20 @@ type Story = StoryObj<typeof meta>;
 export const ButtonGroup: Story = {
   render: (args) => {
     return (
-      <ButtonGroupComponent {...args}>
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroupComponent>
+      <div className="w-xs flex justify-center">
+        <ButtonGroupComponent {...args}>
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroupComponent>
+      </div>
     );
   },
   args: {
+    children: 'Button',
+    block: false,
+    rounded: false,
     size: 'medium',
     variant: 'primary',
-    rounded: false,
   },
 };

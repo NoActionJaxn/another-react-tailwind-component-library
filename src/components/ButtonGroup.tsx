@@ -37,15 +37,21 @@ function ButtonGroup({
     });
   });
 
+  const baseStyles = "inline-flex justify-center gap-px";
+
+  const blockStyles = classNames({
+    "w-full": block,
+  });
+
   const roundingStyles = rounded
     ? "[&>*]:rounded-none [&>*:first-child]:rounded-l-full [&>*:last-child]:rounded-r-full [&>*:only-child]:rounded-full"
     : "[&>*]:rounded-none [&>*:first-child]:rounded-l-md [&>*:last-child]:rounded-r-md [&>*:only-child]:rounded-md";
 
-  const focusStyles = "[&>*:focus]:z-10 [&>*]:relative";
+  const focusStyles = "[&>*:focus]:-z-[1] [&>*]:relative";
 
   return (
     <div
-      className={classNames("inline-flex items-center gap-0.5", roundingStyles, focusStyles, className)}
+      className={classNames(baseStyles, blockStyles, roundingStyles, focusStyles, className)}
       role="group"
     >
       {validChildren}

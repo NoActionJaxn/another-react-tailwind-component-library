@@ -44,7 +44,7 @@ function Button({
     "h-12": size === "large",
   });
 
-  const blockStyles = classNames("w-auto sm:w-full", {
+  const blockStyles = classNames("sm:w-auto w-full", {
     "w-full grow": block,
   });
 
@@ -60,7 +60,7 @@ function Button({
     "bg-warning-500 text-light": variant === "warning",
     "bg-danger-500 text-light": variant === "danger",
     "bg-success-500 text-light": variant === "success",
-    "bg-transparent text-dark": variant === "ghost",
+    "bg-dark/10 text-dark": variant === "ghost",
   });
 
   const focusedStyles = classNames("focus:outline-none focus:ring-4", {
@@ -80,7 +80,7 @@ function Button({
     "hover:bg-warning-600": variant === "warning",
     "hover:bg-danger-600": variant === "danger",
     "hover:bg-success-600": variant === "success",
-    "hover:bg-dark/10": variant === "ghost",
+    "hover:bg-dark/15": variant === "ghost",
   });
 
   const disabled = classNames("disabled:opacity-50 disabled:cursor-not-allowed", {
