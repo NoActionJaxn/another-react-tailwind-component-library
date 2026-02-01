@@ -4,6 +4,7 @@ import { Slot } from "@radix-ui/react-slot";
 
 export type ButtonVariant = "default" | "primary" | "secondary" | "warning" | "danger" | "success" | "ghost";
 export type ButtonSize = "small" | "medium" | "large";
+
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
   block?: boolean;
@@ -26,7 +27,7 @@ function Button({
   const Component = asChild ? Slot : 'button';
   const componentProps = asChild ? rest : { type, ...rest };
 
-  const baseStyles = "inline-flex items-center justify-center cursor-pointer transition-colors duration-200";
+  const baseStyles = "inline-flex items-center justify-center cursor-pointer transition-colors duration-200 font-medium select-none focus:ring-4 focus:ring-offset-0 disabled:cursor-default disabled:opacity-50";
 
   const fontStyles = "font-sans font-normal tracking-normal";
 
@@ -39,9 +40,9 @@ function Button({
     "px-5 gap-2 text-base": size === "medium",
     "px-6 gap-3 text-lg": size === "large",
   }, {
-    "h-8": size === "small",
-    "h-10": size === "medium",
-    "h-12": size === "large",
+    "h-7": size === "small",
+    "h-9": size === "medium",
+    "h-11": size === "large",
   });
 
   const blockStyles = classNames("sm:w-auto w-full", {
@@ -54,47 +55,66 @@ function Button({
   });
 
   const variantStyles = classNames({
-    "bg-default-500 text-light": variant === "default",
+    "bg-default-800 text-light": variant === "default",
     "bg-primary-500 text-light": variant === "primary",
-    "bg-secondary-500 text-light": variant === "secondary",
+    "bg-default-100 text-dark": variant === "secondary",
     "bg-warning-500 text-light": variant === "warning",
     "bg-danger-500 text-light": variant === "danger",
     "bg-success-500 text-light": variant === "success",
-    "bg-dark/10 text-dark": variant === "ghost",
+    "bg-transparent text-dark": variant === "ghost",
+  });
+
+  const borderStyles = classNames("border", {
+    "border-transparent": ["default", "primary", "warning", "danger", "success", "ghost"].includes(variant),
+    "border border-default-400": variant === "secondary",
   });
 
   const focusedStyles = classNames("focus:outline-none focus:ring-4", {
-    "focus:ring-default-500/50": variant === "default",
+    "focus:ring-default-800/50": variant === "default",
     "focus:ring-primary-500/50": variant === "primary",
-    "focus:ring-secondary-500/50": variant === "secondary",
+    "focus:ring-default-400/50": variant === "secondary",
     "focus:ring-warning-500/50": variant === "warning",
     "focus:ring-danger-500/50": variant === "danger",
     "focus:ring-success-500/50": variant === "success",
-    "focus:ring-dark/30": variant === "ghost",
+    "focus:ring-default-300/50": variant === "ghost",
   });
 
   const hoverStyles = classNames({
-    "hover:bg-default-600": variant === "default",
+    "hover:bg-default-900": variant === "default",
     "hover:bg-primary-600": variant === "primary",
-    "hover:bg-secondary-600": variant === "secondary",
+    "hover:bg-default-200": variant === "secondary" || variant === "ghost",
     "hover:bg-warning-600": variant === "warning",
     "hover:bg-danger-600": variant === "danger",
     "hover:bg-success-600": variant === "success",
-    "hover:bg-dark/15": variant === "ghost",
   });
 
-  const disabled = classNames("disabled:opacity-50 disabled:cursor-not-allowed", {
-    "disabled:hover:bg-default-500": variant === "default",
-    "disabled:hover:bg-primary-500": variant === "primary",
-    "disabled:hover:bg-secondary-500": variant === "secondary",
-    "disabled:hover:bg-warning-500": variant === "warning",
-    "disabled:hover:bg-danger-500": variant === "danger",
-    "disabled:hover:bg-success-500": variant === "success",
+  const disabled = classNames("disabled:opacity-50 disabled:cursor-default", {
+    "disabled:hover:bg-default-800": variant === "default",
+    "disabled:hover:bg-primary-600": variant === "primary",
+    "disabled:hover:bg-default-600": variant === "secondary",
+    "disabled:hover:bg-warning-600": variant === "warning",
+    "disabled:hover:bg-danger-600": variant === "danger",
+    "disabled:hover:bg-success-600": variant === "success",
     "disabled:hover:bg-transparent": variant === "ghost",
   });
 
   return (
-    <Component className={classNames(baseStyles, blockStyles, cornerRadius, fontStyles, hoverStyles, disabled, focusedStyles, sizeStyles, variantStyles, className)} {...componentProps}>
+    <Component
+      className={
+        classNames(
+          baseStyles,
+          blockStyles,
+          cornerRadius,
+          fontStyles,
+          hoverStyles,
+          disabled,
+          focusedStyles,
+          sizeStyles,
+          variantStyles,
+          borderStyles,
+          className
+        )}
+      {...componentProps}>
       {children}
     </Component>
   );

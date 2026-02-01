@@ -10,12 +10,29 @@ const meta: Meta<typeof Accordion> = {
   },
   tags: ['autodocs'],
   argTypes: {
-    items: { table: { disable: true } },
+    items: {
+      description: 'Array of accordion items containing value, title, content, and optional disabled state',
+      table: { disable: true },
+    },
     type: {
       control: 'select',
       options: ['single', 'multiple'],
+      description: 'Whether only one or multiple items can be open at a time',
     },
-    collapsible: { control: 'boolean' },
+    defaultValue: {
+      description: 'The value(s) of the item(s) to be open by default',
+    },
+    collapsible: {
+      control: 'boolean',
+      description: 'When type is "single", allows closing the open item by clicking it again',
+    },
+    className: {
+      description: 'Additional CSS classes to apply to the accordion root',
+    },
+  },
+  args: {
+    type: 'single',
+    collapsible: true,
   },
 };
 
@@ -48,8 +65,6 @@ export const Default: Story = {
   ),
   args: {
     items: defaultItems,
-    type: 'single',
-    collapsible: true,
   },
 };
 
@@ -73,9 +88,7 @@ export const WithDefaultOpen: Story = {
   ),
   args: {
     items: defaultItems,
-    type: 'single',
     defaultValue: 'item-1',
-    collapsible: true,
   },
 };
 
