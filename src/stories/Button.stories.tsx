@@ -115,3 +115,27 @@ export const Disabled: Story = {
     disabled: true,
   },
 };
+
+export const AllSizes: Story = {
+  render: () => (
+    <div className="flex items-center gap-4">
+      <ButtonComponent size="small">Small</ButtonComponent>
+      <ButtonComponent size="medium">Medium</ButtonComponent>
+      <ButtonComponent size="large">Large</ButtonComponent>
+    </div>
+  ),
+};
+
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-4">
+      <ButtonComponent variant="default">Default</ButtonComponent>
+      <ButtonComponent variant="primary">Primary</ButtonComponent>
+      <ButtonComponent variant="secondary">Secondary</ButtonComponent>
+      <ButtonComponent variant="warning">Warning</ButtonComponent>
+      <ButtonComponent variant="danger">Danger</ButtonComponent>
+      <ButtonComponent variant="success">Success</ButtonComponent>
+      <ButtonComponent variant="ghost">Ghost</ButtonComponent>
+    </div>
+  ),
+};

@@ -38,23 +38,23 @@ function Accordion({
     };
 
   const rootStyles = classNames(
-    "w-full divide-y divide-default-200 rounded-md border border-default-200",
+    "w-full divide-y divide-neutral-200 rounded-md border border-neutral-200",
     className
   );
 
   const itemStyles = "group/item overflow-hidden first:rounded-t-md last:rounded-b-md";
 
   const triggerStyles = `
-    group flex flex-1 items-center justify-between px-4 py-3 text-left font-display font-medium transition-colors cursor-pointer
-    hover:bg-default-100 focus:outline-none focus:ring-4 focus:ring-primary-500/50 focus:ring-inset
+    group flex flex-1 items-center justify-between px-4 py-3 text-left transition-colors cursor-pointer
+    hover:bg-neutral-100 focus:outline-none focus:ring-4 focus:ring-primary-500/50 focus:ring-inset
     disabled:cursor-not-allowed disabled:opacity-50
-    data-[state=open]:bg-default-50
+    data-[state=open]:bg-neutral-50
     group-first/item:rounded-t-md group-last/item:group-data-[state=closed]:rounded-b-md
   `;
 
   const contentStyles = "overflow-hidden text-sm data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up";
 
-  const chevronStyles = "h-4 w-4 shrink-0 text-default-500 transition-transform duration-200 group-data-[state=open]:rotate-180";
+  const chevronStyles = "h-4 w-4 shrink-0 text-neutral-500 transition-transform duration-200 group-data-[state=open]:rotate-180";
 
   return (
     <AccordionPrimitive.Root className={rootStyles} {...rootProps}>
@@ -74,7 +74,7 @@ function Accordion({
           <AccordionPrimitive.Content
             className={contentStyles}
           >
-            <div className="px-4 py-3 bg-default-50/50">
+            <div className="px-4 py-3 bg-neutral-50/50">
               {item.content}
             </div>
           </AccordionPrimitive.Content>

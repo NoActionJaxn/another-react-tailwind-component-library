@@ -2,19 +2,6 @@
   --color-light: var(--color-neutral-50);
   --color-dark: var(--color-neutral-900);
 
-  /* Default */
-  --color-default-50: var(--color-neutral-50);
-  --color-default-100: var(--color-neutral-100);
-  --color-default-200: var(--color-neutral-200);
-  --color-default-300: var(--color-neutral-300);
-  --color-default-400: var(--color-neutral-400);
-  --color-default-500: var(--color-neutral-500);
-  --color-default-600: var(--color-neutral-600);
-  --color-default-700: var(--color-neutral-700);
-  --color-default-800: var(--color-neutral-800);
-  --color-default-900: var(--color-neutral-900);
-  --color-default-950: var(--color-neutral-950);
-
   /* Primary */
   --color-primary-50: var(--color-blue-50);
   --color-primary-100: var(--color-blue-100);

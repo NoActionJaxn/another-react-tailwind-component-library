@@ -55,9 +55,9 @@ function Button({
   });
 
   const variantStyles = classNames({
-    "bg-default-800 text-light": variant === "default",
+    "bg-neutral-800 text-light": variant === "default",
     "bg-primary-500 text-light": variant === "primary",
-    "bg-default-100 text-dark": variant === "secondary",
+    "bg-neutral-100 text-dark": variant === "secondary",
     "bg-warning-500 text-light": variant === "warning",
     "bg-danger-500 text-light": variant === "danger",
     "bg-success-500 text-light": variant === "success",
@@ -66,32 +66,32 @@ function Button({
 
   const borderStyles = classNames("border", {
     "border-transparent": ["default", "primary", "warning", "danger", "success", "ghost"].includes(variant),
-    "border border-default-400": variant === "secondary",
+    "border border-neutral-400": variant === "secondary",
   });
 
   const focusedStyles = classNames("focus:outline-none focus:ring-4", {
-    "focus:ring-default-800/50": variant === "default",
+    "focus:ring-neutral-800/50": variant === "default",
     "focus:ring-primary-500/50": variant === "primary",
-    "focus:ring-default-400/50": variant === "secondary",
+    "focus:ring-neutral-400/50": variant === "secondary",
     "focus:ring-warning-500/50": variant === "warning",
     "focus:ring-danger-500/50": variant === "danger",
     "focus:ring-success-500/50": variant === "success",
-    "focus:ring-default-300/50": variant === "ghost",
+    "focus:ring-neutral-300/50": variant === "ghost",
   });
 
   const hoverStyles = classNames({
-    "hover:bg-default-900": variant === "default",
+    "hover:bg-neutral-900": variant === "default",
     "hover:bg-primary-600": variant === "primary",
-    "hover:bg-default-200": variant === "secondary" || variant === "ghost",
+    "hover:bg-neutral-200": variant === "secondary" || variant === "ghost",
     "hover:bg-warning-600": variant === "warning",
     "hover:bg-danger-600": variant === "danger",
     "hover:bg-success-600": variant === "success",
   });
 
   const disabled = classNames("disabled:opacity-50 disabled:cursor-default", {
-    "disabled:hover:bg-default-800": variant === "default",
+    "disabled:hover:bg-neutral-800": variant === "default",
     "disabled:hover:bg-primary-600": variant === "primary",
-    "disabled:hover:bg-default-600": variant === "secondary",
+    "disabled:hover:bg-neutral-600": variant === "secondary",
     "disabled:hover:bg-warning-600": variant === "warning",
     "disabled:hover:bg-danger-600": variant === "danger",
     "disabled:hover:bg-success-600": variant === "success",

@@ -58,23 +58,6 @@ export const Default: Story = {
   },
 };
 
-export const Mixed: Story = {
-  render: (args) => {
-    return (
-      <div className="w-xs flex justify-center">
-        <ButtonGroupComponent {...args}>
-          <Button variant="primary">One</Button>
-          <Button variant="secondary">Two</Button>
-          <Button variant="success">Three</Button>
-        </ButtonGroupComponent>
-      </div>
-    );
-  },
-  args: {
-    rounded: true,
-  },
-};
-
 export const Rounded: Story = {
   render: (args) => {
     return (
@@ -124,4 +107,68 @@ export const Disabled: Story = {
   args: {
     disabled: true,
   },
+};
+
+export const AllSizes: Story = {
+  render: () => (
+    <div className="flex flex-col items-center gap-4">
+      <ButtonGroupComponent size="small">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroupComponent>
+      <ButtonGroupComponent size="medium">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroupComponent>
+      <ButtonGroupComponent size="large">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroupComponent>
+    </div>
+  ),
+};
+
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex flex-col items-center gap-4">
+      <ButtonGroupComponent variant="default">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroupComponent>
+      <ButtonGroupComponent variant="primary">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroupComponent>
+      <ButtonGroupComponent variant="secondary">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroupComponent>
+      <ButtonGroupComponent variant="warning">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroupComponent>
+      <ButtonGroupComponent variant="danger">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroupComponent>
+      <ButtonGroupComponent variant="success">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroupComponent>
+      <ButtonGroupComponent variant="ghost">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroupComponent>
+    </div>
+  ),
 };
