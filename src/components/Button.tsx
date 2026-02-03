@@ -9,6 +9,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   asChild?: boolean;
   block?: boolean;
   rounded?: boolean;
+  square?: boolean;
   size?: ButtonSize;
   variant?: ButtonVariant;
 }
@@ -19,6 +20,7 @@ function Button({
   className,
   block = false,
   rounded = false,
+  square = false,
   size = "medium",
   variant = "default",
   type = "button",
@@ -31,19 +33,29 @@ function Button({
 
   const fontStyles = "font-sans font-normal tracking-normal";
 
-  const sizeStyles = classNames(rounded ? {
-    "px-4.5 gap-1.5 text-sm": size === "small",
-    "px-5.5 gap-2 text-base": size === "medium",
-    "px-6.5 gap-3 text-lg": size === "large",
-  } : {
-    "px-4 gap-1.5 text-sm": size === "small",
-    "px-5 gap-2 text-base": size === "medium",
-    "px-6 gap-3 text-lg": size === "large",
-  }, {
-    "h-7": size === "small",
-    "h-9": size === "medium",
-    "h-11": size === "large",
-  });
+  const sizeStyles = classNames(
+    square ? {
+      "text-sm": size === "small",
+      "text-base": size === "medium",
+      "text-lg": size === "large",
+    } : rounded ? {
+      "px-4.5 gap-1.5 text-sm": size === "small",
+      "px-5.5 gap-2 text-base": size === "medium",
+      "px-6.5 gap-3 text-lg": size === "large",
+    } : {
+      "px-4 gap-1.5 text-sm": size === "small",
+      "px-5 gap-2 text-base": size === "medium",
+      "px-6 gap-3 text-lg": size === "large",
+    },
+    {
+      "h-7": size === "small",
+      "h-9": size === "medium",
+      "h-11": size === "large",
+    },
+    {
+      "aspect-square": square,
+    }
+  );
 
   const blockStyles = classNames("sm:w-auto w-full", {
     "w-full grow": block,

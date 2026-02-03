@@ -86,19 +86,21 @@ function TextInput({
 
   const inputRadiusStyles = classNames({
     "rounded-l-md": !prependElement,
-    "rounded-l-none -ml-px": prependElement,
+    "rounded-l-none border-l-0": prependElement,
     "rounded-r-md": !appendElement,
-    "rounded-r-none -mr-px": appendElement,
+    "rounded-r-none border-r-0": appendElement,
   });
 
   const prependStyles = classNames(
-    "[&>button]:rounded-r-none [&>button]:border-r-0",
-    "[&>button]:focus:ring-0 [&>button]:focus:ring-offset-0"
+    "[&>button]:rounded-r-none",
+    "[&>button]:focus:ring-0 [&>button]:focus:ring-offset-0",
+    "[&>button]:rounded-l-md"
   );
 
   const appendStyles = classNames(
-    "[&>button]:rounded-l-none [&>button]:border-l-0",
-    "[&>button]:focus:ring-0 [&>button]:focus:ring-offset-0"
+    "[&>button]:rounded-l-none",
+    "[&>button]:focus:ring-0 [&>button]:focus:ring-offset-0",
+    "[&>button]:rounded-r-md"
   );
 
   const inputContainer = (

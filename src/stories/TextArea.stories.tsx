@@ -228,26 +228,3 @@ export const WithBothIcons: Story = {
     </div>
   ),
 };
-
-export const FormExample: Story = {
-  render: () => (
-    <div className="w-80 p-6 border border-default-200 rounded-lg">
-      <h3 className="text-lg font-semibold mb-4">Contact Form</h3>
-      <div className="flex flex-col gap-4">
-        <TextArea
-          id="textarea-form-subject"
-          label="Subject"
-          placeholder="What is this about?"
-          size="small"
-        />
-        <TextArea
-          id="textarea-form-message"
-          label="Message"
-          placeholder="Write your message here..."
-          variant="primary"
-          prependElement={<MessageIcon />}
-        />
-      </div>
-    </div>
-  ),
-};

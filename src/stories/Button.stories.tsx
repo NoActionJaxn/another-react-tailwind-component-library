@@ -32,6 +32,10 @@ const meta: Meta<typeof ButtonComponent> = {
       control: 'boolean',
       description: 'Applies fully rounded corners (pill shape)',
     },
+    square: {
+      control: 'boolean',
+      description: 'Makes the button square (equal width and height, no padding)',
+    },
     size: {
       description: 'The size of the button',
     },
@@ -57,6 +61,7 @@ const meta: Meta<typeof ButtonComponent> = {
     children: 'Button',
     block: false,
     rounded: false,
+    square: false,
     size: 'medium',
     variant: 'default',
     type: 'button',
@@ -136,6 +141,67 @@ export const AllVariants: Story = {
       <ButtonComponent variant="danger">Danger</ButtonComponent>
       <ButtonComponent variant="success">Success</ButtonComponent>
       <ButtonComponent variant="ghost">Ghost</ButtonComponent>
+    </div>
+  ),
+};
+
+export const Square: Story = {
+  render: (args) => {
+    return (
+      <div className="w-xs flex justify-center">
+        <ButtonComponent {...args}>
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+          </svg>
+        </ButtonComponent>
+      </div>
+    );
+  },
+  args: {
+    square: true,
+  },
+};
+
+export const SquareAllSizes: Story = {
+  render: () => (
+    <div className="flex items-center gap-4">
+      <ButtonComponent size="small" square>
+        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+        </svg>
+      </ButtonComponent>
+      <ButtonComponent size="medium" square>
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+        </svg>
+      </ButtonComponent>
+      <ButtonComponent size="large" square>
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+        </svg>
+      </ButtonComponent>
+    </div>
+  ),
+};
+
+export const SquareRounded: Story = {
+  render: () => (
+    <div className="flex items-center gap-4">
+      <ButtonComponent size="small" square rounded variant="primary">
+        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+        </svg>
+      </ButtonComponent>
+      <ButtonComponent size="medium" square rounded variant="primary">
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+        </svg>
+      </ButtonComponent>
+      <ButtonComponent size="large" square rounded variant="primary">
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+        </svg>
+      </ButtonComponent>
     </div>
   ),
 };

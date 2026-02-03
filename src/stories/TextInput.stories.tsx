@@ -133,32 +133,6 @@ export const WithLabel: Story = {
   ),
 };
 
-export const WithLabelVertical: Story = {
-  render: () => (
-    <div className="flex flex-col gap-4 w-64">
-      <TextInput
-        id="textinput-vertical-1"
-        label="First Name"
-        placeholder="Enter first name"
-        labelPosition="vertical"
-      />
-      <TextInput
-        id="textinput-vertical-2"
-        label="Last Name"
-        placeholder="Enter last name"
-        labelPosition="vertical"
-      />
-      <TextInput
-        id="textinput-vertical-3"
-        label="Email"
-        placeholder="Enter email"
-        labelPosition="vertical"
-        type="email"
-      />
-    </div>
-  ),
-};
-
 export const WithLabelHorizontal: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-96">
@@ -322,6 +296,7 @@ export const SizeMatchingButtons: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-80">
       <TextInput
+        variant='primary'
         placeholder="Small"
         size="small"
         appendElement={
@@ -331,6 +306,7 @@ export const SizeMatchingButtons: Story = {
         }
       />
       <TextInput
+        variant='primary'
         placeholder="Medium"
         size="medium"
         appendElement={
@@ -340,11 +316,90 @@ export const SizeMatchingButtons: Story = {
         }
       />
       <TextInput
+        variant='primary'
         placeholder="Large"
         size="large"
         appendElement={
           <Button variant="primary" size="large">
             Submit
+          </Button>
+        }
+      />
+    </div>
+  ),
+};
+
+export const WithSquareButtons: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4 w-80">
+      <TextInput
+        placeholder="Search..."
+        variant="primary"
+        appendElement={
+          <Button variant="primary" size="medium" square>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </Button>
+        }
+      />
+      <TextInput
+        placeholder="Enter value..."
+        prependElement={
+          <Button variant="secondary" size="medium" square>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+            </svg>
+          </Button>
+        }
+        appendElement={
+          <Button variant="secondary" size="medium" square>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+            </svg>
+          </Button>
+        }
+      />
+    </div>
+  ),
+};
+
+export const SquareButtonsSizes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4 w-80">
+      <TextInput
+        variant='primary'
+        placeholder="Small"
+        size="small"
+        appendElement={
+          <Button variant="primary" size="small" square>
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </Button>
+        }
+      />
+      <TextInput
+        variant='primary'
+        placeholder="Medium"
+        size="medium"
+        appendElement={
+          <Button variant="primary" size="medium" square>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </Button>
+        }
+      />
+      <TextInput
+        variant='primary'
+        placeholder="Large"
+        size="large"
+        appendElement={
+          <Button variant="primary" size="large" square>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
           </Button>
         }
       />
