@@ -4,7 +4,7 @@ import * as LabelPrimitive from "@radix-ui/react-label";
 
 export type TextInputVariant = "default" | "primary" | "secondary" | "warning" | "danger" | "success";
 export type TextInputSize = "small" | "medium" | "large";
-export type TextInputLabelPosition = "vertical" | "horizontal";
+export type TextInputLabelPosition = "top" | "bottom" | "left" | "right";
 
 export interface TextInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   variant?: TextInputVariant;
@@ -20,7 +20,7 @@ function TextInput({
   variant = "default",
   size = "medium",
   label,
-  labelPosition = "vertical",
+  labelPosition = "top",
   prependElement,
   appendElement,
   className,
@@ -30,8 +30,8 @@ function TextInput({
   ...rest
 }: TextInputProps) {
   const wrapperStyles = classNames({
-    "flex flex-col gap-1.5": labelPosition === "vertical",
-    "flex flex-row items-center gap-3": labelPosition === "horizontal",
+    "flex flex-col gap-1.5": labelPosition === "top" || labelPosition === "bottom",
+    "flex flex-row items-center gap-3": labelPosition === "left" || labelPosition === "right",
   });
 
   const labelStyles = classNames(
@@ -57,7 +57,7 @@ function TextInput({
       "opacity-50": disabled,
     },
     {
-      "flex-1": labelPosition === "horizontal",
+      "flex-1": labelPosition === "left" || labelPosition === "right",
     },
     containerClassName
   );
@@ -134,15 +134,20 @@ function TextInput({
     return inputContainer;
   }
 
+  const labelElement = (
+    <LabelPrimitive.Root
+      htmlFor={id}
+      className={labelStyles}
+    >
+      {label}
+    </LabelPrimitive.Root>
+  );
+
   return (
     <div className={wrapperStyles}>
-      <LabelPrimitive.Root
-        htmlFor={id}
-        className={labelStyles}
-      >
-        {label}
-      </LabelPrimitive.Root>
+      {(labelPosition === "top" || labelPosition === "left") && labelElement}
       {inputContainer}
+      {(labelPosition === "bottom" || labelPosition === "right") && labelElement}
     </div>
   );
 }

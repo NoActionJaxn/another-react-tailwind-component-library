@@ -4,7 +4,7 @@ import * as LabelPrimitive from "@radix-ui/react-label";
 
 export type TextAreaVariant = "default" | "primary" | "secondary" | "warning" | "danger" | "success";
 export type TextAreaSize = "small" | "medium" | "large";
-export type TextAreaLabelPosition = "vertical" | "horizontal";
+export type TextAreaLabelPosition = "top" | "bottom" | "left" | "right";
 
 export interface TextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
   variant?: TextAreaVariant;
@@ -20,7 +20,7 @@ function TextArea({
   variant = "default",
   size = "medium",
   label,
-  labelPosition = "vertical",
+  labelPosition = "top",
   prependElement,
   appendElement,
   className,
@@ -30,8 +30,8 @@ function TextArea({
   ...rest
 }: TextAreaProps) {
   const wrapperStyles = classNames({
-    "flex flex-col gap-1.5": labelPosition === "vertical",
-    "flex flex-row items-start gap-3": labelPosition === "horizontal",
+    "flex flex-col gap-1.5": labelPosition === "top" || labelPosition === "bottom",
+    "flex flex-row items-start gap-3": labelPosition === "left" || labelPosition === "right",
   });
 
   const labelStyles = classNames(
@@ -39,7 +39,7 @@ function TextArea({
     {
       "cursor-pointer": !disabled,
       "cursor-default opacity-50": disabled,
-      "pt-2": labelPosition === "horizontal",
+      "pt-2": labelPosition === "left" || labelPosition === "right",
     }
   );
 
@@ -58,7 +58,7 @@ function TextArea({
       "opacity-50": disabled,
     },
     {
-      "flex-1": labelPosition === "horizontal",
+      "flex-1": labelPosition === "left" || labelPosition === "right",
     },
     containerClassName
   );
@@ -154,15 +154,20 @@ function TextArea({
     return textareaContainer;
   }
 
+  const labelElement = (
+    <LabelPrimitive.Root
+      htmlFor={id}
+      className={labelStyles}
+    >
+      {label}
+    </LabelPrimitive.Root>
+  );
+
   return (
     <div className={wrapperStyles}>
-      <LabelPrimitive.Root
-        htmlFor={id}
-        className={labelStyles}
-      >
-        {label}
-      </LabelPrimitive.Root>
+      {(labelPosition === "top" || labelPosition === "left") && labelElement}
       {textareaContainer}
+      {(labelPosition === "bottom" || labelPosition === "right") && labelElement}
     </div>
   );
 }

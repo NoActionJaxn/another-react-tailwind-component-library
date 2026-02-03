@@ -26,7 +26,7 @@ const meta: Meta<typeof TextInput> = {
     },
     labelPosition: {
       control: 'select',
-      options: ['vertical', 'horizontal'],
+      options: ['top', 'bottom', 'left', 'right'],
       description: 'Position of the label relative to the input',
     },
     placeholder: {
@@ -49,7 +49,7 @@ const meta: Meta<typeof TextInput> = {
   args: {
     variant: 'default',
     size: 'medium',
-    labelPosition: 'vertical',
+    labelPosition: 'top',
     label: 'Text Input',
     disabled: false,
     placeholder: 'Enter text...',
@@ -133,26 +133,26 @@ export const WithLabel: Story = {
   ),
 };
 
-export const WithLabelHorizontal: Story = {
+export const WithLabelLeft: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-96">
       <TextInput
-        id="textinput-horizontal-1"
+        id="textinput-left-1"
         label="First Name"
         placeholder="Enter first name"
-        labelPosition="horizontal"
+        labelPosition="left"
       />
       <TextInput
-        id="textinput-horizontal-2"
+        id="textinput-left-2"
         label="Last Name"
         placeholder="Enter last name"
-        labelPosition="horizontal"
+        labelPosition="left"
       />
       <TextInput
-        id="textinput-horizontal-3"
+        id="textinput-left-3"
         label="Email"
         placeholder="Enter email"
-        labelPosition="horizontal"
+        labelPosition="left"
         type="email"
       />
     </div>

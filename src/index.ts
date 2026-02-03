@@ -9,3 +9,4 @@ export { default as CheckboxField, type CheckboxFieldLayout, type CheckboxFieldV
 export { default as RadioField, type RadioFieldLayout, type RadioFieldVariant, type RadioFieldOption, type RadioFieldProps } from './components/RadioField';
 export { default as TextInput, type TextInputVariant, type TextInputSize, type TextInputLabelPosition, type TextInputProps } from './components/TextInput';
 export { default as TextArea, type TextAreaVariant, type TextAreaSize, type TextAreaLabelPosition, type TextAreaProps } from './components/TextArea';
+export { default as Toggle, type ToggleVariant, type ToggleLabelPosition, type ToggleProps } from './components/Toggle';

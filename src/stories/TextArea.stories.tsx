@@ -26,7 +26,7 @@ const meta: Meta<typeof TextArea> = {
     },
     labelPosition: {
       control: 'select',
-      options: ['vertical', 'horizontal'],
+      options: ['top', 'bottom', 'left', 'right'],
       description: 'Position of the label relative to the textarea',
     },
     placeholder: {
@@ -49,7 +49,7 @@ const meta: Meta<typeof TextArea> = {
   args: {
     variant: 'default',
     size: 'medium',
-    labelPosition: 'vertical',
+    labelPosition: 'top',
     disabled: false,
     placeholder: 'Enter text...',
   },
@@ -132,39 +132,39 @@ export const WithLabel: Story = {
   ),
 };
 
-export const WithLabelVertical: Story = {
+export const WithLabelTop: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-64">
       <TextArea
-        id="textarea-vertical-1"
+        id="textarea-top-1"
         label="Bio"
         placeholder="Tell us about yourself"
-        labelPosition="vertical"
+        labelPosition="top"
       />
       <TextArea
-        id="textarea-vertical-2"
+        id="textarea-top-2"
         label="Notes"
         placeholder="Add any additional notes"
-        labelPosition="vertical"
+        labelPosition="top"
       />
     </div>
   ),
 };
 
-export const WithLabelHorizontal: Story = {
+export const WithLabelLeft: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-96">
       <TextArea
-        id="textarea-horizontal-1"
+        id="textarea-left-1"
         label="Bio"
         placeholder="Tell us about yourself"
-        labelPosition="horizontal"
+        labelPosition="left"
       />
       <TextArea
-        id="textarea-horizontal-2"
+        id="textarea-left-2"
         label="Notes"
         placeholder="Add any additional notes"
-        labelPosition="horizontal"
+        labelPosition="left"
       />
     </div>
   ),
