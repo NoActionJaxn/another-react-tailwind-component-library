@@ -1,10 +1,11 @@
 import React from "react";
 import classNames from "classnames";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
+import Button from "./Button";
 
 export type AlertDialogVariant = "default" | "danger";
 
-export interface AlertDialogProps {
+export interface AlertDialogProps extends Omit<React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Root>, 'open' | 'defaultOpen' | 'onOpenChange'> {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -32,6 +33,7 @@ function AlertDialog({
   onConfirm,
   variant = "default",
   className,
+  ...rest
 }: AlertDialogProps) {
   const overlayStyles = classNames(
     "fixed inset-0 z-50 bg-black/50",
@@ -52,27 +54,11 @@ function AlertDialog({
   );
 
   const titleStyles = "text-lg font-semibold text-neutral-900";
+  
   const descriptionStyles = "mt-2 text-sm text-neutral-600";
 
-  const cancelStyles = classNames(
-    "inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium",
-    "bg-neutral-100 text-neutral-900 hover:bg-neutral-200",
-    "focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2",
-    "transition-colors duration-200"
-  );
-
-  const confirmStyles = classNames(
-    "inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium",
-    "focus:outline-none focus:ring-2 focus:ring-offset-2",
-    "transition-colors duration-200",
-    {
-      "bg-neutral-800 text-white hover:bg-neutral-900 focus:ring-neutral-800": variant === "default",
-      "bg-danger-500 text-white hover:bg-danger-600 focus:ring-danger-500": variant === "danger",
-    }
-  );
-
   return (
-    <AlertDialogPrimitive.Root open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
+    <AlertDialogPrimitive.Root open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange} {...rest}>
       {trigger && <AlertDialogPrimitive.Trigger asChild>{trigger}</AlertDialogPrimitive.Trigger>}
       <AlertDialogPrimitive.Portal>
         <AlertDialogPrimitive.Overlay className={overlayStyles} />
@@ -86,11 +72,15 @@ function AlertDialog({
             </AlertDialogPrimitive.Description>
           )}
           <div className="mt-6 flex justify-end gap-3">
-            <AlertDialogPrimitive.Cancel className={cancelStyles} onClick={onCancel}>
-              {cancelText}
+            <AlertDialogPrimitive.Cancel asChild onClick={onCancel}>
+              <Button variant="secondary">
+                {cancelText}
+              </Button>
             </AlertDialogPrimitive.Cancel>
-            <AlertDialogPrimitive.Action className={confirmStyles} onClick={onConfirm}>
-              {confirmText}
+            <AlertDialogPrimitive.Action asChild onClick={onConfirm}>
+              <Button variant={variant}>
+                {confirmText}
+              </Button>
             </AlertDialogPrimitive.Action>
           </div>
         </AlertDialogPrimitive.Content>

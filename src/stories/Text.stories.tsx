@@ -21,7 +21,7 @@ const meta: Meta<typeof Text> = {
     },
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
+      options: ['x-small', 'small', 'medium', 'large', 'x-large'],
       description: 'The size of the text with responsive scaling',
     },
     variant: {
@@ -57,9 +57,11 @@ export const AsParagraph: Story = {
 export const AllSizes: Story = {
   render: () => (
     <div className="flex flex-col gap-4">
+      <Text size="x-small">X-Small text</Text>
       <Text size="small">Small text</Text>
       <Text size="medium">Medium text</Text>
       <Text size="large">Large text</Text>
+      <Text size="x-large">X-Large text</Text>
     </div>
   ),
 };

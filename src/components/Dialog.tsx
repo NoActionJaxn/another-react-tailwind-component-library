@@ -1,8 +1,11 @@
 import React from "react";
 import classNames from "classnames";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import Button from "./Button";
+import Heading from "./Heading";
+import Text from "./Text";
 
-export interface DialogProps {
+export interface DialogProps extends Omit<React.ComponentPropsWithoutRef<typeof DialogPrimitive.Root>, 'open' | 'defaultOpen' | 'onOpenChange'> {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -24,6 +27,7 @@ function Dialog({
   children,
   footer,
   className,
+  ...rest
 }: DialogProps) {
   const overlayStyles = classNames(
     "fixed inset-0 z-50 bg-black/50",
@@ -43,48 +47,48 @@ function Dialog({
     className
   );
 
-  const titleStyles = "text-lg font-semibold text-neutral-900";
-  const descriptionStyles = "mt-2 text-sm text-neutral-600";
-  const closeStyles = classNames(
-    "absolute right-4 top-4 rounded-sm opacity-70 transition-opacity",
-    "hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2",
-    "disabled:pointer-events-none"
-  );
+  const descriptionStyles = "mt-2 text-neutral-600";
 
   return (
-    <DialogPrimitive.Root open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
+    <DialogPrimitive.Root open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange} {...rest}>
       {trigger && <DialogPrimitive.Trigger asChild>{trigger}</DialogPrimitive.Trigger>}
       <DialogPrimitive.Portal>
         <DialogPrimitive.Overlay className={overlayStyles} />
         <DialogPrimitive.Content className={contentStyles}>
           {title && (
-            <DialogPrimitive.Title className={titleStyles}>
-              {title}
+            <DialogPrimitive.Title asChild>
+              <Heading level={2}>
+                {title}
+              </Heading>
             </DialogPrimitive.Title>
           )}
           {description && (
-            <DialogPrimitive.Description className={descriptionStyles}>
-              {description}
+            <DialogPrimitive.Description asChild>
+              <Text size="x-small" className={descriptionStyles}>
+                {description}
+              </Text>
             </DialogPrimitive.Description>
           )}
           <div className="mt-4">{children}</div>
           {footer && <div className="mt-6 flex justify-end gap-3">{footer}</div>}
-          <DialogPrimitive.Close className={closeStyles}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-            <span className="sr-only">Close</span>
+          <DialogPrimitive.Close asChild>
+            <Button variant="ghost" className="absolute top-4 right-4" size="small" square>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+              <span className="sr-only">Close</span>
+            </Button>
           </DialogPrimitive.Close>
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>

@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import type React from "react";
 
-export type TextSize = 'small' | 'medium' | 'large';
+export type TextSize = 'x-small' | 'small' | 'medium' | 'large' | 'x-large';
 export type TextVariant = 'sans' | 'serif' | 'mono' | 'display';
 
 export interface TextProps extends React.HTMLAttributes<HTMLElement> {
@@ -23,9 +23,11 @@ function Text({
   const baseStyles = "leading-normal text-dark";
 
   const sizeStyles = classNames({
+    'text-[10px] sm:text-xs md:text-sm lg:text-base': size === 'x-small',
     'text-xs sm:text-sm md:text-base lg:text-lg': size === 'small',
     'text-sm sm:text-base md:text-lg lg:text-xl': size === 'medium',
     'text-base sm:text-lg md:text-xl lg:text-2xl': size === 'large',
+    'text-lg sm:text-xl md:text-2xl lg:text-3xl': size === 'x-large',
   });
 
   const variantStyles = classNames({

@@ -17,3 +17,4 @@ export { default as Collapsible, type CollapsibleProps } from './components/Coll
 export { default as Dialog, type DialogProps } from './components/Dialog';
 export { default as AlertDialog, type AlertDialogVariant, type AlertDialogProps } from './components/AlertDialog';
 export { default as Tag, type TagVariant, type TagSize, type TagProps } from './components/Tag';
+export { default as ScrollArea, type ScrollAreaProps } from './components/ScrollArea';
