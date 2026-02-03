@@ -13,3 +13,4 @@ export { default as Toggle, type ToggleVariant, type ToggleLabelPosition, type T
 export { default as Separator, type SeparatorOrientation, type SeparatorProps } from './components/Separator';
 export { default as Select, type SelectVariant, type SelectSize, type SelectLabelPosition, type SelectOption, type SelectProps } from './components/Select';
 export { default as Slider, type SliderVariant, type SliderSize, type SliderLabelPosition, type SliderProps } from './components/Slider';
+export { default as Collapsible, type CollapsibleProps } from './components/Collapsible';
