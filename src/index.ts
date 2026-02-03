@@ -10,3 +10,4 @@ export { default as RadioField, type RadioFieldLayout, type RadioFieldVariant, t
 export { default as TextInput, type TextInputVariant, type TextInputSize, type TextInputLabelPosition, type TextInputProps } from './components/TextInput';
 export { default as TextArea, type TextAreaVariant, type TextAreaSize, type TextAreaLabelPosition, type TextAreaProps } from './components/TextArea';
 export { default as Toggle, type ToggleVariant, type ToggleLabelPosition, type ToggleProps } from './components/Toggle';
+export { default as Separator, type SeparatorOrientation, type SeparatorProps } from './components/Separator';
