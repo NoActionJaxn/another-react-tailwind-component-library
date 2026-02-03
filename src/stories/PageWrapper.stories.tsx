@@ -145,7 +145,7 @@ export const WithFixedHeaderAndSnap: Story = {
       />
       <div className="h-header" /> {/* Spacer for fixed header */}
       <PageWrapper hasFixedHeader snap>
-        <Page className="bg-gradient-to-b from-primary-500 to-primary-600 flex items-center justify-center text-white">
+        <Page className="bg-linear-to-b from-primary-500 to-primary-600 flex items-center justify-center text-white">
           <div className="text-center">
             <Heading level={1} size="2xl" className="text-white">Welcome</Heading>
             <Text size="large" className="mt-4 text-primary-100">
@@ -197,7 +197,7 @@ export const LandingPage: Story = {
         className="bg-white/80 backdrop-blur-sm"
       />
       <PageWrapper hasFixedHeader>
-        <Page className="bg-gradient-to-br from-primary-50 via-white to-success-50 flex items-center justify-center pt-header">
+        <Page className="bg-linear-to-br from-primary-50 via-white to-success-50 flex items-center justify-center pt-header">
           <div className="text-center max-w-3xl px-6">
             <Heading level={1} size="2xl">
               Build faster with our component library

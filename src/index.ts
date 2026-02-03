@@ -1,5 +1,6 @@
 export { default as Button, type ButtonSize, type ButtonVariant, type ButtonProps } from './components/Button';
 export { default as ButtonGroup, type ButtonGroupProps } from './components/ButtonGroup';
+export { default as Anchor, type AnchorVariant, type AnchorSize, type AnchorProps } from './components/Anchor';
 export { default as Accordion, type AccordionProps, type AccordionItem } from './components/Accordion';
 export { default as Text, type TextSize, type TextVariant, type TextProps } from './components/Text';
 export { default as Heading, type HeadingSize, type HeadingVariant, type HeadingLevel, type HeadingProps } from './components/Heading';
@@ -28,3 +29,4 @@ export { default as ToastContainer } from './components/ToastContainer';
 export { default as Navbar, type NavbarItem, type NavbarProps, type NavbarLinkProps } from './components/Navbar';
 export { default as PageWrapper, type PageWrapperProps, usePageWrapper } from './components/PageWrapper';
 export { default as Page, type PageProps } from './components/Page';
+export { default as Card, type CardVariant, type CardProps } from './components/Card';
