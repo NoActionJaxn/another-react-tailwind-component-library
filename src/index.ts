@@ -30,3 +30,4 @@ export { default as Navbar, type NavbarItem, type NavbarProps, type NavbarLinkPr
 export { default as PageWrapper, type PageWrapperProps, usePageWrapper } from './components/PageWrapper';
 export { default as Page, type PageProps } from './components/Page';
 export { default as Card, type CardVariant, type CardProps } from './components/Card';
+export { default as Container, type ContainerProps } from './components/Container';
