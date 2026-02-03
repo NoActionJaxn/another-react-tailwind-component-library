@@ -2,21 +2,21 @@ import React from "react";
 import classNames from "classnames";
 import * as LabelPrimitive from "@radix-ui/react-label";
 
-export type TextInputVariant = "default" | "primary" | "secondary" | "warning" | "danger" | "success";
-export type TextInputSize = "small" | "medium" | "large";
-export type TextInputLabelPosition = "vertical" | "horizontal";
+export type TextAreaVariant = "default" | "primary" | "secondary" | "warning" | "danger" | "success";
+export type TextAreaSize = "small" | "medium" | "large";
+export type TextAreaLabelPosition = "vertical" | "horizontal";
 
-export interface TextInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
-  variant?: TextInputVariant;
-  size?: TextInputSize;
+export interface TextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
+  variant?: TextAreaVariant;
+  size?: TextAreaSize;
   label?: string;
-  labelPosition?: TextInputLabelPosition;
+  labelPosition?: TextAreaLabelPosition;
   prependElement?: React.ReactNode;
   appendElement?: React.ReactNode;
   containerClassName?: string;
 }
 
-function TextInput({
+function TextArea({
   variant = "default",
   size = "medium",
   label,
@@ -28,10 +28,10 @@ function TextInput({
   disabled,
   id,
   ...rest
-}: TextInputProps) {
+}: TextAreaProps) {
   const wrapperStyles = classNames({
     "flex flex-col gap-1.5": labelPosition === "vertical",
-    "flex flex-row items-center gap-3": labelPosition === "horizontal",
+    "flex flex-row items-start gap-3": labelPosition === "horizontal",
   });
 
   const labelStyles = classNames(
@@ -39,6 +39,7 @@ function TextInput({
     {
       "cursor-pointer": !disabled,
       "cursor-default opacity-50": disabled,
+      "pt-2": labelPosition === "horizontal",
     }
   );
 
@@ -62,19 +63,19 @@ function TextInput({
     containerClassName
   );
 
-  const inputBaseStyles = classNames(
-    "flex-1 min-w-0 bg-transparent outline-none border transition-colors duration-200",
+  const textareaBaseStyles = classNames(
+    "flex-1 min-w-0 bg-transparent outline-none border transition-colors duration-200 resize-y",
     "placeholder:text-neutral-400",
     "disabled:cursor-default"
   );
 
-  const inputSizeStyles = classNames({
-    "px-3 h-7 text-sm": size === "small",
-    "px-4 h-9 text-base": size === "medium",
-    "px-5 h-11 text-lg": size === "large",
+  const textareaSizeStyles = classNames({
+    "px-3 py-1.5 text-sm min-h-20": size === "small",
+    "px-4 py-2 text-base min-h-24": size === "medium",
+    "px-5 py-2.5 text-lg min-h-32": size === "large",
   });
 
-  const inputVariantStyles = classNames({
+  const textareaVariantStyles = classNames({
     "border-neutral-400 text-dark": true,
     "group-focus-within:border-neutral-800": variant === "default",
     "group-focus-within:border-primary-500": variant === "primary",
@@ -84,37 +85,58 @@ function TextInput({
     "group-focus-within:border-success-500": variant === "success",
   });
 
-  const inputRadiusStyles = classNames({
+  const textareaRadiusStyles = classNames({
     "rounded-l-md": !prependElement,
-    "rounded-l-none -ml-px": prependElement,
+    "rounded-l-none border-l-0": prependElement,
     "rounded-r-md": !appendElement,
-    "rounded-r-none -mr-px": appendElement,
+    "rounded-r-none border-r-0": appendElement,
+  });
+
+  const elementBaseStyles = classNames(
+    "flex items-start justify-center border border-neutral-400 bg-neutral-50 text-neutral-500",
+    "transition-colors duration-200",
+    {
+      "group-focus-within:border-neutral-800": variant === "default",
+      "group-focus-within:border-primary-500": variant === "primary",
+      "group-focus-within:border-neutral-400": variant === "secondary",
+      "group-focus-within:border-warning-500": variant === "warning",
+      "group-focus-within:border-danger-500": variant === "danger",
+      "group-focus-within:border-success-500": variant === "success",
+    }
+  );
+
+  const elementSizeStyles = classNames({
+    "px-2 pt-1.5": size === "small",
+    "px-3 pt-2": size === "medium",
+    "px-4 pt-2.5": size === "large",
   });
 
   const prependStyles = classNames(
-    "[&>button]:rounded-r-none [&>button]:border-r-0",
-    "[&>button]:focus:ring-0 [&>button]:focus:ring-offset-0"
+    elementBaseStyles,
+    elementSizeStyles,
+    "rounded-l-md border-r-0"
   );
 
   const appendStyles = classNames(
-    "[&>button]:rounded-l-none [&>button]:border-l-0",
-    "[&>button]:focus:ring-0 [&>button]:focus:ring-offset-0"
+    elementBaseStyles,
+    elementSizeStyles,
+    "rounded-r-md border-l-0"
   );
 
-  const inputContainer = (
+  const textareaContainer = (
     <div className={containerStyles}>
       {prependElement && (
         <div className={prependStyles}>
           {prependElement}
         </div>
       )}
-      <input
+      <textarea
         id={id}
         className={classNames(
-          inputBaseStyles,
-          inputSizeStyles,
-          inputVariantStyles,
-          inputRadiusStyles,
+          textareaBaseStyles,
+          textareaSizeStyles,
+          textareaVariantStyles,
+          textareaRadiusStyles,
           className
         )}
         disabled={disabled}
@@ -129,7 +151,7 @@ function TextInput({
   );
 
   if (!label) {
-    return inputContainer;
+    return textareaContainer;
   }
 
   return (
@@ -140,11 +162,11 @@ function TextInput({
       >
         {label}
       </LabelPrimitive.Root>
-      {inputContainer}
+      {textareaContainer}
     </div>
   );
 }
 
-TextInput.displayName = "TextInput";
+TextArea.displayName = "TextArea";
 
-export default TextInput;
+export default TextArea;
