@@ -59,6 +59,11 @@
   --font-serif: "Arvo", serif;
   --font-sans: "Public Sans", sans-serif;
 
+  /* Layout */
+  --height-header: 4rem;
+  --spacing-header: 4rem;
+  --min-height-header: 4rem;
+
   /* Animations */
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;

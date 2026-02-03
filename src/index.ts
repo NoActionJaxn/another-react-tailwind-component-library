@@ -21,6 +21,10 @@ export { default as AlertDialog, type AlertDialogVariant, type AlertDialogProps 
 export { default as Tag, type TagVariant, type TagSize, type TagProps } from './components/Tag';
 export { default as ScrollArea, type ScrollAreaProps } from './components/ScrollArea';
 export { default as ThemeProvider, type ThemeProviderProps } from './components/ThemeProvider';
+export { default as Banner, type BannerVariant, type BannerProps } from './components/Banner';
 export { ToastProvider, useToast, type ToastOptions, type Toast, type ToastPosition, type ToastProviderProps } from './components/ToastProvider';
 export { default as ToastComponent, type ToastProps, type ToastVariant } from './components/Toast';
 export { default as ToastContainer } from './components/ToastContainer';
+export { default as Navbar, type NavbarItem, type NavbarProps, type NavbarLinkProps } from './components/Navbar';
+export { default as PageWrapper, type PageWrapperProps, usePageWrapper } from './components/PageWrapper';
+export { default as Page, type PageProps } from './components/Page';
