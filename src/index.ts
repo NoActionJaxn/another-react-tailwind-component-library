@@ -14,3 +14,6 @@ export { default as Separator, type SeparatorOrientation, type SeparatorProps } 
 export { default as Select, type SelectVariant, type SelectSize, type SelectLabelPosition, type SelectOption, type SelectProps } from './components/Select';
 export { default as Slider, type SliderVariant, type SliderSize, type SliderLabelPosition, type SliderProps } from './components/Slider';
 export { default as Collapsible, type CollapsibleProps } from './components/Collapsible';
+export { default as Dialog, type DialogProps } from './components/Dialog';
+export { default as AlertDialog, type AlertDialogVariant, type AlertDialogProps } from './components/AlertDialog';
+export { default as Tag, type TagVariant, type TagSize, type TagProps } from './components/Tag';
