@@ -12,10 +12,8 @@ export interface RadioFieldOption {
   disabled?: boolean;
 }
 
-export interface RadioFieldProps {
+export interface RadioFieldProps extends Omit<RadioGroupPrimitive.RadioGroupProps, 'onValueChange' | 'onChange'> {
   options: RadioFieldOption[];
-  value?: string;
-  defaultValue?: string;
   onChange?: (value: string) => void;
   layout?: RadioFieldLayout;
   variant?: RadioFieldVariant;
@@ -36,6 +34,7 @@ function RadioField({
   name,
   disabled,
   required,
+  ...rest
 }: RadioFieldProps) {
   const layoutStyles = classNames({
     'flex flex-col gap-3': layout === 'stack',
@@ -93,6 +92,7 @@ function RadioField({
       disabled={disabled}
       required={required}
       className={layoutStyles}
+      {...rest}
     >
       {options.map((option) => (
         <div key={option.id} className="flex items-center gap-2">

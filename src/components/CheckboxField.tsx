@@ -48,6 +48,7 @@ function CheckboxField({
   variant = 'primary',
   className,
   name,
+  ...rest
 }: CheckboxFieldProps) {
   const isControlled = !!value;
   const checkedValues = isControlled ? value : [];
@@ -130,6 +131,7 @@ function CheckboxField({
               onCheckedChange={handleOnChange}
               disabled={option.disabled}
               className={classNames("peer", baseCheckboxStyles, variantStyles, focusStyles, className)}
+              {...rest}
             >
               <CheckboxPrimitive.Indicator className={indicatorStyles}>
                 <CheckIcon className="h-3.5 w-3.5" />
