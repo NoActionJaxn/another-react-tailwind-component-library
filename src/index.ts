@@ -11,3 +11,4 @@ export { default as TextInput, type TextInputVariant, type TextInputSize, type T
 export { default as TextArea, type TextAreaVariant, type TextAreaSize, type TextAreaLabelPosition, type TextAreaProps } from './components/TextArea';
 export { default as Toggle, type ToggleVariant, type ToggleLabelPosition, type ToggleProps } from './components/Toggle';
 export { default as Separator, type SeparatorOrientation, type SeparatorProps } from './components/Separator';
+export { default as Select, type SelectVariant, type SelectSize, type SelectLabelPosition, type SelectOption, type SelectProps } from './components/Select';
