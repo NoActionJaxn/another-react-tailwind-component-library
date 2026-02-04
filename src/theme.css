@@ -1,8 +1,23 @@
+/**
+ * Theme Configuration for Component Library
+ * 
+ * This file defines the theme variables used by the components.
+ * Copy this file to your project and customize the values to match your brand.
+ * 
+ * Usage in your project's CSS:
+ *   @import "tailwindcss";
+ *   @import "./your-custom-theme.css";
+ * 
+ * Or import directly:
+ *   @import "another-react-tailwind-component-library/theme.css";
+ */
+
 @theme {
+  /* Semantic Colors - Map to your brand colors */
   --color-light: var(--color-neutral-50);
   --color-dark: var(--color-neutral-900);
 
-  /* Primary */
+  /* Primary - Used for main actions, links, and emphasis */
   --color-primary-50: var(--color-blue-50);
   --color-primary-100: var(--color-blue-100);
   --color-primary-200: var(--color-blue-200);
@@ -15,7 +30,7 @@
   --color-primary-900: var(--color-blue-900);
   --color-primary-950: var(--color-blue-950);
 
-  /* Warning */
+  /* Warning - Used for warnings and caution states */
   --color-warning-50: var(--color-amber-50);
   --color-warning-100: var(--color-amber-100);
   --color-warning-200: var(--color-amber-200);
@@ -28,7 +43,7 @@
   --color-warning-900: var(--color-amber-900);
   --color-warning-950: var(--color-amber-950);
 
-  /* Success */
+  /* Success - Used for success states and confirmations */
   --color-success-50: var(--color-emerald-50);
   --color-success-100: var(--color-emerald-100);
   --color-success-200: var(--color-emerald-200);
@@ -41,7 +56,7 @@
   --color-success-900: var(--color-emerald-900);
   --color-success-950: var(--color-emerald-950);
 
-  /* Danger */
+  /* Danger - Used for errors, destructive actions, and alerts */
   --color-danger-50: var(--color-red-50);
   --color-danger-100: var(--color-red-100);
   --color-danger-200: var(--color-red-200);
@@ -54,12 +69,12 @@
   --color-danger-900: var(--color-red-900);
   --color-danger-950: var(--color-red-950);
 
-  /* Fonts */
+  /* Typography - Customize fonts for your brand */
   --font-display: "Oswald", sans-serif;
   --font-serif: "Arvo", serif;
   --font-sans: "Public Sans", sans-serif;
 
-  /* Layout */
+  /* Layout - Spacing and sizing tokens */
   --height-header: 4rem;
   --spacing-header: 4rem;
   --min-height-header: 4rem;

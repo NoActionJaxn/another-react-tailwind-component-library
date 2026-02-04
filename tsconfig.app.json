@@ -16,6 +16,10 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    /* Declaration */
+    "declaration": true,
+    "declarationMap": true,
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
@@ -24,5 +28,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/stories", "src/main.tsx"]
 }

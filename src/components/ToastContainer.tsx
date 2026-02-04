@@ -1,4 +1,3 @@
-import React from "react";
 import classNames from "classnames";
 import { useToast } from "./ToastProvider";
 import Toast from "./Toast";

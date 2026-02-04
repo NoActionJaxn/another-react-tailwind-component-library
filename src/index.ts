@@ -1,3 +1,4 @@
+// Components
 export { default as Button, type ButtonSize, type ButtonVariant, type ButtonProps } from './components/Button';
 export { default as ButtonGroup, type ButtonGroupProps } from './components/ButtonGroup';
 export { default as Anchor, type AnchorVariant, type AnchorSize, type AnchorProps } from './components/Anchor';
@@ -31,3 +32,5 @@ export { default as PageWrapper, type PageWrapperProps, usePageWrapper } from '.
 export { default as Page, type PageProps } from './components/Page';
 export { default as Card, type CardVariant, type CardProps } from './components/Card';
 export { default as Container, type ContainerProps } from './components/Container';
+export { default as Hero, type HeroAlignment, type HeroSize, type HeroProps } from './components/Hero';
+export { default as Carousel, type CarouselOrientation, type CarouselProps, type CarouselContentProps, type CarouselItemProps, useCarousel } from './components/Carousel';
