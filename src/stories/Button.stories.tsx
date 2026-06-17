@@ -29,7 +29,7 @@ const meta = {
     },
     variant: {
       control: { type: 'select' },
-      options: ['default', 'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'ghost', 'outline'] as const,
+      options: ['default', 'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'ghost', 'outline', 'link'] as const,
     },
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#story-args
@@ -42,58 +42,16 @@ const meta = {
     variant: 'default',
     onClick: fn()
   },
+  render: (args) => (
+    <div className="text-center min-w-sm">
+      <ButtonComponent {...args} />
+    </div>
+  ),
 } satisfies Meta<typeof ButtonComponent>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const DefaultButton: Story = {};
-
-export const PrimaryButton: Story = {
-  args: {
-    variant: 'primary',
-  },
-};
-
-export const SecondaryButton: Story = {
-  args: {
-    variant: 'secondary',
-  },
-};
-
-export const SuccessButton: Story = {
-  args: {
-    variant: 'success',
-  },
-};
-
-export const WarningButton: Story = {
-  args: {
-    variant: 'warning',
-  },
-};
-
-export const DangerButton: Story = {
-  args: {
-    variant: 'danger',
-  },
-};
-
-export const InfoButton: Story = {
-  args: {
-    variant: 'info',
-  },
-};
-
-export const GhostButton: Story = {
-  args: {
-    variant: 'ghost',
-  },
-};
-
-export const OutlineButton: Story = {
-  args: {
-    variant: 'outline',
-  },
-};  
+export const Button: Story = {};

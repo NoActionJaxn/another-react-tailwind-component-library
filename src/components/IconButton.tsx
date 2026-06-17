@@ -1,35 +1,25 @@
 import { cn } from "../util/cn";
 import { Button as HeadlessButton } from "@headlessui/react";
-import type { GlobalSizes, GlobalVariants } from "../types/globals";
+import type { ButtonProps } from "./Button";
 
-export type ButtonVariant = GlobalVariants | 'ghost' | 'outline' | 'link';
-export type ButtonSize = GlobalSizes;
+export type IconButtonProps = Omit<ButtonProps, 'block'>;
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  block?: boolean;
-  rounded?: boolean;
-  size?: ButtonSize;
-  variant?: ButtonVariant;
-}
-
-const Button = ({
+const IconButton = ({
   className,
-  block = false,
   rounded = false,
   size = 'medium',
   type = 'button',
   variant = 'default',
   ...rest
-}: ButtonProps) => {
+}: IconButtonProps) => {
   return (
     <HeadlessButton
       type={type}
       className={
         cn(
           className,
-          'another-button',
+          'another-button icon-button',
           {
-            "w-full grow": block,
             "rounded-full": rounded,
             'small-button': size === 'small',
             'medium-button': size === 'medium',
@@ -44,13 +34,13 @@ const Button = ({
             'warning-button': variant === 'warning',
             'danger-button': variant === 'danger',
             'info-button': variant === 'info',
-          },
+          }
         )}
       {...rest}
     />
   );
 };
 
-Button.displayName = 'Button';
+IconButton.displayName = 'IconButton';
 
-export default Button;
+export default IconButton;

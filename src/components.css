@@ -1,6 +1,6 @@
 @layer components {
   .another-button {
-      @apply rounded cursor-pointer border-transparent border-2 ring-4 ring-transparent transition-colors duration-200;
+      @apply inline-block rounded cursor-pointer border-transparent border-2 ring-4 ring-transparent transition-colors duration-200;
   }
 
   .another-button.small-button {
@@ -49,5 +49,25 @@
 
   .another-button.ghost-button {
     @apply bg-transparent text-dark hover:bg-secondary-light;
+  }
+
+  .another-button.link-button {
+    @apply bg-transparent text-primary p-0 hover:underline;
+  }
+
+  .another-button.icon-button {
+    @apply aspect-square p-0;
+  }
+
+  .another-button.icon-button.small-button {
+    @apply size-7;
+  }
+
+  .another-button.icon-button.medium-button {
+    @apply size-9;
+  }
+
+  .another-button.icon-button.large-button {
+    @apply size-12;
   }
 }
