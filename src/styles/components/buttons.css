@@ -1,6 +1,6 @@
 @layer components {
   .another-button {
-      @apply inline-block rounded cursor-pointer border-transparent border-2 ring-4 ring-transparent transition-colors duration-200;
+      @apply inline-block rounded font-mono font-medium cursor-pointer border-transparent border-2 ring-4 ring-transparent transition-colors duration-200;
   }
 
   .another-button.small-button {
