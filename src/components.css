@@ -1,0 +1,53 @@
+@layer components {
+  .another-button {
+      @apply rounded cursor-pointer border-transparent border-2 ring-4 ring-transparent transition-colors duration-200;
+  }
+
+  .another-button.small-button {
+    @apply text-sm px-2 py-0.5;
+  }
+
+  .another-button.medium-button {
+    @apply text-base px-3 py-1;
+  }
+
+  .another-button.large-button {
+    @apply text-lg px-4 py-2;
+  }
+
+  .another-button.default-button {
+    @apply bg-default-dark hover:bg-default-darkest text-white;
+  }
+
+  .another-button.primary-button {
+    @apply bg-primary-dark hover:bg-primary-darkest text-white;
+  }
+
+  .another-button.secondary-button {
+    @apply bg-secondary-dark hover:bg-secondary-darkest text-white;
+  }
+
+  .another-button.success-button {
+    @apply bg-success-dark hover:bg-success-darkest text-white;
+  }
+
+  .another-button.warning-button {
+    @apply bg-warning-dark hover:bg-warning-darkest text-white;
+  }
+
+  .another-button.danger-button {
+    @apply bg-danger-dark hover:bg-danger-darkest text-white;
+  }
+
+  .another-button.info-button {
+    @apply bg-info hover:bg-info-dark text-white;
+  }
+
+  .another-button.bordered-button {
+    @apply bg-transparent border-default text-default hover:bg-secondary-light;
+  }
+
+  .another-button.ghost-button {
+    @apply bg-transparent text-dark hover:bg-secondary-light;
+  }
+}
