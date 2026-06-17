@@ -1,0 +1,74 @@
+@layer components {
+  h1.another-title {
+    @apply font-mono font-bold;
+  }
+
+  h2.another-title {
+    @apply font-mono font-bold;
+  }
+
+  h3.another-title {
+    @apply font-mono font-medium;
+  }
+
+  h4.another-title {
+    @apply font-mono font-medium;
+  }
+
+  h5.another-title {
+    @apply font-sans font-light;
+  }
+
+  h6.another-title {
+    @apply font-sans font-light;
+  }
+
+  .another-title.another-extra-small-title {
+    @apply text-base;
+  }
+
+  .another-title.another-small-title {
+    @apply text-lg;
+  }
+
+  .another-title.another-medium-title {
+    @apply text-xl;
+  }
+
+  .another-title.another-large-title {
+    @apply text-4xl;
+  }
+
+  .another-title.another-extra-large-title {
+    @apply text-6xl;
+  }
+
+  .another-text {
+    @apply font-sans font-normal;
+  }
+
+  .another-text.another-extra-small-text {
+    @apply text-xs;
+  }
+  
+  .another-text.another-small-text {
+    @apply text-sm;
+  }
+
+  .another-text.another-medium-text {
+    @apply text-base;
+  }
+
+  .another-text.another-large-text {
+    @apply text-lg;
+  }
+
+  .another-text.another-extra-large-text {
+    @apply text-xl;
+  }
+
+  b.another-text,
+  strong.another-text {
+    @apply font-bold;
+  }
+}
