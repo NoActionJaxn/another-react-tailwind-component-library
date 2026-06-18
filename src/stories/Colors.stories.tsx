@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 const meta = {
-  title: 'Example/Colors',
+  title: 'Theme/Colors',
   parameters: {
     layout: 'centered',
   },
