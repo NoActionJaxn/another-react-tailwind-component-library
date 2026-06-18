@@ -1,0 +1,61 @@
+@layer components {
+  .another-text-input {
+    @apply inline-block;
+  }
+
+  .another-text-input label {
+    @apply text-base font-semibold font-mono;
+  }
+
+  .another-text-input.another-small-text-input label {
+    @apply py-0;
+  }
+
+  .another-text-input.another-medium-text-input label {
+    @apply py-1;
+  }
+
+  .another-text-input.another-large-text-input label {
+    @apply py-2;
+  }
+
+  .another-text-input .another-input-wrapper {
+    @apply space-y-0.5;
+  }
+
+  .another-text-input .another-input-container {
+    @apply border border-dark rounded;
+  }
+
+  .another-text-input .another-input-container input {
+    @apply w-full outline-0 ring-0;
+  }
+
+  .another-text-input .another-text-input-description {
+    @apply text-xs font-light font-sans text-default-light;
+  }
+
+  .another-text-input.another-small-text-input input {
+    @apply text-sm;
+  }
+  
+  .another-text-input.another-medium-text-input input {
+    @apply text-base;
+  }
+
+  .another-text-input.another-large-text-input input {
+    @apply text-lg;
+  }
+
+  .another-text-input.another-small-text-input .another-input-container {
+    @apply h-7;
+  }
+
+  .another-text-input.another-medium-text-input .another-input-container {
+    @apply h-9;
+  }
+
+  .another-text-input.another-large-text-input .another-input-container {
+    @apply h-12;
+  }
+}

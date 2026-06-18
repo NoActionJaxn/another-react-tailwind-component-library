@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import Typography from '../components/Typography';
 
 const meta = {
-  title: 'Example/Typography/Text',
+  title: 'Typography/Text',
   component: Typography.Text,
   parameters: {
     layout: 'centered',
