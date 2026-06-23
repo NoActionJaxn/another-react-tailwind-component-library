@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { fn } from 'storybook/test';
 
-import TextInputComponent from '../components/TextInput';
+import TextAreaComponent from '../components/TextArea';
 
 const meta = {
-  title: 'Inputs/TextInput',
-  component: TextInputComponent,
+  title: 'Inputs/TextArea',
+  component: TextAreaComponent,
   parameters: {
     layout: 'centered',
   },
@@ -40,23 +40,16 @@ const meta = {
     rounded: false,
     size: 'medium'
   }
-} satisfies Meta<typeof TextInputComponent>
+} satisfies Meta<typeof TextAreaComponent>
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const TextInput: Story = {}
+export const TextArea: Story = {}
 
-export const TextInputPrependIcon: Story = {
+export const TextAreaPrependIcon: Story = {
   args: {
     prependElement: <>🔥</>
   }
 }
-
-export const TextInputAppendIcon: Story = {
-  args: {
-    appendElement: <>🔥</>
-  }
-}
-

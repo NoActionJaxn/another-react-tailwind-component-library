@@ -8,10 +8,12 @@ export interface TextProps extends React.HTMLAttributes<HTMLElement> {
 
 export interface TitleProps extends Omit<TextProps, 'as'> {
   as?: 'default' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  bold?: boolean;
 }
 
 const Title = ({
   as = 'default',
+  bold = false,
   className,
   size = 'medium',
   ...rest
@@ -21,15 +23,18 @@ const Title = ({
     <Component
       className={
         cn(
-          className,
-          'another-title',
+          'font-title font-semibold',
           {
-            'another-small-title': size === 'small',
-            'another-medium-title': size === 'medium',
-            'another-large-title': size === 'large',
-            'another-extra-small-title': size === 'extra-small',
-            'another-extra-large-title': size === 'extra-large',  
-          }
+            "font-black": bold,
+          },
+          {
+            "text-7xl": size === "extra-large",
+            "text-4xl": size === "large",
+            "text-2xl": size === "medium",
+            "text-lg": size === "small",
+            "text-sm": size === "extra-small",
+          },
+          className,
         )}
       {...rest}
     />
@@ -46,15 +51,15 @@ const Text = ({
     <Component
       className={
         cn(
-          className,
-          'another-text',
+          'font-text font-normal',
           {
-            'another-extra-small-text': size === 'extra-small',
-            'another-small-text': size === 'small',
-            'another-medium-text': size === 'medium',
-            'another-large-text': size === 'large',
-            'another-extra-large-text': size === 'extra-large',
-          }
+            "text-2xl": size === "extra-large",
+            "text-xl": size === "large",
+            "text-lg": size === "medium",
+            "text-base": size === "small",
+            "text-sm": size === "extra-small",
+          },
+          className,
         )}
       {...rest}
     />

@@ -13,6 +13,9 @@ const meta = {
       control: { type: 'select' },
       options: ['default', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const,
     },
+    bold: {
+      control: { type: 'boolean' }
+    },
     size: {
       control: { type: 'select' },
       options: ['extra-small', 'small', 'medium', 'large', 'extra-large'] as const,
@@ -20,6 +23,7 @@ const meta = {
   },
   args: {
     as: 'default',
+    bold: false,
     size: 'medium',
   },
   tags: ['autodocs'],

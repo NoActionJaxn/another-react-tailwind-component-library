@@ -1,0 +1,138 @@
+@theme fonts {
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-serif: 'Source Serif 4', serif;
+
+  --font-text: var(--font-sans);
+  --font-title: var(--font-mono);
+  --font-accent: var(--font-serif);
+}
+
+@theme color-scheme {
+  --color-light: var(--color-stone-50);
+  --color-dark: var(--color-stone-950);
+
+  --color-default: var(--color-stone-600);
+  --color-default-darkest: var(--color-stone-800);
+  --color-default-dark: var(--color-stone-700);
+  --color-default-neutral: var(--color-default);
+  --color-default-light: var(--color-stone-500);
+  --color-default-lightest: var(--color-stone-400);
+
+  --color-primary: var(--color-sky-400);
+  --color-primary-darkest: var(--color-sky-600);
+  --color-primary-dark: var(--color-sky-500);
+  --color-primary-neutral: var(--color-primary);
+  --color-primary-light: var(--color-sky-300);
+  --color-primary-lightest: var(--color-sky-200);
+
+  --color-secondary: var(--color-stone-300);
+  --color-secondary-darkest: var(--color-stone-500);
+  --color-secondary-dark: var(--color-stone-400);
+  --color-secondary-neutral: var(--color-secondary);
+  --color-secondary-light: var(--color-stone-200);
+  --color-secondary-lightest: var(--color-stone-100);
+
+  --color-success: var(--color-lime-500);
+  --color-success-darkest: var(--color-lime-700);
+  --color-success-dark: var(--color-lime-600);
+  --color-success-neutral: var(--color-success);
+  --color-success-light: var(--color-lime-400);
+  --color-success-lightest: var(--color-lime-300);
+
+  --color-warning: var(--color-amber-400);
+  --color-warning-darkest: var(--color-amber-600);
+  --color-warning-dark: var(--color-amber-500);
+  --color-warning-neutral: var(--color-warning);
+  --color-warning-light: var(--color-amber-300);
+  --color-warning-lightest: var(--color-amber-200);
+
+  --color-danger: var(--color-rose-500);
+  --color-danger-darkest: var(--color-rose-800);
+  --color-danger-dark: var(--color-rose-700);
+  --color-danger-neutral: var(--color-danger);
+  --color-danger-light: var(--color-rose-400);
+  --color-danger-lightest: var(--color-rose-300);
+
+  --color-info: var(--color-cyan-500);
+  --color-info-darkest: var(--color-cyan-700);
+  --color-info-dark: var(--color-cyan-600);
+  --color-info-neutral: var(--color-info);
+  --color-info-light: var(--color-cyan-400);
+  --color-info-lightest: var(--color-cyan-300);
+}
+
+@theme button {
+    --font-button: var(--font-mono);
+
+    --color-button-default-text: var(--color-light);
+    --color-button-default-background: var(--color-default-dark);
+    --color-button-default-background-hover: var(--color-default-darkest);
+    --color-button-default-ring: var(--color-default-lightest);
+
+    --color-button-primary-text: var(--color-light);
+    --color-button-primary-background: var(--color-primary-dark);
+    --color-button-primary-background-hover: var(--color-primary-darkest);
+    --color-button-primary-ring: var(--color-primary-lightest);
+
+    --color-button-secondary-text: var(--color-light);
+    --color-button-secondary-background: var(--color-secondary-dark);
+    --color-button-secondary-background-hover: var(--color-secondary-darkest);
+    --color-button-secondary-ring: var(--color-secondary-lightest);
+
+    --color-button-success-text: var(--color-light);
+    --color-button-success-background: var(--color-success-dark);
+    --color-button-success-background-hover: var(--color-success-darkest);
+    --color-button-success-ring: var(--color-success-lightest);
+
+    --color-button-warning-text: var(--color-light);
+    --color-button-warning-background: var(--color-warning-dark);
+    --color-button-warning-background-hover: var(--color-warning-darkest);
+    --color-button-warning-ring: var(--color-warning-lightest);
+
+    --color-button-danger-text: var(--color-light);
+    --color-button-danger-background: var(--color-danger-dark);
+    --color-button-danger-background-hover: var(--color-danger-darkest);
+    --color-button-danger-ring: var(--color-danger-lightest);
+
+    --color-button-info-text: var(--color-light);
+    --color-button-info-background: var(--color-info-dark);
+    --color-button-info-background-hover: var(--color-info-darkest);
+    --color-button-info-ring: var(--color-info-lightest);
+
+    --color-button-outline-text: var(--color-default);
+    --color-button-outline-border: var(--color-default);
+    --color-button-outline-background: transparent;
+    --color-button-outline-background-hover: var(--color-secondary-light);
+    --color-button-outline-ring: var(--color-default-lightest);
+
+    --color-button-ghost-text: var(--color-dark);
+    --color-button-ghost-background: transparent;
+    --color-button-ghost-background-hover: var(--color-secondary-light);
+    --color-button-ghost-ring: var(--color-primary-lightest);
+
+    --color-button-link-text: var(--color-primary-dark);
+    --color-button-link-text-hover: var(--color-primary-darkest);
+    --color-button-link-background: transparent;
+    --color-button-link-ring: var(--color-primary-lightest);
+}
+
+@theme input {
+  --font-input-label: var(--font-mono);
+  --font-input-error: var(--font-sans);
+  --font-input-description: var(--font-sans);
+
+  --color-input-background: var(--color-secondary-lightest);
+  --color-input-background-hover: var(--color-light);
+  --color-input-ring: var(--color-primary-lightest);
+
+  --color-input-error-border: var(--color-danger-light);
+  --color-input-error-ring: var(--color-danger-lightest);
+
+  --color-input-border: var(--color-secondary);
+
+  --color-input-placeholder: var(--color-secondary-light);
+
+  --color-input-description: var(--color-secondary-dark);
+  --color-input-error: var(--color-danger);
+}

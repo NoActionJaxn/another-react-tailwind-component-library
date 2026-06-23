@@ -2,17 +2,19 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { fn } from 'storybook/test';
 
-import IconButtonComponent from '../components/IconButton';
+import ButtonComponent from '../components/Button';
 
 const meta = {
-  title: 'IconButton',
-  component: IconButtonComponent,
+  title: 'Buttons/IconButton',
+  component: ButtonComponent,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
+    block: { control: 'boolean' },
     children: { control: 'text' },
+    icon: { control: 'boolean' },
     rounded: { control: 'boolean' },
     size: {
       control: { type: 'select' },
@@ -29,13 +31,15 @@ const meta = {
   },
   args: {
     children: '❤️',
+    block: false,
+    icon: true,
     rounded: false,
     size: 'medium',
     type: 'button',
     variant: 'default',
     onClick: fn()
   },
-} satisfies Meta<typeof IconButtonComponent>;
+} satisfies Meta<typeof ButtonComponent>;
 
 export default meta;
 

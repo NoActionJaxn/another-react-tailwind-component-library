@@ -1,26 +1,24 @@
-import { type InputProps, Description, Field, Input, Label } from '@headlessui/react'
+import { type TextareaProps as HeadlessTextAreaProps, Description, Field, Textarea as HeadlessTextArea, Label } from '@headlessui/react'
 import { cn } from '../util/cn';
 import type { GlobalSizes } from '../types/globals';
 import { type ReactElement } from 'react';
 
-export type TextInputOrientation = 'horizontal' | 'vertical';
-export type TextInputSizes = GlobalSizes;
+export type TextAreaOrientation = 'horizontal' | 'vertical';
+export type TextAreaSizes = GlobalSizes;
 
-export interface TextInputProps extends Omit<InputProps, 'size'> {
-  appendElement?: ReactElement;
+export interface TextAreaProps extends Omit<HeadlessTextAreaProps, 'size'> {
   block?: boolean;
   description?: string,
   error?: string;
   hasError?: boolean;
   label?: string,
-  orientation?: TextInputOrientation;
+  orientation?: TextAreaOrientation;
   prependElement?: ReactElement;
   rounded?: boolean;
   size?: GlobalSizes
 }
 
-const TextInput = ({
-  appendElement,
+const TextArea = ({
   block = false,
   description = "",
   error = "",
@@ -31,11 +29,11 @@ const TextInput = ({
   rounded = false,
   size = "medium",
   ...rest
-}: TextInputProps) => {
+}: TextAreaProps) => {
   return (
     <Field className={
       cn('inline-block', {
-        "w-full grow": block
+        "w-full grow": block,
       })
     }>
       <div className={
@@ -64,41 +62,25 @@ const TextInput = ({
                 "border-input-error-border focus-within:ring-input-error-ring": hasError,
                 "rounded-full": rounded,
               },
-              {
-                "px-2 gap-2": size === "small",
-                "px-2.5 gap-2.5": size === "medium",
-                "px-3 gap-3": size === "large",
-              }
             )}>
             {prependElement && (
               <div className={
-                cn('flex items-center justify-center grow-0', {
-                  "text-base py-1": size === "small",
-                  "text-lg py-1": size === "medium",
-                  "text-xl py-1.5": size === "large",
-                })
-              }>                {prependElement}
+                cn('flex items-start justify-center grow-0', {
+                  "text-base px-0.5 py-1": size === "small",
+                  "text-lg px-1 py-1": size === "medium",
+                  "text-xl px-2.5 py-1.5": size === "large",
+                })}>
+                {prependElement}
               </div>
             )}
-            <Input className={cn(
+            <HeadlessTextArea className={cn(
               "w-full h-full grow outline-0",
               {
-                "text-base py-1": size === "small",
-                "text-lg py-1": size === "medium",
-                "text-xl py-1.5": size === "large",
+                "text-base px-2 py-1": size === "small",
+                "text-lg px-2.5 py-1": size === "medium",
+                "text-xl px-3 py-1.5": size === "large",
               }
             )} {...rest} />
-            {appendElement && (
-              <div className={
-                cn('flex items-center justify-center grow-0', {
-                  "text-base py-1": size === "small",
-                  "text-lg py-1": size === "medium",
-                  "text-xl py-1.5": size === "large",
-                })
-              }>
-                {appendElement}
-              </div>
-            )}
           </div>
           <div>
             {description && description.length > 0 && (
@@ -139,6 +121,6 @@ const TextInput = ({
   )
 }
 
-TextInput.displayName = "TextInput";
+TextArea.displayName = "TextArea";
 
-export default TextInput;
+export default TextArea;
