@@ -136,3 +136,40 @@
   --color-input-description: var(--color-secondary-dark);
   --color-input-error: var(--color-danger);
 }
+
+@theme checkbox {
+  --color-checkbox-default-background: var(--color-default-neutral);
+  --color-checkbox-default-background-hover: var(--color-default-dark);
+  --color-checkbox-default-border: var(--color-default-dark);
+  --color-checkbox-default-check: var(--color-light);
+
+  --color-checkbox-primary-background: var(--color-primary-neutral);
+  --color-checkbox-primary-background-hover: var(--color-primary-dark);
+  --color-checkbox-primary-border: var(--color-primary-dark);
+  --color-checkbox-primary-check: var(--color-light);
+
+  --color-checkbox-secondary-background: var(--color-secondary-neutral);
+  --color-checkbox-secondary-background-hover: var(--color-secondary-dark);
+  --color-checkbox-secondary-border: var(--color-secondary-dark);
+  --color-checkbox-secondary-check: var(--color-light);
+
+  --color-checkbox-success-background: var(--color-success-neutral);
+  --color-checkbox-success-background-hover: var(--color-success-dark);
+  --color-checkbox-success-border: var(--color-success-dark);
+  --color-checkbox-success-check: var(--color-light);
+
+  --color-checkbox-warning-background: var(--color-warning-neutral);
+  --color-checkbox-warning-background-hover: var(--color-warning-dark);
+  --color-checkbox-warning-border: var(--color-warning-dark);
+  --color-checkbox-warning-check: var(--color-light);
+
+  --color-checkbox-danger-background: var(--color-danger-neutral);
+  --color-checkbox-danger-background-hover: var(--color-danger-dark);
+  --color-checkbox-danger-border: var(--color-danger-dark);
+  --color-checkbox-danger-check: var(--color-light);
+
+  --color-checkbox-info-background: var(--color-info-neutral);
+  --color-checkbox-info-background-hover: var(--color-info-dark);
+  --color-checkbox-info-border: var(--color-info-dark);
+  --color-checkbox-info-check: var(--color-light);
+}
