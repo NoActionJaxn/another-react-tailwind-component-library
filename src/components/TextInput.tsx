@@ -22,6 +22,7 @@ export interface TextInputProps extends Omit<InputProps, 'size'> {
 const TextInput = ({
   appendElement,
   block = false,
+  className,
   description = "",
   error = "",
   hasError = false,
@@ -68,7 +69,8 @@ const TextInput = ({
                 "px-2 gap-2": size === "small",
                 "px-2.5 gap-2.5": size === "medium",
                 "px-3 gap-3": size === "large",
-              }
+              },
+              className
             )}>
             {prependElement && (
               <div className={
