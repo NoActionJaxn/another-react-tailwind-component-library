@@ -173,3 +173,28 @@
   --color-checkbox-info-border: var(--color-info-dark);
   --color-checkbox-info-check: var(--color-light);
 }
+
+@theme listbox {
+  --font-listbox-label: var(--font-mono);
+  --font-listbox-error: var(--font-sans);
+  --font-listbox-description: var(--font-sans);
+
+  --color-listbox-background: var(--color-secondary-lightest);
+  --color-listbox-background-hover: var(--color-light);
+  --color-listbox-ring: var(--color-primary-lightest);
+
+  --color-listbox-error-border: var(--color-danger-light);
+  --color-listbox-error-ring: var(--color-danger-lightest);
+
+  --color-listbox-border: var(--color-secondary);
+
+  --color-listbox-placeholder: var(--color-secondary-light);
+
+  --color-listbox-description: var(--color-secondary-dark);
+  --color-listbox-error: var(--color-danger);
+
+  --color-listbox-option-background: var(--color-secondary-lightest);
+  --color-listbox-option-background-hover: var(--color-light);
+  --color-listbox-option-background-selected: var(--color-primary-light);
+  --color-listbox-option-text: var(--color-dark);
+}
