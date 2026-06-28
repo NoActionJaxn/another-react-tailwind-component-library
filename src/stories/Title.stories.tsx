@@ -11,20 +11,16 @@ const meta = {
   argTypes: {
     as: {
       control: { type: 'select' },
-      options: ['default', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const,
-    },
-    bold: {
-      control: { type: 'boolean' }
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const,
     },
     size: {
       control: { type: 'select' },
-      options: ['extra-small', 'small', 'medium', 'large', 'extra-large'] as const,
+      options: ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const,
     },
   },
   args: {
-    as: 'default',
-    bold: false,
-    size: 'medium',
+    as: 'h1',
+    children: 'Lorem ipsum dolor sit amet consectetur adipiscing elit.'
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Typography.Title>;
@@ -33,6 +29,31 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Title: Story = {
-  render: ({ ...props }) => <Typography.Title as="h1" {...props}>This is a Title</Typography.Title>
+export const Title: Story = {}
+
+export const FontSizes: Story = {
+  args: {},
+  render: ({ ...props }) => (
+    <div className='grid grid-cols-1'>
+      <Typography.Title size='2xs' {...props} />
+      <Typography.Title size='xs' {...props} />
+      <Typography.Title size='sm' {...props} />
+      <Typography.Title size='md' {...props} />
+      <Typography.Title size='lg' {...props} />
+      <Typography.Title size='xl' {...props} />
+      <Typography.Title size='2xl' {...props} />
+    </div>
+  )
+}
+
+export const FontWeights: Story = {
+  args: {},
+  render: ({ ...props }) => (
+    <div className='grid grid-cols-1'>
+      <Typography.Title className='font-light' {...props} />
+      <Typography.Title className='font-normal' {...props} />
+      <Typography.Title className='font-semibold' {...props} />
+      <Typography.Title className='font-bold' {...props} />
+    </div>
+  )
 };

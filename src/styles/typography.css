@@ -1,0 +1,129 @@
+@theme typography {
+  --another-text-2xs: 0.625rem;
+  --another-text-xs: 0.75rem;
+  --another-text-sm: 0.875rem;
+  --another-text-md: 1rem;
+  --another-text-lg: 1.125rem;
+  --another-text-xl: 1.25rem;
+  --another-text-2xl: 1.5rem;
+
+  --another-title-2xs: 0.75rem;
+  --another-title-xs: 0.875rem;
+  --another-title-sm: 1rem;
+  --another-title-md: 1.25rem;
+  --another-title-lg: 1.5rem;
+  --another-title-xl: 1.875rem;
+  --another-title-2xl: 2.25rem;
+
+  --font-another-title: var(--font-sans);
+  --font-another-text: var(--font-serif);
+  --font-another-mono: var(--font-mono);
+}
+
+@media (min-width: var(--breakpoint-sm)) {
+  :root {
+    --another-text-2xs: 0.6875rem;
+    --another-text-xs: 0.8125rem;
+    --another-text-sm: 0.9375rem;
+    --another-text-md: 1.0625rem;
+    --another-text-lg: 1.1875rem;
+    --another-text-xl: 1.375rem;
+    --another-text-2xl: 1.75rem;
+
+    --another-title-2xs: 0.8125rem;
+    --another-title-xs: 0.9375rem;
+    --another-title-sm: 1.125rem;
+    --another-title-md: 1.375rem;
+    --another-title-lg: 1.75rem;
+    --another-title-xl: 2rem;
+    --another-title-2xl: 2.5rem;
+  }
+}
+
+@media (min-width: var(--breakpoint-md)) {
+  :root {
+    --another-text-2xs: 0.75rem;
+    --another-text-xs: 0.875rem;
+    --another-text-sm: 1rem;
+    --another-text-md: 1.125rem;
+    --another-text-lg: 1.25rem;
+    --another-text-xl: 1.5rem;
+    --another-text-2xl: 1.875rem;
+
+    --another-title-2xs: 0.875rem;
+    --another-title-xs: 1rem;
+    --another-title-sm: 1.25rem;
+    --another-title-md: 1.5rem;
+    --another-title-lg: 1.875rem;
+    --another-title-xl: 2.25rem;
+    --another-title-2xl: 2.75rem;
+  }
+}
+
+@media (min-width: var(--breakpoint-lg)) {
+  :root {
+    --another-text-2xs: 0.8125rem;
+    --another-text-xs: 0.9375rem;
+    --another-text-sm: 1.0625rem;
+    --another-text-md: 1.1875rem;
+    --another-text-lg: 1.375rem;
+    --another-text-xl: 1.75rem;
+    --another-text-2xl: 2.25rem;
+
+    --another-title-2xs: 0.9375rem;
+    --another-title-xs: 1.0625rem;
+    --another-title-sm: 1.375rem;
+    --another-title-md: 1.75rem;
+    --another-title-lg: 2rem;
+    --another-title-xl: 2.5rem;
+    --another-title-2xl: 3rem;
+  }
+}
+
+@media (min-width: var(--breakpoint-xl)) {
+  :root {
+    --another-text-2xs: 0.875rem;
+    --another-text-xs: 1rem;
+    --another-text-sm: 1.125rem;
+    --another-text-md: 1.25rem;
+    --another-text-lg: 1.5rem;
+    --another-text-xl: 1.875rem;
+    --another-text-2xl: 2.5rem;
+
+    --another-title-2xs: 1rem;
+    --another-title-xs: 1.125rem;
+    --another-title-sm: 1.5rem;
+    --another-title-md: 1.875rem;
+    --another-title-lg: 2.25rem;
+    --another-title-xl: 2.75rem;
+    --another-title-2xl: 3.25rem;
+  }
+}
+
+@media (min-width: var(--breakpoint-2xl)) {
+  :root {
+    --another-text-2xs: 0.875rem;
+    --another-text-xs: 1rem;
+    --another-text-sm: 1.125rem;
+    --another-text-md: 1.5rem;
+    --another-text-lg: 1.875rem;
+    --another-text-xl: 2.25rem;
+    --another-text-2xl: 3rem;
+
+    --another-title-2xs: 1rem;
+    --another-title-xs: 1.125rem;
+    --another-title-sm: 1.5rem;
+    --another-title-md: 1.875rem;
+    --another-title-lg: 2.25rem;
+    --another-title-xl: 2.75rem;
+    --another-title-2xl: 3.5rem;
+  }
+}
+
+@utility another-text-* {
+  font-size: --value(--another-text-*);
+}
+
+@utility another-title-* {
+  font-size: --value(--another-title-*);
+}

@@ -1,77 +1,86 @@
 import { cn } from "../util/cn";
 import type { GlobalSizes } from "../types/globals";
 
+export type TypographySizes = '2xs' | GlobalSizes | '2xl';
+export type TypographyHeaders = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 export interface TextProps extends React.HTMLAttributes<HTMLElement> {
   as?: keyof HTMLElementTagNameMap;
-  size?: GlobalSizes | 'extra-small' | 'extra-large';
+  size?: TypographySizes;
 }
+
+export type MonospaceProps = TextProps;
 
 export interface TitleProps extends Omit<TextProps, 'as'> {
-  as?: 'default' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  bold?: boolean;
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
-const Title = ({
-  as = 'default',
-  bold = false,
-  className,
-  size = 'medium',
-  ...rest
-}: TitleProps) => {
-  const Component = as === 'default' ? 'h2' : as;
-  return (
-    <Component
-      className={
-        cn(
-          'font-title font-semibold',
-          {
-            "font-black": bold,
-          },
-          {
-            "text-7xl": size === "extra-large",
-            "text-4xl": size === "large",
-            "text-2xl": size === "medium",
-            "text-lg": size === "small",
-            "text-sm": size === "extra-small",
-          },
-          className,
-        )}
-      {...rest}
-    />
-  );
-};
+const Text = ({ as: Component = 'span', size = "md", className, ...rest }: TextProps) => (
+  <Component
+    className={
+      cn(
+        'font-another-text font-normal tracking-wide text-dark',
+        {
+          "another-text-2xs": size === "2xs",
+          "another-text-xs": size === "xs",
+          "another-text-sm": size === "sm",
+          "another-text-md": size === "md",
+          "another-text-lg": size === "lg",
+          "another-text-xl": size === "xl",
+          "another-text-2xl": size === "2xl"
+        },
+        className
+      )}
+    {...rest}
+  />
+);
 
-const Text = ({
-  as: Component = 'span',
-  className,
-  size = 'medium',
-  ...rest
-}: TextProps) => {
-  return (
-    <Component
-      className={
-        cn(
-          'font-text font-normal',
-          {
-            "text-2xl": size === "extra-large",
-            "text-xl": size === "large",
-            "text-lg": size === "medium",
-            "text-base": size === "small",
-            "text-sm": size === "extra-small",
-          },
-          className,
-        )}
-      {...rest}
-    />
-  );
-};
+const Monospace = ({ as: Component = 'code', size = "md", className, ...rest }: MonospaceProps) => (
+  <Component
+    className={
+      cn(
+        'font-another-mono font-normal tracking-wide text-dark',
+        {
+          "another-text-2xs": size === "2xs",
+          "another-text-xs": size === "xs",
+          "another-text-sm": size === "sm",
+          "another-text-md": size === "md",
+          "another-text-lg": size === "lg",
+          "another-text-xl": size === "xl",
+          "another-text-2xl": size === "2xl"
+        },
+        className
+      )}
+    {...rest}
+  />
+);
 
-const Typography = {
-  Text,
-  Title,
-};
+const Title = ({ as: Component = 'h1', className, size = "md", ...rest }: TitleProps) => (
+  <Component
+    className={
+      cn(
+        'font-another-title font-semibold tracking-normal text-dark',
+        {
+          "another-title-2xs": size === "2xs",
+          "another-title-xs": size === "xs",
+          "another-title-sm": size === "sm",
+          "another-title-md": size === "md",
+          "another-title-lg": size === "lg",
+          "another-title-xl": size === "xl",
+          "another-title-2xl": size === "2xl"
+        },
+        className
+      )}
+    {...rest}
+  />
+);
 
 Title.displayName = 'Title';
 Text.displayName = 'Text';
+
+const Typography = {
+  Monospace,
+  Text,
+  Title,
+};
 
 export default Typography;
