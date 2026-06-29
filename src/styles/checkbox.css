@@ -14,7 +14,7 @@
   --another-checkbox-background-variant-secondary: var(--color-secondary-dark);
   --another-checkbox-border-variant-secondary: var(--color-secondary-dark);
   --another-checkbox-hover-background-variant-secondary: var(--color-secondary-light);
-  --another-checkbox-ring-variant-secondary: var(--color-secondary-lightest);
+  --another-checkbox-ring-variant-secondary: var(--color-secondary-light);
   --another-checkbox-text-variant-secondary: var(--color-light);
 
   --another-checkbox-background-variant-success: var(--color-success-dark);

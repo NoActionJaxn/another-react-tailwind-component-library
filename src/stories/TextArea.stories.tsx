@@ -22,10 +22,14 @@ const meta = {
       options: ['horizontal', 'vertical'] as const,
     },
     placeholder: { control: 'text' },
-    rounded: { control: 'boolean' },
+    prependElement: {
+      control: {
+        disable: true,
+      },
+    },
     size: {
       control: { type: 'select' },
-      options: ['small', 'medium', 'large'] as const
+      options: ['xs', 'sm', 'md', 'lg', 'xl'] as const
     }
   },
   args: {
@@ -37,8 +41,7 @@ const meta = {
     placeholder: 'Input',
     orientation: 'horizontal',
     onChange: fn(),
-    rounded: false,
-    size: 'medium'
+    size: 'md'
   }
 } satisfies Meta<typeof TextAreaComponent>
 

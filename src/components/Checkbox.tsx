@@ -56,7 +56,7 @@ const Checkbox = ({
         </div>
         <HeadlessCheckbox
           className={cn(
-            'group inline-flex items-center justify-center rounded border-2 transition-colors duration-200',
+            'group inline-flex items-center justify-center rounded-sm border-2 transition-colors duration-200',
             {
               'another-checkbox-size-xs': size === 'xs',
               'another-checkbox-size-sm': size === 'sm',

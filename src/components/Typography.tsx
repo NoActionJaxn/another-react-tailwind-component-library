@@ -21,13 +21,13 @@ const Text = ({ as: Component = 'span', size = "md", className, ...rest }: TextP
       cn(
         'font-another-text font-normal tracking-wide text-dark',
         {
-          "another-text-2xs": size === "2xs",
-          "another-text-xs": size === "xs",
-          "another-text-sm": size === "sm",
-          "another-text-md": size === "md",
-          "another-text-lg": size === "lg",
-          "another-text-xl": size === "xl",
-          "another-text-2xl": size === "2xl"
+          "text-another-text-2xs": size === "2xs",
+          "text-another-text-xs": size === "xs",
+          "text-another-text-sm": size === "sm",
+          "text-another-text-md": size === "md",
+          "text-another-text-lg": size === "lg",
+          "text-another-text-xl": size === "xl",
+          "text-another-text-2xl": size === "2xl"
         },
         className
       )}
@@ -41,13 +41,13 @@ const Monospace = ({ as: Component = 'code', size = "md", className, ...rest }: 
       cn(
         'font-another-mono font-normal tracking-wide text-dark',
         {
-          "another-text-2xs": size === "2xs",
-          "another-text-xs": size === "xs",
-          "another-text-sm": size === "sm",
-          "another-text-md": size === "md",
-          "another-text-lg": size === "lg",
-          "another-text-xl": size === "xl",
-          "another-text-2xl": size === "2xl"
+          "text-another-text-2xs": size === "2xs",
+          "text-another-text-xs": size === "xs",
+          "text-another-text-sm": size === "sm",
+          "text-another-text-md": size === "md",
+          "text-another-text-lg": size === "lg",
+          "text-another-text-xl": size === "xl",
+          "text-another-text-2xl": size === "2xl"
         },
         className
       )}
@@ -61,13 +61,13 @@ const Title = ({ as: Component = 'h1', className, size = "md", ...rest }: TitleP
       cn(
         'font-another-title font-semibold tracking-normal text-dark',
         {
-          "another-title-2xs": size === "2xs",
-          "another-title-xs": size === "xs",
-          "another-title-sm": size === "sm",
-          "another-title-md": size === "md",
-          "another-title-lg": size === "lg",
-          "another-title-xl": size === "xl",
-          "another-title-2xl": size === "2xl"
+          "text-another-title-2xs": size === "2xs",
+          "text-another-title-xs": size === "xs",
+          "text-another-title-sm": size === "sm",
+          "text-another-title-md": size === "md",
+          "text-another-title-lg": size === "lg",
+          "text-another-title-xl": size === "xl",
+          "text-another-title-2xl": size === "2xl"
         },
         className
       )}

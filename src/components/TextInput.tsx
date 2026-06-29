@@ -1,10 +1,13 @@
 import { type InputProps, Description, Field, Input, Label } from '@headlessui/react'
+import Typography from './Typography';
+
 import { cn } from '../util/cn';
-import type { GlobalSizes } from '../types/globals';
-import { type ReactElement } from 'react';
+import type { GlobalSizes, GlobalVariants } from '../types/globals';
+import type { ReactElement } from 'react';
 
 export type TextInputOrientation = 'horizontal' | 'vertical';
 export type TextInputSizes = GlobalSizes;
+export type TextInputVariants = GlobalVariants;
 
 export interface TextInputProps extends Omit<InputProps, 'size'> {
   appendElement?: ReactElement;
@@ -15,8 +18,9 @@ export interface TextInputProps extends Omit<InputProps, 'size'> {
   label?: string,
   orientation?: TextInputOrientation;
   prependElement?: ReactElement;
-  rounded?: boolean;
   size?: GlobalSizes
+  variant?: TextInputVariants;
+
 }
 
 const TextInput = ({
@@ -29,75 +33,126 @@ const TextInput = ({
   label = "",
   orientation = "vertical",
   prependElement,
-  rounded = false,
-  size = "medium",
+  size = "md",
+  variant = 'default',
   ...rest
 }: TextInputProps) => {
+  const descriptionSize = (size: TextInputSizes) => {
+    switch (size) {
+      case 'xs':
+        return '2xs';
+      case 'sm':
+        return 'xs';
+      case 'lg':
+        return 'md';
+      case 'xl':
+        return 'lg';
+      case 'md':
+      default:
+        return 'sm';
+    }
+  }
+
+
   return (
     <Field className={
-      cn('inline-block', {
-        "w-full grow": block
-      })
+      cn(
+        'inline-block h-min',
+        block
+          ? "w-full grow"
+          : "max-w-sm"
+      )
     }>
       <div className={
-        cn('flex', {
-          "flex-row justify-center gap-4": orientation === "horizontal",
-          "flex-col gap-1": orientation === "vertical"
-        })
+        cn('flex',
+          {
+            "flex-row justify-center": orientation === "horizontal",
+            "flex-col gap-1": orientation === "vertical"
+          },
+        )
       }>
         {label && label.length > 0 && (
-          <div>
-            <Label className={
-              cn("font-input-label font-semibold relative text-dark", {
-                "text-base top-1": size === "small",
-                "text-lg top-1": size === "medium",
-                "text-xl top-2": size === "large",
-              })
-            }>{label}</Label>
+          <div className='p-0.5'>
+            <Typography.Text
+              as={Label}
+              className={
+                cn(
+                  "inline-block font-another-text-input-label font-semibold",
+                  {
+                    "another-text-input-padding-xs": size === "xs",
+                    "another-text-input-padding-sm": size === "sm",
+                    "another-text-input-padding-md": size === "md",
+                    "another-text-input-padding-lg": size === "lg",
+                    "another-text-input-padding-xl": size === "xl",
+                  },
+                )
+              }
+              size={size}
+            >
+              {label}
+            </Typography.Text>
           </div>
         )}
 
-        <div className='space-y-1'>
+        <div>
           <div className={
             cn(
-              'flex flex-row overflow-hidden rounded border border-input-border bg-input-background hover:bg-input-background-hover ring-4 ring-transparent focus-within:ring-input-ring focus-within:bg-input-background-hover placeholder:text-input-placeholder transition-colors duration-200',
+              'flex flex-row overflow-hidden border-2 rounded-sm',
               {
-                "border-input-error-border focus-within:ring-input-error-ring": hasError,
-                "rounded-full": rounded,
+                "ring-4 ring-danger-lightest": hasError,
               },
               {
-                "px-2 gap-2": size === "small",
-                "px-2.5 gap-2.5": size === "medium",
-                "px-3 gap-3": size === "large",
+                'another-text-input-variant-default': variant === 'default',
+                'another-text-input-variant-primary': variant === 'primary',
+                'another-text-input-variant-secondary': variant === 'secondary',
+                'another-text-input-variant-success': variant === 'success',
+                'another-text-input-variant-warning': variant === 'warning',
+                'another-text-input-variant-danger': variant === 'danger',
+                'another-text-input-variant-info': variant === 'info',
               },
               className
             )}>
             {prependElement && (
               <div className={
-                cn('flex items-center justify-center grow-0', {
-                  "text-base py-1": size === "small",
-                  "text-lg py-1": size === "medium",
-                  "text-xl py-1.5": size === "large",
-                })
-              }>                {prependElement}
+                cn(
+                  'flex items-start justify-center grow-0 pr-0!',
+                  {
+                    "another-text-input-size-xs another-text-input-padding-xs": size === "xs",
+                    "another-text-input-size-sm another-text-input-padding-sm": size === "sm",
+                    "another-text-input-size-md another-text-input-padding-md": size === "md",
+                    "another-text-input-size-lg another-text-input-padding-lg": size === "lg",
+                    "another-text-input-size-xl another-text-input-padding-xl": size === "xl",
+                  },
+                )}>
+                {prependElement}
               </div>
             )}
-            <Input className={cn(
-              "w-full h-full grow outline-0",
-              {
-                "text-base py-1": size === "small",
-                "text-lg py-1": size === "medium",
-                "text-xl py-1.5": size === "large",
-              }
-            )} {...rest} />
+            <Input
+              className={
+                cn(
+                  "h-full font-another-text-input grow outline-0",
+                  {
+                    "another-text-input-size-xs another-text-input-padding-xs": size === "xs",
+                    "another-text-input-size-sm another-text-input-padding-sm": size === "sm",
+                    "another-text-input-size-md another-text-input-padding-md": size === "md",
+                    "another-text-input-size-lg another-text-input-padding-lg": size === "lg",
+                    "another-text-input-size-xl another-text-input-padding-xl": size === "xl",
+                  },
+                )}
+              {...rest}
+            />
             {appendElement && (
               <div className={
-                cn('flex items-center justify-center grow-0', {
-                  "text-base py-1": size === "small",
-                  "text-lg py-1": size === "medium",
-                  "text-xl py-1.5": size === "large",
-                })
-              }>
+                cn(
+                  'flex items-start justify-center grow-0 pl-0!',
+                  {
+                    "another-text-input-size-xs another-text-input-padding-xs": size === "xs",
+                    "another-text-input-size-sm another-text-input-padding-sm": size === "sm",
+                    "another-text-input-size-md another-text-input-padding-md": size === "md",
+                    "another-text-input-size-lg another-text-input-padding-lg": size === "lg",
+                    "another-text-input-size-xl another-text-input-padding-xl": size === "xl",
+                  },
+                )}>
                 {appendElement}
               </div>
             )}
@@ -105,33 +160,16 @@ const TextInput = ({
           <div>
             {description && description.length > 0 && (
               <div>
-                <Description
-                  className={
-                    cn(
-                      'text-input-description font-input-description',
-                      {
-                        "text-xs": size === "small",
-                        "text-sm": size === "medium",
-                        "text-base": size === "large",
-                      }
-                    )}>
+                <Typography.Text as={Description} className="font-another-text-input-label" size={descriptionSize(size)}>
                   {description}
-                </Description>
+                </Typography.Text>
               </div>
             )}
             {hasError && error && (
               <div>
-                <Description className={
-                  cn(
-                    'text-sm text-input-error font-input-error',
-                    {
-                      "text-xs": size === "small",
-                      "text-sm": size === "medium",
-                      "text-base": size === "large",
-                    })
-                }>
+                <Typography.Text as={Description} className="font-another-text-input-label text-danger" size={descriptionSize(size)}>
                   {error}
-                </Description>
+                </Typography.Text>
               </div>
             )}
           </div>

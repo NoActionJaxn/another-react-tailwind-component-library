@@ -1,31 +1,24 @@
 @theme typography {
-  --text-2xs: 0.625rem;
+  --text-2xs: .625rem;
 
-  --another-text-2xs: var(--text-2xs);
-  --another-text-xs: var(--text-xs);
-  --another-text-sm: var(--text-sm);
-  --another-text-md: var(--text-md);
-  --another-text-lg: var(--text-lg);
-  --another-text-xl: var(--text-xl);
-  --another-text-2xl: var(--text-2xl);
+  --text-another-text-2xs: var(--text-2xs);
+  --text-another-text-xs: var(--text-xs);
+  --text-another-text-sm: var(--text-sm);
+  --text-another-text-md: var(--text-md);
+  --text-another-text-lg: var(--text-lg);
+  --text-another-text-xl: var(--text-xl);
+  --text-another-text-2xl: var(--text-2xl);
 
-  --another-title-2xs: var(--text-sm);
-  --another-title-xs: var(--text-md);
-  --another-title-sm: var(--text-lg);
-  --another-title-md: var(--text-xl);
-  --another-title-lg: var(--text-2xl);
-  --another-title-xl: var(--text-5xl);
-  --another-title-2xl: var(--text-7xl);
+  --text-another-title-2xs: var(--text-sm);
+  --text-another-title-xs: var(--text-md);
+  --text-another-title-sm: var(--text-lg);
+  --text-another-title-md: var(--text-xl);
+  --text-another-title-lg: var(--text-2xl);
+  --text-another-title-xl: var(--text-5xl);
+  --text-another-title-2xl: var(--text-7xl);
 
   --font-another-title: var(--font-sans);
   --font-another-text: var(--font-serif);
   --font-another-mono: var(--font-mono);
 }
 
-@utility another-text-* {
-  font-size: --value(--another-text-*);
-}
-
-@utility another-title-* {
-  font-size: --value(--another-title-*);
-}

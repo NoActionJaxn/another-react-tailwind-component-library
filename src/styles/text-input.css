@@ -1,0 +1,77 @@
+@theme text-input {
+  --another-text-input-border: var(--color-dark);
+  --another-text-input-text: var(--color-dark);
+
+  --another-text-input-background-variant-default: var(--color-light);
+  --another-text-input-hover-background-variant-default: var(--color-default-lightest);
+  --another-text-input-ring-variant-default: var(--color-default-lightest);
+
+  --another-text-input-background-variant-primary: var(--color-light);
+  --another-text-input-hover-background-variant-primary: var(--color-primary-lightest);
+  --another-text-input-ring-variant-primary: var(--color-primary-lightest);
+
+  --another-text-input-background-variant-secondary: var(--color-light);
+  --another-text-input-hover-background-variant-secondary: var(--color-secondary-light);
+  --another-text-input-ring-variant-secondary: var(--color-secondary-light);
+
+  --another-text-input-background-variant-success: var(--color-light);
+  --another-text-input-hover-background-variant-success: var(--color-success-lightest);
+  --another-text-input-ring-variant-success: var(--color-success-lightest);
+
+  --another-text-input-background-variant-warning: var(--color-light);
+  --another-text-input-hover-background-variant-warning: var(--color-warning-lightest);
+  --another-text-input-ring-variant-warning: var(--color-warning-lightest);
+
+  --another-text-input-background-variant-danger: var(--color-light);
+  --another-text-input-hover-background-variant-danger: var(--color-danger-lightest);
+  --another-text-input-ring-variant-danger: var(--color-danger-lightest);
+
+  --another-text-input-background-variant-info: var(--color-light);
+  --another-text-input-hover-background-variant-info: var(--color-info-lightest);
+  --another-text-input-ring-variant-info: var(--color-info-lightest);
+
+  --another-text-input-font-size-xs: var(--text-xs);
+  --another-text-input-font-size-sm: var(--text-sm);
+  --another-text-input-font-size-md: var(--text-md);
+  --another-text-input-font-size-lg: var(--text-lg);
+  --another-text-input-font-size-xl: var(--text-xl);
+
+  --another-text-input-padding-xs: calc(var(--spacing) * .3) calc(var(--spacing) * .5);
+  --another-text-input-padding-sm: calc(var(--spacing) * .5) calc(var(--spacing) * 1);
+  --another-text-input-padding-md: calc(var(--spacing) * 1) calc(var(--spacing) * 1.5);
+  --another-text-input-padding-lg: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
+  --another-text-input-padding-xl: calc(var(--spacing) * 2) calc(var(--spacing) * 2.5);
+
+  --font-another-text-input-label: var(--font-sans);
+  --font-another-text-input: var(--font-sans);
+}
+
+@utility another-text-input-padding-* {
+  padding: --value(--another-text-input-padding-*);
+}
+
+@utility another-text-input-size-* {
+  font-size: --value(--another-text-input-font-size-*);
+}
+
+@utility another-text-input-label-* {
+  display: inline-block;
+  padding: --value(--another-text-input-padding-*);
+}
+
+@utility another-text-input-variant-* {
+  background: --value(--another-text-input-background-variant-*);
+  border-color: --value(--another-text-input-border);
+  color: --value(--another-text-input-text);
+  transition: background-color 200ms ease, color 200ms ease;
+
+  &:hover {
+    background: --value(--another-text-input-hover-background-variant-*);
+  }
+
+  &:focus-within {
+    outline: 0;
+    box-shadow: 0 0 0 4px --value(--another-text-input-ring-variant-*);
+    background: --value(--another-text-input-background-variant-*);
+  }
+}

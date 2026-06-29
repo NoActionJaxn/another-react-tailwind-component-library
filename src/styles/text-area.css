@@ -1,0 +1,77 @@
+@theme text-area {
+  --another-text-area-border: var(--color-dark);
+  --another-text-area-text: var(--color-dark);
+
+  --another-text-area-background-variant-default: var(--color-light);
+  --another-text-area-hover-background-variant-default: var(--color-default-lightest);
+  --another-text-area-ring-variant-default: var(--color-default-lightest);
+
+  --another-text-area-background-variant-primary: var(--color-light);
+  --another-text-area-hover-background-variant-primary: var(--color-primary-lightest);
+  --another-text-area-ring-variant-primary: var(--color-primary-lightest);
+
+  --another-text-area-background-variant-secondary: var(--color-light);
+  --another-text-area-hover-background-variant-secondary: var(--color-secondary-light);
+  --another-text-area-ring-variant-secondary: var(--color-secondary-light);
+
+  --another-text-area-background-variant-success: var(--color-light);
+  --another-text-area-hover-background-variant-success: var(--color-success-lightest);
+  --another-text-area-ring-variant-success: var(--color-success-lightest);
+
+  --another-text-area-background-variant-warning: var(--color-light);
+  --another-text-area-hover-background-variant-warning: var(--color-warning-lightest);
+  --another-text-area-ring-variant-warning: var(--color-warning-lightest);
+
+  --another-text-area-background-variant-danger: var(--color-light);
+  --another-text-area-hover-background-variant-danger: var(--color-danger-lightest);
+  --another-text-area-ring-variant-danger: var(--color-danger-lightest);
+
+  --another-text-area-background-variant-info: var(--color-light);
+  --another-text-area-hover-background-variant-info: var(--color-info-lightest);
+  --another-text-area-ring-variant-info: var(--color-info-lightest);
+
+  --another-text-area-font-size-xs: var(--text-xs);
+  --another-text-area-font-size-sm: var(--text-sm);
+  --another-text-area-font-size-md: var(--text-md);
+  --another-text-area-font-size-lg: var(--text-lg);
+  --another-text-area-font-size-xl: var(--text-xl);
+
+  --another-text-area-padding-xs: calc(var(--spacing) * .1) calc(var(--spacing) * .5);
+  --another-text-area-padding-sm: calc(var(--spacing) * .3) calc(var(--spacing) * 1);
+  --another-text-area-padding-md: calc(var(--spacing) * .5) calc(var(--spacing) * 1.5);
+  --another-text-area-padding-lg: calc(var(--spacing) * 1) calc(var(--spacing) * 2);
+  --another-text-area-padding-xl: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2.5);
+
+  --font-another-text-area-label: var(--font-sans);
+  --font-another-text-area: var(--font-sans);
+}
+
+@utility another-text-area-padding-* {
+  padding: --value(--another-text-area-padding-*);
+}
+
+@utility another-text-area-size-* {
+  font-size: --value(--another-text-area-font-size-*);
+}
+
+@utility another-text-area-label-* {
+  display: inline-block;
+  padding: --value(--another-text-area-padding-*);
+}
+
+@utility another-text-area-variant-* {
+  background: --value(--another-text-area-background-variant-*);
+  border-color: --value(--another-text-area-border);
+  color: --value(--another-text-area-text);
+  transition: background-color 200ms ease, color 200ms ease;
+
+  &:hover {
+    background: --value(--another-text-area-hover-background-variant-*);
+  }
+
+  &:focus-within {
+    outline: 0;
+    box-shadow: 0 0 0 4px --value(--another-text-area-ring-variant-*);
+    background: --value(--another-text-area-background-variant-*);
+  }
+}
