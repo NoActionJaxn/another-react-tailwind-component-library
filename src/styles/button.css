@@ -39,17 +39,17 @@
   --another-button-variant-ring-ghost: var(--color-primary-lightest);
   --another-button-variant-text-ghost: var(--color-dark);
 
-  --another-button-padding-xs: calc(var(--spacing) * 3.5);
-  --another-button-padding-sm: calc(var(--spacing) * 4);
-  --another-button-padding-md: calc(var(--spacing) * 4.5);
-  --another-button-padding-lg: calc(var(--spacing) * 5);
-  --another-button-padding-xl: calc(var(--spacing) * 5.5);
+  --another-button-padding-xs: calc(var(--spacing) * 3);
+  --another-button-padding-sm: calc(var(--spacing) * 3.5);
+  --another-button-padding-md: calc(var(--spacing) * 4);
+  --another-button-padding-lg: calc(var(--spacing) * 4.5);
+  --another-button-padding-xl: calc(var(--spacing) * 5);
 
-  --another-button-size-xs: calc(var(--spacing) * 7);
-  --another-button-size-sm: calc(var(--spacing) * 9);
-  --another-button-size-md: calc(var(--spacing) * 11);
-  --another-button-size-lg: calc(var(--spacing) * 13);
-  --another-button-size-xl: calc(var(--spacing) * 15);
+  --another-button-size-xs: calc(var(--spacing) * 6);
+  --another-button-size-sm: calc(var(--spacing) * 8);
+  --another-button-size-md: calc(var(--spacing) * 10);
+  --another-button-size-lg: calc(var(--spacing) * 12);
+  --another-button-size-xl: calc(var(--spacing) * 14);
   
   --font-another-button: var(--font-sans);
 }
@@ -57,13 +57,13 @@
 @utility another-button-variant-* {
   background-color: --value(--another-button-variant-*);
   color: --value(--another-button-variant-text-*);
-  transition: background-color 200ms ease, color 200ms ease, box-shadow 200ms ease;
+  transition: background-color 200ms ease, color 200ms ease;
 
   &:hover {
     background-color: --value(--another-button-variant-hover-*);
   }
 
-  &:focus-visible {
+  &:focus {
     outline: none;
     box-shadow: 0 0 0 4px --value(--another-button-variant-ring-*);
   }

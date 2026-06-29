@@ -1,0 +1,93 @@
+@theme checkbox {
+  --another-checkbox-background-variant-default: var(--color-default-dark);
+  --another-checkbox-border-variant-default: var(--color-default-dark);
+  --another-checkbox-hover-background-variant-default: var(--color-default-light);
+  --another-checkbox-ring-variant-default: var(--color-default-lightest);
+  --another-checkbox-text-variant-default: var(--color-light);
+
+  --another-checkbox-background-variant-primary: var(--color-primary-dark);
+  --another-checkbox-border-variant-primary: var(--color-primary-dark);
+  --another-checkbox-hover-background-variant-primary: var(--color-primary-light);
+  --another-checkbox-ring-variant-primary: var(--color-primary-lightest);
+  --another-checkbox-text-variant-primary: var(--color-light);
+
+  --another-checkbox-background-variant-secondary: var(--color-secondary-dark);
+  --another-checkbox-border-variant-secondary: var(--color-secondary-dark);
+  --another-checkbox-hover-background-variant-secondary: var(--color-secondary-light);
+  --another-checkbox-ring-variant-secondary: var(--color-secondary-lightest);
+  --another-checkbox-text-variant-secondary: var(--color-light);
+
+  --another-checkbox-background-variant-success: var(--color-success-dark);
+  --another-checkbox-border-variant-success: var(--color-success-dark);
+  --another-checkbox-hover-background-variant-success: var(--color-success-light);
+  --another-checkbox-ring-variant-success: var(--color-success-lightest);
+  --another-checkbox-text-variant-success: var(--color-light);
+
+  --another-checkbox-background-variant-warning: var(--color-warning-dark);
+  --another-checkbox-border-variant-warning: var(--color-warning-dark);
+  --another-checkbox-hover-background-variant-warning: var(--color-warning-light);
+  --another-checkbox-ring-variant-warning: var(--color-warning-lightest);
+  --another-checkbox-text-variant-warning: var(--color-light);
+
+  --another-checkbox-background-variant-danger: var(--color-danger-dark);
+  --another-checkbox-border-variant-danger: var(--color-danger-dark);
+  --another-checkbox-hover-background-variant-danger: var(--color-danger-light);
+  --another-checkbox-ring-variant-danger: var(--color-danger-lightest);
+  --another-checkbox-text-variant-danger: var(--color-light);
+
+  --another-checkbox-background-variant-info: var(--color-info-dark);
+  --another-checkbox-border-variant-info: var(--color-info-dark);
+  --another-checkbox-hover-background-variant-info: var(--color-info-light);
+  --another-checkbox-ring-variant-info: var(--color-info-lightest);
+  --another-checkbox-text-variant-info: var(--color-light);
+
+  --another-checkbox-size-xs: calc(var(--spacing) * 3.5);
+  --another-checkbox-size-sm: calc(var(--spacing) * 4.5);
+  --another-checkbox-size-md: calc(var(--spacing) * 5.5);
+  --another-checkbox-size-lg: calc(var(--spacing) * 6.5);
+  --another-checkbox-size-xl: calc(var(--spacing) * 7.5);
+
+  --another-checkbox-icon-size-xs: var(--text-2xs);
+  --another-checkbox-icon-size-sm: var(--text-xs);
+  --another-checkbox-icon-size-md: var(--text-sm);
+  --another-checkbox-icon-size-lg: var(--text-md);
+  --another-checkbox-icon-size-xl: var(--text-lg);
+
+  --another-checkbox-gap-xs: calc(var(--spacing) * 2);
+  --another-checkbox-gap-sm: calc(var(--spacing) * 2.5);
+  --another-checkbox-gap-md: calc(var(--spacing) * 3);
+  --another-checkbox-gap-lg: calc(var(--spacing) * 3.5);
+  --another-checkbox-gap-xl: calc(var(--spacing) * 4);
+
+  --font-another-checkbox: var(--font-sans);
+}
+
+@utility another-checkbox-size-* {
+  height: --value(--another-checkbox-size-*);
+  width: --value(--another-checkbox-size-*);
+}
+
+@utility another-checkbox-icon-size-* {
+  font-size: --value(--another-checkbox-icon-size-*);
+}
+
+@utility another-checkbox-gap-* {
+  gap: --value(--another-checkbox-gap-*);
+}
+
+@utility another-checkbox-variant-* {
+  background-color: --value(--another-checkbox-background-variant-*);
+  border-color: --value(--another-checkbox-border-variant-*);
+  color: --value(--another-checkbox-text-variant-*);
+
+  transition: background-color 200ms ease, color 200ms ease;
+
+  &:hover {
+    background-color: --value(--another-checkbox-hover-background-variant-*);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px --value(--another-checkbox-variant-ring-*);
+  }
+}

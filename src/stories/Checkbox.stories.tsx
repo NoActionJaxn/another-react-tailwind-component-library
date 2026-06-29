@@ -13,27 +13,36 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     block: { control: 'boolean' },
+    checked: { control: 'boolean' },
+    className: { control: 'text' },
+    disabled: { control: 'boolean' },
     label: { control: 'text' },
+    icon: {
+      control: {
+        disable: true,
+      },
+    },
     variant: {
       control: { type: 'select' },
       options: ['default', 'primary', 'secondary', 'success', 'warning', 'danger', 'info'] as const
     },
-    labelPosition: {
-      control: { type: 'select' },
-      options: ['before', 'after'] as const
+    reverse: {
+      control: { type: 'boolean' },
     },
     size: {
       control: { type: 'select' },
-      options: ['small', 'medium', 'large'] as const,
+      options: ['xs', 'sm', 'md', 'lg', 'xl'] as const,
     },
-    icon: { control: 'boolean' }
   },
   args: {
     block: false,
+    checked: false,
+    className: '',
+    disabled: false,
     label: 'Label',
     variant: 'default',
-    labelPosition: 'after',
-    size: 'medium',
+    reverse: false,
+    size: 'md',
     onChange: fn()
   }
 } satisfies Meta<typeof CheckboxComponent>
@@ -43,4 +52,3 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Checkbox: Story = {};
-

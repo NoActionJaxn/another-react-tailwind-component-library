@@ -28,10 +28,10 @@ const Button = ({
     className={
       cn(
         'inline-flex items-center justify-center gap-2 cursor-pointer rounded-sm',
+        disabled ? 'cursor-default opacity-60' : 'cursor-pointer',
         {
           'w-full grow': block,
           'aspect-square overflow-hidden': icon && !block,
-          'opacity-80 cursor-default': disabled,
         },
         {
           'another-button-size-xs': size === 'xs',

@@ -14,6 +14,7 @@ const meta = {
   argTypes: {
     block: { control: 'boolean' },
     children: { control: 'text' },
+    disabled: { control: 'boolean' },
     size: {
       control: { type: 'select' },
       options: ['xs', 'sm', 'md', 'lg', 'xl'] as const,
@@ -30,6 +31,7 @@ const meta = {
   args: {
     block: false,
     children: 'Button',
+    disabled: false,
     icon: false,
     size: 'md',
     type: 'button',

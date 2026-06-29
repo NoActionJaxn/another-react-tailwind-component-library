@@ -1,109 +1,97 @@
-import { type ReactElement } from 'react';
 import { cn } from '../util/cn';
-import type { GlobalSizes, GlobalVariants } from '../types/globals';
 import {
-  type CheckboxProps as HeadlessCheckboxProps,
   Checkbox as HeadlessCheckbox,
   Field,
-  Label
+  Label,
+  type CheckboxProps as HeadlessCheckboxProps,
 } from '@headlessui/react';
+import type { ReactElement } from 'react';
+import type { GlobalSizes, GlobalVariants } from '../types/globals';
+
+import Typography from './Typography';
 
 export type CheckboxSizes = GlobalSizes;
 export type CheckboxOrientation = 'horizontal' | 'vertical';
-export type CheckboxVariants = GlobalVariants;
-export type CheckboxLabelPosition = 'before' | 'after';
-
+export type CheckboxVariant = GlobalVariants;
 export interface CheckboxProps extends HeadlessCheckboxProps {
   label?: string;
   size?: CheckboxSizes;
   block?: boolean;
   icon?: ReactElement;
-  variant?: CheckboxVariants;
-  labelPosition?: CheckboxLabelPosition;
-  className?: string;
+  reverse?: boolean;
+  variant?: CheckboxVariant;
 }
 
 const Checkbox = ({
-  label = '',
-  size = 'medium',
   block = false,
-  icon,
+  className = '',
+  disabled = false,
+  label = '',
+  size = 'md',
+  icon = <span>&#10003;</span>,
+  reverse = false,
   variant = 'default',
-  labelPosition = 'after',
-  className,
   ...rest
 }: CheckboxProps) => {
   return (
     <Field className={cn('inline-block', { 'w-full grow': block })}>
-      <div className={cn('flex flex-row items-center gap-3')}>
-        {label && label.length > 0 && labelPosition === 'before' && (
-          <div>
-            <Label
-              className={cn('font-input-label font-semibold relative text-dark', {
-                'text-sm': size === 'small',
-                'text-base': size === 'medium',
-                'text-lg': size === 'large'
-              })}
-            >
-              {label}
-            </Label>
-          </div>
-        )}
+      <div className={
+        cn(
+          'flex flex-row items-center',
+          disabled ? 'cursor-default opacity-60' : 'cursor-pointer',
+          {
+            'flex-row-reverse': reverse,
+            'another-checkbox-gap-xs': size === 'xs',
+            'another-checkbox-gap-sm': size === 'sm',
+            'another-checkbox-gap-md': size === 'md',
+            'another-checkbox-gap-lg': size === 'lg',
+            'another-checkbox-gap-xl': size === 'xl',
+          },
+        )
+      }>
+        <div>
+          <Typography.Text as={Label} className="font-another-checkbox font-semibold" size={size}>
+            {label}
+          </Typography.Text>
+        </div>
         <HeadlessCheckbox
           className={cn(
-            'group inline-flex items-center justify-center outline-0 rounded border ring-4 ring-transparent transition-colors duration-200',
+            'group inline-flex items-center justify-center rounded border-2 transition-colors duration-200',
             {
-              'w-4 h-4': size === 'small',
-              'w-5 h-5': size === 'medium',
-              'w-6 h-6': size === 'large'
+              'another-checkbox-size-xs': size === 'xs',
+              'another-checkbox-size-sm': size === 'sm',
+              'another-checkbox-size-md': size === 'md',
+              'another-checkbox-size-lg': size === 'lg',
+              'another-checkbox-size-xl': size === 'xl',
             },
             {
-              'bg-checkbox-default-background hover:bg-checkbox-default-background-hover border-checkbox-default-border text-checkbox-default-check': variant === 'default',
-              'bg-checkbox-primary-background hover:bg-checkbox-primary-background-hover border-checkbox-primary-border text-checkbox-primary-check': variant === 'primary',
-              'bg-checkbox-secondary-background hover:bg-checkbox-secondary-background-hover border-checkbox-secondary-border text-checkbox-secondary-check': variant === 'secondary',
-              'bg-checkbox-success-background hover:bg-checkbox-success-background-hover border-checkbox-success-border text-checkbox-success-check': variant === 'success',
-              'bg-checkbox-warning-background hover:bg-checkbox-warning-background-hover border-checkbox-warning-border text-checkbox-warning-check': variant === 'warning',
-              'bg-checkbox-danger-background hover:bg-checkbox-danger-background-hover border-checkbox-danger-border text-checkbox-danger-check': variant === 'danger',
-              'bg-checkbox-info-background hover:bg-checkbox-info-background-hover border-checkbox-info-border text-checkbox-info-check': variant === 'info',
+              'another-checkbox-variant-default': variant === 'default',
+              'another-checkbox-variant-primary': variant === 'primary',
+              'another-checkbox-variant-secondary': variant === 'secondary',
+              'another-checkbox-variant-success': variant === 'success',
+              'another-checkbox-variant-warning': variant === 'warning',
+              'another-checkbox-variant-danger': variant === 'danger',
+              'another-checkbox-variant-info': variant === 'info',
             },
             className
           )}
+          disabled={disabled}
           {...rest}
         >
-          {icon ? (
-            <span className={
-              cn(
-                'flex items-center justify-center text-light',
-                {
-                  'text-xs': size === 'small',
-                  'text-sm': size === 'medium',
-                  'text-base': size === 'large'
-                }
-              )}>
-              {icon}
-            </span>
-          ) : (
-            <svg
-              className="opacity-0 group-data-checked:opacity-100 text-light"
-              viewBox="0 0 14 14"
-              fill="none"
-              aria-hidden
-            >
-              <path d="M3 8L6 11L11 3.5" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" stroke="currentColor" />
-            </svg>
-          )}
+          <span className={
+            cn(
+              'w-min h-min text-inherit',
+              {
+                'another-checkbox-icon-size-xs': size === 'xs',
+                'another-checkbox-icon-size-sm': size === 'sm',
+                'another-checkbox-icon-size-md': size === 'md',
+                'another-checkbox-icon-size-lg': size === 'lg',
+                'another-checkbox-icon-size-xl': size === 'xl',
+              }
+            )}>
+            {icon}
+          </span>
         </HeadlessCheckbox>
-        {label && label.length > 0 && labelPosition === 'after' && (
-          <Label
-            className={cn('font-input-label font-semibold relative text-dark', {
-              'text-sm': size === 'small',
-              'text-base': size === 'medium',
-              'text-lg': size === 'large'
-            })}
-          >
-            {label}
-          </Label>
-        )}
       </div>
     </Field>
   );

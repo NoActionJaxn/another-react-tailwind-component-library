@@ -1,17 +1,18 @@
+import type { ElementType, HTMLAttributes } from "react";
 import { cn } from "../util/cn";
 import type { GlobalSizes } from "../types/globals";
 
 export type TypographySizes = '2xs' | GlobalSizes | '2xl';
 export type TypographyHeaders = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-export interface TextProps extends React.HTMLAttributes<HTMLElement> {
-  as?: keyof HTMLElementTagNameMap;
+export interface TextProps extends HTMLAttributes<HTMLElement> {
+  as?: ElementType;
   size?: TypographySizes;
 }
 
 export type MonospaceProps = TextProps;
 
 export interface TitleProps extends Omit<TextProps, 'as'> {
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  as?: ElementType;
 }
 
 const Text = ({ as: Component = 'span', size = "md", className, ...rest }: TextProps) => (
