@@ -1,8 +1,5 @@
 import type { Preview } from '@storybook/react-vite';
 
-// @ts-expect-error - allow CSS side-effect import in Storybook preview
-import '../src/tailwind.css';
-
 const preview: Preview = {
   parameters: {
     controls: {

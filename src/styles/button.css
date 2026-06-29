@@ -1,0 +1,75 @@
+@theme button {
+  --another-button-variant-default: var(--color-default-dark);
+  --another-button-variant-hover-default: var(--color-default);
+  --another-button-variant-ring-default: var(--color-default-lightest);
+  --another-button-variant-text-default: var(--color-light);
+
+  --another-button-variant-primary: var(--color-primary-dark);
+  --another-button-variant-hover-primary: var(--color-primary);
+  --another-button-variant-ring-primary: var(--color-primary-lightest);
+  --another-button-variant-text-primary: var(--color-light);
+
+  --another-button-variant-secondary: var(--color-secondary-darkest);
+  --another-button-variant-hover-secondary: var(--color-secondary-dark);
+  --another-button-variant-ring-secondary: var(--color-secondary-lightest);
+  --another-button-variant-text-secondary: var(--color-light);
+
+  --another-button-variant-success: var(--color-success-dark);
+  --another-button-variant-hover-success: var(--color-success);
+  --another-button-variant-ring-success: var(--color-success-lightest);
+  --another-button-variant-text-success: var(--color-light);
+
+  --another-button-variant-warning: var(--color-warning-dark);
+  --another-button-variant-hover-warning: var(--color-warning);
+  --another-button-variant-ring-warning: var(--color-warning-lightest);
+  --another-button-variant-text-warning: var(--color-light);
+
+  --another-button-variant-danger: var(--color-danger-dark);
+  --another-button-variant-hover-danger: var(--color-danger);
+  --another-button-variant-ring-danger: var(--color-danger-lightest);
+  --another-button-variant-text-danger: var(--color-light);
+
+  --another-button-variant-info: var(--color-info-dark);
+  --another-button-variant-hover-info: var(--color-info);
+  --another-button-variant-ring-info: var(--color-info-lightest);
+  --another-button-variant-text-info: var(--color-light);
+
+  --another-button-variant-ghost: var(--color-transparent);
+  --another-button-variant-hover-ghost: var(--color-secondary-lightest);
+  --another-button-variant-ring-ghost: var(--color-primary-lightest);
+  --another-button-variant-text-ghost: var(--color-dark);
+
+  --another-button-padding-xs: calc(var(--spacing) * 3.5);
+  --another-button-padding-sm: calc(var(--spacing) * 4);
+  --another-button-padding-md: calc(var(--spacing) * 4.5);
+  --another-button-padding-lg: calc(var(--spacing) * 5);
+  --another-button-padding-xl: calc(var(--spacing) * 5.5);
+
+  --another-button-size-xs: calc(var(--spacing) * 7);
+  --another-button-size-sm: calc(var(--spacing) * 9);
+  --another-button-size-md: calc(var(--spacing) * 11);
+  --another-button-size-lg: calc(var(--spacing) * 13);
+  --another-button-size-xl: calc(var(--spacing) * 15);
+  
+  --font-another-button: var(--font-sans);
+}
+
+@utility another-button-variant-* {
+  background-color: --value(--another-button-variant-*);
+  color: --value(--another-button-variant-text-*);
+  transition: background-color 200ms ease, color 200ms ease, box-shadow 200ms ease;
+
+  &:hover {
+    background-color: --value(--another-button-variant-hover-*);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px --value(--another-button-variant-ring-*);
+  }
+}
+
+@utility another-button-size-* {
+  height: --value(--another-button-size-*);
+  padding: 0 --value(--another-button-padding-*);
+}
