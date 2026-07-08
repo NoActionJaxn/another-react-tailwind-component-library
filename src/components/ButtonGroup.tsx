@@ -44,4 +44,6 @@ export const ButtonGroup = ({
   );
 };
 
+ButtonGroup.displayName = "ButtonGroup";
+
 export default ButtonGroup;

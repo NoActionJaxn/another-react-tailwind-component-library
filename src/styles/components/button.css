@@ -47,7 +47,7 @@
   }
 
   .another-button[data-variant="link"]:not(:disabled):hover {
-    @apply bg-transparent text-cyan-700;
+    @apply bg-transparent text-cyan-600;
   }
 
   .another-button[data-size="sm"] {

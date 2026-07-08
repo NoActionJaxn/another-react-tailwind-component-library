@@ -1,20 +1,19 @@
 import {
   cloneElement,
   isValidElement,
-  type ComponentPropsWithRef,
+  type ButtonHTMLAttributes,
   type ReactElement,
 } from "react";
 import { cn } from "../lib/cn";
 
-export type ButtonVariant = "default" | "outline" | "ghost" | "link";
+export type ButtonVariant = "default" | "outline" | "ghost" | "link" | string;
 export type ButtonSize = "sm" | "md" | "lg";
 
-export interface ButtonProps extends ComponentPropsWithRef<"button"> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean;
   block?: boolean;
   icon?: boolean;
   size?: ButtonSize;
-  type?: "button" | "submit" | "reset";
   variant?: ButtonVariant;
 }
 
@@ -50,5 +49,7 @@ export const Button = ({
 
   return <button {...sharedProps}>{children}</button>;
 };
+
+Button.displayName = "Button";
 
 export default Button;

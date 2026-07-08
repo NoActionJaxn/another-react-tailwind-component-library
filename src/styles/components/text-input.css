@@ -1,0 +1,52 @@
+@layer base {
+  input::placeholder {
+    color: var(--color-gray-400);
+  }
+}
+
+@layer components {
+  .another-text-input {
+    @apply inline-flex border-2 border-solid rounded-sm;
+  }
+
+  .another-text-input > input {
+    @apply outline-0 w-full h-full grow bg-transparent;
+  }
+
+  .another-text-input[data-variant="default"] {
+    @apply border-default-800 text-default-950 bg-default-50;
+  }
+
+  .another-text-input[data-variant="default"]:not(:disabled):hover {
+    @apply bg-default-100;
+  }
+
+  .another-text-input[data-variant="default"]:focus-within,
+  .another-text-input[data-variant="default"]:focus-within:hover {
+    @apply bg-default-50 ring-4 ring-cyan-400/50;
+  }
+
+  .another-text-input[data-size="sm"] {
+    @apply h-10 text-sm;
+  }
+
+  .another-text-input[data-size="sm"] > input {
+    @apply px-2;
+  }
+
+  .another-text-input[data-size="md"] {
+    @apply h-11 text-base;
+  }
+
+  .another-text-input[data-size="md"] > input {
+    @apply px-2.5;
+  }
+
+  .another-text-input[data-size="lg"] {
+    @apply h-12 text-lg;
+  }
+
+  .another-text-input[data-size="lg"] > input {
+    @apply px-3;
+  }
+}
