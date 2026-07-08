@@ -1,0 +1,64 @@
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .another-button {
+    @apply font-sans font-semibold uppercase tracking-normal rounded-sm border-2 inline-flex items-center justify-center overflow-hidden transition-colors ease-in-out duration-200 shadow-xs;
+
+    &:focus {
+      @apply outline-0 ring-4 ring-cyan-200;
+    }
+  }
+
+  .another-button:disabled {
+    @apply opacity-70;
+  }
+
+  .another-button[data-variant="default"] {
+    @apply bg-default-800 border-default-950 text-default-50;
+  }
+
+  .another-button[data-variant="default"]:not(:disabled):hover {
+    @apply bg-default-950;
+  }
+
+  .another-button[data-variant="outline"] {
+    @apply bg-transparent border-default-800 text-default-800;
+  }
+
+  .another-button[data-variant="outline"]:not(:disabled):hover {
+    @apply bg-default-100;
+  }
+
+  .another-button[data-variant="ghost"] {
+    @apply bg-transparent border-transparent text-default-800 shadow-none;
+  }
+
+  .another-button[data-variant="ghost"]:not(:disabled):hover {
+    @apply bg-default-100;
+  }
+
+  .another-button[data-variant="link"] {
+    @apply h-min! px-0! border-0 font-normal text-cyan-500 underline underline-offset-2 normal-case shadow-none;
+  }
+
+  .another-button[data-variant="link"]:not(:disabled):hover {
+    @apply bg-transparent text-cyan-700;
+  }
+
+  .another-button[data-size="sm"] {
+    @apply px-3.5 h-10 text-sm;
+  }
+
+  .another-button[data-size="md"] {
+    @apply px-4 h-11 text-base;
+  }
+
+  .another-button[data-size="lg"] {
+    @apply px-4.5 h-12 text-lg;
+  }
+}

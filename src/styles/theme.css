@@ -1,4 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap");
+
 @theme {
-  --font-sans:  
-;
+  /* Fonts */
+  --font-sans: "Roboto Flex", sans-serif;
+  --font-serif: "Roboto Serif", serif;
+  --font-mono: "Roboto Mono", monospace;
+  --font-accent: "Roboto Condensed", sans-serif;
+  /* Color Palettes */
+  --color-default-50: var(--color-stone-50);
+  --color-default-100: var(--color-stone-100);
+  --color-default-200: var(--color-stone-200);
+  --color-default-300: var(--color-stone-300);
+  --color-default-400: var(--color-stone-400);
+  --color-default-500: var(--color-stone-500);
+  --color-default-600: var(--color-stone-600);
+  --color-default-700: var(--color-stone-700);
+  --color-default-800: var(--color-stone-800);
+  --color-default-900: var(--color-stone-900);
+  --color-default-950: var(--color-stone-950);
 }
