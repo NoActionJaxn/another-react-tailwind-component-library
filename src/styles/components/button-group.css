@@ -1,0 +1,25 @@
+@layer components {
+  .another-button-group {
+    @apply flex items-center rounded-sm;
+  }
+
+  .another-button-group > .another-button {
+    @apply rounded-none border-l border-r border-default-800;
+  }
+
+  .another-button-group > .another-button:first-child {
+    @apply rounded-l-sm border-l-2;
+  }
+
+  .another-button-group > .another-button:last-child {
+    @apply rounded-r-sm border-r-2;
+  }
+
+  .another-button-group > .another-button:not(:first-child) {
+    @apply ml-0;
+  }
+
+  .another-button-group > .another-button:focus {
+    @apply relative z-10;
+  }
+}

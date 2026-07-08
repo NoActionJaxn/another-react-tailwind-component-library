@@ -10,7 +10,7 @@
     @apply font-sans font-semibold uppercase tracking-normal rounded-sm border-2 inline-flex items-center justify-center overflow-hidden transition-colors ease-in-out duration-200 shadow-xs;
 
     &:focus {
-      @apply outline-0 ring-4 ring-cyan-200;
+      @apply outline-0 ring-4 ring-cyan-400/50;
     }
   }
 
@@ -19,7 +19,7 @@
   }
 
   .another-button[data-variant="default"] {
-    @apply bg-default-800 border-default-950 text-default-50;
+    @apply bg-default-800 border-default-800 text-default-50;
   }
 
   .another-button[data-variant="default"]:not(:disabled):hover {
