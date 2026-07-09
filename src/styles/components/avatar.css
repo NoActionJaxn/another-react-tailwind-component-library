@@ -1,0 +1,29 @@
+@layer components {
+  .another-avatar {
+    @apply relative inline-flex items-center justify-center shrink-0 overflow-hidden rounded-full select-none;
+  }
+
+  .another-avatar-image {
+    @apply w-full h-full object-cover;
+  }
+
+  .another-avatar-fallback {
+    @apply flex items-center justify-center w-full h-full font-accent font-semibold uppercase;
+  }
+
+  .another-avatar[data-variant="default"] {
+    @apply bg-default-800 text-default-50;
+  }
+
+  .another-avatar[data-size="sm"] {
+    @apply size-8 text-xs;
+  }
+
+  .another-avatar[data-size="md"] {
+    @apply size-10 text-sm;
+  }
+
+  .another-avatar[data-size="lg"] {
+    @apply size-12 text-base;
+  }
+}
