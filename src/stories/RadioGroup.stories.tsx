@@ -56,31 +56,3 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const RadioGroup: Story = {};
-
-export const GridView: Story = {
-  args: {
-    view: "grid",
-    options: [
-      "Red",
-      "Orange",
-      "Yellow",
-      "Green",
-      "Blue",
-      "Indigo",
-      "Violet",
-      "Black",
-    ],
-    defaultValue: "Blue",
-  },
-};
-
-export const CustomLabels: Story = {
-  args: {
-    options: [
-      { value: "sm", label: "Small" },
-      { value: "md", label: "Medium" },
-      { value: "lg", label: "Large" },
-    ],
-    defaultValue: "md",
-  },
-};

@@ -1,4 +1,12 @@
 @layer components {
+  .another-checkbox-group-list {
+    @apply flex flex-col gap-2;
+  }
+
+  .another-checkbox-group-list[data-view="grid"] {
+    @apply grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
+  }
+
   .another-checkbox-group {
     @apply relative inline-flex items-center gap-2;
   }
