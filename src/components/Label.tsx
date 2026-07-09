@@ -1,11 +1,10 @@
 import { Label as RadixLabel } from "radix-ui";
 import cn from "../lib/cn.ts";
-import type { LabelHTMLAttributes } from "react";
 
 export type LabelVariant = "default" | string;
 export type LabelSize = "sm" | "md" | "lg";
 
-export interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
+export interface LabelProps extends RadixLabel.LabelProps {
   variant?: LabelVariant;
   size?: LabelSize;
 }
@@ -17,14 +16,12 @@ const Label = ({
   ...rest
 }: LabelProps) => {
   return (
-    <div className="inline-block w-auto h-min">
-      <RadixLabel.Root
-        className={cn("another-label", className)}
-        data-variant={variant}
-        data-size={size}
-        {...rest}
-      />
-    </div>
+    <RadixLabel.Root
+      className={cn("another-label", className)}
+      data-variant={variant}
+      data-size={size}
+      {...rest}
+    />
   );
 };
 
