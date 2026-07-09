@@ -1,0 +1,65 @@
+@layer components {
+  .another-radio-group {
+    @apply flex flex-col gap-2;
+  }
+
+  .another-radio-group[data-view="grid"] {
+    @apply grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
+  }
+
+  .another-radio-group-item {
+    @apply inline-flex items-center gap-2;
+  }
+
+  .another-radio {
+    @apply inline-flex items-center justify-center shrink-0 min-w-0 min-h-0 overflow-hidden rounded-full border-2 shadow-xs transition-colors ease-in-out duration-200;
+
+    &:focus {
+      @apply outline-0 ring-4 ring-cyan-400/50;
+    }
+  }
+
+  .another-radio:disabled {
+    @apply opacity-70;
+  }
+
+  .another-radio-indicator {
+    @apply rounded-full bg-default-50;
+  }
+
+  .another-radio[data-variant="default"] {
+    @apply border-default-800 bg-default-50;
+  }
+
+  .another-radio[data-variant="default"]:not(:disabled):hover {
+    @apply bg-default-400;
+  }
+
+  .another-radio[data-variant="default"][data-state="checked"] {
+    @apply bg-default-800 border-default-800;
+  }
+
+  .another-radio[data-size="sm"] {
+    @apply size-5;
+  }
+
+  .another-radio[data-size="md"] {
+    @apply size-6;
+  }
+
+  .another-radio[data-size="lg"] {
+    @apply size-7;
+  }
+
+  .another-radio[data-size="sm"] .another-radio-indicator {
+    @apply size-2;
+  }
+
+  .another-radio[data-size="md"] .another-radio-indicator {
+    @apply size-2.5;
+  }
+
+  .another-radio[data-size="lg"] .another-radio-indicator {
+    @apply size-3;
+  }
+}

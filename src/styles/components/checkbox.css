@@ -3,8 +3,8 @@
     @apply relative inline-flex items-center gap-2;
   }
 
-  .another-checkbox-group[data-orientation="vertical"] {
-    @apply flex-col items-start;
+  .another-checkbox-group[data-reverse="true"] {
+    @apply flex-row-reverse;
   }
 
   .another-checkbox {

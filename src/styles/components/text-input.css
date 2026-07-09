@@ -5,6 +5,14 @@
 }
 
 @layer components {
+  .another-text-input-group {
+    @apply inline-flex flex-col gap-1;
+  }
+
+  .another-text-input-group[data-orientation="horizontal"] {
+    @apply flex-row items-center gap-2;
+  }
+
   .another-text-input {
     @apply inline-flex border-2 border-solid rounded-sm;
   }

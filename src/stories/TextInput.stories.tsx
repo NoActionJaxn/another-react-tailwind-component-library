@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import TextInputComponent from "../components/TextInput";
-import LabelComponent from "../components/Label";
 
 const meta = {
   title: "Inputs",
@@ -38,6 +37,15 @@ const meta = {
       control: "text",
       description: "Visual variant used by the input styling.",
     },
+    label: {
+      control: "text",
+      description: "Label rendered alongside the input.",
+    },
+    orientation: {
+      control: "radio",
+      options: ["horizontal", "vertical"],
+      description: "Layout of the input relative to its label.",
+    },
     disabled: {
       control: "boolean",
       description: "Disables the input.",
@@ -57,6 +65,8 @@ const meta = {
     type: "text",
     block: false,
     variant: "default",
+    label: "Label",
+    orientation: "vertical",
     disabled: false,
   },
 } satisfies Meta<typeof TextInputComponent>;
@@ -65,41 +75,22 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const DefaultTextInput: Story = {
-  render: ({ size, ...rest }) => (
-    <div className="space-x-4">
-      <LabelComponent size={size} htmlFor="text-input">
-        Label
-      </LabelComponent>
-      <TextInputComponent size={size} id="text-input" {...rest} />
-    </div>
-  ),
+export const DefaultTextInput: Story = {};
+
+export const HorizontalTextInput: Story = {
+  args: {
+    orientation: "horizontal",
+  },
 };
 
 export const TextInputWithPrependedElement: Story = {
   args: {
     prependElement: <>🔥</>,
   },
-  render: ({ size, ...rest }) => (
-    <div className="space-x-4">
-      <LabelComponent size={size} htmlFor="text-input-prepend">
-        Label
-      </LabelComponent>
-      <TextInputComponent size={size} id="text-input-prepend" {...rest} />
-    </div>
-  ),
 };
 
 export const TextInputWithAppendedElement: Story = {
   args: {
     appendElement: <>🔥</>,
   },
-  render: ({ size, ...rest }) => (
-    <div className="space-x-4">
-      <LabelComponent size={size} htmlFor="text-input-append">
-        Label
-      </LabelComponent>
-      <TextInputComponent size={size} id="text-input-append" {...rest} />
-    </div>
-  ),
 };

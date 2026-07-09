@@ -6,11 +6,10 @@ import cn from "../lib/cn.ts";
 
 export type CheckboxVariant = "default" | string;
 export type CheckboxSize = "sm" | "md" | "lg";
-export type CheckboxOrientation = "horizontal" | "vertical";
 
 export interface CheckboxProps extends RadixCheckbox.CheckboxProps {
   label?: ReactNode;
-  orientation?: CheckboxOrientation;
+  reverse?: boolean;
   variant?: CheckboxVariant;
   size?: CheckboxSize;
 }
@@ -19,7 +18,7 @@ const Checkbox = ({
   className,
   id,
   label,
-  orientation = "horizontal",
+  reverse = false,
   variant = "default",
   size = "md",
   ...rest
@@ -28,7 +27,7 @@ const Checkbox = ({
   const checkboxId = id ?? generatedId;
 
   return (
-    <div className="another-checkbox-group" data-orientation={orientation}>
+    <div className="another-checkbox-group" data-reverse={reverse}>
       <RadixCheckbox.Root
         className={cn("another-checkbox", className)}
         data-variant={variant}

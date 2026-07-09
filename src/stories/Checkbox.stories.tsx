@@ -25,10 +25,9 @@ const meta = {
       options: ["sm", "md", "lg"],
       description: "The size of the checkbox.",
     },
-    orientation: {
-      control: "radio",
-      options: ["horizontal", "vertical"],
-      description: "Layout of the checkbox relative to its label.",
+    reverse: {
+      control: "boolean",
+      description: "Reverses the flex direction of the checkbox and label.",
     },
     label: {
       control: "text",
@@ -46,7 +45,7 @@ const meta = {
   args: {
     variant: "default",
     size: "md",
-    orientation: "horizontal",
+    reverse: false,
     label: "Accept terms and conditions",
     disabled: false,
     defaultChecked: false,
@@ -58,9 +57,3 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Checkbox: Story = {};
-
-export const VerticalOrientation: Story = {
-  args: {
-    orientation: "vertical",
-  },
-};

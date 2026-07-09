@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import PasswordInputComponent from "../components/PasswordInput";
-import LabelComponent from "../components/Label";
 
 const meta = {
   title: "Inputs",
@@ -33,6 +32,15 @@ const meta = {
       control: "text",
       description: "Visual variant used by the input styling.",
     },
+    label: {
+      control: "text",
+      description: "Label rendered alongside the input.",
+    },
+    orientation: {
+      control: "radio",
+      options: ["horizontal", "vertical"],
+      description: "Layout of the input relative to its label.",
+    },
     disabled: {
       control: "boolean",
       description: "Disables the input and the show/hide toggle.",
@@ -46,6 +54,8 @@ const meta = {
     placeholder: "Enter your password",
     size: "md",
     variant: "default",
+    label: "Password",
+    orientation: "vertical",
     block: false,
     disabled: false,
     disableShowPassword: false,
@@ -56,13 +66,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const PasswordInput: Story = {
-  render: ({ size, ...rest }) => (
-    <div className="space-x-4">
-      <LabelComponent size={size} htmlFor="password-input">
-        Label
-      </LabelComponent>
-      <PasswordInputComponent size={size} id="password-input" {...rest} />
-    </div>
-  ),
-};
+export const PasswordInput: Story = {};
