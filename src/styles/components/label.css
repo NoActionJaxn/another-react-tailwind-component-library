@@ -1,0 +1,21 @@
+@layer components {
+  .another-label {
+    @apply font-accent leading-normal font-semibold;
+  }
+
+  .another-label[data-variant="default"] {
+    @apply text-default-950;
+  }
+
+  .another-label[data-size="lg"] {
+    @apply text-xl;
+  }
+
+  .another-label[data-size="md"] {
+    @apply text-lg;
+  }
+
+  .another-label[data-size="sm"] {
+    @apply text-base;
+  }
+}

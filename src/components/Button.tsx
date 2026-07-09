@@ -1,9 +1,5 @@
-import {
-  cloneElement,
-  isValidElement,
-  type ButtonHTMLAttributes,
-  type ReactElement,
-} from "react";
+import { type ButtonHTMLAttributes } from "react";
+import { Slot } from "radix-ui";
 import { cn } from "../lib/cn";
 
 export type ButtonVariant = "default" | "outline" | "ghost" | "link" | string;
@@ -28,6 +24,7 @@ export const Button = ({
   variant = "default",
   ...rest
 }: ButtonProps) => {
+  const Component = asChild ? Slot.Root : "button";
   const sharedProps = {
     className: cn(
       "another-button",
@@ -43,11 +40,7 @@ export const Button = ({
     ...rest,
   };
 
-  if (asChild && isValidElement(children)) {
-    return cloneElement(children as ReactElement, sharedProps);
-  }
-
-  return <button {...sharedProps}>{children}</button>;
+  return <Component {...sharedProps}>{children}</Component>;
 };
 
 Button.displayName = "Button";

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import TextInputComponent from "../components/TextInput";
+import LabelComponent from "../components/Label";
 
 const meta = {
   title: "Inputs",
@@ -64,16 +65,41 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const DefaultTextInput: Story = {};
+export const DefaultTextInput: Story = {
+  render: ({ size, ...rest }) => (
+    <div className="space-x-4">
+      <LabelComponent size={size} htmlFor="text-input">
+        Label
+      </LabelComponent>
+      <TextInputComponent size={size} id="text-input" {...rest} />
+    </div>
+  ),
+};
 
 export const TextInputWithPrependedElement: Story = {
   args: {
     prependElement: <>🔥</>,
   },
+  render: ({ size, ...rest }) => (
+    <div className="space-x-4">
+      <LabelComponent size={size} htmlFor="text-input-prepend">
+        Label
+      </LabelComponent>
+      <TextInputComponent size={size} id="text-input-prepend" {...rest} />
+    </div>
+  ),
 };
 
 export const TextInputWithAppendedElement: Story = {
   args: {
     appendElement: <>🔥</>,
   },
+  render: ({ size, ...rest }) => (
+    <div className="space-x-4">
+      <LabelComponent size={size} htmlFor="text-input-append">
+        Label
+      </LabelComponent>
+      <TextInputComponent size={size} id="text-input-append" {...rest} />
+    </div>
+  ),
 };

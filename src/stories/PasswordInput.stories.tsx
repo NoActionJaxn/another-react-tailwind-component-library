@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import PasswordInputComponent from "../components/PasswordInput";
+import LabelComponent from "../components/Label";
 
 const meta = {
   title: "Inputs",
@@ -55,4 +56,13 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const PasswordInput: Story = {};
+export const PasswordInput: Story = {
+  render: ({ size, ...rest }) => (
+    <div className="space-x-4">
+      <LabelComponent size={size} htmlFor="password-input">
+        Label
+      </LabelComponent>
+      <PasswordInputComponent size={size} id="password-input" {...rest} />
+    </div>
+  ),
+};
