@@ -1,0 +1,50 @@
+@layer components {
+  .another-blog-post {
+    @apply mx-auto flex w-full max-w-3xl flex-col gap-4 px-4 py-6 @md:gap-6 @md:px-8 @md:py-10;
+  }
+
+  .another-blog-post[data-variant="default"] {
+    @apply text-default-950;
+  }
+
+  .another-blog-post-cover {
+    @apply aspect-video w-full overflow-hidden rounded-sm;
+  }
+
+  .another-blog-post-cover > img {
+    @apply h-full w-full object-cover;
+  }
+
+  .another-blog-post-content {
+    @apply flex flex-col gap-4 @md:gap-6;
+  }
+
+  .another-blog-post-title {
+    @apply text-2xl leading-tight font-bold @md:text-4xl;
+  }
+
+  .another-blog-post-meta {
+    @apply flex flex-wrap items-center gap-2 text-sm text-default-500 @md:text-base;
+  }
+
+  .another-blog-post-body {
+    @apply flex flex-col gap-4 text-base leading-relaxed text-default-800 @md:text-lg;
+  }
+
+  .another-blog-post-body h2 {
+    @apply text-xl leading-snug font-bold @md:text-2xl;
+  }
+
+  .another-blog-post-body h3 {
+    @apply text-lg leading-snug font-semibold @md:text-xl;
+  }
+
+  .another-blog-post-body blockquote {
+    @apply border-l-4 border-default-300 pl-4 text-default-600 italic;
+  }
+
+  .another-blog-post-body ul,
+  .another-blog-post-body ol {
+    @apply list-inside list-disc pl-2;
+  }
+}
