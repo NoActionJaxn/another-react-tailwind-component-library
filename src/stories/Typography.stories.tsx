@@ -10,25 +10,31 @@ const meta = {
     docs: {
       description: {
         component:
-          "A typography wrapper that applies default heading and paragraph sizing to its children, with selectable font families.",
+          "A typography component that applies default sizing for the element it renders as, with selectable font families.",
       },
     },
   },
   tags: ["autodocs"],
   argTypes: {
+    as: {
+      control: "select",
+      options: ["span", "p", "h1", "h2", "h3", "h4", "h5", "h6"],
+      description: "The element rendered.",
+    },
     font: {
       control: "radio",
       options: ["sans", "sans-serif", "mono", "accent"],
       description: "Font family applied to the typography scope.",
     },
-    asChild: {
-      control: "boolean",
-      description: "Merge props onto the child element instead of a span.",
+    children: {
+      control: "text",
+      description: "The text content.",
     },
   },
   args: {
+    as: "span",
     font: "sans",
-    asChild: false,
+    children: "The quick brown fox jumps over the lazy dog.",
   },
 } satisfies Meta<typeof TypographyComponent>;
 
@@ -36,57 +42,58 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Typography: Story = {
-  render: (args) => (
-    <TypographyComponent {...args}>
-      <h1>Heading 1</h1>
-      <h2>Heading 2</h2>
-      <h3>Heading 3</h3>
-      <h4>Heading 4</h4>
-      <h5>Heading 5</h5>
-      <h6>Heading 6</h6>
-      <p>
-        The quick brown fox jumps over the lazy dog. This paragraph demonstrates
-        the default body text styling.
-      </p>
-    </TypographyComponent>
+export const Text: Story = {};
+
+export const Titles: Story = {
+  render: () => (
+    <div className="flex flex-col gap-2">
+      <TypographyComponent as="h1">Heading 1</TypographyComponent>
+      <TypographyComponent as="h2">Heading 2</TypographyComponent>
+      <TypographyComponent as="h3">Heading 3</TypographyComponent>
+      <TypographyComponent as="h4">Heading 4</TypographyComponent>
+      <TypographyComponent as="h5">Heading 5</TypographyComponent>
+      <TypographyComponent as="h6">Heading 6</TypographyComponent>
+    </div>
   ),
+};
+
+export const Sans: Story = {
+  args: {
+    as: "h2",
+    font: "sans",
+    children: "Sans Heading",
+  },
 };
 
 export const SansSerif: Story = {
   args: {
+    as: "h2",
     font: "sans-serif",
+    children: "Sans Serif Heading",
   },
-  render: (args) => (
-    <TypographyComponent {...args}>
-      <h2>Sans Serif Heading</h2>
-      <p>The quick brown fox jumps over the lazy dog.</p>
-    </TypographyComponent>
-  ),
 };
 
 export const Mono: Story = {
   args: {
+    as: "h2",
     font: "mono",
+    children: "Monospace Heading",
   },
-  render: (args) => (
-    <TypographyComponent {...args}>
-      <h2>Monospace Heading</h2>
-      <p>The quick brown fox jumps over the lazy dog.</p>
-    </TypographyComponent>
-  ),
 };
 
-export const AsChild: Story = {
+export const Accent: Story = {
   args: {
-    asChild: true,
+    as: "h2",
+    font: "accent",
+    children: "Accent Heading",
   },
-  render: (args) => (
-    <TypographyComponent {...args}>
-      <article>
-        <h2>Rendered as an article</h2>
-        <p>No extra span is added to the DOM when asChild is set.</p>
-      </article>
+};
+
+export const InlineFormatting: Story = {
+  render: () => (
+    <TypographyComponent as="p">
+      This paragraph has <strong>strong</strong>, <b>bold</b>, <u>underlined</u>
+      , <i>italic</i>, and <code>inline code</code> text.
     </TypographyComponent>
   ),
 };

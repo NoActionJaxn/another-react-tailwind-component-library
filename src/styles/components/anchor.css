@@ -1,0 +1,18 @@
+@layer components {
+  .another-anchor {
+    @apply font-sans font-normal text-cyan-500 underline underline-offset-2 transition-colors ease-in-out duration-200;
+
+    &:focus {
+      @apply rounded-sm outline-0 ring-4 ring-cyan-400/50;
+    }
+  }
+
+  .another-anchor:hover {
+    @apply text-cyan-600;
+  }
+
+  .another-anchor:disabled,
+  .another-anchor[aria-disabled="true"] {
+    @apply pointer-events-none opacity-70;
+  }
+}

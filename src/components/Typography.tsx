@@ -1,22 +1,21 @@
 import { type HTMLAttributes } from "react";
-import { Slot } from "radix-ui";
 import cn from "../lib/cn.ts";
 
 export type TypographyFont = "sans" | "sans-serif" | "mono" | "accent";
+export type TypographyElement =
+  "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 export interface TypographyProps extends HTMLAttributes<HTMLElement> {
-  asChild?: boolean;
+  as?: TypographyElement;
   font?: TypographyFont;
 }
 
 const Typography = ({
-  asChild = false,
+  as: Component = "span",
   className,
   font = "sans",
   ...rest
 }: TypographyProps) => {
-  const Component = asChild ? Slot.Root : "span";
-
   return (
     <Component
       className={cn("another-typography", className)}

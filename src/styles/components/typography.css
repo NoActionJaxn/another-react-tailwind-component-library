@@ -19,31 +19,48 @@
     @apply font-accent;
   }
 
-  .another-typography > h1 {
+  h1.another-typography {
     @apply text-4xl leading-tight font-bold;
   }
 
-  .another-typography > h2 {
+  h2.another-typography {
     @apply text-3xl leading-tight font-bold;
   }
 
-  .another-typography > h3 {
+  h3.another-typography {
     @apply text-2xl leading-snug font-semibold;
   }
 
-  .another-typography > h4 {
+  h4.another-typography {
     @apply text-xl leading-snug font-semibold;
   }
 
-  .another-typography > h5 {
+  h5.another-typography {
     @apply text-lg leading-normal font-semibold;
   }
 
-  .another-typography > h6 {
+  h6.another-typography {
     @apply text-base leading-normal font-semibold;
   }
 
-  .another-typography > p {
+  p.another-typography {
     @apply text-base leading-normal;
+  }
+
+  .another-typography strong,
+  .another-typography b {
+    @apply font-bold;
+  }
+
+  .another-typography u {
+    @apply underline;
+  }
+
+  .another-typography i {
+    @apply italic;
+  }
+
+  .another-typography code {
+    @apply rounded-sm bg-default-100 px-1 py-0.5 font-mono text-[0.9em];
   }
 }
