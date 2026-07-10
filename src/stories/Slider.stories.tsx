@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import SliderComponent from "../components/Slider";
 
 const meta = {
-  title: "Inputs",
+  title: "Forms/Sliders",
   component: SliderComponent,
   parameters: {
     layout: "centered",

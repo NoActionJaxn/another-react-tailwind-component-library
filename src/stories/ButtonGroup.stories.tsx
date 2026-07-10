@@ -4,7 +4,7 @@ import { Button } from "../components/Button";
 import ButtonGroupComponent from "../components/ButtonGroup";
 
 const meta = {
-  title: "Buttons",
+  title: "Forms/Buttons",
   component: ButtonGroupComponent,
   parameters: {
     layout: "centered",

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import SecureComponent from "../components/Secure";
 
 const meta = {
-  title: "Secure",
+  title: "Ui/Secure",
   component: SecureComponent,
   parameters: {
     layout: "centered",

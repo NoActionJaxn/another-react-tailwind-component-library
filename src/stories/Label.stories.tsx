@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import LabelComponent from "../components/Label";
 
 const meta = {
-  title: "Inputs",
+  title: "Forms/Text",
   component: LabelComponent,
   parameters: {
     layout: "centered",

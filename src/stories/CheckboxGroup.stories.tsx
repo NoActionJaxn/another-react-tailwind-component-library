@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import CheckboxGroupComponent from "../components/CheckboxGroup";
 
 const meta = {
-  title: "Inputs",
+  title: "Forms/Options",
   component: CheckboxGroupComponent,
   parameters: {
     layout: "centered",
