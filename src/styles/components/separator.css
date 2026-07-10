@@ -1,0 +1,17 @@
+@layer components {
+  .another-separator {
+    @apply shrink-0;
+  }
+
+  .another-separator[data-orientation="horizontal"] {
+    @apply h-px w-full;
+  }
+
+  .another-separator[data-orientation="vertical"] {
+    @apply h-full w-px;
+  }
+
+  .another-separator[data-variant="default"] {
+    @apply bg-default-200;
+  }
+}

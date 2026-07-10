@@ -6,9 +6,11 @@
 @import "./components/flex-container.css";
 @import "./components/grid-container.css";
 @import "./components/label.css";
+@import "./components/progress.css";
 @import "./components/radio-group.css";
 @import "./components/secure.css";
 @import "./components/select.css";
+@import "./components/separator.css";
 @import "./components/slider.css";
 @import "./components/switch.css";
 @import "./components/text-input.css";
