@@ -1,0 +1,65 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+
+import ListCardComponent from "../components/ListCard";
+import Button from "../components/Button.tsx";
+
+const meta = {
+  title: "Ui/Cards/ListCard",
+  component: ListCardComponent,
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component:
+          "A horizontal card with image, title, meta, description, and footer slots, well suited to a vertical list of posts.",
+      },
+    },
+  },
+  tags: ["autodocs"],
+  argTypes: {
+    variant: {
+      control: "radio",
+      options: ["default"],
+      description: "Visual variant used by the card styling.",
+    },
+    title: {
+      control: "text",
+      description: "The card's title.",
+    },
+    description: {
+      control: "text",
+      description: "The card's excerpt/body copy.",
+    },
+  },
+  args: {
+    variant: "default",
+    title: "Building a design system from scratch",
+    description:
+      "A look at the decisions behind our component library, from theming to accessibility.",
+  },
+} satisfies Meta<typeof ListCardComponent>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const ListCard: Story = {
+  render: (args) => (
+    <div className="w-xl">
+      <ListCardComponent
+        {...args}
+        image={
+          <div className="flex h-full w-full items-center justify-center bg-default-200 text-default-500">
+            Img
+          </div>
+        }
+        meta={<span>July 9, 2026</span>}
+        footer={
+          <Button asChild size="sm" variant="ghost">
+            <a href="/">Read more</a>
+          </Button>
+        }
+      />
+    </div>
+  ),
+};

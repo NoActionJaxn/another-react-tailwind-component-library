@@ -1,0 +1,37 @@
+@layer components {
+  .another-list-card {
+    @apply flex flex-row items-center gap-4 overflow-hidden rounded-sm border-2 p-3 shadow-xs transition-colors ease-in-out duration-200;
+  }
+
+  .another-list-card[data-variant="default"] {
+    @apply border-default-800 bg-default-50 text-default-950;
+  }
+
+  .another-list-card-image {
+    @apply size-20 shrink-0 overflow-hidden rounded-sm;
+  }
+
+  .another-list-card-image > img {
+    @apply h-full w-full object-cover;
+  }
+
+  .another-list-card-body {
+    @apply flex grow flex-col gap-1 overflow-hidden;
+  }
+
+  .another-list-card-title {
+    @apply text-base leading-snug font-semibold;
+  }
+
+  .another-list-card-meta {
+    @apply flex items-center gap-2 text-sm text-default-500;
+  }
+
+  .another-list-card-description {
+    @apply line-clamp-2 text-sm leading-normal text-default-800;
+  }
+
+  .another-list-card-footer {
+    @apply flex shrink-0 items-center gap-2;
+  }
+}

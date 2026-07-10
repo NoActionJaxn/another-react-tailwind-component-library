@@ -22,11 +22,11 @@ There is no standalone `npm test`; component tests run through Storybook's Vites
 
 A Husky `pre-commit` hook runs `lint-staged` (`eslint --fix` + `prettier --write`) on staged `js,jsx,ts,tsx,json,css,md` files. Don't bypass it with `--no-verify`.
 
-**Verifying a change**: `npx tsc -b` (typecheck) plus `npx storybook build` (production build) is the reliable way to confirm a component/story actually works — see "Dev server pitfalls" below for why the live `storybook dev` process can lie to you.
+**Verifying a change**: `npx tsc -b` (typecheck) plus `npx storybook build` (production build) is the reliable way to confirm a component _compiles_ — see "Dev server pitfalls" below for why the live `storybook dev` process can lie to you about styling. Neither of those catches genuine runtime errors (a bad default-export interop, a component that throws on render) since building never actually executes React rendering. For anything wrapping a new third-party dependency, also load the story in a real browser (headless Chromium is fine) and check the console before calling it done — see the `Pagination`/`react-paginate` case below.
 
 ## Repo layout
 
-- `src/components/` — component implementations. Current set: `Anchor`, `Avatar`, `Button`, `ButtonGroup`, `Checkbox`, `CheckboxGroup`, `Container`, `FlexContainer`, `GridContainer`, `Label`, `PasswordInput`, `RadioGroup`, `Secure`, `Select`, `Slider`, `Switch`, `TextInput`, `Typography`.
+- `src/components/` — component implementations. Current set: `Anchor`, `Avatar`, `Button`, `ButtonGroup`, `Checkbox`, `CheckboxGroup`, `Container`, `FlexContainer`, `GridContainer`, `Label`, `ListCard`, `Pagination`, `PasswordInput`, `PostCard`, `ProfileCard`, `Progress`, `RadioGroup`, `Secure`, `Select`, `Separator`, `Slider`, `Switch`, `TextInput`, `Typography`.
 - `src/icons/` — small inline SVG icon components (`Check`, `ChevronDown`, `ChevronUp`, `EyeOpen`, `EyeClosed`). SVGs generally hardcode `fill`/`stroke` colors rather than using `currentColor` — a known pre-existing limitation, not something to silently "fix" as a drive-by.
 - `src/lib/cn.ts` — `cn()` (classnames + tailwind-merge) and `cnWhitelisted()` helpers
 - `src/stories/` — one `*.stories.tsx` per component, colocated by name (not colocated with the component file)
@@ -64,6 +64,12 @@ A Husky `pre-commit` hook runs `lint-staged` (`eslint --fix` + `prettier --write
 - Radix `Indicator` components (Checkbox/Radio) only mount into the DOM when checked by default. If the indicator's child is an icon with no explicit size, it can force layout growth via the flexbox "automatic minimum size" quirk (a flex item's content can override an explicit `width`/`height` unless `min-w-0 min-h-0` is also set). Give icons an explicit size via a descendant selector keyed off `data-size` on the root (see `checkbox.css`, `radio-group.css`), and set `min-w-0 min-h-0` on every flex level between the root and the icon.
 - `Slot`/`Slot.Root` (also from `radix-ui`) backs the `asChild` pattern (see `Button.tsx`) for merging props onto a single child instead of introducing a wrapper element. `Typography`/`Anchor` instead use a plain `as` prop (a union of literal tag-name strings) rendered directly as `<Component>` — simpler, but means the prop's tag options must avoid ones with conflicting native attribute types (e.g. don't mix `"button"` into a tag union typed against `AnchorHTMLAttributes`, since `type` is incompatible between the two).
 
+**Wrapping a non-Radix third-party library**
+
+- `Pagination` wraps `react-paginate` (a UMD-bundled package: `module.exports = { __esModule: true, default: <Component> }`). Default-import interop for that shape is bundler-dependent — it broke specifically under the Vite dev server (`Element type is invalid... Check the render method of Pagination`) despite `tsc -b` and `storybook build` both passing clean, because neither of those actually renders the component. The fix is to unwrap defensively regardless of how the bundler resolves it: `const ReactPaginate = (ReactPaginateImport as unknown as { default?: typeof ReactPaginateImport }).default ?? ReactPaginateImport;`. Apply the same defensive unwrap to any future default-imported UMD/CJS dependency rather than trusting a bare `import X from "pkg"`.
+- Prefer using our own components for anything a third-party library lets you fully replace, and only delegate to the library for the part that's genuinely hard to reimplement. `Pagination` renders its own `Button` for Previous/Next (driving the page state directly) and only hands the numbered-page/ellipsis logic to `react-paginate`, hiding its built-in prev/next (`previousClassName`/`nextClassName` set to `"hidden"`) rather than trying to reskin them.
+- `Pagination.tsx` is a generic component (`Pagination<T>`). Storybook's `Meta`/`StoryObj` typing collapses a generic's type parameter to `unknown` and requires every `Story` to supply `args` satisfying the (non-generic-aware) required props, even when the story only uses a custom `render` and ignores args entirely. Fix by giving `meta` itself a placeholder `args` (e.g. `{ items: [...], renderItem: () => null }`) so individual stories don't need to redeclare it.
+
 **Prop patterns established across components**
 
 - `label?: ReactNode` — render the shared `Label` component internally, wired to the control via `htmlFor`/`id`, generating an id with `useId()` when the caller doesn't pass one (`Checkbox`, `TextInput`, `Select`).
@@ -73,6 +79,8 @@ A Husky `pre-commit` hook runs `lint-staged` (`eslint --fix` + `prettier --write
 - `as?: ElementType` / a literal tag-name union — polymorphic root element (`Typography`, `Anchor`, `Container` and its wrappers).
 - Container-query components (`Container`, `GridContainer`, `FlexContainer`) use `@container` + Tailwind v4's `@xs`/`@sm`/`@md`/... variants instead of viewport media queries, so nested layout responds to the container's own width. Props like `GridContainer`'s `columns` (1–9) are implemented as **static, fully-enumerated CSS rules** keyed by `[data-columns="1"]` through `[data-columns="9"]` in `grid-container.css` — again because Tailwind can't scan a dynamically-built class string at runtime.
 - When a group component's own CSS needs both an "item wrapper" class and a "list of items" container class, name them distinctly (e.g. `Checkbox`'s own internal `another-checkbox-group` wrapper — a single checkbox + its label — vs. `CheckboxGroup`'s `another-checkbox-group-list` — the container of many checkboxes). Reusing a name for two different scopes causes real collisions.
+- Watch for prop names that collide with a native HTML attribute of a _different_ type than what you want. `title` (native: plain string, tooltip) and `role` (native: `AriaRole` enum) are the two that have bitten us so far — `PostCard`'s `title?: ReactNode` and `ProfileCard`'s `role?: ReactNode` both needed `Omit<HTMLAttributes<HTMLElement>, "title">` / `"role"` on their props interface to compile.
+- The card family (`PostCard`, `ProfileCard`, `ListCard`) shares one slot-based shape: `image`/`cover`, a heading slot, `meta`, a body-copy slot, `footer`, all rendered via `Typography` internally (`as="h3"`/`as="p"` with `font="accent"`/`"sans"`), plus `as`/`variant`. Each is a distinct component/file rather than one configurable "Card" — pick a name describing what it's _for_ (a post, a profile, a list row), not its layout, and add new cards the same way rather than growing one component's prop surface indefinitely.
 
 **Styling**
 
@@ -83,7 +91,7 @@ A Husky `pre-commit` hook runs `lint-staged` (`eslint --fix` + `prettier --write
 **Stories**
 
 - Add a `src/stories/<Component>.stories.tsx` for every new component, with a `Meta` (`title`, `component`, `parameters.docs.description`, `tags: ["autodocs"]`, `argTypes` describing each prop) and at least a default `Story`.
-- `title` uses a two-level hierarchy grouping related components, not a flat name: `Forms/Inputs`, `Forms/Options`, `Forms/Buttons`, `Forms/Text`, `Forms/Sliders`, `Ui/Avatar`, `Ui/Secure`, `Ui/Typography`, `Ui/Anchor`, `Ui/Containers`. Pick an existing group before inventing a new one.
+- `title` uses a two-level hierarchy grouping related components, not a flat name: `Forms/Inputs`, `Forms/Options`, `Forms/Buttons`, `Forms/Text`, `Forms/Sliders`, `Ui/Avatar`, `Ui/Secure`, `Ui/Typography`, `Ui/Anchor`, `Ui/Containers`, `Ui/Cards/PostCard`, `Ui/Cards/ProfileCard`, `Ui/Cards/ListCard`, `Ui/Pagination`, `Ui/Progress`, `Ui/Separator`. Pick an existing group before inventing a new one; card-shaped components go under `Ui/Cards/<Name>`.
 - `argTypes` descriptions are user-facing documentation — write them as full sentences.
 - For container-query components, demonstrate the responsive behavior with a resizable wrapper (`className="resize-x overflow-auto"` around the story content) rather than only a fixed-size box — see `Container.stories.tsx` / `GridContainer.stories.tsx` / `FlexContainer.stories.tsx`.
 
@@ -95,15 +103,16 @@ A Husky `pre-commit` hook runs `lint-staged` (`eslint --fix` + `prettier --write
 
 ## Dev server pitfalls (read before reporting "it's broken")
 
-Two failure modes look like real bugs but aren't — both are specific to the long-running `storybook dev` process, and neither reproduces in `npx storybook build`:
+The first two failure modes below look like real bugs but aren't — both are specific to the long-running `storybook dev` process, and neither reproduces in `npx storybook build`. The third one _is_ a real bug, but `tsc -b`/`storybook build` won't have caught it either, for a different reason:
 
 1. **Everything suddenly unstyled** (transparent backgrounds, zero padding/border, but no console errors) — check `main.css`'s import order first (see above). If that's already correct, the dev server's Vite dependency/CSS graph has likely gone stale after many CSS files were added/edited across a long session; restart it (`storybook dev -p 6006`) and hard-refresh the browser tab.
 2. **A brand-new component/story's Tailwind classes don't apply at all**, while older, already-compiled classes on the same page render fine — Tailwind's dev-mode content scanner can miss a file that didn't exist when the dev server started. Restart the dev server; this does not affect `storybook build`, which always does a full scan.
+3. **A story renders nothing / throws "Element type is invalid" or similar** — this is not dev-server staleness, it's a genuine runtime error, most often a default-export interop mismatch with a newly-added third-party dependency (see the `react-paginate` note above). `tsc -b` and `storybook build` both pass in this case because neither one renders the component; you only find out by loading the story and checking the console.
 
-When diagnosing either, don't guess from a screenshot alone — check actual computed styles (`getComputedStyle` via a quick script, or the dev server's own log for `Vite [console.error]` lines) before concluding the code itself is wrong.
+When diagnosing any of these, don't guess from a screenshot alone — check actual computed styles or the browser console (`getComputedStyle` via a quick script, or the dev server's own log for `Vite [console.error]` lines) before concluding the code itself is wrong, and before concluding it's _right_.
 
 ## Notes for agents
 
 - This is a library, not an app: `index.html` / `src/main.tsx` exist only to host Storybook/dev preview, not a real product surface.
 - There's no public `index.ts` barrel yet — components are imported by path (`../components/Button`). If adding one, check with the user first since it changes the package's public API shape.
-- Keep new components consistent with existing reference implementations for API shape and file layout: `Button.tsx`/`TextInput.tsx` for plain HTML-element components, `Checkbox.tsx`/`RadioGroup.tsx`/`Select.tsx` for Radix-backed components with a `label` prop, `CheckboxGroup.tsx` for options-array/group components, and `Container.tsx`/`GridContainer.tsx` for container-query components.
+- Keep new components consistent with existing reference implementations for API shape and file layout: `Button.tsx`/`TextInput.tsx` for plain HTML-element components, `Checkbox.tsx`/`RadioGroup.tsx`/`Select.tsx` for Radix-backed components with a `label` prop, `CheckboxGroup.tsx` for options-array/group components, `Container.tsx`/`GridContainer.tsx` for container-query components, `PostCard.tsx` for slot-based card components, and `Pagination.tsx` for components wrapping a non-Radix third-party library.

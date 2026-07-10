@@ -1,0 +1,41 @@
+@layer components {
+  .another-pagination {
+    @apply flex flex-col gap-6;
+  }
+
+  .another-pagination-list {
+    @apply flex flex-col gap-3;
+  }
+
+  .another-pagination-controls {
+    @apply flex items-center justify-center gap-2;
+  }
+
+  .another-pagination-pages {
+    @apply flex items-center gap-1;
+  }
+
+  .another-pagination-page {
+    @apply list-none;
+  }
+
+  .another-pagination-page-link {
+    @apply flex size-9 cursor-pointer items-center justify-center rounded-sm border-2 border-transparent text-sm font-semibold text-default-800 transition-colors ease-in-out duration-200;
+
+    &:hover {
+      @apply bg-default-100;
+    }
+
+    &:focus {
+      @apply outline-0 ring-4 ring-cyan-400/50;
+    }
+  }
+
+  .another-pagination-page-active .another-pagination-page-link {
+    @apply border-default-800 bg-default-800 text-default-50;
+  }
+
+  .another-pagination-page-active .another-pagination-page-link:hover {
+    @apply bg-default-950;
+  }
+}

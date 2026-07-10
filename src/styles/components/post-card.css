@@ -1,0 +1,37 @@
+@layer components {
+  .another-post-card {
+    @apply flex flex-col overflow-hidden rounded-sm border-2 shadow-xs transition-colors ease-in-out duration-200;
+  }
+
+  .another-post-card[data-variant="default"] {
+    @apply border-default-800 bg-default-50 text-default-950;
+  }
+
+  .another-post-card-image {
+    @apply aspect-video w-full overflow-hidden;
+  }
+
+  .another-post-card-image > img {
+    @apply h-full w-full object-cover;
+  }
+
+  .another-post-card-body {
+    @apply flex grow flex-col gap-2 p-4;
+  }
+
+  .another-post-card-title {
+    @apply text-lg leading-snug font-semibold;
+  }
+
+  .another-post-card-meta {
+    @apply flex items-center gap-2 text-sm text-default-500;
+  }
+
+  .another-post-card-description {
+    @apply text-base leading-normal text-default-800;
+  }
+
+  .another-post-card-footer {
+    @apply flex items-center gap-2 p-4;
+  }
+}

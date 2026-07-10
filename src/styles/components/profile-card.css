@@ -1,0 +1,45 @@
+@layer components {
+  .another-profile-card {
+    @apply flex flex-col overflow-hidden rounded-sm border-2 shadow-xs transition-colors ease-in-out duration-200;
+  }
+
+  .another-profile-card[data-variant="default"] {
+    @apply border-default-800 bg-default-50 text-default-950;
+  }
+
+  .another-profile-card-cover {
+    @apply h-36 w-full overflow-hidden bg-default-200;
+  }
+
+  .another-profile-card-cover > img {
+    @apply h-full w-full object-cover;
+  }
+
+  .another-profile-card-body {
+    @apply flex flex-col items-center gap-1 p-4 text-center;
+  }
+
+  .another-profile-card-avatar {
+    @apply -mt-16 mb-2 rounded-full ring-4 ring-default-50;
+  }
+
+  .another-profile-card-name {
+    @apply text-lg leading-snug font-semibold;
+  }
+
+  .another-profile-card-role {
+    @apply text-sm text-default-500;
+  }
+
+  .another-profile-card-bio {
+    @apply text-base leading-normal text-default-800;
+  }
+
+  .another-profile-card-meta {
+    @apply flex items-center justify-center gap-4 pt-2 text-sm text-default-500;
+  }
+
+  .another-profile-card-footer {
+    @apply flex items-center justify-center gap-2 p-4;
+  }
+}
