@@ -1,0 +1,5 @@
+@layer components {
+  .another-secure {
+    @apply inline-flex items-center;
+  }
+}
