@@ -54,7 +54,11 @@ const RadioGroup = ({
             >
               <RadixRadioGroup.Indicator className="another-radio-indicator" />
             </RadixRadioGroup.Item>
-            <Label size={size} htmlFor={itemId}>
+            <Label
+              className="font-sans font-normal"
+              size={size}
+              htmlFor={itemId}
+            >
               {label}
             </Label>
           </div>

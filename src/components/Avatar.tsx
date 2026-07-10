@@ -3,7 +3,7 @@ import { Avatar as RadixAvatar } from "radix-ui";
 import cn from "../lib/cn.ts";
 
 export type AvatarVariant = "default" | string;
-export type AvatarSize = "sm" | "md" | "lg";
+export type AvatarSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 
 export interface AvatarProps extends RadixAvatar.AvatarProps {
   alt?: string;

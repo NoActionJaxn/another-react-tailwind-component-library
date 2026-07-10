@@ -36,7 +36,7 @@ const meta = {
     },
     size: {
       control: "radio",
-      options: ["sm", "md", "lg"],
+      options: ["xs", "sm", "md", "lg", "xl", "2xl"],
       description: "The size of the avatar.",
     },
   },
