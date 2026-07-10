@@ -1,0 +1,21 @@
+@layer components {
+  .another-flex-container {
+    @apply flex gap-4;
+  }
+
+  .another-flex-container[data-direction="row"] {
+    @apply flex-col @sm:flex-row;
+  }
+
+  .another-flex-container[data-direction="column"] {
+    @apply flex-col;
+  }
+
+  .another-flex-container[data-wrap="true"] {
+    @apply flex-wrap;
+  }
+
+  .another-flex-container[data-wrap="false"] {
+    @apply flex-nowrap;
+  }
+}
