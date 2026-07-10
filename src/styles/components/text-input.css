@@ -14,7 +14,7 @@
   }
 
   .another-text-input {
-    @apply inline-flex border-2 border-solid rounded-sm shadow-xs;
+    @apply inline-flex min-w-xs border-2 border-solid rounded-sm shadow-xs;
   }
 
   .another-text-input > input {

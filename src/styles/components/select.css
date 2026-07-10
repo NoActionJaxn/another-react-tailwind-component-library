@@ -1,0 +1,87 @@
+@layer components {
+  .another-select-group {
+    @apply inline-flex flex-col gap-1;
+  }
+
+  .another-select-group[data-orientation="horizontal"] {
+    @apply flex-row items-center gap-2;
+  }
+
+  .another-select-trigger {
+    @apply inline-flex min-w-xs items-center justify-between gap-2 rounded-sm border-2 border-solid shadow-xs outline-0 transition-colors ease-in-out duration-200;
+
+    &:focus {
+      @apply ring-4 ring-cyan-400/50;
+    }
+  }
+
+  .another-select-trigger[data-placeholder] > span {
+    @apply text-default-400;
+  }
+
+  .another-select-trigger[data-disabled] {
+    @apply cursor-not-allowed opacity-70;
+  }
+
+  .another-select-icon svg {
+    @apply size-4;
+  }
+
+  .another-select-trigger[data-variant="default"] {
+    @apply border-default-800 bg-default-50 text-default-950;
+  }
+
+  .another-select-trigger[data-variant="default"]:not([data-disabled]):hover {
+    @apply bg-default-100;
+  }
+
+  .another-select-trigger[data-size="sm"] {
+    @apply h-10 px-2 text-sm;
+  }
+
+  .another-select-trigger[data-size="md"] {
+    @apply h-11 px-2.5 text-base;
+  }
+
+  .another-select-trigger[data-size="lg"] {
+    @apply h-12 px-3 text-lg;
+  }
+
+  .another-select-content {
+    @apply z-50 overflow-hidden rounded-sm border-2 shadow-xs;
+    width: var(--radix-select-trigger-width);
+    max-height: var(--radix-select-content-available-height);
+  }
+
+  .another-select-content[data-variant="default"] {
+    @apply border-default-800 bg-default-50;
+  }
+
+  .another-select-viewport {
+    @apply p-1;
+  }
+
+  .another-select-scroll-button {
+    @apply flex h-6 items-center justify-center bg-default-50;
+  }
+
+  .another-select-scroll-button svg {
+    @apply size-4;
+  }
+
+  .another-select-item {
+    @apply relative flex items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-default-950 outline-0 select-none;
+  }
+
+  .another-select-item[data-highlighted] {
+    @apply bg-default-100;
+  }
+
+  .another-select-item[data-disabled] {
+    @apply pointer-events-none opacity-50;
+  }
+
+  .another-select-item-indicator svg {
+    @apply size-3.5;
+  }
+}
