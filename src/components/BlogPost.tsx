@@ -1,6 +1,5 @@
 import { type ElementType, type HTMLAttributes, type ReactNode } from "react";
 import Container from "./Container.tsx";
-import Typography from "./Typography.tsx";
 import cn from "../lib/cn.ts";
 
 export type BlogPostVariant = "default" | string;
@@ -36,9 +35,7 @@ const BlogPost = ({
       {cover && <div className="another-blog-post-cover">{cover}</div>}
       <div className="another-blog-post-content">
         {title && (
-          <Typography as="h1" font="accent" className="another-blog-post-title">
-            {title}
-          </Typography>
+          <h1 className="another-blog-post-title font-accent">{title}</h1>
         )}
         {meta && <div className="another-blog-post-meta">{meta}</div>}
         <div className="another-blog-post-body">{children}</div>
