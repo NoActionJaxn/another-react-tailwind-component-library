@@ -1,0 +1,49 @@
+@layer components {
+  .another-typography {
+    @apply text-default-950;
+  }
+
+  .another-typography[data-font="sans"] {
+    @apply font-sans;
+  }
+
+  .another-typography[data-font="sans-serif"] {
+    @apply font-serif;
+  }
+
+  .another-typography[data-font="mono"] {
+    @apply font-mono;
+  }
+
+  .another-typography[data-font="accent"] {
+    @apply font-accent;
+  }
+
+  .another-typography > h1 {
+    @apply text-4xl leading-tight font-bold;
+  }
+
+  .another-typography > h2 {
+    @apply text-3xl leading-tight font-bold;
+  }
+
+  .another-typography > h3 {
+    @apply text-2xl leading-snug font-semibold;
+  }
+
+  .another-typography > h4 {
+    @apply text-xl leading-snug font-semibold;
+  }
+
+  .another-typography > h5 {
+    @apply text-lg leading-normal font-semibold;
+  }
+
+  .another-typography > h6 {
+    @apply text-base leading-normal font-semibold;
+  }
+
+  .another-typography > p {
+    @apply text-base leading-normal;
+  }
+}
