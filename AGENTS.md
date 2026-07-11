@@ -9,13 +9,13 @@ A React + TypeScript + Tailwind CSS component library, built with Vite and docum
 ## Commands
 
 ```bash
-npm run dev              # Vite dev server
 npm run build             # tsc -b && vite build
 npm run lint               # eslint .
 npm run lint:fix           # eslint . --fix
 npm run format              # prettier --write .
 npm run storybook           # Storybook dev server on :6006
 npm run build-storybook      # Static Storybook build
+npm run docker:preview       # Build the Storybook Docker image and run it at localhost:8080
 ```
 
 There is no standalone `npm test`; component tests run through Storybook's Vitest addon (browser mode via Playwright/Chromium), driven by the `test` project in `vite.config.ts`. Run `npx vitest` to execute it.
