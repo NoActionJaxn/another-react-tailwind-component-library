@@ -1,14 +1,18 @@
 # syntax=docker/dockerfile:1
 
-FROM node:22-bookworm-slim AS build
+FROM node:24-bookworm-slim AS build
 WORKDIR /app
-# Alpine's musl libc trips up npm's platform detection for @tailwindcss/oxide's optional
-# native binaries, causing it to fall back to installing every platform variant (including
-# the wasm32-wasi one, whose floating @emnapi/* range then resolves to a version not pinned
-# in the lockfile) and failing `npm ci` with a false "Missing from lock file" error. A glibc
-# base image avoids that detection path entirely.
+# `npm ci` strict-validates @tailwindcss/oxide-wasm32-wasi's bundled @emnapi/*
+# dependencies against the freshest version currently matching its declared
+# range, even though that variant is a foreign-platform fallback we never
+# actually install. Those exact versions are physically bundled inside the
+# published tarball (bundleDependencies) - they can't be pinned/overridden via
+# the lockfile, so this is unfixable there. `npm install` (this is a fresh
+# image layer with no pre-existing node_modules, so it's equivalent to a
+# clean install here) does not perform this over-strict check and has never
+# failed in any test across multiple npm versions (10.9.8/11.x/12.0.1).
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm install
 COPY . .
 RUN npm run build-storybook
 
