@@ -2,7 +2,7 @@
 # The GitHub Actions workflow only runs `docker compose pull && up -d` against this file.
 services:
   storybook:
-    image: ghcr.io/OWNER/REPO-storybook:latest
+    image: ghcr.io/noactionjaxn/another-react-tailwind-component-library-storybook:latest
     restart: unless-stopped
     ports:
       - "80:80"
