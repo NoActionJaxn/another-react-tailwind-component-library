@@ -15,6 +15,13 @@ const dirname =
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
+  // Lets Pagination.tsx statically bundle react-paginate for this repo's own
+  // Storybook site, where it's a guaranteed devDependency - unlike
+  // vite.lib.config.ts (the publishable library build), which doesn't define
+  // this, so consumer apps still get the lazy, optional-peer-dependency load.
+  define: {
+    __STORYBOOK__: "true",
+  },
   plugins: [react(), tailwindcss()],
   test: {
     projects: [

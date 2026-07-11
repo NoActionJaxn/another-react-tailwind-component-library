@@ -21,13 +21,26 @@ export interface PaginationProps<T> {
 // as this file is reachable, even if they never render Pagination. The
 // ignore comments stop Vite/webpack from pre-resolving the specifier so the
 // real module lookup (and any failure) happens at runtime, only when used.
+//
+// __STORYBOOK__ is only defined by this repo's own vite.config.ts (not
+// vite.lib.config.ts, which builds the published package). Storybook's own
+// site always has react-paginate installed, but the ignored dynamic import
+// above compiles to a raw, unresolved specifier in a static production
+// build - it works under `storybook dev` only because Vite's dev server
+// resolves bare specifiers live. A plain import lets Storybook's build
+// bundle it into a real, servable chunk instead.
+declare const __STORYBOOK__: boolean | undefined;
 let reactPaginateModulePromise: Promise<typeof ReactPaginateType> | null = null;
 
 const loadReactPaginate = () => {
-  const promise = (reactPaginateModulePromise ??= import(
-    /* webpackIgnore: true */
-    /* @vite-ignore */
-    "react-paginate"
+  const promise = (reactPaginateModulePromise ??= (
+    typeof __STORYBOOK__ !== "undefined" && __STORYBOOK__
+      ? import("react-paginate")
+      : import(
+          /* webpackIgnore: true */
+          /* @vite-ignore */
+          "react-paginate"
+        )
   ).then(
     (module) => {
       // react-paginate ships a UMD bundle, so CJS/ESM interop can wrap the
