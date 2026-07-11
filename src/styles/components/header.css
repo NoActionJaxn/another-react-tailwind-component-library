@@ -1,0 +1,21 @@
+@layer components {
+  .another-header {
+    @apply w-full border-b-2 border-default-200;
+  }
+
+  .another-header[data-variant="default"] {
+    @apply bg-default-50 text-default-950;
+  }
+
+  .another-header-bar {
+    @apply mx-auto flex w-full max-w-6xl items-start gap-4 px-4 py-3 @md:px-8;
+  }
+
+  .another-header-logo {
+    @apply flex h-10 shrink-0 items-center gap-2 text-lg font-bold;
+  }
+
+  .another-header-navigation {
+    @apply grow;
+  }
+}

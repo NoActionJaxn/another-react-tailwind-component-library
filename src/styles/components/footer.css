@@ -1,0 +1,57 @@
+@layer components {
+  .another-footer {
+    @apply w-full border-t-2 border-default-200;
+  }
+
+  .another-footer[data-variant="default"] {
+    @apply bg-default-50 text-default-950;
+  }
+
+  .another-footer-inner {
+    @apply mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-10 @md:px-8 @md:py-14;
+  }
+
+  .another-footer-top {
+    @apply flex flex-col gap-8 @md:flex-row @md:justify-between;
+  }
+
+  .another-footer-brand {
+    @apply flex flex-col gap-2 @md:max-w-xs;
+  }
+
+  .another-footer-logo {
+    @apply flex items-center gap-2 text-lg font-bold;
+  }
+
+  .another-footer-description {
+    @apply text-sm leading-relaxed text-default-600;
+  }
+
+  .another-footer-columns {
+    @apply grid grid-cols-2 gap-8 @sm:grid-cols-3;
+  }
+
+  .another-footer-column {
+    @apply flex flex-col gap-3;
+  }
+
+  .another-footer-column-title {
+    @apply text-sm font-semibold text-default-950;
+  }
+
+  .another-footer-column-links {
+    @apply flex flex-col gap-2;
+  }
+
+  .another-footer-link {
+    @apply text-sm text-default-600 transition-colors duration-200 ease-in-out;
+  }
+
+  .another-footer-link:hover {
+    @apply text-default-950;
+  }
+
+  .another-footer-bottom {
+    @apply flex flex-col gap-3 border-t-2 border-default-200 pt-6 text-sm text-default-500 @md:flex-row @md:items-center @md:justify-between;
+  }
+}

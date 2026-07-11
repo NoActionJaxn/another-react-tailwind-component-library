@@ -8,11 +8,11 @@
   }
 
   .another-navigation-bar {
-    @apply flex w-full items-center justify-between;
+    @apply flex w-full items-center justify-end;
   }
 
   .another-navigation-root {
-    @apply hidden @md:flex @md:flex-1;
+    @apply relative hidden @md:flex;
   }
 
   .another-navigation-mobile-trigger {
@@ -79,7 +79,7 @@
   }
 
   .another-navigation-viewport-wrapper {
-    @apply absolute top-full left-0 flex justify-center;
+    @apply absolute top-full right-0 flex justify-end;
     perspective: 2000px;
   }
 
