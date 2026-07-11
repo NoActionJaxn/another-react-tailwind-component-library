@@ -113,6 +113,6 @@ When diagnosing any of these, don't guess from a screenshot alone — check actu
 
 ## Notes for agents
 
-- This is a library, not an app: `index.html` / `src/main.tsx` exist only to host Storybook/dev preview, not a real product surface.
-- There's no public `index.ts` barrel yet — components are imported by path (`../components/Button`). If adding one, check with the user first since it changes the package's public API shape.
+- This is a library, not an app: there's no `index.html`/`src/main.tsx` app shell (removed as unused Vite-template leftovers) and no `dev`/`preview` npm scripts. Storybook is the only dev/preview surface (`.storybook/preview.tsx` imports `main.css` directly, independent of any app entry). `npm run build` produces the publishable package (`tsc -p tsconfig.build.json` + `vite build --config vite.lib.config.ts` + `scripts/copy-styles.mjs`) — see `vite.lib.config.ts` and `tsconfig.build.json`, which are separate from the Storybook/dev `vite.config.ts`.
+- `src/index.ts` is the public API barrel (every component + its prop types, re-exported). Keep it in sync when adding or renaming a component's exports.
 - Keep new components consistent with existing reference implementations for API shape and file layout: `Button.tsx`/`TextInput.tsx` for plain HTML-element components, `Checkbox.tsx`/`RadioGroup.tsx`/`Select.tsx` for Radix-backed components with a `label` prop, `CheckboxGroup.tsx` for options-array/group components, `Container.tsx`/`GridContainer.tsx` for container-query components, `PostCard.tsx` for slot-based card components, and `Pagination.tsx` for components wrapping a non-Radix third-party library.

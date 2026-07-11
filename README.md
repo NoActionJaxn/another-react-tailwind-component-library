@@ -1,73 +1,105 @@
-# React + TypeScript + Vite
+# another-react-tailwind-component-library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + Tailwind CSS v4 component library built on [Radix Primitives](https://www.radix-ui.com/primitives), styled with container queries so components adapt to the space they're given rather than the screen they assume.
 
-Currently, two official plugins are available:
+## Install
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```sh
+npm install another-react-tailwind-component-library
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This library has three peer dependencies your project needs to already have:
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+- `react` and `react-dom` (`^19.0.0`)
+- `tailwindcss` (`^4.0.0`)
 
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+`react-paginate` is also an **optional** peer dependency - only needed if you use the `Pagination` component. If you use `Pagination` without installing it, you'll get a clear error telling you to install it, instead of a broken build.
+
+## Usage
+
+```tsx
+import { Button, Dialog } from "another-react-tailwind-component-library";
+
+function Example() {
+  return (
+    <Dialog trigger={<Button>Open</Button>} title="Hello">
+      Dialog content.
+    </Dialog>
+  );
+}
 ```
+
+Component styles are shipped as raw Tailwind source (`@apply`/`@layer`/`@theme`), not pre-compiled CSS - your own Tailwind build processes them, same as the rest of your app. This is why `tailwindcss` is a peer dependency rather than bundled: it lets every component share your project's Tailwind config instead of shipping a second, disconnected copy of Tailwind.
+
+## Styling
+
+Add these imports to your project's main CSS file, alongside your own `@import "tailwindcss";`:
+
+```css
+@import "tailwindcss";
+@import "another-react-tailwind-component-library/styles/theme.css";
+@import "another-react-tailwind-component-library/styles/components.css";
+```
+
+- **`styles/theme.css`** - the default design tokens (color scale, font family names). Optional - skip it if you're bringing your own theme (see below).
+- **`styles/components.css`** - every component's styles in one file.
+
+`theme.css` sets font _names_ (`--font-sans: "Roboto Flex", sans-serif;`, etc.) but doesn't load the font files - a stylesheet nested inside your build isn't a valid place for a font `@import` (imports must be first in a stylesheet, and yours won't be, once it's inlined after your own `@import "tailwindcss";`). Load the actual fonts from your HTML `<head>` instead:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
+  rel="stylesheet"
+/>
+```
+
+Skip this if you're bringing your own theme with your own fonts.
+
+### Import a single component's styles
+
+If you only use a handful of components, import just what you need instead of `components.css`:
+
+```css
+@import "tailwindcss";
+@import "another-react-tailwind-component-library/styles/theme.css";
+@import "another-react-tailwind-component-library/styles/components/button.css";
+@import "another-react-tailwind-component-library/styles/components/dialog.css";
+```
+
+Each component's stylesheet is named after its component, kebab-cased (e.g. `Button` -> `button.css`, `AlertDialog` -> `alert-dialog.css`).
+
+### Bring your own theme
+
+Component styles reference token names (`text-default-950`, `font-sans`, etc.), not hardcoded values. To use your own palette instead of the default one, skip `theme.css` and define your own `@theme` block with the same token names before importing component styles.
+
+**You need to define all 11 `--color-default-*` shades (50 through 950) and all 4 `--font-*` names.** Tailwind errors on a utility class like `border-default-200` if `--color-default-200` isn't defined anywhere - there's no partial fallback to the shipped defaults once you stop importing `theme.css`.
+
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-default-50: var(--color-slate-50);
+  --color-default-100: var(--color-slate-100);
+  --color-default-200: var(--color-slate-200);
+  --color-default-300: var(--color-slate-300);
+  --color-default-400: var(--color-slate-400);
+  --color-default-500: var(--color-slate-500);
+  --color-default-600: var(--color-slate-600);
+  --color-default-700: var(--color-slate-700);
+  --color-default-800: var(--color-slate-800);
+  --color-default-900: var(--color-slate-900);
+  --color-default-950: var(--color-slate-950);
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Inter", serif;
+  --font-mono: "Inter", monospace;
+  --font-accent: "Inter", sans-serif;
+}
+
+@import "another-react-tailwind-component-library/styles/components.css";
+```
+
+## Full component reference
+
+This repo's Storybook (`npm run storybook`) documents every component, prop, and variant with live examples.

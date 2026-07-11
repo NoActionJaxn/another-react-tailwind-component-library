@@ -1,15 +1,8 @@
-import { useState, type ReactNode } from "react";
-import ReactPaginateImport from "react-paginate";
+import { Suspense, createElement, use, useState, type ReactNode } from "react";
+import type ReactPaginateType from "react-paginate";
 import Button from "./Button.tsx";
 import GridContainer, { type GridContainerColumns } from "./GridContainer.tsx";
 import cn from "../lib/cn.ts";
-
-// react-paginate ships a UMD bundle; depending on how the bundler resolves
-// the default export, we may get the component directly or a CJS-interop
-// wrapper object with a `.default` property. Handle both.
-const ReactPaginate =
-  (ReactPaginateImport as unknown as { default?: typeof ReactPaginateImport })
-    .default ?? ReactPaginateImport;
 
 export type PaginationView = "list" | "grid";
 
@@ -21,6 +14,80 @@ export interface PaginationProps<T> {
   renderItem: (item: T, index: number) => ReactNode;
   view?: PaginationView;
 }
+
+// react-paginate is an optional peer dependency - only Pagination needs it,
+// so it's loaded lazily instead of via a static import. A static import
+// would force every consumer's bundler to resolve "react-paginate" as soon
+// as this file is reachable, even if they never render Pagination. The
+// ignore comments stop Vite/webpack from pre-resolving the specifier so the
+// real module lookup (and any failure) happens at runtime, only when used.
+let reactPaginateModulePromise: Promise<typeof ReactPaginateType> | null = null;
+
+const loadReactPaginate = () => {
+  const promise = (reactPaginateModulePromise ??= import(
+    /* webpackIgnore: true */
+    /* @vite-ignore */
+    "react-paginate"
+  ).then(
+    (module) => {
+      // react-paginate ships a UMD bundle, so CJS/ESM interop can wrap the
+      // component in a `.default` one or two levels deep depending on the
+      // bundler. Unwrap until we land on something that isn't itself
+      // wrapped in a `.default`.
+      let resolved: unknown = module;
+      while (
+        resolved &&
+        typeof resolved === "object" &&
+        "default" in resolved
+      ) {
+        resolved = (resolved as { default: unknown }).default;
+      }
+      return resolved as typeof ReactPaginateType;
+    },
+    () => {
+      throw new Error(
+        'Pagination requires the "react-paginate" package, which is an ' +
+          "optional peer dependency. Install it with `npm install " +
+          "react-paginate` (or your package manager's equivalent) to use " +
+          "Pagination.",
+      );
+    },
+  ));
+
+  return promise;
+};
+
+interface PageLinksProps {
+  currentPage: number;
+  onPageChange: (page: number) => void;
+  pageCount: number;
+}
+
+// Rendered via createElement rather than JSX so this doesn't read as a
+// component defined during render - reactPaginate is always the same
+// value once loadReactPaginate()'s cached promise resolves.
+const PageLinks = ({
+  currentPage,
+  onPageChange,
+  pageCount,
+}: PageLinksProps) => {
+  const reactPaginate = use(loadReactPaginate());
+
+  return createElement(reactPaginate, {
+    pageCount,
+    forcePage: currentPage,
+    onPageChange: ({ selected }: { selected: number }) =>
+      onPageChange(selected),
+    containerClassName: "another-pagination-pages",
+    pageClassName: "another-pagination-page",
+    pageLinkClassName: "another-pagination-page-link",
+    activeClassName: "another-pagination-page-active",
+    breakClassName: "another-pagination-page",
+    breakLinkClassName: "another-pagination-page-link",
+    previousClassName: "hidden",
+    nextClassName: "hidden",
+  });
+};
 
 const Pagination = <T,>({
   className,
@@ -59,19 +126,13 @@ const Pagination = <T,>({
           >
             Previous
           </Button>
-          <ReactPaginate
-            pageCount={pageCount}
-            forcePage={currentPage}
-            onPageChange={({ selected }) => setPage(selected)}
-            containerClassName="another-pagination-pages"
-            pageClassName="another-pagination-page"
-            pageLinkClassName="another-pagination-page-link"
-            activeClassName="another-pagination-page-active"
-            breakClassName="another-pagination-page"
-            breakLinkClassName="another-pagination-page-link"
-            previousClassName="hidden"
-            nextClassName="hidden"
-          />
+          <Suspense fallback={null}>
+            <PageLinks
+              currentPage={currentPage}
+              pageCount={pageCount}
+              onPageChange={setPage}
+            />
+          </Suspense>
           <Button
             variant="outline"
             size="sm"
