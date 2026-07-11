@@ -2,18 +2,18 @@
 
 FROM node:24-bookworm-slim AS build
 WORKDIR /app
-# Older bundled npm versions (10.9.8, shipped with node:22) have a real bug
-# validating bundleDependencies + optional platform packages during `npm ci`:
-# strict-validates @tailwindcss/oxide-wasm32-wasi's floating @emnapi/* range
-# even though that variant is never actually installed on this platform, and
-# fails with a false "Missing from lock file" error whenever a newer @emnapi
-# patch gets published upstream. Confirmed directly: `npx npm@10.9.8 ci`
-# reproduces this locally against an untouched lockfile; `npx npm@11.6.1 ci`
-# does not. node:24 (current Active LTS) bundles a fixed npm, and `npm
-# install -g npm@latest` is kept as a second layer of insurance regardless of
-# base image - no lockfile workaround needed either way.
+# Both npm 10.9.8 (bundled with node:22) AND npm 12.0.1 (the actual current
+# "latest") have a real bug validating bundleDependencies + optional platform
+# packages during `npm ci`: they strict-validate @tailwindcss/oxide-wasm32-wasi's
+# floating @emnapi/* range even though that variant is never actually installed
+# on this platform, and fail with a false "Missing from lock file" error
+# whenever a newer @emnapi patch gets published upstream. Confirmed directly by
+# running each version locally against an untouched lockfile: `npx npm@10.9.8
+# ci` and `npx npm@12.0.1 ci` both reproduce it; `npx npm@11 ci` does not.
+# Pinning to the npm 11 line specifically - NOT `npm@latest`, which is what
+# pulled in the still-broken 12.0.1 in the first place.
 COPY package.json package-lock.json ./
-RUN npm install -g npm@latest && npm ci
+RUN npm install -g npm@11 && npm ci
 COPY . .
 RUN npm run build-storybook
 
