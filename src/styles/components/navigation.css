@@ -101,8 +101,12 @@
   }
 
   .another-navigation-mobile-panel {
-    @apply mt-2 flex flex-col gap-1 border-t-2 border-default-200 pt-2 @md:hidden;
+    @apply fixed inset-x-0 top-0 bottom-0 z-[2147483647] flex flex-col gap-1 overflow-y-auto border-t-2 border-default-200 p-4 @md:hidden;
     animation: another-navigation-mobile-panel-in 150ms ease-out;
+  }
+
+  .another-navigation-mobile-panel[data-variant="default"] {
+    @apply bg-default-50;
   }
 
   .another-navigation-mobile-link {

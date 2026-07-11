@@ -87,16 +87,24 @@ const logo = (
 
 export const Header: Story = {
   render: (args) => (
-    <div className="w-full border-2 border-dashed border-default-400">
+    <div className="h-[150vh] w-full">
       <HeaderComponent {...args} logo={logo} items={items} />
+      <p className="px-4 pt-20 text-sm text-default-500">
+        The header is fixed to the top of the viewport - scroll this page to see
+        it stay in place.
+      </p>
     </div>
   ),
 };
 
 export const Mobile: Story = {
   render: (args) => (
-    <div className="w-80 border-2 border-dashed border-default-400">
+    <div className="h-[150vh] w-80">
       <HeaderComponent {...args} logo={logo} items={items} />
+      <p className="px-4 pt-20 text-sm text-default-500">
+        Open the menu - it takes over the full screen below the fixed logo bar
+        and scrolls independently.
+      </p>
     </div>
   ),
 };

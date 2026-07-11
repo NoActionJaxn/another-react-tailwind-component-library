@@ -22,16 +22,28 @@ export interface NavigationProps
   extends RadixNavigationMenu.NavigationMenuProps {
   className?: string;
   items?: NavigationItem[];
+  mobileOpen?: boolean;
+  onMobileOpenChange?: (open: boolean) => void;
   variant?: NavigationVariant;
 }
 
 const Navigation = ({
   className,
   items = [],
+  mobileOpen: mobileOpenProp,
+  onMobileOpenChange,
   variant = "default",
   ...rest
 }: NavigationProps) => {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [uncontrolledMobileOpen, setUncontrolledMobileOpen] = useState(false);
+  const mobileOpen = mobileOpenProp ?? uncontrolledMobileOpen;
+
+  const setMobileOpen = (open: boolean) => {
+    if (mobileOpenProp === undefined) {
+      setUncontrolledMobileOpen(open);
+    }
+    onMobileOpenChange?.(open);
+  };
 
   return (
     <Container
@@ -91,14 +103,14 @@ const Navigation = ({
           icon
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
-          onClick={() => setMobileOpen((open) => !open)}
+          onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <Close /> : <MenuIcon />}
         </Button>
       </div>
 
       {mobileOpen && (
-        <div className="another-navigation-mobile-panel">
+        <div className="another-navigation-mobile-panel" data-variant={variant}>
           {items.map((item, index) => {
             const value = item.value ?? String(index);
 

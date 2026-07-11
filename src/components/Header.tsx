@@ -1,4 +1,9 @@
-import { type ElementType, type HTMLAttributes, type ReactNode } from "react";
+import {
+  useState,
+  type ElementType,
+  type HTMLAttributes,
+  type ReactNode,
+} from "react";
 import Container from "./Container.tsx";
 import Navigation, { type NavigationItem } from "./Navigation.tsx";
 import cn from "../lib/cn.ts";
@@ -20,6 +25,8 @@ const Header = ({
   variant = "default",
   ...rest
 }: HeaderProps) => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
     <Container
       as={as}
@@ -29,7 +36,12 @@ const Header = ({
     >
       <div className="another-header-bar">
         {logo && <div className="another-header-logo">{logo}</div>}
-        <Navigation className="another-header-navigation" items={items} />
+        <Navigation
+          className="another-header-navigation"
+          items={items}
+          mobileOpen={mobileOpen}
+          onMobileOpenChange={setMobileOpen}
+        />
       </div>
     </Container>
   );
