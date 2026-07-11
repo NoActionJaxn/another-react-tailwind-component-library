@@ -1,0 +1,8 @@
+# nginx/nginx.conf deliberately differs between main and staging (main
+# reverse-proxies staging.*.com to the storybook-staging container; staging's
+# own copy must NOT contain that block, or it proxies to itself in an
+# infinite loop - see git history on the staging branch). `merge=binary` is
+# a built-in git driver that forces a manual conflict whenever both sides
+# have touched this file, instead of silently text-merging one branch's
+# version over the other's.
+nginx/nginx.conf merge=binary
