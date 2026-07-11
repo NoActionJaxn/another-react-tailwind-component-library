@@ -1,17 +1,19 @@
 # syntax=docker/dockerfile:1
 
-FROM node:22-bookworm-slim AS build
+FROM node:24-bookworm-slim AS build
 WORKDIR /app
-# npm's automatic platform detection is unreliable in this build environment: it
-# ambiguously considers @tailwindcss/oxide's foreign wasm32-wasi fallback variant
-# alongside the real native binary, which makes `npm ci` strict-validate that
-# variant's own dependency subtree too. Its floating @emnapi/* range can then fail
-# with a false "Missing from lock file" error any time a newer patch is published
-# upstream - flaky, and unrelated to whether the lockfile is actually stale.
-# Passing the platform explicitly removes the ambiguity so npm never considers the
-# wasm32 variant at all. Confirmed this alone fixes it, with no lockfile changes.
+# Older bundled npm versions (10.9.8, shipped with node:22) have a real bug
+# validating bundleDependencies + optional platform packages during `npm ci`:
+# strict-validates @tailwindcss/oxide-wasm32-wasi's floating @emnapi/* range
+# even though that variant is never actually installed on this platform, and
+# fails with a false "Missing from lock file" error whenever a newer @emnapi
+# patch gets published upstream. Confirmed directly: `npx npm@10.9.8 ci`
+# reproduces this locally against an untouched lockfile; `npx npm@11.6.1 ci`
+# does not. node:24 (current Active LTS) bundles a fixed npm, and `npm
+# install -g npm@latest` is kept as a second layer of insurance regardless of
+# base image - no lockfile workaround needed either way.
 COPY package.json package-lock.json ./
-RUN npm ci --os=linux --cpu=x64 --libc=glibc
+RUN npm install -g npm@latest && npm ci
 COPY . .
 RUN npm run build-storybook
 
