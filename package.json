@@ -42,7 +42,8 @@
     "format": "prettier --write .",
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "docker:preview": "docker build -t storybook-local . && docker run --rm -p 8080:80 storybook-local"
   },
   "dependencies": {
     "classnames": "^2.5.1",
