@@ -2,6 +2,10 @@
 
 FROM node:22-alpine AS build
 WORKDIR /app
+# node:22-alpine ships npm 10.9.8, which mishandles bundleDependencies in lockfileVersion 3
+# packages (e.g. @tailwindcss/oxide-wasm32-wasi's bundled @emnapi/*), failing `npm ci` with
+# false "Missing from lock file" errors. Upgrading npm first avoids that bug.
+RUN npm install -g npm@latest
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
