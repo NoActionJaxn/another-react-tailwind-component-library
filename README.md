@@ -102,6 +102,8 @@ Component styles reference token names (`text-default-950`, `font-sans`, etc.), 
 
 ## Full component reference
 
-This repo's Storybook (`npm run storybook`) documents every component, prop, and variant with live examples.
+Every component, prop, and variant is documented with live examples in Storybook, hosted at [another-react-tailwind-component-library.com](https://another-react-tailwind-component-library.com).
+
+You can also run it yourself with `npm run storybook`.
 
 Run `npm run docker:preview` to build the same static Storybook site into a Docker image and serve it locally at `http://localhost:8080`, matching how it's deployed in production.
