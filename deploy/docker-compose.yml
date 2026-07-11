@@ -1,5 +1,8 @@
 # Lives on the Oracle VM at /opt/storybook/docker-compose.yml (not deployed by CI).
-# The GitHub Actions workflow only runs `docker compose pull && up -d` against this file.
+# Each workflow only runs `docker compose pull/up -d <service>` against its own
+# service, so a production deploy never restarts staging and vice versa.
+# Both share the same wildcard (*.another-react-tailwind-component-library.com)
+# Cloudflare Origin CA cert in ./certs - no separate cert needed for staging.
 services:
   storybook:
     image: ghcr.io/noactionjaxn/another-react-tailwind-component-library-storybook:latest
@@ -7,5 +10,14 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    volumes:
+      - ./certs:/etc/nginx/certs:ro
+
+  storybook-staging:
+    image: ghcr.io/noactionjaxn/another-react-tailwind-component-library-storybook:staging
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+      - "8443:443"
     volumes:
       - ./certs:/etc/nginx/certs:ro
