@@ -1,0 +1,8 @@
+# Lives on the Oracle VM at /opt/storybook/docker-compose.yml (not deployed by CI).
+# The GitHub Actions workflow only runs `docker compose pull && up -d` against this file.
+services:
+  storybook:
+    image: ghcr.io/OWNER/REPO-storybook:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
