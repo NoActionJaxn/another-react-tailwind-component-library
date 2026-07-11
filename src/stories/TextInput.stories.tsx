@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, userEvent, within } from "storybook/test";
 import TextInputComponent from "../components/TextInput";
 
 const meta = {
@@ -75,7 +76,16 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const DefaultTextInput: Story = {};
+export const DefaultTextInput: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByLabelText("Label");
+
+    await userEvent.type(input, "Hello");
+
+    expect(input).toHaveValue("Hello");
+  },
+};
 
 export const HorizontalTextInput: Story = {
   args: {

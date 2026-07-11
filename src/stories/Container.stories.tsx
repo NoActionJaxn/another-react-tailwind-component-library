@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 
 import ContainerComponent from "../components/Container";
 
@@ -45,4 +46,12 @@ export const Container: Story = {
       </ContainerComponent>
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    // Walk up from a grid item to the Container element itself, since it
+    // has no accessible role/name of its own to query by directly.
+    const containerEl = canvas.getByText("1").parentElement?.parentElement;
+
+    expect(containerEl).toHaveClass("@container");
+  },
 };

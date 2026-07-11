@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, screen, userEvent, waitFor, within } from "storybook/test";
 
 import AlertDialogComponent from "../components/AlertDialog";
 import Button from "../components/Button.tsx";
@@ -51,6 +52,28 @@ export const AlertDialog: Story = {
       action={<Button variant="default">Delete</Button>}
     />
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole("button", { name: "Delete project" });
+
+    await userEvent.click(trigger);
+
+    // Radix renders alertdialog content into a portal outside canvasElement.
+    const dialog = await screen.findByRole("alertdialog");
+    expect(
+      within(dialog).getByText("Delete this project?"),
+    ).toBeInTheDocument();
+
+    await userEvent.click(
+      within(dialog).getByRole("button", { name: "Cancel" }),
+    );
+
+    // Radix's Presence keeps the dialog mounted until its CSS exit
+    // transition finishes, so it doesn't disappear synchronously.
+    await waitFor(() =>
+      expect(screen.queryByRole("alertdialog")).not.toBeInTheDocument(),
+    );
+  },
 };
 
 export const WithBody: Story = {

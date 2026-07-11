@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, userEvent, within } from "storybook/test";
 
 import PaginationComponent from "../components/Pagination";
 import ListCard from "../components/ListCard";
@@ -55,6 +56,29 @@ export const GridView: Story = {
       )}
     />
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    expect(
+      canvas.getByText("Post 1: A look at design system decisions"),
+    ).toBeInTheDocument();
+    expect(
+      canvas.queryByText("Post 7: A look at design system decisions"),
+    ).not.toBeInTheDocument();
+
+    // react-paginate is lazy-loaded (see Pagination.tsx) - the page link
+    // only exists once that import resolves. It renders as role="button"
+    // with an aria-label ("Page 2") rather than a plain link/text name.
+    const pageTwo = await canvas.findByRole("button", { name: "Page 2" });
+    await userEvent.click(pageTwo);
+
+    expect(
+      canvas.getByText("Post 7: A look at design system decisions"),
+    ).toBeInTheDocument();
+    expect(
+      canvas.queryByText("Post 1: A look at design system decisions"),
+    ).not.toBeInTheDocument();
+  },
 };
 
 export const ListView: Story = {
@@ -80,4 +104,24 @@ export const ListView: Story = {
       />
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const previous = canvas.getByRole("button", { name: "Previous" });
+    const next = canvas.getByRole("button", { name: "Next" });
+
+    expect(previous).toBeDisabled();
+    expect(
+      canvas.getByText("Post 1: A look at design system decisions"),
+    ).toBeInTheDocument();
+
+    await userEvent.click(next);
+
+    expect(previous).not.toBeDisabled();
+    expect(
+      canvas.getByText("Post 6: A look at design system decisions"),
+    ).toBeInTheDocument();
+    expect(
+      canvas.queryByText("Post 1: A look at design system decisions"),
+    ).not.toBeInTheDocument();
+  },
 };

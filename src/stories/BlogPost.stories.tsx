@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 
 import BlogPostComponent from "../components/BlogPost";
 import Avatar from "../components/Avatar";
@@ -81,6 +82,22 @@ export const BlogPost: Story = {
       </BlogPostComponent>
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    expect(
+      canvas.getByRole("heading", {
+        name: "Building a design system from scratch",
+        level: 1,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      canvas.getByText("Jackson Hermitt · July 10, 2026 · 4 min read"),
+    ).toBeInTheDocument();
+    expect(
+      canvas.getByRole("heading", { name: "Why container queries", level: 2 }),
+    ).toBeInTheDocument();
+  },
 };
 
 export const Mobile: Story = {

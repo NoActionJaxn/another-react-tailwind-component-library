@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 
 import ListCardComponent from "../components/ListCard";
 import Button from "../components/Button.tsx";
@@ -62,4 +63,18 @@ export const ListCard: Story = {
       />
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    expect(
+      canvas.getByRole("heading", {
+        name: "Building a design system from scratch",
+      }),
+    ).toBeInTheDocument();
+    expect(canvas.getByText("July 9, 2026")).toBeInTheDocument();
+    expect(canvas.getByRole("link", { name: "Read more" })).toHaveAttribute(
+      "href",
+      "/",
+    );
+  },
 };

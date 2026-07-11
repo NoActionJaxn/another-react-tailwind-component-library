@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 
 import TypographyComponent from "../components/Typography";
 
@@ -42,7 +43,17 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Text: Story = {};
+export const Text: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const text = canvas.getByText(
+      "The quick brown fox jumps over the lazy dog.",
+    );
+
+    expect(text.tagName).toBe("SPAN");
+    expect(text).toHaveAttribute("data-font", "sans");
+  },
+};
 
 export const Titles: Story = {
   render: () => (
@@ -55,6 +66,15 @@ export const Titles: Story = {
       <TypographyComponent as="h6">Heading 6</TypographyComponent>
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    for (let level = 1; level <= 6; level++) {
+      expect(
+        canvas.getByRole("heading", { level, name: `Heading ${level}` }),
+      ).toBeInTheDocument();
+    }
+  },
 };
 
 export const Sans: Story = {

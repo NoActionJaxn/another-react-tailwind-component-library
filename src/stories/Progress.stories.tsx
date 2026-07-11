@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 
 import ProgressComponent from "../components/Progress";
 
@@ -54,7 +55,15 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Progress: Story = {};
+export const Progress: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const progressbar = canvas.getByRole("progressbar");
+
+    expect(progressbar).toHaveAttribute("aria-valuenow", "50");
+    expect(progressbar).toHaveAttribute("aria-valuemax", "100");
+  },
+};
 
 export const Animated: Story = {
   render: (args) => {

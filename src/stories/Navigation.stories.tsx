@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, screen, userEvent, within } from "storybook/test";
 
 import NavigationComponent, {
   type NavigationItem,
@@ -88,6 +89,30 @@ export const Navigation: Story = {
       <NavigationComponent {...args} items={items} />
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    expect(canvas.getByRole("link", { name: "Home" })).toHaveAttribute(
+      "href",
+      "/",
+    );
+
+    // Disabled items render as an <a> with no href, so they're not exposed
+    // with the "link" role - query by text and check aria-disabled instead.
+    expect(canvas.getByText("Changelog")).toHaveAttribute(
+      "aria-disabled",
+      "true",
+    );
+
+    await userEvent.click(canvas.getByRole("button", { name: "Products" }));
+
+    // Radix renders the open dropdown's content into a portal outside
+    // canvasElement.
+    const productsLink = await screen.findByRole("link", {
+      name: "Component Library React + Tailwind primitives",
+    });
+    expect(productsLink).toHaveAttribute("href", "/");
+  },
 };
 
 export const Mobile: Story = {

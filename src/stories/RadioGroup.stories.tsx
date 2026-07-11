@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fn, userEvent, within } from "storybook/test";
 
 import RadioGroupComponent from "../components/RadioGroup";
 
@@ -48,6 +49,7 @@ const meta = {
     view: "list",
     defaultValue: "Medium",
     disabled: false,
+    onValueChange: fn(),
   },
 } satisfies Meta<typeof RadioGroupComponent>;
 
@@ -55,4 +57,19 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const RadioGroup: Story = {};
+export const RadioGroup: Story = {
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const medium = canvas.getByRole("radio", { name: "Medium" });
+    const large = canvas.getByRole("radio", { name: "Large" });
+
+    expect(medium).toBeChecked();
+    expect(large).not.toBeChecked();
+
+    await userEvent.click(large);
+
+    expect(large).toBeChecked();
+    expect(medium).not.toBeChecked();
+    expect(args.onValueChange).toHaveBeenLastCalledWith("Large");
+  },
+};

@@ -4,7 +4,7 @@
   --font-serif: "Roboto Serif", serif;
   --font-mono: "Roboto Mono", monospace;
   --font-accent: "Roboto Condensed", sans-serif;
-  /* Color Palettes */
+  /* Color Palettes (light, default) */
   --color-default-50: var(--color-stone-50);
   --color-default-100: var(--color-stone-100);
   --color-default-200: var(--color-stone-200);
@@ -16,4 +16,18 @@
   --color-default-800: var(--color-stone-800);
   --color-default-900: var(--color-stone-900);
   --color-default-950: var(--color-stone-950);
+}
+
+:root[data-theme="dark"] {
+  --color-default-50: var(--color-stone-950);
+  --color-default-100: var(--color-stone-900);
+  --color-default-200: var(--color-stone-800);
+  --color-default-300: var(--color-stone-700);
+  --color-default-400: var(--color-stone-600);
+  --color-default-500: var(--color-stone-500);
+  --color-default-600: var(--color-stone-400);
+  --color-default-700: var(--color-stone-300);
+  --color-default-800: var(--color-stone-200);
+  --color-default-900: var(--color-stone-100);
+  --color-default-950: var(--color-stone-50);
 }

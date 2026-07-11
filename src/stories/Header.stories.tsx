@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 
 import HeaderComponent from "../components/Header";
 import { type NavigationItem } from "../components/Navigation";
@@ -95,6 +96,22 @@ export const Header: Story = {
       </p>
     </div>
   ),
+  // Dropdown/mobile-menu interaction is covered by Navigation.stories.tsx,
+  // which this component wraps - just check the logo and static links wire
+  // through correctly here.
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    expect(canvas.getByText("Another")).toBeInTheDocument();
+    expect(canvas.getByRole("link", { name: "Home" })).toHaveAttribute(
+      "href",
+      "/",
+    );
+    expect(canvas.getByRole("link", { name: "Pricing" })).toHaveAttribute(
+      "href",
+      "/pricing",
+    );
+  },
 };
 
 export const Mobile: Story = {

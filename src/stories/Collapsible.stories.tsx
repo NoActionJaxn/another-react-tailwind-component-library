@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, userEvent, within } from "storybook/test";
 
 import CollapsibleComponent from "../components/Collapsible";
 
@@ -55,6 +56,16 @@ export const Collapsible: Story = {
       </CollapsibleComponent>
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole("button", { name: "What's included" });
+
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+
+    await userEvent.click(trigger);
+
+    expect(trigger).toHaveAttribute("aria-expanded", "true");
+  },
 };
 
 export const DefaultOpen: Story = {
@@ -70,4 +81,10 @@ export const DefaultOpen: Story = {
       </CollapsibleComponent>
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole("button", { name: "Shipping details" });
+
+    expect(trigger).toHaveAttribute("aria-expanded", "true");
+  },
 };

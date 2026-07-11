@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, userEvent, within } from "storybook/test";
 
 import AccordionComponent from "../components/Accordion";
 
@@ -61,6 +62,25 @@ export const Accordion: Story = {
       <AccordionComponent {...args} items={items} />
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const first = canvas.getByRole("button", {
+      name: "What is a container query?",
+    });
+    const second = canvas.getByRole("button", {
+      name: "Does this library support dark mode?",
+    });
+
+    expect(first).toHaveAttribute("aria-expanded", "false");
+
+    await userEvent.click(first);
+    expect(first).toHaveAttribute("aria-expanded", "true");
+
+    // Single (non-multiple) mode: opening another item closes the first.
+    await userEvent.click(second);
+    expect(second).toHaveAttribute("aria-expanded", "true");
+    expect(first).toHaveAttribute("aria-expanded", "false");
+  },
 };
 
 export const Multiple: Story = {
@@ -72,4 +92,20 @@ export const Multiple: Story = {
       <AccordionComponent {...args} items={items} />
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const first = canvas.getByRole("button", {
+      name: "What is a container query?",
+    });
+    const second = canvas.getByRole("button", {
+      name: "Does this library support dark mode?",
+    });
+
+    await userEvent.click(first);
+    await userEvent.click(second);
+
+    // multiple=true: both stay open at once.
+    expect(first).toHaveAttribute("aria-expanded", "true");
+    expect(second).toHaveAttribute("aria-expanded", "true");
+  },
 };

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 
 import FooterComponent, { type FooterColumn } from "../components/Footer";
 import Anchor from "../components/Anchor.tsx";
@@ -94,6 +95,23 @@ export const Footer: Story = {
       />
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    expect(
+      canvas.getByText(
+        "A React and Tailwind component library built on container queries.",
+      ),
+    ).toBeInTheDocument();
+    expect(canvas.getByText("Product")).toBeInTheDocument();
+    expect(canvas.getByRole("link", { name: "Components" })).toHaveAttribute(
+      "href",
+      "/",
+    );
+    expect(
+      canvas.getByText("© 2026 Another. All rights reserved."),
+    ).toBeInTheDocument();
+  },
 };
 
 export const Mobile: Story = {

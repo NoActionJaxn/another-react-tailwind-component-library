@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 
 import AnchorComponent from "../components/Anchor";
 
@@ -41,10 +42,24 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Anchor: Story = {};
+export const Anchor: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const link = canvas.getByRole("link", { name: "Learn more" });
+
+    expect(link.tagName).toBe("A");
+    expect(link).toHaveAttribute("href", "#");
+  },
+};
 
 export const Disabled: Story = {
   args: {
     "aria-disabled": true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const link = canvas.getByRole("link", { name: "Learn more" });
+
+    expect(link).toHaveAttribute("aria-disabled", "true");
   },
 };

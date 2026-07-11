@@ -23,6 +23,15 @@ export default defineConfig({
     __STORYBOOK__: "true",
   },
   plugins: [react(), tailwindcss()],
+  // aria-query is a deep transitive CJS dependency (via @testing-library/dom,
+  // pulled in by Storybook's test utilities) that Vite's dependency scanner
+  // doesn't discover on its own in browser-mode Vitest, since nothing in our
+  // own source imports it directly. Without pre-bundling it explicitly, the
+  // browser gets served the raw CJS file and fails with "does not provide an
+  // export named 'elementRoles'".
+  optimizeDeps: {
+    include: ["aria-query", "lz-string", "pretty-format"],
+  },
   test: {
     projects: [
       {

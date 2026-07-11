@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fn, userEvent, within } from "storybook/test";
 
 import CheckboxGroupComponent from "../components/CheckboxGroup";
 
@@ -48,6 +49,7 @@ const meta = {
     view: "list",
     defaultValue: ["Medium"],
     disabled: false,
+    onValueChange: fn(),
   },
 } satisfies Meta<typeof CheckboxGroupComponent>;
 
@@ -55,4 +57,18 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const CheckboxGroup: Story = {};
+export const CheckboxGroup: Story = {
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const medium = canvas.getByRole("checkbox", { name: "Medium" });
+    const small = canvas.getByRole("checkbox", { name: "Small" });
+
+    expect(medium).toBeChecked();
+    expect(small).not.toBeChecked();
+
+    await userEvent.click(small);
+
+    expect(small).toBeChecked();
+    expect(args.onValueChange).toHaveBeenLastCalledWith(["Medium", "Small"]);
+  },
+};

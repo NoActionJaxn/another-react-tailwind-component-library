@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, screen, userEvent, within } from "storybook/test";
 
 import SelectComponent from "../components/Select";
 
@@ -64,7 +65,23 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Select: Story = {};
+export const Select: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole("combobox", { name: "Size" });
+
+    expect(trigger).toHaveTextContent("Select a size");
+
+    await userEvent.click(trigger);
+
+    // Radix renders the options into a portal outside canvasElement, so the
+    // opened listbox has to be queried against the whole document.
+    const option = await screen.findByRole("option", { name: "Medium" });
+    await userEvent.click(option);
+
+    expect(trigger).toHaveTextContent("Medium");
+  },
+};
 
 export const HorizontalSelect: Story = {
   args: {

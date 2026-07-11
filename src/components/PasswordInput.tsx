@@ -38,6 +38,7 @@ const PasswordInput = ({
               "p-1.5 h-10": size === "lg",
             })}
             variant="ghost"
+            aria-label="Show password"
             onMouseDown={() => handleSetShow(true)}
             onMouseUp={() => handleSetShow(false)}
             size={size}

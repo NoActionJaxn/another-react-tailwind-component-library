@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, userEvent, within } from "storybook/test";
 
 import CheckboxComponent from "../components/Checkbox";
 
@@ -56,4 +57,19 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Checkbox: Story = {};
+export const Checkbox: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const checkbox = canvas.getByRole("checkbox", {
+      name: "Accept terms and conditions",
+    });
+
+    expect(checkbox).not.toBeChecked();
+
+    await userEvent.click(checkbox);
+    expect(checkbox).toBeChecked();
+
+    await userEvent.click(checkbox);
+    expect(checkbox).not.toBeChecked();
+  },
+};

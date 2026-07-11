@@ -57,6 +57,18 @@ Add these imports to your project's main CSS file, alongside your own `@import "
 
 Skip this if you're bringing your own theme with your own fonts.
 
+### Dark mode
+
+Set `data-theme="dark"` on `<html>` (or any ancestor) to switch every component to dark mode - `theme.css` inverts the same `--color-default-*` scale under that attribute, so nothing else needs to change.
+
+```html
+<html data-theme="dark"></html>
+```
+
+This is opt-in only - deliberately **not** tied to `prefers-color-scheme`. A component library shouldn't guess your app's intended theme from OS preference, since your app may have its own theme system that should take priority; toggle the attribute yourself (e.g. from a theme switcher, or by reading `prefers-color-scheme` in your own app code if you want that behavior).
+
+If you're bringing your own theme (see below), `theme.css`'s dark variant isn't imported either - define your own `:root[data-theme="dark"] { ... }` block re-declaring the same 11 `--color-default-*` tokens to support dark mode with your palette.
+
 ### Import a single component's styles
 
 If you only use a handful of components, import just what you need instead of `components.css`:
@@ -102,7 +114,7 @@ Component styles reference token names (`text-default-950`, `font-sans`, etc.), 
 
 ## Full component reference
 
-Every component, prop, and variant is documented with live examples in Storybook, hosted at [another-react-tailwind-component-library.com](https://another-react-tailwind-component-library.com).
+Every component, prop, and variant is documented with live examples in Storybook, hosted at [another-react-tailwind-component-library.com](https://another-react-tailwind-component-library.com). Storybook defaults to dark mode - use the theme toggle in the toolbar to switch to light.
 
 You can also run it yourself with `npm run storybook`.
 

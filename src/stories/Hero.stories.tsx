@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 
 import HeroComponent from "../components/Hero";
 import Button from "../components/Button.tsx";
@@ -65,6 +66,20 @@ export const Hero: Story = {
       <HeroComponent {...args} actions={actions} />
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    expect(canvas.getByText("Another Component Library")).toBeInTheDocument();
+    expect(
+      canvas.getByRole("heading", {
+        name: "Ship interfaces faster, without fighting the viewport",
+      }),
+    ).toBeInTheDocument();
+    expect(canvas.getByRole("link", { name: "Get started" })).toHaveAttribute(
+      "href",
+      "/",
+    );
+  },
 };
 
 export const BackgroundColor: Story = {

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, screen, userEvent, waitFor, within } from "storybook/test";
 
 import DialogComponent from "../components/Dialog";
 import Button from "../components/Button.tsx";
@@ -60,6 +61,26 @@ export const Dialog: Story = {
       </div>
     </DialogComponent>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const trigger = canvas.getByRole("button", { name: "Edit profile" });
+
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+
+    await userEvent.click(trigger);
+
+    // Radix renders dialog content into a portal outside canvasElement.
+    const dialog = await screen.findByRole("dialog");
+    expect(within(dialog).getByText("Edit profile")).toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole("button", { name: "Close" }));
+
+    // Radix's Presence keeps the dialog mounted until its CSS exit
+    // transition finishes, so it doesn't disappear synchronously.
+    await waitFor(() =>
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+    );
+  },
 };
 
 export const WithoutFooter: Story = {

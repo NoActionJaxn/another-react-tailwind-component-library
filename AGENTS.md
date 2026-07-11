@@ -10,6 +10,7 @@ A React + TypeScript + Tailwind CSS component library, built with Vite and docum
 
 ```bash
 npm run build             # tsc -b && vite build
+npm test                  # vitest run
 npm run lint               # eslint .
 npm run lint:fix           # eslint . --fix
 npm run format              # prettier --write .
@@ -18,16 +19,25 @@ npm run build-storybook      # Static Storybook build
 npm run docker:preview       # Build the Storybook Docker image and run it at localhost:8080
 ```
 
-There is no standalone `npm test`; component tests run through Storybook's Vitest addon (browser mode via Playwright/Chromium), driven by the `test` project in `vite.config.ts`. Run `npx vitest` to execute it.
+Component tests run through Storybook's Vitest addon (real-browser mode via Playwright/Chromium, not jsdom), driven by the `test` project in `vite.config.ts`. Every `*.stories.tsx` file is auto-discovered and run as a test (rendering each story and running its `play` function, if any) — there's no separate `*.test.tsx` convention; add real assertions directly to a story's `play` function using `storybook/test`'s `within`/`userEvent`/`expect`/`screen`/`waitFor`/`fn` rather than creating a parallel test file. Every component has at least one story with a `play` function exercising real behavior, not just render-only smoke testing — match that when adding a new component/story.
 
-A Husky `pre-commit` hook runs `lint-staged` (`eslint --fix` + `prettier --write`) on staged `js,jsx,ts,tsx,json,css,md` files. Don't bypass it with `--no-verify`.
+A few patterns that came up repeatedly writing these (see the actual stories for full examples):
+
+- Radix content that renders into a portal (`Dialog`, `AlertDialog`, `Select`, `Navigation`'s dropdowns) lives outside `canvasElement` — query it with `screen` (whole-document), not `within(canvasElement)`.
+- Radix's `Presence`-based unmount (dialog/alertdialog closing) waits for the CSS exit transition before actually removing the element — assert with `waitFor(() => expect(...).not.toBeInTheDocument())`, not a synchronous assertion, or it'll fail on a still-mounted-but-closing element.
+- A JSX boolean attribute like `aria-hidden={someBoolean}` renders literally as `aria-hidden="false"` (not an absent attribute) — `toHaveAttribute("aria-hidden", "false")`, not `not.toHaveAttribute("aria-hidden")`.
+- An element with no accessible role/name (a decorative `Separator`, an icon-only button with no `aria-label`) can't be queried via `getByRole` — fall back to the element's own class (`canvasElement.querySelector(".another-x")`) or, if there's exactly one candidate in the story, an unfiltered `getByRole` without a `name` filter.
+
+**Real-browser testing requires Playwright's system dependencies** (`sudo npx playwright install-deps`) — without them, `npx vitest run` fails with `chrome-headless-shell: error while loading shared libraries: libnspr4.so`. Also note: `vite.config.ts`'s `optimizeDeps.include` explicitly lists `aria-query`, `lz-string`, and `pretty-format` — these are deep transitive CJS dependencies (via Storybook's test setup file, not our own source) that Vite's dependency scanner never discovers on its own, since nothing in the app's normal entry graph imports them. Without pre-bundling them explicitly, the browser gets served the raw CJS file and fails with `SyntaxError: The requested module '...' does not provide an export named 'X'`. If a _new_ test failure looks like that (not an assertion failure, a module/import error), add the missing package to that list before assuming the test itself is wrong. Separately, `@storybook/addon-vitest` keeps its own dependency cache at `node_modules/.cache/storybook` (distinct from Vite's own `node_modules/.vite`) — if you see a bizarre "Cannot read properties of null (reading 'useCallback')" or similar cross-file test pollution, clear both before assuming it's a real bug.
+
+A Husky `pre-commit` hook runs `lint-staged` (`eslint --fix` + `prettier --write`) on staged `js,jsx,ts,tsx,json,css,md` files, then runs the full test suite (`npm test`) and blocks the commit if any test fails. Don't bypass it with `--no-verify`.
 
 **Verifying a change**: `npx tsc -b` (typecheck) plus `npx storybook build` (production build) is the reliable way to confirm a component _compiles_ — see "Dev server pitfalls" below for why the live `storybook dev` process can lie to you about styling. Neither of those catches genuine runtime errors (a bad default-export interop, a component that throws on render) since building never actually executes React rendering. For anything wrapping a new third-party dependency, also load the story in a real browser (headless Chromium is fine) and check the console before calling it done — see the `Pagination`/`react-paginate` case below.
 
 ## Repo layout
 
-- `src/components/` — component implementations. Current set: `Anchor`, `Avatar`, `Button`, `ButtonGroup`, `Checkbox`, `CheckboxGroup`, `Container`, `FlexContainer`, `GridContainer`, `Label`, `ListCard`, `Pagination`, `PasswordInput`, `PostCard`, `ProfileCard`, `Progress`, `RadioGroup`, `Secure`, `Select`, `Separator`, `Slider`, `Switch`, `TextInput`, `Typography`.
-- `src/icons/` — small inline SVG icon components (`Check`, `ChevronDown`, `ChevronUp`, `EyeOpen`, `EyeClosed`). SVGs generally hardcode `fill`/`stroke` colors rather than using `currentColor` — a known pre-existing limitation, not something to silently "fix" as a drive-by.
+- `src/components/` — component implementations. Current set: `Accolades`, `Accordion`, `AlertDialog`, `Anchor`, `Avatar`, `BlogPost`, `Button`, `ButtonGroup`, `Checkbox`, `CheckboxGroup`, `Collapsible`, `Container`, `Dialog`, `FlexContainer`, `Footer`, `GridContainer`, `Header`, `Hero`, `Label`, `ListCard`, `Navigation`, `Pagination`, `PasswordInput`, `PostCard`, `ProfileCard`, `ProfilePage`, `Progress`, `RadioGroup`, `Recents`, `Secure`, `Select`, `Separator`, `Slider`, `Switch`, `TextInput`, `Typography`.
+- `src/icons/` — small inline SVG icon components (`Check`, `ChevronDown`, `ChevronUp`, `Close`, `EyeOpen`, `EyeClosed`, `Menu`). Use Tailwind's `fill-current`/`stroke-current` (whichever the icon actually draws with) on the `<svg>` or the specific element that had a hardcoded fill/stroke, so the icon inherits its color from the surrounding text color instead of a fixed hex value. All SVG attributes must be camelCase JSX props (`strokeWidth`, `strokeLinecap`, `strokeLinejoin`, `fillRule`, `clipRule`) — the kebab-case HTML attribute form silently fails as a React prop and logs "Invalid DOM property" at runtime, which `tsc`/`build` won't catch since neither renders the component (see "Verifying a change" above).
 - `src/lib/cn.ts` — `cn()` (classnames + tailwind-merge) and `cnWhitelisted()` helpers
 - `src/stories/` — one `*.stories.tsx` per component, colocated by name (not colocated with the component file)
 - `src/styles/` — `theme.css` (design tokens via `@theme`), `main.css` (entry point — see import order note below), `components.css` (barrel import, alphabetically ordered), `components/*.css` (per-component `@layer components` rules)
@@ -87,6 +97,7 @@ A Husky `pre-commit` hook runs `lint-staged` (`eslint --fix` + `prettier --write
 - New component styles go in their own file under `src/styles/components/<kebab-name>.css`, wrapped in `@layer components`, and imported from `src/styles/components.css` (keep that barrel file alphabetically ordered).
 - Design tokens (fonts, color scales) belong in `src/styles/theme.css` under `@theme`, using Tailwind v4's CSS-first theme config. Prefer referencing existing `--color-default-*` tokens over introducing new raw colors.
 - Interactive control minimum sizing: text-style inputs and triggers (`TextInput`, `Select`) use `min-w-xs` so they don't collapse to content width.
+- **Dark mode**: `theme.css` inverts the `--color-default-*` scale under a `:root[data-theme="dark"]` block, sitting as a sibling right after `@theme` — it cannot be nested inside `@theme` itself (Tailwind v4 hard-errors: "`@theme` blocks must only contain custom properties or `@keyframes`"). Since every component keys off `--color-default-*` only, this is the only place dark mode logic lives; components never need their own `dark:` variants. It's opt-in via the attribute only, deliberately not tied to `prefers-color-scheme` — see the README's "Dark mode" section for why. Storybook previews it via `.storybook/preview.tsx`'s `withThemeByDataAttribute` decorator (from `@storybook/addon-themes`, toggling the same attribute, defaulting to dark) and `.storybook/preview.css` (sets the preview canvas's own background to `--color-default-50`, since that's a docs-site-only concern and isn't shipped in `main.css`).
 
 **Stories**
 
