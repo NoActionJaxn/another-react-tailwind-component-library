@@ -9,6 +9,11 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    // The Interactions tab is core Storybook, not a removable addon - this is
+    // the documented way to hide it (parameters.interactions.disable).
+    interactions: {
+      disable: true,
+    },
   },
 };
 
