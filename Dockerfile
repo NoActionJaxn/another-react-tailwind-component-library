@@ -1,11 +1,12 @@
 # syntax=docker/dockerfile:1
 
-FROM node:22-alpine AS build
+FROM node:22-bookworm-slim AS build
 WORKDIR /app
-# node:22-alpine ships npm 10.9.8, which mishandles bundleDependencies in lockfileVersion 3
-# packages (e.g. @tailwindcss/oxide-wasm32-wasi's bundled @emnapi/*), failing `npm ci` with
-# false "Missing from lock file" errors. Upgrading npm first avoids that bug.
-RUN npm install -g npm@latest
+# Alpine's musl libc trips up npm's platform detection for @tailwindcss/oxide's optional
+# native binaries, causing it to fall back to installing every platform variant (including
+# the wasm32-wasi one, whose floating @emnapi/* range then resolves to a version not pinned
+# in the lockfile) and failing `npm ci` with a false "Missing from lock file" error. A glibc
+# base image avoids that detection path entirely.
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
