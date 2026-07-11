@@ -111,6 +111,19 @@ The first two failure modes below look like real bugs but aren't — both are sp
 
 When diagnosing any of these, don't guess from a screenshot alone — check actual computed styles or the browser console (`getComputedStyle` via a quick script, or the dev server's own log for `Vite [console.error]` lines) before concluding the code itself is wrong, and before concluding it's _right_.
 
+## Deployment and the staging environment
+
+Storybook is deployed as a static site to a single Oracle Cloud VM, behind Cloudflare. Two environments share that one VM (both containers, both in `deploy/docker-compose.yml`):
+
+- `main` branch → `storybook` service (production, `another-react-tailwind-component-library.com`), via `.github/workflows/deploy-storybook.yml`.
+- `staging` branch → `storybook-staging` service (`staging.another-react-tailwind-component-library.com`), via `.github/workflows/deploy-storybook-staging.yml`.
+
+Each workflow only runs `docker compose pull/up -d <its own service>`, so deploying one never restarts the other.
+
+**`nginx/nginx.conf` is deliberately different between the two branches, and `.gitattributes` (`merge=binary`) forces a manual conflict if a `git merge main` into `staging` ever touches it — do not resolve that conflict by silently taking main's version.** `main`'s copy holds a third `server_name staging.another-react-tailwind-component-library.com` block that reverse-proxies to the `storybook-staging` container over the docker-compose network (so Cloudflare only needs a plain DNS record for staging, no port-override rule). `staging`'s copy must **not** contain that block — since it's the same image built from a different ref, if staging's own nginx also tries to proxy `staging.*` requests to `storybook-staging`, it resolves to itself and loops forever until nginx 400s on an oversized request line. This actually happened once; see the `staging` branch history around the "infinite proxy loop" fix.
+
+Also watch `server_names_hash_bucket_size` if adding more/longer hostnames — nginx's default (64 bytes) is too small for these domain names and it refuses to start entirely (crash-looping _both_ containers, not just the one you'd expect) rather than erroring gracefully.
+
 ## Notes for agents
 
 - This is a library, not an app: there's no `index.html`/`src/main.tsx` app shell (removed as unused Vite-template leftovers) and no `dev`/`preview` npm scripts. Storybook is the only dev/preview surface (`.storybook/preview.tsx` imports `main.css` directly, independent of any app entry). `npm run build` produces the publishable package (`tsc -p tsconfig.build.json` + `vite build --config vite.lib.config.ts` + `scripts/copy-styles.mjs`) — see `vite.lib.config.ts` and `tsconfig.build.json`, which are separate from the Storybook/dev `vite.config.ts`.
