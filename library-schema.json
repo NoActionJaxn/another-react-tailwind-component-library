@@ -1,0 +1,3218 @@
+{
+  "name": "another-react-tailwind-component-library",
+  "version": "0.1.0",
+  "description": "A React + Tailwind CSS v4 component library built on Radix primitives, styled with container queries.",
+  "generated": "2026-07-11T05:23:40.491Z",
+  "components": {
+    "Accolades": {
+      "import": {
+        "name": "Accolades",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["AccoladesProps", "AccoladesVariant"],
+      "source": "src/components/Accolades.tsx",
+      "css": "styles/components/accolades.css",
+      "props": {
+        "as": {
+          "type": "ElementType",
+          "required": false,
+          "default": "section"
+        },
+        "items": {
+          "type": "ReactNode[]",
+          "required": false,
+          "default": "[]"
+        },
+        "speed": {
+          "type": "number",
+          "required": false,
+          "default": "40"
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "Accordion": {
+      "import": {
+        "name": "Accordion",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["AccordionItem", "AccordionProps", "AccordionVariant"],
+      "source": "src/components/Accordion.tsx",
+      "css": "styles/components/accordion.css",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "defaultValue": {
+          "type": "string | string[]",
+          "required": false
+        },
+        "items": {
+          "type": "AccordionItem[]",
+          "required": false,
+          "default": "[]"
+        },
+        "multiple": {
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        "onValueChange": {
+          "type": "(value: string | string[]) => void",
+          "required": false
+        },
+        "value": {
+          "type": "string | string[]",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "AlertDialog": {
+      "import": {
+        "name": "AlertDialog",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["AlertDialogProps", "AlertDialogVariant"],
+      "source": "src/components/AlertDialog.tsx",
+      "css": "styles/components/alert-dialog.css",
+      "props": {
+        "action": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "cancel": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "description": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "title": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "trigger": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        },
+        "open": {
+          "type": "boolean",
+          "required": false
+        },
+        "defaultOpen": {
+          "type": "boolean",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "((open: boolean) => void)",
+          "required": false
+        }
+      }
+    },
+    "Anchor": {
+      "import": {
+        "name": "Anchor",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["AnchorElement", "AnchorProps"],
+      "source": "src/components/Anchor.tsx",
+      "css": "styles/components/anchor.css",
+      "props": {
+        "as": {
+          "type": {
+            "kind": "enum",
+            "literals": ["a", "span"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "a"
+        }
+      }
+    },
+    "Avatar": {
+      "import": {
+        "name": "Avatar",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["AvatarProps", "AvatarSize", "AvatarVariant"],
+      "source": "src/components/Avatar.tsx",
+      "css": "styles/components/avatar.css",
+      "props": {
+        "alt": {
+          "type": "string",
+          "required": false,
+          "default": ""
+        },
+        "fallback": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "fallbackDelay": {
+          "type": "number",
+          "required": false,
+          "default": "600"
+        },
+        "size": {
+          "type": {
+            "kind": "enum",
+            "literals": ["xs", "sm", "md", "lg", "xl", "2xl"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "md"
+        },
+        "src": {
+          "type": "string",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        },
+        "asChild": {
+          "type": "boolean",
+          "required": false
+        }
+      }
+    },
+    "BlogPost": {
+      "import": {
+        "name": "BlogPost",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["BlogPostProps", "BlogPostVariant"],
+      "source": "src/components/BlogPost.tsx",
+      "css": "styles/components/blog-post.css",
+      "props": {
+        "as": {
+          "type": "ElementType",
+          "required": false,
+          "default": "article"
+        },
+        "cover": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "meta": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "title": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "Button": {
+      "import": {
+        "name": "Button",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["ButtonProps", "ButtonSize", "ButtonVariant"],
+      "source": "src/components/Button.tsx",
+      "css": "styles/components/button.css",
+      "props": {
+        "asChild": {
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        "block": {
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        "icon": {
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        "size": {
+          "type": {
+            "kind": "enum",
+            "literals": ["sm", "md", "lg"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "md"
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default", "outline", "ghost", "link"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "ButtonGroup": {
+      "import": {
+        "name": "ButtonGroup",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["ButtonGroupProps"],
+      "source": "src/components/ButtonGroup.tsx",
+      "css": "styles/components/button-group.css",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false,
+          "default": ""
+        },
+        "block": {
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        "icon": {
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        "size": {
+          "type": {
+            "kind": "enum",
+            "literals": ["sm", "md", "lg"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "md"
+        },
+        "variant": {
+          "type": "string",
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "Checkbox": {
+      "import": {
+        "name": "Checkbox",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["CheckboxProps", "CheckboxSize", "CheckboxVariant"],
+      "source": "src/components/Checkbox.tsx",
+      "css": "styles/components/checkbox.css",
+      "props": {
+        "label": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "reverse": {
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        },
+        "size": {
+          "type": {
+            "kind": "enum",
+            "literals": ["sm", "md", "lg"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "md"
+        },
+        "checked": {
+          "type": "CheckedState",
+          "required": false
+        },
+        "defaultChecked": {
+          "type": "CheckedState",
+          "required": false
+        },
+        "required": {
+          "type": "boolean",
+          "required": false
+        },
+        "onCheckedChange": {
+          "type": "((checked: CheckedState) => void)",
+          "required": false
+        },
+        "asChild": {
+          "type": "boolean",
+          "required": false
+        }
+      }
+    },
+    "CheckboxGroup": {
+      "import": {
+        "name": "CheckboxGroup",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": [
+        "CheckboxGroupOption",
+        "CheckboxGroupProps",
+        "CheckboxGroupView"
+      ],
+      "source": "src/components/CheckboxGroup.tsx",
+      "css": null,
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "defaultValue": {
+          "type": "string[]",
+          "required": false,
+          "default": "[]"
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        "name": {
+          "type": "string",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "(value: string[]) => void",
+          "required": false
+        },
+        "options": {
+          "type": "(CheckboxGroupOption | string)[]",
+          "required": true
+        },
+        "size": {
+          "type": {
+            "kind": "enum",
+            "literals": ["sm", "md", "lg"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "md"
+        },
+        "value": {
+          "type": "string[]",
+          "required": false
+        },
+        "variant": {
+          "type": "CheckboxVariant",
+          "required": false,
+          "default": "default"
+        },
+        "view": {
+          "type": {
+            "kind": "enum",
+            "literals": ["list", "grid"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "list"
+        }
+      }
+    },
+    "Collapsible": {
+      "import": {
+        "name": "Collapsible",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["CollapsibleProps", "CollapsibleVariant"],
+      "source": "src/components/Collapsible.tsx",
+      "css": "styles/components/collapsible.css",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "title": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        },
+        "asChild": {
+          "type": "boolean",
+          "required": false
+        },
+        "defaultOpen": {
+          "type": "boolean",
+          "required": false
+        },
+        "open": {
+          "type": "boolean",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "((open: boolean) => void)",
+          "required": false
+        }
+      }
+    },
+    "Container": {
+      "import": {
+        "name": "Container",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["ContainerProps"],
+      "source": "src/components/Container.tsx",
+      "css": null,
+      "props": {
+        "as": {
+          "type": "ElementType",
+          "required": false,
+          "default": "div"
+        }
+      }
+    },
+    "Dialog": {
+      "import": {
+        "name": "Dialog",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["DialogProps", "DialogVariant"],
+      "source": "src/components/Dialog.tsx",
+      "css": "styles/components/dialog.css",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "description": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "footer": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "title": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "trigger": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        },
+        "open": {
+          "type": "boolean",
+          "required": false
+        },
+        "defaultOpen": {
+          "type": "boolean",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "((open: boolean) => void)",
+          "required": false
+        },
+        "modal": {
+          "type": "boolean",
+          "required": false
+        }
+      }
+    },
+    "FlexContainer": {
+      "import": {
+        "name": "FlexContainer",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["FlexContainerDirection", "FlexContainerProps"],
+      "source": "src/components/FlexContainer.tsx",
+      "css": "styles/components/flex-container.css",
+      "props": {
+        "direction": {
+          "type": {
+            "kind": "enum",
+            "literals": ["row", "column"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "row"
+        },
+        "flexClassName": {
+          "type": "string",
+          "required": false
+        },
+        "wrap": {
+          "type": "boolean",
+          "required": false,
+          "default": "true"
+        },
+        "as": {
+          "type": "ElementType",
+          "required": false
+        }
+      }
+    },
+    "Footer": {
+      "import": {
+        "name": "Footer",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": [
+        "FooterColumn",
+        "FooterLink",
+        "FooterProps",
+        "FooterVariant"
+      ],
+      "source": "src/components/Footer.tsx",
+      "css": "styles/components/footer.css",
+      "props": {
+        "as": {
+          "type": "ElementType",
+          "required": false,
+          "default": "footer"
+        },
+        "bottom": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "columns": {
+          "type": "FooterColumn[]",
+          "required": false,
+          "default": "[]"
+        },
+        "description": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "logo": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "GridContainer": {
+      "import": {
+        "name": "GridContainer",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["GridContainerColumns", "GridContainerProps"],
+      "source": "src/components/GridContainer.tsx",
+      "css": "styles/components/grid-container.css",
+      "props": {
+        "columns": {
+          "type": {
+            "kind": "enum",
+            "literals": ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "3"
+        },
+        "gridClassName": {
+          "type": "string",
+          "required": false
+        },
+        "as": {
+          "type": "ElementType",
+          "required": false
+        }
+      }
+    },
+    "Header": {
+      "import": {
+        "name": "Header",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["HeaderProps", "HeaderVariant"],
+      "source": "src/components/Header.tsx",
+      "css": "styles/components/header.css",
+      "props": {
+        "as": {
+          "type": "ElementType",
+          "required": false,
+          "default": "header"
+        },
+        "items": {
+          "type": "NavigationItem[]",
+          "required": false,
+          "default": "[]"
+        },
+        "logo": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "Hero": {
+      "import": {
+        "name": "Hero",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["HeroProps", "HeroVariant"],
+      "source": "src/components/Hero.tsx",
+      "css": "styles/components/hero.css",
+      "props": {
+        "actions": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "as": {
+          "type": "ElementType",
+          "required": false,
+          "default": "section"
+        },
+        "background": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "description": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "eyebrow": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "title": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "Label": {
+      "import": {
+        "name": "Label",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["LabelProps", "LabelSize", "LabelVariant"],
+      "source": "src/components/Label.tsx",
+      "css": "styles/components/label.css",
+      "props": {
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        },
+        "size": {
+          "type": {
+            "kind": "enum",
+            "literals": ["sm", "md", "lg"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "md"
+        },
+        "asChild": {
+          "type": "boolean",
+          "required": false
+        }
+      }
+    },
+    "ListCard": {
+      "import": {
+        "name": "ListCard",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["ListCardProps", "ListCardVariant"],
+      "source": "src/components/ListCard.tsx",
+      "css": "styles/components/list-card.css",
+      "props": {
+        "as": {
+          "type": "ElementType",
+          "required": false,
+          "default": "article"
+        },
+        "description": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "footer": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "image": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "meta": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "title": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "Navigation": {
+      "import": {
+        "name": "Navigation",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": [
+        "NavigationItem",
+        "NavigationProps",
+        "NavigationVariant"
+      ],
+      "source": "src/components/Navigation.tsx",
+      "css": "styles/components/navigation.css",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "items": {
+          "type": "NavigationItem[]",
+          "required": false,
+          "default": "[]"
+        },
+        "mobileOpen": {
+          "type": "boolean",
+          "required": false
+        },
+        "onMobileOpenChange": {
+          "type": "(open: boolean) => void",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        },
+        "value": {
+          "type": "string",
+          "required": false
+        },
+        "defaultValue": {
+          "type": "string",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "((value: string) => void)",
+          "required": false
+        },
+        "dir": {
+          "type": {
+            "kind": "enum",
+            "literals": ["ltr", "rtl"],
+            "openEnum": false
+          },
+          "required": false
+        },
+        "orientation": {
+          "type": {
+            "kind": "enum",
+            "literals": ["vertical", "horizontal"],
+            "openEnum": false
+          },
+          "required": false
+        },
+        "delayDuration": {
+          "type": "number",
+          "required": false,
+          "description": "The duration from when the pointer enters the trigger until the tooltip gets opened.\n@defaultValue 200"
+        },
+        "skipDelayDuration": {
+          "type": "number",
+          "required": false,
+          "description": "How much time a user has to enter another trigger without incurring a delay again.\n@defaultValue 300"
+        },
+        "asChild": {
+          "type": "boolean",
+          "required": false
+        }
+      }
+    },
+    "Pagination": {
+      "import": {
+        "name": "Pagination",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["PaginationProps", "PaginationView"],
+      "source": "src/components/Pagination.tsx",
+      "css": "styles/components/pagination.css",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "columns": {
+          "type": {
+            "kind": "enum",
+            "literals": ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "3"
+        },
+        "itemsPerPage": {
+          "type": "number",
+          "required": false,
+          "default": "6"
+        },
+        "items": {
+          "type": "T[]",
+          "required": true
+        },
+        "renderItem": {
+          "type": "(item: T, index: number) => ReactNode",
+          "required": true
+        },
+        "view": {
+          "type": {
+            "kind": "enum",
+            "literals": ["list", "grid"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "grid"
+        }
+      }
+    },
+    "PasswordInput": {
+      "import": {
+        "name": "PasswordInput",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["PasswordInputProps"],
+      "source": "src/components/PasswordInput.tsx",
+      "css": null,
+      "props": {
+        "disableShowPassword": {
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        "size": {
+          "type": {
+            "kind": "enum",
+            "literals": ["sm", "md", "lg"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "md"
+        },
+        "block": {
+          "type": "boolean",
+          "required": false
+        },
+        "label": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "orientation": {
+          "type": {
+            "kind": "enum",
+            "literals": ["horizontal", "vertical"],
+            "openEnum": false
+          },
+          "required": false
+        },
+        "prependElement": {
+          "type": "ReactElement<unknown, string | JSXElementConstructor<any>>",
+          "required": false
+        },
+        "variant": {
+          "type": "string",
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "PostCard": {
+      "import": {
+        "name": "PostCard",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["PostCardProps", "PostCardVariant"],
+      "source": "src/components/PostCard.tsx",
+      "css": "styles/components/post-card.css",
+      "props": {
+        "as": {
+          "type": "ElementType",
+          "required": false,
+          "default": "article"
+        },
+        "description": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "footer": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "image": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "meta": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "title": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "ProfileCard": {
+      "import": {
+        "name": "ProfileCard",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["ProfileCardProps", "ProfileCardVariant"],
+      "source": "src/components/ProfileCard.tsx",
+      "css": "styles/components/profile-card.css",
+      "props": {
+        "as": {
+          "type": "ElementType",
+          "required": false,
+          "default": "article"
+        },
+        "avatar": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "bio": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "cover": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "footer": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "meta": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "name": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "role": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "ProfilePage": {
+      "import": {
+        "name": "ProfilePage",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["ProfilePageProps", "ProfilePageVariant"],
+      "source": "src/components/ProfilePage.tsx",
+      "css": "styles/components/profile-page.css",
+      "props": {
+        "as": {
+          "type": "ElementType",
+          "required": false,
+          "default": "article"
+        },
+        "avatar": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "bio": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "cover": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "footer": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "meta": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "name": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "role": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "Progress": {
+      "import": {
+        "name": "Progress",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["ProgressProps", "ProgressSize", "ProgressVariant"],
+      "source": "src/components/Progress.tsx",
+      "css": "styles/components/progress.css",
+      "props": {
+        "size": {
+          "type": {
+            "kind": "enum",
+            "literals": ["sm", "md", "lg"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "md"
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        },
+        "value": {
+          "type": "number | null",
+          "required": false
+        },
+        "max": {
+          "type": "number",
+          "required": false,
+          "default": "100"
+        },
+        "getValueLabel": {
+          "type": "((value: number, max: number) => string)",
+          "required": false
+        },
+        "asChild": {
+          "type": "boolean",
+          "required": false
+        }
+      }
+    },
+    "RadioGroup": {
+      "import": {
+        "name": "RadioGroup",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": [
+        "RadioGroupOption",
+        "RadioGroupProps",
+        "RadioGroupSize",
+        "RadioGroupVariant",
+        "RadioGroupView"
+      ],
+      "source": "src/components/RadioGroup.tsx",
+      "css": "styles/components/radio-group.css",
+      "props": {
+        "options": {
+          "type": "(RadioGroupOption | string)[]",
+          "required": true
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        },
+        "size": {
+          "type": {
+            "kind": "enum",
+            "literals": ["sm", "md", "lg"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "md"
+        },
+        "view": {
+          "type": {
+            "kind": "enum",
+            "literals": ["grid", "list"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "list"
+        },
+        "name": {
+          "type": "string",
+          "required": false
+        },
+        "form": {
+          "type": "string",
+          "required": false
+        },
+        "required": {
+          "type": "boolean",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "dir": {
+          "type": {
+            "kind": "enum",
+            "literals": ["ltr", "rtl"],
+            "openEnum": false
+          },
+          "required": false
+        },
+        "orientation": {
+          "type": {
+            "kind": "enum",
+            "literals": ["horizontal", "vertical"],
+            "openEnum": false
+          },
+          "required": false
+        },
+        "loop": {
+          "type": "boolean",
+          "required": false
+        },
+        "defaultValue": {
+          "type": "string",
+          "required": false
+        },
+        "value": {
+          "type": "string | null",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "((value: string) => void)",
+          "required": false
+        },
+        "asChild": {
+          "type": "boolean",
+          "required": false
+        }
+      }
+    },
+    "Recents": {
+      "import": {
+        "name": "Recents",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["RecentsProps", "RecentsVariant"],
+      "source": "src/components/Recents.tsx",
+      "css": "styles/components/recents.css",
+      "props": {
+        "as": {
+          "type": "ElementType",
+          "required": false,
+          "default": "section"
+        },
+        "columns": {
+          "type": {
+            "kind": "enum",
+            "literals": ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "3"
+        },
+        "items": {
+          "type": "ReactNode[]",
+          "required": false,
+          "default": "[]"
+        },
+        "title": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        },
+        "viewMore": {
+          "type": "ReactNode",
+          "required": false
+        }
+      }
+    },
+    "Secure": {
+      "import": {
+        "name": "Secure",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["SecureProps"],
+      "source": "src/components/Secure.tsx",
+      "css": "styles/components/secure.css",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "fallback": {
+          "type": "ReactNode",
+          "required": true
+        },
+        "reveal": {
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        }
+      }
+    },
+    "Select": {
+      "import": {
+        "name": "Select",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": [
+        "SelectOption",
+        "SelectOrientation",
+        "SelectProps",
+        "SelectSize",
+        "SelectVariant"
+      ],
+      "source": "src/components/Select.tsx",
+      "css": "styles/components/select.css",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "id": {
+          "type": "string",
+          "required": false
+        },
+        "label": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "options": {
+          "type": "(SelectOption | string)[]",
+          "required": true
+        },
+        "orientation": {
+          "type": {
+            "kind": "enum",
+            "literals": ["horizontal", "vertical"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "vertical"
+        },
+        "placeholder": {
+          "type": "ReactNode",
+          "required": false,
+          "default": "Select an option"
+        },
+        "size": {
+          "type": {
+            "kind": "enum",
+            "literals": ["sm", "md", "lg"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "md"
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        },
+        "open": {
+          "type": "boolean",
+          "required": false
+        },
+        "defaultOpen": {
+          "type": "boolean",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "((open: boolean) => void)",
+          "required": false
+        },
+        "dir": {
+          "type": {
+            "kind": "enum",
+            "literals": ["ltr", "rtl"],
+            "openEnum": false
+          },
+          "required": false
+        },
+        "name": {
+          "type": "string",
+          "required": false
+        },
+        "autoComplete": {
+          "type": "string",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "required": {
+          "type": "boolean",
+          "required": false
+        },
+        "form": {
+          "type": "string",
+          "required": false
+        },
+        "value": {
+          "type": "string",
+          "required": false
+        },
+        "defaultValue": {
+          "type": "string",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "((value: string) => void)",
+          "required": false
+        }
+      }
+    },
+    "Separator": {
+      "import": {
+        "name": "Separator",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["SeparatorProps", "SeparatorVariant"],
+      "source": "src/components/Separator.tsx",
+      "css": "styles/components/separator.css",
+      "props": {
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        },
+        "orientation": {
+          "type": {
+            "kind": "enum",
+            "literals": ["horizontal", "vertical"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "horizontal",
+          "description": "Either `vertical` or `horizontal`. Defaults to `horizontal`."
+        },
+        "decorative": {
+          "type": "boolean",
+          "required": false,
+          "description": "Whether or not the component is purely decorative. When true, accessibility-related attributes\nare updated so that that the rendered element is removed from the accessibility tree."
+        },
+        "asChild": {
+          "type": "boolean",
+          "required": false
+        }
+      }
+    },
+    "Slider": {
+      "import": {
+        "name": "Slider",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["SliderProps", "SliderSize", "SliderVariant"],
+      "source": "src/components/Slider.tsx",
+      "css": "styles/components/slider.css",
+      "props": {
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        },
+        "size": {
+          "type": {
+            "kind": "enum",
+            "literals": ["sm", "md", "lg"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "md"
+        },
+        "name": {
+          "type": "string",
+          "required": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "required": false
+        },
+        "orientation": {
+          "type": {
+            "kind": "enum",
+            "literals": ["horizontal", "vertical"],
+            "openEnum": false
+          },
+          "required": false
+        },
+        "dir": {
+          "type": {
+            "kind": "enum",
+            "literals": ["ltr", "rtl"],
+            "openEnum": false
+          },
+          "required": false
+        },
+        "min": {
+          "type": "number",
+          "required": false
+        },
+        "max": {
+          "type": "number",
+          "required": false
+        },
+        "step": {
+          "type": "number",
+          "required": false
+        },
+        "minStepsBetweenThumbs": {
+          "type": "number",
+          "required": false
+        },
+        "value": {
+          "type": "number[]",
+          "required": false
+        },
+        "defaultValue": {
+          "type": "number[]",
+          "required": false
+        },
+        "onValueChange": {
+          "type": "((value: number[]) => void)",
+          "required": false
+        },
+        "onValueCommit": {
+          "type": "((value: number[]) => void)",
+          "required": false
+        },
+        "inverted": {
+          "type": "boolean",
+          "required": false
+        },
+        "form": {
+          "type": "string",
+          "required": false
+        },
+        "asChild": {
+          "type": "boolean",
+          "required": false
+        }
+      }
+    },
+    "Switch": {
+      "import": {
+        "name": "Switch",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["SwitchProps", "SwitchSize", "SwitchVariant"],
+      "source": "src/components/Switch.tsx",
+      "css": "styles/components/switch.css",
+      "props": {
+        "label": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "reverse": {
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        },
+        "size": {
+          "type": {
+            "kind": "enum",
+            "literals": ["sm", "md", "lg"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "md"
+        },
+        "checked": {
+          "type": "boolean",
+          "required": false
+        },
+        "defaultChecked": {
+          "type": "boolean",
+          "required": false
+        },
+        "required": {
+          "type": "boolean",
+          "required": false
+        },
+        "onCheckedChange": {
+          "type": "((checked: boolean) => void)",
+          "required": false
+        },
+        "asChild": {
+          "type": "boolean",
+          "required": false
+        }
+      }
+    },
+    "TextInput": {
+      "import": {
+        "name": "TextInput",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": [
+        "TextInputOrientation",
+        "TextInputProps",
+        "TextInputSize",
+        "TextInputType",
+        "TextInputVariant"
+      ],
+      "source": "src/components/TextInput.tsx",
+      "css": "styles/components/text-input.css",
+      "props": {
+        "appendElement": {
+          "type": "ReactElement",
+          "required": false
+        },
+        "block": {
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        "label": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "orientation": {
+          "type": {
+            "kind": "enum",
+            "literals": ["horizontal", "vertical"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "vertical"
+        },
+        "prependElement": {
+          "type": "ReactElement",
+          "required": false
+        },
+        "size": {
+          "type": {
+            "kind": "enum",
+            "literals": ["sm", "md", "lg"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "md"
+        },
+        "type": {
+          "type": {
+            "kind": "enum",
+            "literals": [
+              "number",
+              "text",
+              "email",
+              "tel",
+              "search",
+              "password"
+            ],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "text"
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "Typography": {
+      "import": {
+        "name": "Typography",
+        "from": "another-react-tailwind-component-library"
+      },
+      "exportedTypes": [
+        "TypographyElement",
+        "TypographyFont",
+        "TypographyProps"
+      ],
+      "source": "src/components/Typography.tsx",
+      "css": "styles/components/typography.css",
+      "props": {
+        "as": {
+          "type": {
+            "kind": "enum",
+            "literals": ["span", "p", "h1", "h2", "h3", "h4", "h5", "h6"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "span"
+        },
+        "font": {
+          "type": {
+            "kind": "enum",
+            "literals": ["sans", "sans-serif", "mono", "accent"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "sans"
+        }
+      }
+    }
+  },
+  "types": {
+    "AccoladesVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "AccoladesProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "as",
+          "required": false,
+          "type": "ElementType"
+        },
+        {
+          "name": "items",
+          "required": false,
+          "type": "ReactNode[]"
+        },
+        {
+          "name": "speed",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "AccoladesVariant"
+        }
+      ]
+    },
+    "AccordionVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "AccordionItem": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "content",
+          "required": true,
+          "type": "ReactNode"
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "title",
+          "required": true,
+          "type": "ReactNode"
+        },
+        {
+          "name": "value",
+          "required": false,
+          "type": "string"
+        }
+      ]
+    },
+    "AccordionProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "defaultValue",
+          "required": false,
+          "type": "string | string[]"
+        },
+        {
+          "name": "items",
+          "required": false,
+          "type": "AccordionItem[]"
+        },
+        {
+          "name": "multiple",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "onValueChange",
+          "required": false,
+          "type": "(value: string | string[]) => void"
+        },
+        {
+          "name": "value",
+          "required": false,
+          "type": "string | string[]"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "AccordionVariant"
+        }
+      ]
+    },
+    "AlertDialogVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "AlertDialogProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "action",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "cancel",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "title",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "trigger",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "AlertDialogVariant"
+        }
+      ]
+    },
+    "AnchorElement": {
+      "kind": "enum",
+      "literals": ["a", "span"],
+      "openEnum": false
+    },
+    "AnchorProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "as",
+          "required": false,
+          "type": "AnchorElement"
+        }
+      ]
+    },
+    "AvatarVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "AvatarSize": {
+      "kind": "enum",
+      "literals": ["xs", "sm", "md", "lg", "xl", "2xl"],
+      "openEnum": false
+    },
+    "AvatarProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "alt",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "fallback",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "fallbackDelay",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "size",
+          "required": false,
+          "type": "AvatarSize"
+        },
+        {
+          "name": "src",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "AvatarVariant"
+        }
+      ]
+    },
+    "BlogPostVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "BlogPostProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "as",
+          "required": false,
+          "type": "ElementType"
+        },
+        {
+          "name": "cover",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "meta",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "title",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "BlogPostVariant"
+        }
+      ]
+    },
+    "ButtonVariant": {
+      "kind": "enum",
+      "literals": ["default", "outline", "ghost", "link"],
+      "openEnum": true
+    },
+    "ButtonSize": {
+      "kind": "enum",
+      "literals": ["sm", "md", "lg"],
+      "openEnum": false
+    },
+    "ButtonProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "asChild",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "block",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "icon",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "size",
+          "required": false,
+          "type": "ButtonSize"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "ButtonVariant"
+        }
+      ]
+    },
+    "ButtonGroupProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "children",
+          "required": true,
+          "type": "ReactElement<ButtonProps> | ReactElement<ButtonProps>[]"
+        },
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        }
+      ]
+    },
+    "CheckboxVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "CheckboxSize": {
+      "kind": "enum",
+      "literals": ["sm", "md", "lg"],
+      "openEnum": false
+    },
+    "CheckboxProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "label",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "reverse",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "CheckboxVariant"
+        },
+        {
+          "name": "size",
+          "required": false,
+          "type": "CheckboxSize"
+        }
+      ]
+    },
+    "CheckboxGroupView": {
+      "kind": "enum",
+      "literals": ["list", "grid"],
+      "openEnum": false
+    },
+    "CheckboxGroupOption": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "label",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "value",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "CheckboxGroupProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "defaultValue",
+          "required": false,
+          "type": "string[]"
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "name",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "onValueChange",
+          "required": false,
+          "type": "(value: string[]) => void"
+        },
+        {
+          "name": "options",
+          "required": true,
+          "type": "(CheckboxGroupOption | string)[]"
+        },
+        {
+          "name": "size",
+          "required": false,
+          "type": "CheckboxSize"
+        },
+        {
+          "name": "value",
+          "required": false,
+          "type": "string[]"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "CheckboxVariant"
+        },
+        {
+          "name": "view",
+          "required": false,
+          "type": "CheckboxGroupView"
+        }
+      ]
+    },
+    "CollapsibleVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "CollapsibleProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "CollapsibleVariant"
+        }
+      ]
+    },
+    "ContainerProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "as",
+          "required": false,
+          "type": "ElementType"
+        }
+      ]
+    },
+    "DialogVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "DialogProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "footer",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "title",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "trigger",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "DialogVariant"
+        }
+      ]
+    },
+    "FlexContainerDirection": {
+      "kind": "enum",
+      "literals": ["row", "column"],
+      "openEnum": false
+    },
+    "FlexContainerProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "children",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "direction",
+          "required": false,
+          "type": "FlexContainerDirection"
+        },
+        {
+          "name": "flexClassName",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "wrap",
+          "required": false,
+          "type": "boolean"
+        }
+      ]
+    },
+    "FooterVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "FooterLink": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "href",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "required": true,
+          "type": "ReactNode"
+        }
+      ]
+    },
+    "FooterColumn": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "links",
+          "required": true,
+          "type": "FooterLink[]"
+        },
+        {
+          "name": "title",
+          "required": true,
+          "type": "ReactNode"
+        }
+      ]
+    },
+    "FooterProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "as",
+          "required": false,
+          "type": "ElementType"
+        },
+        {
+          "name": "bottom",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "columns",
+          "required": false,
+          "type": "FooterColumn[]"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "logo",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "FooterVariant"
+        }
+      ]
+    },
+    "GridContainerProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "children",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "columns",
+          "required": false,
+          "type": "GridContainerColumns"
+        },
+        {
+          "name": "gridClassName",
+          "required": false,
+          "type": "string"
+        }
+      ]
+    },
+    "HeaderVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "HeaderProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "as",
+          "required": false,
+          "type": "ElementType"
+        },
+        {
+          "name": "items",
+          "required": false,
+          "type": "NavigationItem[]"
+        },
+        {
+          "name": "logo",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "HeaderVariant"
+        }
+      ]
+    },
+    "HeroVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "HeroProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "actions",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "as",
+          "required": false,
+          "type": "ElementType"
+        },
+        {
+          "name": "background",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "eyebrow",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "title",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "HeroVariant"
+        }
+      ]
+    },
+    "LabelVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "LabelSize": {
+      "kind": "enum",
+      "literals": ["sm", "md", "lg"],
+      "openEnum": false
+    },
+    "LabelProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "variant",
+          "required": false,
+          "type": "LabelVariant"
+        },
+        {
+          "name": "size",
+          "required": false,
+          "type": "LabelSize"
+        }
+      ]
+    },
+    "ListCardVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "ListCardProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "as",
+          "required": false,
+          "type": "ElementType"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "footer",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "image",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "meta",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "title",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "ListCardVariant"
+        }
+      ]
+    },
+    "NavigationVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "NavigationItem": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "content",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "href",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "required": true,
+          "type": "ReactNode"
+        },
+        {
+          "name": "value",
+          "required": false,
+          "type": "string"
+        }
+      ]
+    },
+    "NavigationProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "items",
+          "required": false,
+          "type": "NavigationItem[]"
+        },
+        {
+          "name": "mobileOpen",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "onMobileOpenChange",
+          "required": false,
+          "type": "(open: boolean) => void"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "NavigationVariant"
+        }
+      ]
+    },
+    "PaginationView": {
+      "kind": "enum",
+      "literals": ["list", "grid"],
+      "openEnum": false
+    },
+    "PaginationProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "columns",
+          "required": false,
+          "type": "GridContainerColumns"
+        },
+        {
+          "name": "itemsPerPage",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "items",
+          "required": true,
+          "type": "T[]"
+        },
+        {
+          "name": "renderItem",
+          "required": true,
+          "type": "(item: T, index: number) => ReactNode"
+        },
+        {
+          "name": "view",
+          "required": false,
+          "type": "PaginationView"
+        }
+      ]
+    },
+    "PasswordInputProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "disableShowPassword",
+          "required": false,
+          "type": "boolean"
+        }
+      ]
+    },
+    "PostCardVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "PostCardProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "as",
+          "required": false,
+          "type": "ElementType"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "footer",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "image",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "meta",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "title",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "PostCardVariant"
+        }
+      ]
+    },
+    "ProfileCardVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "ProfileCardProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "as",
+          "required": false,
+          "type": "ElementType"
+        },
+        {
+          "name": "avatar",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "bio",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "cover",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "footer",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "meta",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "name",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "role",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "ProfileCardVariant"
+        }
+      ]
+    },
+    "ProfilePageVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "ProfilePageProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "as",
+          "required": false,
+          "type": "ElementType"
+        },
+        {
+          "name": "avatar",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "bio",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "cover",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "footer",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "meta",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "name",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "role",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "ProfilePageVariant"
+        }
+      ]
+    },
+    "ProgressVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "ProgressSize": {
+      "kind": "enum",
+      "literals": ["sm", "md", "lg"],
+      "openEnum": false
+    },
+    "ProgressProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "size",
+          "required": false,
+          "type": "ProgressSize"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "ProgressVariant"
+        }
+      ]
+    },
+    "RadioGroupVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "RadioGroupSize": {
+      "kind": "enum",
+      "literals": ["sm", "md", "lg"],
+      "openEnum": false
+    },
+    "RadioGroupView": {
+      "kind": "enum",
+      "literals": ["list", "grid"],
+      "openEnum": false
+    },
+    "RadioGroupOption": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "label",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "value",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "RadioGroupProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "options",
+          "required": true,
+          "type": "(RadioGroupOption | string)[]"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "RadioGroupVariant"
+        },
+        {
+          "name": "size",
+          "required": false,
+          "type": "RadioGroupSize"
+        },
+        {
+          "name": "view",
+          "required": false,
+          "type": "RadioGroupView"
+        }
+      ]
+    },
+    "RecentsVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "RecentsProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "as",
+          "required": false,
+          "type": "ElementType"
+        },
+        {
+          "name": "columns",
+          "required": false,
+          "type": "GridContainerColumns"
+        },
+        {
+          "name": "items",
+          "required": false,
+          "type": "ReactNode[]"
+        },
+        {
+          "name": "title",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "RecentsVariant"
+        },
+        {
+          "name": "viewMore",
+          "required": false,
+          "type": "ReactNode"
+        }
+      ]
+    },
+    "SecureProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "children",
+          "required": true,
+          "type": "ReactNode"
+        },
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "fallback",
+          "required": true,
+          "type": "ReactNode"
+        },
+        {
+          "name": "reveal",
+          "required": false,
+          "type": "boolean"
+        }
+      ]
+    },
+    "SelectVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "SelectSize": {
+      "kind": "enum",
+      "literals": ["sm", "md", "lg"],
+      "openEnum": false
+    },
+    "SelectOrientation": {
+      "kind": "enum",
+      "literals": ["horizontal", "vertical"],
+      "openEnum": false
+    },
+    "SelectOption": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "label",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "value",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "SelectProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "options",
+          "required": true,
+          "type": "(SelectOption | string)[]"
+        },
+        {
+          "name": "orientation",
+          "required": false,
+          "type": "SelectOrientation"
+        },
+        {
+          "name": "placeholder",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "size",
+          "required": false,
+          "type": "SelectSize"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "SelectVariant"
+        }
+      ]
+    },
+    "SeparatorVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "SeparatorProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "variant",
+          "required": false,
+          "type": "SeparatorVariant"
+        }
+      ]
+    },
+    "SliderVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "SliderSize": {
+      "kind": "enum",
+      "literals": ["sm", "md", "lg"],
+      "openEnum": false
+    },
+    "SliderProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "variant",
+          "required": false,
+          "type": "SliderVariant"
+        },
+        {
+          "name": "size",
+          "required": false,
+          "type": "SliderSize"
+        }
+      ]
+    },
+    "SwitchVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "SwitchSize": {
+      "kind": "enum",
+      "literals": ["sm", "md", "lg"],
+      "openEnum": false
+    },
+    "SwitchProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "label",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "reverse",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "SwitchVariant"
+        },
+        {
+          "name": "size",
+          "required": false,
+          "type": "SwitchSize"
+        }
+      ]
+    },
+    "TextInputType": {
+      "kind": "enum",
+      "literals": ["text", "email", "tel", "search", "password", "number"],
+      "openEnum": false
+    },
+    "TextInputVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "TextInputSize": {
+      "kind": "enum",
+      "literals": ["sm", "md", "lg"],
+      "openEnum": false
+    },
+    "TextInputOrientation": {
+      "kind": "enum",
+      "literals": ["horizontal", "vertical"],
+      "openEnum": false
+    },
+    "TextInputProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "appendElement",
+          "required": false,
+          "type": "ReactElement"
+        },
+        {
+          "name": "block",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "label",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "orientation",
+          "required": false,
+          "type": "TextInputOrientation"
+        },
+        {
+          "name": "prependElement",
+          "required": false,
+          "type": "ReactElement"
+        },
+        {
+          "name": "size",
+          "required": false,
+          "type": "TextInputSize"
+        },
+        {
+          "name": "type",
+          "required": false,
+          "type": "TextInputType"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "TextInputVariant"
+        }
+      ]
+    },
+    "TypographyFont": {
+      "kind": "enum",
+      "literals": ["sans", "sans-serif", "mono", "accent"],
+      "openEnum": false
+    },
+    "TypographyElement": {
+      "kind": "enum",
+      "literals": ["span", "p", "h1", "h2", "h3", "h4", "h5", "h6"],
+      "openEnum": false
+    },
+    "TypographyProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "as",
+          "required": false,
+          "type": "TypographyElement"
+        },
+        {
+          "name": "font",
+          "required": false,
+          "type": "TypographyFont"
+        }
+      ]
+    }
+  }
+}

@@ -35,6 +35,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json && vite build --config vite.lib.config.ts && node scripts/copy-styles.mjs",
+    "schema": "node scripts/generate-library-schema.mjs",
     "prepublishOnly": "npm run build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -84,6 +85,7 @@
     "playwright": "^1.61.1",
     "prettier": "^3.5.0",
     "react": "^19.2.7",
+    "react-docgen-typescript": "^2.4.0",
     "react-dom": "^19.2.7",
     "react-paginate": "^8.3.0",
     "storybook": "^10.4.6",
