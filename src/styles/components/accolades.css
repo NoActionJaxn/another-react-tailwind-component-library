@@ -1,0 +1,22 @@
+@layer components {
+  .another-accolades {
+    @apply w-full;
+  }
+
+  .another-accolades[data-variant="default"] {
+    @apply text-default-950;
+  }
+
+  .another-accolades-viewport {
+    @apply flex snap-x snap-mandatory items-center gap-10 overflow-x-auto overscroll-x-contain px-4 py-6 @md:gap-16 @md:px-8 @md:py-10;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .another-accolades-item {
+    @apply flex shrink-0 snap-center items-center justify-center;
+  }
+}

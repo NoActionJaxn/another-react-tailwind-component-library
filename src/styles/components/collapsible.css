@@ -1,0 +1,73 @@
+@layer components {
+  .another-collapsible {
+    @apply w-full;
+  }
+
+  .another-collapsible[data-variant="default"] {
+    @apply text-default-950;
+  }
+
+  .another-collapsible-trigger {
+    @apply flex w-full items-center justify-between gap-4 py-2 text-left text-base font-semibold outline-0 transition-colors ease-in-out duration-200;
+
+    &:focus-visible {
+      @apply ring-4 ring-cyan-400/50;
+    }
+  }
+
+  .another-collapsible-trigger:not([data-disabled]):hover {
+    @apply text-default-600;
+  }
+
+  .another-collapsible-trigger[data-disabled] {
+    @apply cursor-not-allowed opacity-50;
+  }
+
+  .another-collapsible-icon {
+    @apply flex shrink-0 items-center justify-center transition-transform duration-200 ease-in-out;
+  }
+
+  .another-collapsible-icon svg {
+    @apply size-4;
+  }
+
+  .another-collapsible-trigger[data-state="open"] .another-collapsible-icon {
+    @apply rotate-180;
+  }
+
+  .another-collapsible-content {
+    @apply overflow-hidden text-sm;
+  }
+
+  .another-collapsible-content[data-state="open"] {
+    animation: another-collapsible-slide-down 200ms ease-out;
+  }
+
+  .another-collapsible-content[data-state="closed"] {
+    animation: another-collapsible-slide-up 200ms ease-out;
+  }
+
+  .another-collapsible-content-inner {
+    @apply pt-2 leading-relaxed text-default-700;
+  }
+
+  @keyframes another-collapsible-slide-down {
+    from {
+      height: 0;
+    }
+
+    to {
+      height: var(--radix-collapsible-content-height);
+    }
+  }
+
+  @keyframes another-collapsible-slide-up {
+    from {
+      height: var(--radix-collapsible-content-height);
+    }
+
+    to {
+      height: 0;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+@layer components {
+  .another-accordion {
+    @apply w-full;
+  }
+
+  .another-accordion[data-variant="default"] {
+    @apply text-default-950;
+  }
+
+  .another-accordion-item {
+    @apply border-b-2 border-default-200;
+  }
+
+  .another-accordion-item:first-child {
+    @apply border-t-2;
+  }
+
+  .another-accordion-header {
+    @apply flex;
+  }
+
+  .another-accordion-trigger {
+    @apply flex w-full items-center justify-between gap-4 py-4 text-left text-base font-semibold outline-0 transition-colors ease-in-out duration-200;
+
+    &:focus-visible {
+      @apply ring-4 ring-cyan-400/50;
+    }
+  }
+
+  .another-accordion-trigger:not([data-disabled]):hover {
+    @apply text-default-600;
+  }
+
+  .another-accordion-trigger[data-disabled] {
+    @apply cursor-not-allowed opacity-50;
+  }
+
+  .another-accordion-icon {
+    @apply flex shrink-0 items-center justify-center transition-transform duration-200 ease-in-out;
+  }
+
+  .another-accordion-icon svg {
+    @apply size-4;
+  }
+
+  .another-accordion-trigger[data-state="open"] .another-accordion-icon {
+    @apply rotate-180;
+  }
+
+  .another-accordion-content {
+    @apply overflow-hidden text-sm;
+  }
+
+  .another-accordion-content[data-state="open"] {
+    animation: another-accordion-slide-down 200ms ease-out;
+  }
+
+  .another-accordion-content[data-state="closed"] {
+    animation: another-accordion-slide-up 200ms ease-out;
+  }
+
+  .another-accordion-content-inner {
+    @apply pb-4 leading-relaxed text-default-700;
+  }
+
+  @keyframes another-accordion-slide-down {
+    from {
+      height: 0;
+    }
+
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes another-accordion-slide-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+
+    to {
+      height: 0;
+    }
+  }
+}

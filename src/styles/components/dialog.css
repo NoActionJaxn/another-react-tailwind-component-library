@@ -1,0 +1,91 @@
+@layer components {
+  .another-dialog-overlay {
+    @apply fixed inset-0 z-50 bg-default-950/50;
+    animation: another-dialog-overlay-show 150ms ease-out;
+  }
+
+  .another-dialog-overlay[data-state="closed"] {
+    animation: another-dialog-overlay-hide 150ms ease-in;
+  }
+
+  .another-dialog-content {
+    @apply fixed top-1/2 left-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-sm border-2 p-6 shadow-xs;
+    animation: another-dialog-content-show 150ms ease-out;
+
+    &:focus {
+      @apply outline-0;
+    }
+  }
+
+  .another-dialog-content[data-state="closed"] {
+    animation: another-dialog-content-hide 150ms ease-in;
+  }
+
+  .another-dialog-content[data-variant="default"] {
+    @apply border-default-800 bg-default-50 text-default-950;
+  }
+
+  .another-dialog-close {
+    @apply absolute top-3 right-3;
+  }
+
+  .another-dialog-title {
+    @apply pr-8 text-lg leading-snug font-bold;
+  }
+
+  .another-dialog-description {
+    @apply mt-2 text-sm leading-normal text-default-600;
+  }
+
+  .another-dialog-body {
+    @apply mt-4 text-sm leading-normal text-default-800;
+  }
+
+  .another-dialog-footer {
+    @apply mt-6 flex flex-col-reverse items-stretch justify-end gap-2 sm:flex-row sm:items-center;
+  }
+
+  @keyframes another-dialog-overlay-show {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes another-dialog-overlay-hide {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes another-dialog-content-show {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.96);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  @keyframes another-dialog-content-hide {
+    from {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    to {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.96);
+    }
+  }
+}
