@@ -36,25 +36,31 @@ const ListCard = ({
       {...rest}
     >
       {image && <div className="another-list-card-image">{image}</div>}
-      <div className="another-list-card-body">
-        {title && (
-          <Typography as="h3" font="accent" className="another-list-card-title">
-            {title}
-          </Typography>
-        )}
-        {meta && <div className="another-list-card-meta">{meta}</div>}
-        {description && (
-          <Typography
-            as="p"
-            font="sans"
-            className="another-list-card-description"
-          >
-            {description}
-          </Typography>
-        )}
-        {children}
+      <div className="another-list-card-content">
+        <div className="another-list-card-body">
+          {title && (
+            <Typography
+              as="h3"
+              font="accent"
+              className="another-list-card-title"
+            >
+              {title}
+            </Typography>
+          )}
+          {meta && <div className="another-list-card-meta">{meta}</div>}
+          {description && (
+            <Typography
+              as="p"
+              font="sans"
+              className="another-list-card-description"
+            >
+              {description}
+            </Typography>
+          )}
+          {children}
+        </div>
+        {footer && <div className="another-list-card-footer">{footer}</div>}
       </div>
-      {footer && <div className="another-list-card-footer">{footer}</div>}
     </Component>
   );
 };
