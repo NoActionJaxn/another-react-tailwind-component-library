@@ -16,6 +16,9 @@ services:
   storybook-staging:
     image: ghcr.io/noactionjaxn/another-react-tailwind-component-library-storybook:staging
     restart: unless-stopped
+    # Not required for staging.*.com to work - the storybook container proxies
+    # to this one internally by service name. Published only so you can hit
+    # the staging build directly via <VM_IP>:8443 for debugging.
     ports:
       - "8080:80"
       - "8443:443"
