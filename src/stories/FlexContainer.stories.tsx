@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 
 import FlexContainerComponent from "../components/FlexContainer";
 
@@ -50,4 +51,11 @@ export const FlexContainer: Story = {
       </FlexContainerComponent>
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const flexEl = canvasElement.querySelector(".another-flex-container");
+
+    expect(flexEl).toHaveAttribute("data-direction", "row");
+    expect(flexEl).toHaveAttribute("data-wrap", "true");
+    expect(flexEl?.children).toHaveLength(4);
+  },
 };

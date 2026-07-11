@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 
 import RecentsComponent from "../components/Recents";
 import PostCard from "../components/PostCard.tsx";
@@ -102,6 +103,22 @@ export const Recents: Story = {
       <RecentsComponent {...args} items={items} viewMore={viewMore} />
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    expect(
+      canvas.getByRole("heading", { name: "Recent posts" }),
+    ).toBeInTheDocument();
+    expect(
+      canvas.getByRole("link", { name: "View all posts →" }),
+    ).toHaveAttribute("href", "/");
+    expect(
+      canvas.getByRole("heading", {
+        name: "Building a design system from scratch",
+      }),
+    ).toBeInTheDocument();
+    expect(canvas.getAllByRole("link", { name: "Read more" })).toHaveLength(4);
+  },
 };
 
 export const Mobile: Story = {

@@ -37,6 +37,7 @@
     "build": "tsc -p tsconfig.build.json && vite build --config vite.lib.config.ts && node scripts/copy-styles.mjs",
     "schema": "node scripts/generate-library-schema.mjs",
     "prepublishOnly": "npm run build",
+    "test": "vitest run",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",

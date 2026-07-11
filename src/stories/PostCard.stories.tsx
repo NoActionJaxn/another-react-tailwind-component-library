@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 
 import PostCardComponent from "../components/PostCard";
 import Avatar from "../components/Avatar";
@@ -68,4 +69,25 @@ export const PostCard: Story = {
       />
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    expect(
+      canvas.getByRole("heading", {
+        name: "Building a design system from scratch",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      canvas.getByText(
+        "A look at the decisions behind our component library, from theming to accessibility.",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      canvas.getByText("Jackson Hermitt · July 9, 2026"),
+    ).toBeInTheDocument();
+    expect(canvas.getByRole("link", { name: "Read more" })).toHaveAttribute(
+      "href",
+      "/",
+    );
+  },
 };

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 
 import SeparatorComponent from "../components/Separator";
 
@@ -50,6 +51,13 @@ export const Separator: Story = {
       <span>Below</span>
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    // decorative=true (the default) removes the separator from the a11y
+    // tree, so it can't be queried by role - fall back to its own class.
+    const separator = canvasElement.querySelector(".another-separator");
+
+    expect(separator).toHaveAttribute("data-orientation", "horizontal");
+  },
 };
 
 export const Vertical: Story = {
@@ -63,4 +71,9 @@ export const Vertical: Story = {
       <span>Right</span>
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const separator = canvasElement.querySelector(".another-separator");
+
+    expect(separator).toHaveAttribute("data-orientation", "vertical");
+  },
 };

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fn, userEvent, within } from "storybook/test";
 
 import { Button } from "../components/Button";
 
@@ -65,6 +66,7 @@ const meta = {
     size: "md",
     disabled: false,
     type: "button",
+    onClick: fn(),
   },
 } satisfies Meta<typeof Button>;
 
@@ -72,12 +74,43 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const DefaultButton: Story = {};
+export const DefaultButton: Story = {
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button", { name: "Button" });
+
+    await userEvent.click(button);
+
+    expect(args.onClick).toHaveBeenCalledOnce();
+  },
+};
+
+export const DisabledButton: Story = {
+  args: {
+    disabled: true,
+  },
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button", { name: "Button" });
+
+    expect(button).toBeDisabled();
+
+    await userEvent.click(button);
+
+    expect(args.onClick).not.toHaveBeenCalled();
+  },
+};
 
 export const IconButton: Story = {
   args: {
     children: "🔥",
     icon: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button", { name: "🔥" });
+
+    expect(button).toHaveAttribute("data-size", "md");
   },
 };
 
@@ -95,5 +128,12 @@ export const AnchorButton: Story = {
         </a>
       </Button>
     );
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const link = canvas.getByRole("link", { name: "Learn more" });
+
+    expect(link).toHaveAttribute("href", "https://google.com/");
+    expect(link.tagName).toBe("A");
   },
 };

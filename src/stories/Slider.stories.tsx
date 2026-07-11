@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, userEvent, within } from "storybook/test";
 
 import SliderComponent from "../components/Slider";
 
@@ -68,10 +69,34 @@ export const Slider: Story = {
   args: {
     defaultValue: [50],
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const thumb = canvas.getByRole("slider");
+
+    expect(thumb).toHaveAttribute("aria-valuenow", "50");
+
+    thumb.focus();
+    await userEvent.keyboard("{ArrowRight}");
+
+    expect(thumb).toHaveAttribute("aria-valuenow", "51");
+  },
 };
 
 export const RangeSlider: Story = {
   args: {
     defaultValue: [25, 75],
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const [lowerThumb, upperThumb] = canvas.getAllByRole("slider");
+
+    expect(lowerThumb).toHaveAttribute("aria-valuenow", "25");
+    expect(upperThumb).toHaveAttribute("aria-valuenow", "75");
+
+    lowerThumb.focus();
+    await userEvent.keyboard("{ArrowRight}");
+
+    expect(lowerThumb).toHaveAttribute("aria-valuenow", "26");
+    expect(upperThumb).toHaveAttribute("aria-valuenow", "75");
   },
 };

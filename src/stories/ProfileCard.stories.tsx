@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 
 import ProfileCardComponent from "../components/ProfileCard";
 import Avatar from "../components/Avatar";
@@ -69,4 +70,18 @@ export const ProfileCard: Story = {
       />
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    expect(
+      canvas.getByRole("heading", { name: "Jackson Hermitt" }),
+    ).toBeInTheDocument();
+    expect(canvas.getByText("Product Engineer")).toBeInTheDocument();
+    expect(
+      canvas.getByText(
+        "Building component libraries and sweating the details.",
+      ),
+    ).toBeInTheDocument();
+    expect(canvas.getByRole("button", { name: "Follow" })).toBeInTheDocument();
+  },
 };

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 
 import LabelComponent from "../components/Label";
 
@@ -45,4 +46,12 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Label: Story = {};
+export const Label: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const label = canvas.getByText("Email address");
+
+    expect(label.tagName).toBe("LABEL");
+    expect(label).toHaveAttribute("for", "email");
+  },
+};

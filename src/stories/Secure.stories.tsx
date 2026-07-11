@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 
 import SecureComponent from "../components/Secure";
 
@@ -42,10 +43,29 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Secure: Story = {};
+export const Secure: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // The fallback is shown visually (aria-hidden, but still queryable by
+    // text) while the real value stays in the DOM for assistive tech via
+    // VisuallyHidden, rather than being omitted entirely.
+    const fallback = canvas.getByText("•••• •••• •••• 1234");
+    const real = canvas.getByText("4242 4242 4242 1234");
+
+    expect(fallback).toHaveAttribute("aria-hidden", "true");
+    expect(real).toBeInTheDocument();
+  },
+};
 
 export const Revealed: Story = {
   args: {
     reveal: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    expect(canvas.getByText("4242 4242 4242 1234")).toBeInTheDocument();
+    expect(canvas.queryByText("•••• •••• •••• 1234")).not.toBeInTheDocument();
   },
 };

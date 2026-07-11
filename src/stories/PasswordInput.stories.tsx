@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fireEvent, within } from "storybook/test";
 
 import PasswordInputComponent from "../components/PasswordInput";
 
@@ -66,4 +67,21 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const PasswordInput: Story = {};
+export const PasswordInput: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByLabelText("Password");
+    const toggle = canvas.getByRole("button", { name: "Show password" });
+
+    expect(input).toHaveAttribute("type", "password");
+
+    // It's a press-and-hold control (onMouseDown shows, onMouseUp hides),
+    // not a click-to-toggle - fireEvent lets us observe the held state,
+    // which userEvent.click's rapid down+up sequence wouldn't.
+    await fireEvent.mouseDown(toggle);
+    expect(input).toHaveAttribute("type", "text");
+
+    await fireEvent.mouseUp(toggle);
+    expect(input).toHaveAttribute("type", "password");
+  },
+};

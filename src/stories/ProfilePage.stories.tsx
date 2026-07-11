@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, within } from "storybook/test";
 
 import ProfilePageComponent from "../components/ProfilePage";
 import Avatar from "../components/Avatar";
@@ -76,6 +77,16 @@ export const ProfilePage: Story = {
       />
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    expect(
+      canvas.getByRole("heading", { name: "Jackson Hermitt" }),
+    ).toBeInTheDocument();
+    expect(canvas.getByText("Product Engineer")).toBeInTheDocument();
+    expect(canvas.getByText("San Francisco, CA")).toBeInTheDocument();
+    expect(canvas.getByRole("button", { name: "Follow" })).toBeInTheDocument();
+  },
 };
 
 export const Mobile: Story = {
