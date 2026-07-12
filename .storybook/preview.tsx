@@ -26,7 +26,8 @@ const preview: Preview = {
     // Puts the standalone Docs pages (src/docs/*.mdx) first in the sidebar,
     // then the flat "Components" group (everything not a dialog, card, or
     // full page), then "Dialogs", "Cards", and "Pages" as their own
-    // sections. Each group is sorted alphabetically internally.
+    // sections, with "Utilities" (plain helper functions, not components)
+    // last. Each group is sorted alphabetically internally.
     options: {
       storySort: {
         order: [
@@ -36,6 +37,7 @@ const preview: Preview = {
           "Dialogs",
           "Cards",
           "Pages",
+          "Utilities",
         ],
       },
     },
