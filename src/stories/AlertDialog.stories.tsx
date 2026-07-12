@@ -5,7 +5,7 @@ import AlertDialogComponent from "../components/AlertDialog";
 import Button from "../components/Button.tsx";
 
 const meta = {
-  title: "Components/AlertDialog",
+  title: "Dialogs/AlertDialog",
   component: AlertDialogComponent,
   parameters: {
     docs: {

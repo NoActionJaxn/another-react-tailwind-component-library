@@ -102,7 +102,7 @@ A Husky `pre-commit` hook runs `lint-staged` (`eslint --fix` + `prettier --write
 **Stories**
 
 - Add a `src/stories/<Component>.stories.tsx` for every new component, with a `Meta` (`title`, `component`, `parameters.docs.description`, `tags: ["autodocs"]`, `argTypes` describing each prop) and at least a default `Story`.
-- `title` is always `Components/<ComponentName>` — a single flat group, no further sub-categorization (no `Forms/`, `Ui/`, `Cards/`, etc.). `preview.tsx`'s `storySort` puts the whole `Components` group after the standalone Docs pages, sorted alphabetically within it.
+- `title` is `Components/<ComponentName>` for most components — a flat group, no further sub-categorization. Three exceptions get their own top-level group instead: `Dialog`/`AlertDialog` use `Dialogs/<Name>`, card-shaped components use `Cards/<Name>` (`PostCard`, `ProfileCard`, `ListCard`), and full page layouts use `Pages/<Name>` (`BlogPost`, `ProfilePage`). `preview.tsx`'s `storySort` orders the groups Docs, Components, Dialogs, Cards, Pages, alphabetical within each.
 - `argTypes` descriptions are user-facing documentation — write them as full sentences.
 - For container-query components, demonstrate the responsive behavior with a resizable wrapper (`className="resize-x overflow-auto"` around the story content) rather than only a fixed-size box — see `Container.stories.tsx` / `GridContainer.stories.tsx` / `FlexContainer.stories.tsx`.
 

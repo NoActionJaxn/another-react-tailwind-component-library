@@ -6,7 +6,7 @@ import Avatar from "../components/Avatar";
 import Button from "../components/Button.tsx";
 
 const meta = {
-  title: "Components/ProfilePage",
+  title: "Pages/ProfilePage",
   component: ProfilePageComponent,
   parameters: {
     docs: {
