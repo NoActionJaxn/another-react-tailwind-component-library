@@ -4,7 +4,7 @@ import { expect, within } from "storybook/test";
 import AnchorComponent from "../components/Anchor";
 
 const meta = {
-  title: "Ui/Anchor",
+  title: "Components/Anchor",
   component: AnchorComponent,
   parameters: {
     layout: "centered",

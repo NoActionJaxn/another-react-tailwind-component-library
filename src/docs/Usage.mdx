@@ -1,0 +1,28 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Docs/Usage" />
+
+# Usage
+
+```tsx
+import { Button, Dialog } from "@noactionjaxn/another-react-tailwind-component-library";
+
+function Example() {
+  return (
+    <Dialog trigger={<Button>Open</Button>} title="Hello">
+      Dialog content.
+    </Dialog>
+  );
+}
+```
+
+Component styles are shipped as raw Tailwind source (`@apply`/`@layer`/`@theme`), not pre-compiled CSS - your own Tailwind build processes them, same as the rest of your app. This is why `tailwindcss` is a peer dependency rather than bundled: it lets every component share your project's Tailwind config instead of shipping a second, disconnected copy of Tailwind. See **Styling** for the CSS imports this requires.
+
+## Finding a component
+
+Every component has its own page in the sidebar, listed alphabetically within its group, with live, editable examples and a full prop table (via the **Controls** tab).
+
+- **Components** - everything not covered by the groups below
+- **Dialogs** - `Dialog` and `AlertDialog`
+- **Cards** - `PostCard`, `ProfileCard`, `ListCard`
+- **Pages** - full page layouts (`BlogPost`, `ProfilePage`)

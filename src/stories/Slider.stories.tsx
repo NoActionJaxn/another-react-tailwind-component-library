@@ -4,7 +4,7 @@ import { expect, userEvent, within } from "storybook/test";
 import SliderComponent from "../components/Slider";
 
 const meta = {
-  title: "Forms/Sliders",
+  title: "Components/Slider",
   component: SliderComponent,
   parameters: {
     layout: "centered",

@@ -6,7 +6,7 @@ import Avatar from "../components/Avatar";
 import Button from "../components/Button.tsx";
 
 const meta = {
-  title: "Ui/Cards/PostCard",
+  title: "Cards/PostCard",
   component: PostCardComponent,
   parameters: {
     layout: "centered",

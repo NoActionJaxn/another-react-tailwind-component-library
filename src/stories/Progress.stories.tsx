@@ -5,7 +5,7 @@ import { expect, within } from "storybook/test";
 import ProgressComponent from "../components/Progress";
 
 const meta = {
-  title: "Ui/Progress",
+  title: "Components/Progress",
   component: ProgressComponent,
   parameters: {
     layout: "centered",

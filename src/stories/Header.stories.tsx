@@ -6,7 +6,7 @@ import { type NavigationItem } from "../components/Navigation";
 import Container from "../components/Container.tsx";
 
 const meta = {
-  title: "Ui/Header",
+  title: "Components/Header",
   component: HeaderComponent,
   parameters: {
     docs: {

@@ -1,0 +1,30 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Docs/Dark Mode" />
+
+# Dark Mode
+
+Set `data-theme="dark"` on `<html>` (or any ancestor) to switch every component to dark mode - `theme.css` inverts the same `--color-default-*` scale under that attribute, so nothing else needs to change.
+
+```html
+<html data-theme="dark">
+```
+
+This is opt-in only - deliberately **not** tied to `prefers-color-scheme`. A component library shouldn't guess your app's intended theme from OS preference, since your app may have its own theme system that should take priority; toggle the attribute yourself (e.g. from a theme switcher, or by reading `prefers-color-scheme` in your own app code if you want that behavior).
+
+## Bringing your own theme
+
+If you're bringing your own theme (see **Styling**), `theme.css`'s dark variant isn't imported either - define your own `:root[data-theme="dark"] { ... }` block re-declaring the same 11 `--color-default-*` tokens to support dark mode with your palette:
+
+```css
+:root[data-theme="dark"] {
+  --color-default-50: /* your darkest shade */;
+  --color-default-100: /* ... */;
+  /* ...through 950, inverted */
+  --color-default-950: /* your lightest shade */;
+}
+```
+
+## Previewing it here
+
+Use the theme toggle in this site's toolbar (top of the page) to switch between light and dark and see how each component responds.

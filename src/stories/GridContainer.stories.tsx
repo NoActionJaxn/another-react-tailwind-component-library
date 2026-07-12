@@ -6,7 +6,7 @@ import GridContainerComponent from "../components/GridContainer";
 const items = Array.from({ length: 9 }, (_, index) => index + 1);
 
 const meta = {
-  title: "Ui/Containers",
+  title: "Components/GridContainer",
   component: GridContainerComponent,
   parameters: {
     docs: {

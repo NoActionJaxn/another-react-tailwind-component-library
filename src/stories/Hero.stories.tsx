@@ -5,7 +5,7 @@ import HeroComponent from "../components/Hero";
 import Button from "../components/Button.tsx";
 
 const meta = {
-  title: "Blocks/Hero",
+  title: "Components/Hero",
   component: HeroComponent,
   parameters: {
     docs: {

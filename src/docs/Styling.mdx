@@ -1,0 +1,76 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Docs/Styling" />
+
+# Styling
+
+Add these imports to your project's main CSS file, alongside your own `@import "tailwindcss";`:
+
+```css
+@import "tailwindcss";
+@import "@noactionjaxn/another-react-tailwind-component-library/styles/theme.css";
+@import "@noactionjaxn/another-react-tailwind-component-library/styles/components.css";
+```
+
+- **`styles/theme.css`** - the default design tokens (color scale, font family names). Optional - skip it if you're bringing your own theme (see below).
+- **`styles/components.css`** - every component's styles in one file.
+
+## Loading the default fonts
+
+`theme.css` sets font _names_ (`--font-sans: "Roboto Flex", sans-serif;`, etc.) but doesn't load the font files - a stylesheet nested inside your build isn't a valid place for a font `@import` (imports must be first in a stylesheet, and yours won't be, once it's inlined after your own `@import "tailwindcss";`). Load the actual fonts from your HTML `<head>` instead:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
+  rel="stylesheet"
+/>
+```
+
+Skip this if you're bringing your own theme with your own fonts.
+
+## Import a single component's styles
+
+If you only use a handful of components, import just what you need instead of `components.css`:
+
+```css
+@import "tailwindcss";
+@import "@noactionjaxn/another-react-tailwind-component-library/styles/theme.css";
+@import "@noactionjaxn/another-react-tailwind-component-library/styles/components/button.css";
+@import "@noactionjaxn/another-react-tailwind-component-library/styles/components/dialog.css";
+```
+
+Each component's stylesheet is named after its component, kebab-cased (e.g. `Button` -> `button.css`, `AlertDialog` -> `alert-dialog.css`).
+
+## Bring your own theme
+
+Component styles reference token names (`text-default-950`, `font-sans`, etc.), not hardcoded values. To use your own palette instead of the default one, skip `theme.css` and define your own `@theme` block with the same token names before importing component styles.
+
+**You need to define all 11 `--color-default-*` shades (50 through 950) and all 4 `--font-*` names.** Tailwind errors on a utility class like `border-default-200` if `--color-default-200` isn't defined anywhere - there's no partial fallback to the shipped defaults once you stop importing `theme.css`.
+
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-default-50: var(--color-slate-50);
+  --color-default-100: var(--color-slate-100);
+  --color-default-200: var(--color-slate-200);
+  --color-default-300: var(--color-slate-300);
+  --color-default-400: var(--color-slate-400);
+  --color-default-500: var(--color-slate-500);
+  --color-default-600: var(--color-slate-600);
+  --color-default-700: var(--color-slate-700);
+  --color-default-800: var(--color-slate-800);
+  --color-default-900: var(--color-slate-900);
+  --color-default-950: var(--color-slate-950);
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Inter", serif;
+  --font-mono: "Inter", monospace;
+  --font-accent: "Inter", sans-serif;
+}
+
+@import "@noactionjaxn/another-react-tailwind-component-library/styles/components.css";
+```
+
+If you bring your own theme, remember `theme.css`'s dark-mode block isn't imported either - see **Dark Mode** for what to add if you want dark mode support with your own palette.

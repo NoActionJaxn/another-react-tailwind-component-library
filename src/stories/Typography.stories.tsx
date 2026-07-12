@@ -4,7 +4,7 @@ import { expect, within } from "storybook/test";
 import TypographyComponent from "../components/Typography";
 
 const meta = {
-  title: "Ui/Typography",
+  title: "Components/Typography",
   component: TypographyComponent,
   parameters: {
     layout: "centered",

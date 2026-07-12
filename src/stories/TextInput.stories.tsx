@@ -3,7 +3,7 @@ import { expect, userEvent, within } from "storybook/test";
 import TextInputComponent from "../components/TextInput";
 
 const meta = {
-  title: "Forms/Inputs",
+  title: "Components/TextInput",
   component: TextInputComponent,
   parameters: {
     layout: "centered",

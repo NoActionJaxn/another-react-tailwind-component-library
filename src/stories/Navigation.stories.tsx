@@ -7,7 +7,7 @@ import NavigationComponent, {
 import Container from "../components/Container.tsx";
 
 const meta = {
-  title: "Ui/Navigation",
+  title: "Components/Navigation",
   component: NavigationComponent,
   parameters: {
     docs: {

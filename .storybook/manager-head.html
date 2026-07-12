@@ -7,3 +7,12 @@ main.css's font import - see src/styles/main.css for the same @import. -->
   href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
   rel="stylesheet"
 />
+<style>
+  /* docsMode (main.ts) turns every sidebar entry into a "document" node, so
+  Storybook's document-page icon now shows next to literally everything -
+  no longer meaningful as a distinguishing marker. Scoped to the sidebar
+  tree specifically so it doesn't affect this icon anywhere else in the UI. */
+  #storybook-explorer-tree svg[type="document"] {
+    display: none;
+  }
+</style>

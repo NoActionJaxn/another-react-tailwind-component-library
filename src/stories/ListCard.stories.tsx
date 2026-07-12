@@ -5,7 +5,7 @@ import ListCardComponent from "../components/ListCard";
 import Button from "../components/Button.tsx";
 
 const meta = {
-  title: "Ui/Cards/ListCard",
+  title: "Cards/ListCard",
   component: ListCardComponent,
   parameters: {
     layout: "centered",

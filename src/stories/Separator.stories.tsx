@@ -4,7 +4,7 @@ import { expect } from "storybook/test";
 import SeparatorComponent from "../components/Separator";
 
 const meta = {
-  title: "Ui/Separator",
+  title: "Components/Separator",
   component: SeparatorComponent,
   parameters: {
     layout: "centered",

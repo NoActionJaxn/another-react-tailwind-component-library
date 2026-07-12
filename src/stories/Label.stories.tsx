@@ -4,7 +4,7 @@ import { expect, within } from "storybook/test";
 import LabelComponent from "../components/Label";
 
 const meta = {
-  title: "Forms/Text",
+  title: "Components/Label",
   component: LabelComponent,
   parameters: {
     layout: "centered",

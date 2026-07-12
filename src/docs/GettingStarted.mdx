@@ -1,0 +1,46 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Docs/Getting Started" />
+
+# Getting Started
+
+## Install
+
+This package is published to [GitHub Packages](https://github.com/NoActionJaxn/another-react-tailwind-component-library/packages), not the public npm registry - installing it requires a bit more setup than a normal `npm install`, even though it's a public package: GitHub Packages requires authentication for every install, regardless of visibility.
+
+### 1. Point the `@noactionjaxn` scope at GitHub Packages
+
+Add a `.npmrc` to your project (or `~/.npmrc` for a global default):
+
+```
+@noactionjaxn:registry=https://npm.pkg.github.com
+```
+
+### 2. Authenticate
+
+Create a [personal access token](https://github.com/settings/tokens) with at least `read:packages` scope, then add it to the same `.npmrc` - preferably via an environment variable reference, so the real token stays out of a file that might get committed:
+
+```
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+### 3. Install
+
+```sh
+npm install @noactionjaxn/another-react-tailwind-component-library
+```
+
+## Peer dependencies
+
+This library has three peer dependencies your project needs to already have:
+
+- `react` and `react-dom` (`^19.0.0`)
+- `tailwindcss` (`^4.0.0`)
+
+`react-paginate` is also an **optional** peer dependency - only needed if you use the `Pagination` component. If you use `Pagination` without installing it, you'll get a clear error telling you to install it, instead of a broken build.
+
+## Next steps
+
+- **Usage** - importing and rendering your first component.
+- **Styling** - wiring up the default theme, or bringing your own.
+- **Dark Mode** - opting into the built-in dark theme.

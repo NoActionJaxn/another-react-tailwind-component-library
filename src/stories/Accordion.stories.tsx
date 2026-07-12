@@ -4,7 +4,7 @@ import { expect, userEvent, within } from "storybook/test";
 import AccordionComponent from "../components/Accordion";
 
 const meta = {
-  title: "Ui/Accordion",
+  title: "Components/Accordion",
   component: AccordionComponent,
   parameters: {
     layout: "centered",

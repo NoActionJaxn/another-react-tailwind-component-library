@@ -4,7 +4,7 @@ import { expect, userEvent, within } from "storybook/test";
 import SwitchComponent from "../components/Switch";
 
 const meta = {
-  title: "Forms/Options",
+  title: "Components/Switch",
   component: SwitchComponent,
   parameters: {
     layout: "centered",

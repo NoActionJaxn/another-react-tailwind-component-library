@@ -4,7 +4,7 @@ import { expect, screen, userEvent, within } from "storybook/test";
 import SelectComponent from "../components/Select";
 
 const meta = {
-  title: "Forms/Inputs",
+  title: "Components/Select",
   component: SelectComponent,
   parameters: {
     layout: "centered",
