@@ -1,0 +1,20 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Docs/Introduction" />
+
+# another-react-tailwind-component-library
+
+A React + Tailwind CSS v4 component library built on [Radix Primitives](https://www.radix-ui.com/primitives), styled with container queries so components adapt to the space they're given rather than the screen they assume.
+
+This site documents every component with live, interactive examples. Start with **Getting Started** in the sidebar to install the library, then **Usage** and **Styling** for how to wire it into your project.
+
+## Highlights
+
+- **Container queries, not viewport media queries** - components like `Container`, `GridContainer`, and `FlexContainer` respond to the space they're actually given, so the same component looks right in a sidebar, a modal, or full width.
+- **Built on Radix UI** - interactive components (`Dialog`, `Select`, `Accordion`, `Slider`, etc.) get full keyboard navigation and screen reader support for free.
+- **Token-driven theming** - every component references a small set of `--color-default-*` and `--font-*` tokens rather than hardcoded values, so restyling the whole library is a matter of redefining ~15 CSS custom properties. See **Styling** and **Dark Mode**.
+- **Ships source, not compiled CSS** - component styles are raw Tailwind (`@apply`/`@layer`), processed by *your* Tailwind build alongside the rest of your app.
+
+## Source
+
+The source lives at [github.com/NoActionJaxn/another-react-tailwind-component-library](https://github.com/NoActionJaxn/another-react-tailwind-component-library), published to GitHub Packages.
