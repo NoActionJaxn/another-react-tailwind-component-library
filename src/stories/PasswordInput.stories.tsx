@@ -4,7 +4,7 @@ import { expect, fireEvent, within } from "storybook/test";
 import PasswordInputComponent from "../components/PasswordInput";
 
 const meta = {
-  title: "Forms/Inputs",
+  title: "Components/PasswordInput",
   component: PasswordInputComponent,
   parameters: {
     layout: "centered",

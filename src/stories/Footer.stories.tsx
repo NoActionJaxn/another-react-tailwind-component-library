@@ -5,7 +5,7 @@ import FooterComponent, { type FooterColumn } from "../components/Footer";
 import Anchor from "../components/Anchor.tsx";
 
 const meta = {
-  title: "Ui/Footer",
+  title: "Components/Footer",
   component: FooterComponent,
   parameters: {
     docs: {

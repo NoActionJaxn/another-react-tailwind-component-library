@@ -24,18 +24,15 @@ const preview: Preview = {
       container: DocsContainer,
     },
     // Puts the standalone Docs pages (src/docs/*.mdx) first in the sidebar,
-    // in the reading order a new consumer would want, ahead of the
-    // alphabetically-sorted component groups.
+    // in the reading order a new consumer would want, ahead of the single
+    // flat "Components" group (every component's title is "Components/Name" -
+    // no further sub-categorization), which is sorted alphabetically.
     options: {
       storySort: {
         order: [
           "Docs",
           ["Introduction", "Getting Started", "Usage", "Styling", "Dark Mode"],
-          "Forms",
-          "Ui",
-          "Dialogs",
-          "Blocks",
-          "Pages",
+          "Components",
         ],
       },
     },

@@ -13,7 +13,7 @@ const posts = Array.from({ length: 23 }, (_, index) => ({
 }));
 
 const meta = {
-  title: "Ui/Pagination",
+  title: "Components/Pagination",
   component: PaginationComponent,
   parameters: {
     docs: {

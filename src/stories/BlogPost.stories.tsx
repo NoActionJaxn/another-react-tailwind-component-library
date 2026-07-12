@@ -5,7 +5,7 @@ import BlogPostComponent from "../components/BlogPost";
 import Avatar from "../components/Avatar";
 
 const meta = {
-  title: "Pages/BlogPost",
+  title: "Components/BlogPost",
   component: BlogPostComponent,
   parameters: {
     docs: {

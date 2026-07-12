@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test";
 import CheckboxGroupComponent from "../components/CheckboxGroup";
 
 const meta = {
-  title: "Forms/Options",
+  title: "Components/CheckboxGroup",
   component: CheckboxGroupComponent,
   parameters: {
     layout: "centered",

@@ -4,7 +4,7 @@ import { expect, userEvent, within } from "storybook/test";
 import CollapsibleComponent from "../components/Collapsible";
 
 const meta = {
-  title: "Ui/Collapsible",
+  title: "Components/Collapsible",
   component: CollapsibleComponent,
   parameters: {
     layout: "centered",

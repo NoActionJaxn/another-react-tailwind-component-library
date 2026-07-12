@@ -8,7 +8,7 @@ import Avatar from "../components/Avatar.tsx";
 import Button from "../components/Button.tsx";
 
 const meta = {
-  title: "Blocks/Recents",
+  title: "Components/Recents",
   component: RecentsComponent,
   parameters: {
     docs: {

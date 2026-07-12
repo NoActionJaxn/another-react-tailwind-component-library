@@ -4,7 +4,7 @@ import { expect, waitFor, within } from "storybook/test";
 import AvatarComponent from "../components/Avatar";
 
 const meta = {
-  title: "Ui/Avatar",
+  title: "Components/Avatar",
   component: AvatarComponent,
   parameters: {
     layout: "centered",

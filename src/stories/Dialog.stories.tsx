@@ -6,7 +6,7 @@ import Button from "../components/Button.tsx";
 import TextInput from "../components/TextInput.tsx";
 
 const meta = {
-  title: "Dialogs/Dialog",
+  title: "Components/Dialog",
   component: DialogComponent,
   parameters: {
     docs: {

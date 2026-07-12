@@ -4,7 +4,7 @@ import { expect, fn, userEvent, within } from "storybook/test";
 import RadioGroupComponent from "../components/RadioGroup";
 
 const meta = {
-  title: "Forms/Options",
+  title: "Components/RadioGroup",
   component: RadioGroupComponent,
   parameters: {
     layout: "centered",

@@ -4,7 +4,7 @@ import { expect, within } from "storybook/test";
 import SecureComponent from "../components/Secure";
 
 const meta = {
-  title: "Ui/Secure",
+  title: "Components/Secure",
   component: SecureComponent,
   parameters: {
     layout: "centered",
