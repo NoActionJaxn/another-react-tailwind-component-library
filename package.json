@@ -1,6 +1,5 @@
 {
-  "name": "another-react-tailwind-component-library",
-  "private": true,
+  "name": "@noactionjaxn/another-react-tailwind-component-library",
   "version": "0.1.0",
   "description": "A React + Tailwind CSS v4 component library built on Radix primitives, styled with container queries.",
   "type": "module",
@@ -8,6 +7,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NoActionJaxn/another-react-tailwind-component-library.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "keywords": [
     "react",

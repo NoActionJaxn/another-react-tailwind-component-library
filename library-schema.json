@@ -1,13 +1,13 @@
 {
-  "name": "another-react-tailwind-component-library",
+  "name": "@noactionjaxn/another-react-tailwind-component-library",
   "version": "0.1.0",
   "description": "A React + Tailwind CSS v4 component library built on Radix primitives, styled with container queries.",
-  "generated": "2026-07-11T05:23:40.491Z",
+  "generated": "2026-07-12T14:13:02.989Z",
   "components": {
     "Accolades": {
       "import": {
         "name": "Accolades",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["AccoladesProps", "AccoladesVariant"],
       "source": "src/components/Accolades.tsx",
@@ -42,7 +42,7 @@
     "Accordion": {
       "import": {
         "name": "Accordion",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["AccordionItem", "AccordionProps", "AccordionVariant"],
       "source": "src/components/Accordion.tsx",
@@ -88,7 +88,7 @@
     "AlertDialog": {
       "import": {
         "name": "AlertDialog",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["AlertDialogProps", "AlertDialogVariant"],
       "source": "src/components/AlertDialog.tsx",
@@ -144,7 +144,7 @@
     "Anchor": {
       "import": {
         "name": "Anchor",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["AnchorElement", "AnchorProps"],
       "source": "src/components/Anchor.tsx",
@@ -164,7 +164,7 @@
     "Avatar": {
       "import": {
         "name": "Avatar",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["AvatarProps", "AvatarSize", "AvatarVariant"],
       "source": "src/components/Avatar.tsx",
@@ -215,7 +215,7 @@
     "BlogPost": {
       "import": {
         "name": "BlogPost",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["BlogPostProps", "BlogPostVariant"],
       "source": "src/components/BlogPost.tsx",
@@ -252,7 +252,7 @@
     "Button": {
       "import": {
         "name": "Button",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["ButtonProps", "ButtonSize", "ButtonVariant"],
       "source": "src/components/Button.tsx",
@@ -296,7 +296,7 @@
     "ButtonGroup": {
       "import": {
         "name": "ButtonGroup",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["ButtonGroupProps"],
       "source": "src/components/ButtonGroup.tsx",
@@ -336,7 +336,7 @@
     "Checkbox": {
       "import": {
         "name": "Checkbox",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["CheckboxProps", "CheckboxSize", "CheckboxVariant"],
       "source": "src/components/Checkbox.tsx",
@@ -394,7 +394,7 @@
     "CheckboxGroup": {
       "import": {
         "name": "CheckboxGroup",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": [
         "CheckboxGroupOption",
@@ -462,7 +462,7 @@
     "Collapsible": {
       "import": {
         "name": "Collapsible",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["CollapsibleProps", "CollapsibleVariant"],
       "source": "src/components/Collapsible.tsx",
@@ -510,7 +510,7 @@
     "Container": {
       "import": {
         "name": "Container",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["ContainerProps"],
       "source": "src/components/Container.tsx",
@@ -526,7 +526,7 @@
     "Dialog": {
       "import": {
         "name": "Dialog",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["DialogProps", "DialogVariant"],
       "source": "src/components/Dialog.tsx",
@@ -582,7 +582,7 @@
     "FlexContainer": {
       "import": {
         "name": "FlexContainer",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["FlexContainerDirection", "FlexContainerProps"],
       "source": "src/components/FlexContainer.tsx",
@@ -615,7 +615,7 @@
     "Footer": {
       "import": {
         "name": "Footer",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": [
         "FooterColumn",
@@ -662,7 +662,7 @@
     "GridContainer": {
       "import": {
         "name": "GridContainer",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["GridContainerColumns", "GridContainerProps"],
       "source": "src/components/GridContainer.tsx",
@@ -690,7 +690,7 @@
     "Header": {
       "import": {
         "name": "Header",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["HeaderProps", "HeaderVariant"],
       "source": "src/components/Header.tsx",
@@ -724,7 +724,7 @@
     "Hero": {
       "import": {
         "name": "Hero",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["HeroProps", "HeroVariant"],
       "source": "src/components/Hero.tsx",
@@ -769,7 +769,7 @@
     "Label": {
       "import": {
         "name": "Label",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["LabelProps", "LabelSize", "LabelVariant"],
       "source": "src/components/Label.tsx",
@@ -802,7 +802,7 @@
     "ListCard": {
       "import": {
         "name": "ListCard",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["ListCardProps", "ListCardVariant"],
       "source": "src/components/ListCard.tsx",
@@ -847,7 +847,7 @@
     "Navigation": {
       "import": {
         "name": "Navigation",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": [
         "NavigationItem",
@@ -930,7 +930,7 @@
     "Pagination": {
       "import": {
         "name": "Pagination",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["PaginationProps", "PaginationView"],
       "source": "src/components/Pagination.tsx",
@@ -976,7 +976,7 @@
     "PasswordInput": {
       "import": {
         "name": "PasswordInput",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["PasswordInputProps"],
       "source": "src/components/PasswordInput.tsx",
@@ -1026,7 +1026,7 @@
     "PostCard": {
       "import": {
         "name": "PostCard",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["PostCardProps", "PostCardVariant"],
       "source": "src/components/PostCard.tsx",
@@ -1071,7 +1071,7 @@
     "ProfileCard": {
       "import": {
         "name": "ProfileCard",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["ProfileCardProps", "ProfileCardVariant"],
       "source": "src/components/ProfileCard.tsx",
@@ -1124,7 +1124,7 @@
     "ProfilePage": {
       "import": {
         "name": "ProfilePage",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["ProfilePageProps", "ProfilePageVariant"],
       "source": "src/components/ProfilePage.tsx",
@@ -1177,7 +1177,7 @@
     "Progress": {
       "import": {
         "name": "Progress",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["ProgressProps", "ProgressSize", "ProgressVariant"],
       "source": "src/components/Progress.tsx",
@@ -1223,7 +1223,7 @@
     "RadioGroup": {
       "import": {
         "name": "RadioGroup",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": [
         "RadioGroupOption",
@@ -1323,7 +1323,7 @@
     "Recents": {
       "import": {
         "name": "Recents",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["RecentsProps", "RecentsVariant"],
       "source": "src/components/Recents.tsx",
@@ -1370,7 +1370,7 @@
     "Secure": {
       "import": {
         "name": "Secure",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["SecureProps"],
       "source": "src/components/Secure.tsx",
@@ -1394,7 +1394,7 @@
     "Select": {
       "import": {
         "name": "Select",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": [
         "SelectOption",
@@ -1511,7 +1511,7 @@
     "Separator": {
       "import": {
         "name": "Separator",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["SeparatorProps", "SeparatorVariant"],
       "source": "src/components/Separator.tsx",
@@ -1550,7 +1550,7 @@
     "Slider": {
       "import": {
         "name": "Slider",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["SliderProps", "SliderSize", "SliderVariant"],
       "source": "src/components/Slider.tsx",
@@ -1647,7 +1647,7 @@
     "Switch": {
       "import": {
         "name": "Switch",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": ["SwitchProps", "SwitchSize", "SwitchVariant"],
       "source": "src/components/Switch.tsx",
@@ -1705,7 +1705,7 @@
     "TextInput": {
       "import": {
         "name": "TextInput",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": [
         "TextInputOrientation",
@@ -1782,7 +1782,7 @@
     "Typography": {
       "import": {
         "name": "Typography",
-        "from": "another-react-tailwind-component-library"
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
       "exportedTypes": [
         "TypographyElement",

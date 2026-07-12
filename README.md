@@ -4,9 +4,31 @@ A React + Tailwind CSS v4 component library built on [Radix Primitives](https://
 
 ## Install
 
-```sh
-npm install another-react-tailwind-component-library
-```
+This package is published to GitHub Packages, not the public npm registry - installing it requires a bit more setup than a normal `npm install`, even though it's a public package: GitHub Packages requires authentication for every install, regardless of visibility.
+
+1. Add a `.npmrc` to your project (or `~/.npmrc` for a global default) telling npm where to resolve the `@noactionjaxn` scope from:
+
+   ```
+   @noactionjaxn:registry=https://npm.pkg.github.com
+   ```
+
+2. Authenticate to GitHub Packages. Create a [personal access token](https://github.com/settings/tokens) with at least `read:packages` scope, then either add it to the same `.npmrc`:
+
+   ```
+   //npm.pkg.github.com/:_authToken=YOUR_TOKEN
+   ```
+
+   or set it as an environment variable and reference it instead (safer - keeps the token out of a file that might get committed):
+
+   ```
+   //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+   ```
+
+3. Install as usual:
+
+   ```sh
+   npm install @noactionjaxn/another-react-tailwind-component-library
+   ```
 
 This library has three peer dependencies your project needs to already have:
 
@@ -18,7 +40,10 @@ This library has three peer dependencies your project needs to already have:
 ## Usage
 
 ```tsx
-import { Button, Dialog } from "another-react-tailwind-component-library";
+import {
+  Button,
+  Dialog,
+} from "@noactionjaxn/another-react-tailwind-component-library";
 
 function Example() {
   return (
@@ -37,8 +62,8 @@ Add these imports to your project's main CSS file, alongside your own `@import "
 
 ```css
 @import "tailwindcss";
-@import "another-react-tailwind-component-library/styles/theme.css";
-@import "another-react-tailwind-component-library/styles/components.css";
+@import "@noactionjaxn/another-react-tailwind-component-library/styles/theme.css";
+@import "@noactionjaxn/another-react-tailwind-component-library/styles/components.css";
 ```
 
 - **`styles/theme.css`** - the default design tokens (color scale, font family names). Optional - skip it if you're bringing your own theme (see below).
@@ -75,9 +100,9 @@ If you only use a handful of components, import just what you need instead of `c
 
 ```css
 @import "tailwindcss";
-@import "another-react-tailwind-component-library/styles/theme.css";
-@import "another-react-tailwind-component-library/styles/components/button.css";
-@import "another-react-tailwind-component-library/styles/components/dialog.css";
+@import "@noactionjaxn/another-react-tailwind-component-library/styles/theme.css";
+@import "@noactionjaxn/another-react-tailwind-component-library/styles/components/button.css";
+@import "@noactionjaxn/another-react-tailwind-component-library/styles/components/dialog.css";
 ```
 
 Each component's stylesheet is named after its component, kebab-cased (e.g. `Button` -> `button.css`, `AlertDialog` -> `alert-dialog.css`).
@@ -109,7 +134,7 @@ Component styles reference token names (`text-default-950`, `font-sans`, etc.), 
   --font-accent: "Inter", sans-serif;
 }
 
-@import "another-react-tailwind-component-library/styles/components.css";
+@import "@noactionjaxn/another-react-tailwind-component-library/styles/components.css";
 ```
 
 ## Full component reference

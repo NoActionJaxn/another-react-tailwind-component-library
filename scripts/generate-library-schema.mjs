@@ -24,6 +24,7 @@ import { fileURLToPath } from "node:url";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 const tsconfigPath = join(rootDir, "tsconfig.build.json");
+const pkg = JSON.parse(readFileSync(join(rootDir, "package.json"), "utf8"));
 
 const kebabCase = (name) =>
   name
@@ -192,15 +193,13 @@ for (const { componentName, fileName, typeExports } of components) {
   const hasCss = existsSync(join(rootDir, "src", cssFile));
 
   schemaComponents[componentName] = {
-    import: { name: componentName, from: "another-react-tailwind-component-library" },
+    import: { name: componentName, from: pkg.name },
     exportedTypes: typeExports,
     source: relativePath,
     css: hasCss ? cssFile : null,
     props,
   };
 }
-
-const pkg = JSON.parse(readFileSync(join(rootDir, "package.json"), "utf8"));
 
 const schema = {
   name: pkg.name,
