@@ -20,9 +20,11 @@ main.css's font import - see src/styles/main.css for the same @import. -->
   /* Hides the per-section "Expand all/Collapse all" toggle that appears next
   to each expanded root heading in the sidebar. data-action="expand-all" is
   a stable attribute Storybook renders on that button, unlike its
-  emotion-hashed classes. */
+  emotion-hashed classes - but it ties that class on specificity, and
+  emotion injects its own <style> after this one loads, so without
+  !important the later same-specificity rule wins the cascade. */
   [data-action="expand-all"] {
-    display: none;
+    display: none !important;
   }
 
   /* Storybook's BrandArea wrapper forces display:block on its child anchor
