@@ -1,3 +1,4 @@
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <!-- Loads the fonts referenced by manager.ts's fontBase/fontCode. The manager
 UI is a separate document from the preview iframe, so it doesn't inherit
 main.css's font import - see src/styles/main.css for the same @import. -->
@@ -14,5 +15,35 @@ main.css's font import - see src/styles/main.css for the same @import. -->
   tree specifically so it doesn't affect this icon anywhere else in the UI. */
   #storybook-explorer-tree svg[type="document"] {
     display: none;
+  }
+
+  /* Hides the per-section "Expand all/Collapse all" toggle that appears next
+  to each expanded root heading in the sidebar. data-action="expand-all" is
+  a stable attribute Storybook renders on that button, unlike its
+  emotion-hashed classes - but it ties that class on specificity, and
+  emotion injects its own <style> after this one loads, so without
+  !important the later same-specificity rule wins the cascade. */
+  [data-action="expand-all"] {
+    display: none !important;
+  }
+
+  /* Storybook's BrandArea wrapper forces display:block on its child anchor
+  (the logo link), which overrides the anchor's own inline-flex centering and
+  left-aligns the logo image. ".sidebar-header" is a literal className
+  Storybook attaches to the heading wrapper (unlike the emotion-hashed
+  classes elsewhere), so it's a stable hook for overriding this. */
+  .sidebar-header a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* That centers the logo within its own box (BrandArea), but BrandArea
+    only spans the space left of the gear button - Storybook reserves
+    BrandArea's built-in marginRight (20px) plus the gear button's own
+    width (32px) = 52px on the right, against just this wrapper's
+    paddingLeft (8px) on the left. That 44px imbalance biases the logo
+    left of the sidebar's true center, so nudge it right by half of that
+    to compensate. All four numbers are fixed px values from Storybook's
+    own layout, not derived from content, so this stays accurate. */
+    transform: translateX(22px);
   }
 </style>

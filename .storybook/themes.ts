@@ -10,8 +10,9 @@ import { create } from "storybook/theming";
 // theme toggle, which only affects individual component canvases.
 export const darkTheme = create({
   base: "dark",
-  brandTitle: "another-react-tailwind-component-library",
+  brandTitle: "Another React + Tailwind Component Library",
   brandUrl: "https://another-react-tailwind-component-library.com",
+  brandImage: "/logo.svg",
   fontBase: '"Roboto Flex", sans-serif',
   fontCode: '"Roboto Mono", monospace',
 

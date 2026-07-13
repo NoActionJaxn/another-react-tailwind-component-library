@@ -1,4 +1,6 @@
-# another-react-tailwind-component-library
+![Another React + Tailwind Component Library](public/logo.svg)
+
+# Another React + Tailwind Component Library
 
 A React + Tailwind CSS v4 component library built on [Radix Primitives](https://www.radix-ui.com/primitives), styled with container queries so components adapt to the space they're given rather than the screen they assume.
 
