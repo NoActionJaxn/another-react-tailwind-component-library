@@ -1,4 +1,4 @@
-![Another React + Tailwind Component Library](public/logo.svg)
+![Another React + Tailwind Component Library](public/logo-dark.svg)
 
 # Another React + Tailwind Component Library
 
