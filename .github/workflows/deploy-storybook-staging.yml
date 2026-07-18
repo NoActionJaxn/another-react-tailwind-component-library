@@ -55,6 +55,7 @@ jobs:
           script: |
             set -euo pipefail
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+            docker network create edge 2>/dev/null || true
             cd /opt/storybook
             docker compose pull storybook-staging
             docker compose up -d storybook-staging

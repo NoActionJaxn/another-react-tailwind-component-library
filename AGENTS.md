@@ -125,16 +125,16 @@ When diagnosing any of these, don't guess from a screenshot alone — check actu
 
 ## Deployment and the staging environment
 
-Storybook is deployed as a static site to a single Oracle Cloud VM, behind Cloudflare. Two environments share that one VM (both containers, both in `deploy/docker-compose.yml`):
+Storybook is deployed as a static site to a single Oracle Cloud VM, behind Cloudflare. The VM also hosts other, unrelated projects, so this project doesn't own ports 80/443 itself — a shared Caddy reverse proxy (`/opt/edge`, not part of this repo) owns those ports and routes by hostname to each project's containers over a shared external Docker network (`edge`). Two environments of this project share that network:
 
 - `main` branch → `storybook` service (production, `another-react-tailwind-component-library.com`), via `.github/workflows/deploy-storybook.yml`.
 - `staging` branch → `storybook-staging` service (`staging.another-react-tailwind-component-library.com`), via `.github/workflows/deploy-storybook-staging.yml`.
 
-Each workflow only runs `docker compose pull/up -d <its own service>`, so deploying one never restarts the other.
+Each workflow only runs `docker compose pull/up -d <its own service>` inside `/opt/storybook` on the VM, so deploying one never restarts the other.
 
-**`nginx/nginx.conf` is deliberately different between the two branches, and `.gitattributes` (`merge=binary`) forces a manual conflict if a `git merge main` into `staging` ever touches it — do not resolve that conflict by silently taking main's version.** `main`'s copy holds a third `server_name staging.another-react-tailwind-component-library.com` block that reverse-proxies to the `storybook-staging` container over the docker-compose network (so Cloudflare only needs a plain DNS record for staging, no port-override rule). `staging`'s copy must **not** contain that block — since it's the same image built from a different ref, if staging's own nginx also tries to proxy `staging.*` requests to `storybook-staging`, it resolves to itself and loops forever until nginx 400s on an oversized request line. This actually happened once; see the `staging` branch history around the "infinite proxy loop" fix.
+`nginx/nginx.conf` inside this repo's image is plain HTTP only (no TLS, no per-hostname logic) — it doesn't know or care which domain it's being reached as. Caddy owns the domain-to-container mapping and terminates TLS one hop up, so `main` and `staging` run the exact same nginx config with no divergence between branches. (Older history: this used to differ per branch, with the container terminating TLS itself and `main`'s nginx doing the staging reverse-proxy hop, guarded by a `.gitattributes` `merge=binary` rule forcing a manual conflict on any cross-branch merge of this file — both are gone now that the two branches' copies are identical.)
 
-Also watch `server_names_hash_bucket_size` if adding more/longer hostnames — nginx's default (64 bytes) is too small for these domain names and it refuses to start entirely (crash-looping _both_ containers, not just the one you'd expect) rather than erroring gracefully.
+Also watch `server_names_hash_bucket_size` if this pattern is ever reintroduced with per-hostname nginx logic — nginx's default (64 bytes) is too small for long domain names and it refuses to start entirely rather than erroring gracefully.
 
 ## Notes for agents
 

@@ -1,26 +1,27 @@
 # Lives on the Oracle VM at /opt/storybook/docker-compose.yml (not deployed by CI).
 # Each workflow only runs `docker compose pull/up -d <service>` against its own
 # service, so a production deploy never restarts staging and vice versa.
-# Both share the same wildcard (*.another-react-tailwind-component-library.com)
-# Cloudflare Origin CA cert in ./certs - no separate cert needed for staging.
+#
+# Neither service publishes host ports or terminates TLS itself - both join
+# the shared `edge` network, and the VM-wide Caddy stack (in /opt/edge, not
+# part of this repo) reverse-proxies to them by hostname:
+#   another-react-tailwind-component-library.com -> storybook:80
+#   staging.another-react-tailwind-component-library.com -> storybook-staging:80
+# `edge` is created once on the VM with `docker network create edge` and is
+# shared with every other project hosted on this instance.
 services:
   storybook:
     image: ghcr.io/noactionjaxn/another-react-tailwind-component-library-storybook:latest
     restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./certs:/etc/nginx/certs:ro
+    networks:
+      - edge
 
   storybook-staging:
     image: ghcr.io/noactionjaxn/another-react-tailwind-component-library-storybook:staging
     restart: unless-stopped
-    # Not required for staging.*.com to work - the storybook container proxies
-    # to this one internally by service name. Published only so you can hit
-    # the staging build directly via <VM_IP>:8443 for debugging.
-    ports:
-      - "8080:80"
-      - "8443:443"
-    volumes:
-      - ./certs:/etc/nginx/certs:ro
+    networks:
+      - edge
+
+networks:
+  edge:
+    external: true
