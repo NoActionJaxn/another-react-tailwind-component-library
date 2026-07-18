@@ -4,7 +4,7 @@
   }
 
   .another-blog-post[data-variant="default"] {
-    @apply text-default-950;
+    @apply text-default-950 dark:text-default-50;
   }
 
   .another-blog-post-cover {
@@ -28,7 +28,7 @@
   }
 
   .another-blog-post-body {
-    @apply flex flex-col gap-4 text-base leading-relaxed text-default-800 @md:text-lg;
+    @apply flex flex-col gap-4 text-base leading-relaxed text-default-800 dark:text-default-100 @md:text-lg;
   }
 
   .another-blog-post-body h2 {
@@ -40,7 +40,7 @@
   }
 
   .another-blog-post-body blockquote {
-    @apply border-l-4 border-default-300 pl-4 text-default-600 italic;
+    @apply border-l-4 border-default-300 dark:border-default-700 pl-4 text-default-600 dark:text-default-400 italic;
   }
 
   .another-blog-post-body ul,

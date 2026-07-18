@@ -4,11 +4,11 @@
   }
 
   .another-accordion[data-variant="default"] {
-    @apply text-default-950;
+    @apply text-default-950 dark:text-default-50;
   }
 
   .another-accordion-item {
-    @apply border-b-2 border-default-200;
+    @apply border-b-2 border-default-200 dark:border-default-800;
   }
 
   .another-accordion-item:first-child {
@@ -28,7 +28,7 @@
   }
 
   .another-accordion-trigger:not([data-disabled]):hover {
-    @apply text-default-600;
+    @apply text-default-600 dark:text-default-400;
   }
 
   .another-accordion-trigger[data-disabled] {
@@ -60,7 +60,7 @@
   }
 
   .another-accordion-content-inner {
-    @apply pb-4 leading-relaxed text-default-700;
+    @apply pb-4 leading-relaxed text-default-700 dark:text-default-300;
   }
 
   @keyframes another-accordion-slide-down {

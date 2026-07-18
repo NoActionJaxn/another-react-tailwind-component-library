@@ -24,19 +24,19 @@
   }
 
   .another-radio-indicator {
-    @apply rounded-full bg-default-50;
+    @apply rounded-full bg-default-50 dark:bg-default-950;
   }
 
   .another-radio[data-variant="default"] {
-    @apply border-default-800 bg-default-50;
+    @apply border-default-800 dark:border-default-100 bg-default-50 dark:bg-default-950;
   }
 
   .another-radio[data-variant="default"]:not(:disabled):hover {
-    @apply bg-default-400;
+    @apply bg-default-400 dark:bg-default-600;
   }
 
   .another-radio[data-variant="default"][data-state="checked"] {
-    @apply bg-default-800 border-default-800;
+    @apply bg-default-800 dark:bg-default-100 border-default-800 dark:border-default-100;
   }
 
   .another-radio[data-size="sm"] {

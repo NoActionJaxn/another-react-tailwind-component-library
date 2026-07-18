@@ -16,7 +16,7 @@
   }
 
   .another-select-trigger[data-placeholder] > span {
-    @apply text-default-400;
+    @apply text-default-400 dark:text-default-600;
   }
 
   .another-select-trigger[data-disabled] {
@@ -28,11 +28,11 @@
   }
 
   .another-select-trigger[data-variant="default"] {
-    @apply border-default-800 bg-default-50 text-default-950;
+    @apply border-default-800 dark:border-default-100 bg-default-50 dark:bg-default-950 text-default-950 dark:text-default-50;
   }
 
   .another-select-trigger[data-variant="default"]:not([data-disabled]):hover {
-    @apply bg-default-100;
+    @apply bg-default-100 dark:bg-default-900;
   }
 
   .another-select-trigger[data-size="sm"] {
@@ -54,7 +54,7 @@
   }
 
   .another-select-content[data-variant="default"] {
-    @apply border-default-800 bg-default-50;
+    @apply border-default-800 dark:border-default-100 bg-default-50 dark:bg-default-950;
   }
 
   .another-select-viewport {
@@ -62,7 +62,7 @@
   }
 
   .another-select-scroll-button {
-    @apply flex h-6 items-center justify-center bg-default-50;
+    @apply flex h-6 items-center justify-center bg-default-50 dark:bg-default-950;
   }
 
   .another-select-scroll-button svg {
@@ -70,11 +70,11 @@
   }
 
   .another-select-item {
-    @apply relative flex items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-default-950 outline-0 select-none;
+    @apply relative flex items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-default-950 dark:text-default-50 outline-0 select-none;
   }
 
   .another-select-item[data-highlighted] {
-    @apply bg-default-100;
+    @apply bg-default-100 dark:bg-default-900;
   }
 
   .another-select-item[data-disabled] {

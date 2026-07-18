@@ -4,11 +4,11 @@
   }
 
   .another-profile-page[data-variant="default"] {
-    @apply text-default-950;
+    @apply text-default-950 dark:text-default-50;
   }
 
   .another-profile-page-cover {
-    @apply h-32 w-full overflow-hidden bg-default-200 @md:h-48;
+    @apply h-32 w-full overflow-hidden bg-default-200 dark:bg-default-800 @md:h-48;
   }
 
   .another-profile-page-cover > img {
@@ -20,7 +20,7 @@
   }
 
   .another-profile-page-avatar {
-    @apply -mt-12 rounded-full ring-4 ring-default-50 @md:-mt-8;
+    @apply -mt-12 rounded-full ring-4 ring-default-50 dark:ring-default-950 @md:-mt-8;
   }
 
   .another-profile-page-identity {
@@ -40,11 +40,11 @@
   }
 
   .another-profile-page-meta {
-    @apply flex flex-wrap items-center justify-center gap-4 border-t-2 border-default-200 px-4 py-3 text-sm text-default-500 @md:justify-start @md:px-8;
+    @apply flex flex-wrap items-center justify-center gap-4 border-t-2 border-default-200 dark:border-default-800 px-4 py-3 text-sm text-default-500 @md:justify-start @md:px-8;
   }
 
   .another-profile-page-bio {
-    @apply px-4 py-4 text-base leading-relaxed text-default-800 @md:px-8 @md:text-lg;
+    @apply px-4 py-4 text-base leading-relaxed text-default-800 dark:text-default-100 @md:px-8 @md:text-lg;
   }
 
   .another-profile-page-body {

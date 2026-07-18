@@ -11,7 +11,7 @@ import { create } from "storybook/theming";
 export const darkTheme = create({
   base: "dark",
   brandTitle: "Another React + Tailwind Component Library",
-  brandUrl: "https://another-react-tailwind-component-library.com",
+  brandUrl: "/",
   brandImage: "/logo.svg",
   fontBase: '"Roboto Flex", sans-serif',
   fontCode: '"Roboto Mono", monospace',

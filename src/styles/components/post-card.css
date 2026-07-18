@@ -4,7 +4,7 @@
   }
 
   .another-post-card[data-variant="default"] {
-    @apply border-default-800 bg-default-50 text-default-950;
+    @apply border-default-800 dark:border-default-100 bg-default-50 dark:bg-default-950 text-default-950 dark:text-default-50;
   }
 
   .another-post-card-image {
@@ -28,7 +28,7 @@
   }
 
   .another-post-card-description {
-    @apply text-base leading-normal text-default-800;
+    @apply text-base leading-normal text-default-800 dark:text-default-100;
   }
 
   .another-post-card-footer {
