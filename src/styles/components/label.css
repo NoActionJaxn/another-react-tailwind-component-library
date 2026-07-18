@@ -4,7 +4,7 @@
   }
 
   .another-label[data-variant="default"] {
-    @apply text-default-950;
+    @apply text-default-950 dark:text-default-50;
   }
 
   .another-label[data-size="lg"] {

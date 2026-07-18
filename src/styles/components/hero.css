@@ -4,11 +4,11 @@
   }
 
   .another-hero[data-variant="default"] {
-    @apply bg-default-50 text-default-950;
+    @apply bg-default-50 dark:bg-default-950 text-default-950 dark:text-default-50;
   }
 
   .another-hero[data-variant="inverted"] {
-    @apply bg-default-900 text-default-50;
+    @apply bg-default-900 dark:bg-default-100 text-default-50 dark:text-default-900;
   }
 
   .another-hero-background {
@@ -32,7 +32,7 @@
   }
 
   .another-hero[data-variant="inverted"] .another-hero-eyebrow {
-    @apply text-default-300;
+    @apply text-default-300 dark:text-default-700;
   }
 
   .another-hero-title {
@@ -40,11 +40,11 @@
   }
 
   .another-hero-description {
-    @apply max-w-xl text-base leading-relaxed text-default-700 @md:text-lg;
+    @apply max-w-xl text-base leading-relaxed text-default-700 dark:text-default-300 @md:text-lg;
   }
 
   .another-hero[data-variant="inverted"] .another-hero-description {
-    @apply text-default-200;
+    @apply text-default-200 dark:text-default-800;
   }
 
   .another-hero-actions {
@@ -54,24 +54,24 @@
   .another-hero[data-variant="inverted"]
     .another-hero-actions
     .another-button[data-variant="outline"] {
-    @apply border-default-50 text-default-50;
+    @apply border-default-50 dark:border-default-950 text-default-50 dark:text-default-950;
   }
 
   .another-hero[data-variant="inverted"]
     .another-hero-actions
     .another-button[data-variant="outline"]:not(:disabled):hover {
-    @apply bg-default-50 text-default-900;
+    @apply bg-default-50 dark:bg-default-950 text-default-900 dark:text-default-100;
   }
 
   .another-hero[data-variant="inverted"]
     .another-hero-actions
     .another-button[data-variant="ghost"] {
-    @apply text-default-50;
+    @apply text-default-50 dark:text-default-950;
   }
 
   .another-hero[data-variant="inverted"]
     .another-hero-actions
     .another-button[data-variant="ghost"]:not(:disabled):hover {
-    @apply bg-default-50/10;
+    @apply bg-default-50/10 dark:bg-default-950/10;
   }
 }

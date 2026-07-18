@@ -19,27 +19,27 @@
   }
 
   .another-button[data-variant="default"] {
-    @apply bg-default-800 border-default-800 text-default-50;
+    @apply bg-default-800 dark:bg-default-100 border-default-800 dark:border-default-100 text-default-50 dark:text-default-900;
   }
 
   .another-button[data-variant="default"]:not(:disabled):hover {
-    @apply bg-default-950;
+    @apply bg-default-950 dark:bg-default-50;
   }
 
   .another-button[data-variant="outline"] {
-    @apply bg-transparent border-default-800 text-default-800;
+    @apply bg-transparent border-default-800 dark:border-default-100 text-default-800 dark:text-default-100;
   }
 
   .another-button[data-variant="outline"]:not(:disabled):hover {
-    @apply bg-default-100;
+    @apply bg-default-100 dark:bg-default-900;
   }
 
   .another-button[data-variant="ghost"] {
-    @apply bg-transparent border-transparent text-default-800 shadow-none;
+    @apply bg-transparent border-transparent text-default-800 dark:text-default-100 shadow-none;
   }
 
   .another-button[data-variant="ghost"]:not(:disabled):hover {
-    @apply bg-default-100;
+    @apply bg-default-100 dark:bg-default-900;
   }
 
   .another-button[data-variant="link"] {

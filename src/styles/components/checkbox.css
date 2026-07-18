@@ -48,11 +48,11 @@
   }
 
   .another-checkbox[data-variant="default"] {
-    @apply border-default-800 bg-default-50;
+    @apply border-default-800 dark:border-default-100 bg-default-50 dark:bg-default-950;
   }
 
   .another-checkbox[data-variant="default"]:not(:disabled):hover {
-    @apply bg-default-100;
+    @apply bg-default-100 dark:bg-default-900;
   }
 
   .another-checkbox[data-size="sm"] {

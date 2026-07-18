@@ -1,6 +1,6 @@
 @layer components {
   .another-progress {
-    @apply relative w-full overflow-hidden rounded-full bg-default-200;
+    @apply relative w-full overflow-hidden rounded-full bg-default-200 dark:bg-default-800;
   }
 
   .another-progress-indicator {
@@ -8,7 +8,7 @@
   }
 
   .another-progress[data-variant="default"] .another-progress-indicator {
-    @apply bg-default-800;
+    @apply bg-default-800 dark:bg-default-100;
   }
 
   .another-progress[data-size="sm"] {

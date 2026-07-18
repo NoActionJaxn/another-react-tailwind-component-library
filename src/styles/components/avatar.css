@@ -12,7 +12,7 @@
   }
 
   .another-avatar[data-variant="default"] {
-    @apply bg-default-800 text-default-50;
+    @apply bg-default-800 dark:bg-default-100 text-default-50 dark:text-default-900;
   }
 
   .another-avatar[data-size="xs"] {

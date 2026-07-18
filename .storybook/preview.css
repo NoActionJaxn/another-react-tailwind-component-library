@@ -1,10 +1,16 @@
 /* Storybook-only: the preview canvas itself has no opinion on background,
-so it stays white even when a story's data-theme flips to dark. This reads
-the same --color-default-50 token theme.css already inverts for dark mode,
-rather than duplicating the dark/light logic. Not shipped to consumers -
-main.css intentionally doesn't set a body background, since that's an
-app-level decision, not a component-library one. */
+so it stays white even when a story's data-theme flips to dark. This file
+is plain CSS (not run through Tailwind's utility/variant engine - it's
+imported directly in preview.tsx), so the dark override below is a plain
+attribute selector rather than a `dark:` class, mirroring the same
+50<->950 pairing every component now applies explicitly. Not shipped to
+consumers - main.css intentionally doesn't set a body background, since
+that's an app-level decision, not a component-library one. */
 body {
   background-color: var(--color-default-50);
   transition: background-color 0.15s ease;
+}
+
+:root[data-theme="dark"] body {
+  background-color: var(--color-default-950);
 }

@@ -4,7 +4,7 @@
   }
 
   .another-list-card[data-variant="default"] {
-    @apply border-default-800 bg-default-50 text-default-950;
+    @apply border-default-800 dark:border-default-100 bg-default-50 dark:bg-default-950 text-default-950 dark:text-default-50;
   }
 
   .another-list-card-image {
@@ -32,7 +32,7 @@
   }
 
   .another-list-card-description {
-    @apply line-clamp-3 text-sm leading-normal text-default-800;
+    @apply line-clamp-3 text-sm leading-normal text-default-800 dark:text-default-100;
   }
 
   .another-list-card-footer {

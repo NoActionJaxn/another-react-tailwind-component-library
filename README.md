@@ -86,7 +86,7 @@ Skip this if you're bringing your own theme with your own fonts.
 
 ### Dark mode
 
-Set `data-theme="dark"` on `<html>` (or any ancestor) to switch every component to dark mode - `theme.css` inverts the same `--color-default-*` scale under that attribute, so nothing else needs to change.
+Set `data-theme="dark"` on `<html>` (or any ancestor) to switch every component to dark mode. Each component applies its own `dark:` classes explicitly (rather than the whole `--color-default-*` scale inverting behind the scenes), so a `dark:` prefix means "under `data-theme="dark"`" - `theme.css` registers that mapping via `@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));`.
 
 ```html
 <html data-theme="dark"></html>
@@ -94,7 +94,7 @@ Set `data-theme="dark"` on `<html>` (or any ancestor) to switch every component 
 
 This is opt-in only - deliberately **not** tied to `prefers-color-scheme`. A component library shouldn't guess your app's intended theme from OS preference, since your app may have its own theme system that should take priority; toggle the attribute yourself (e.g. from a theme switcher, or by reading `prefers-color-scheme` in your own app code if you want that behavior).
 
-If you're bringing your own theme (see below), `theme.css`'s dark variant isn't imported either - define your own `:root[data-theme="dark"] { ... }` block re-declaring the same 11 `--color-default-*` tokens to support dark mode with your palette.
+If you're bringing your own theme (see below), `theme.css`'s `@custom-variant dark` line isn't imported either - add that same line alongside your own `@theme` block, or every component's `dark:` classes fall back to Tailwind's default `prefers-color-scheme` behavior instead of responding to `data-theme`.
 
 ### Import a single component's styles
 
@@ -118,6 +118,8 @@ Component styles reference token names (`text-default-950`, `font-sans`, etc.), 
 ```css
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
   --color-default-50: var(--color-slate-50);
   --color-default-100: var(--color-slate-100);
@@ -138,6 +140,8 @@ Component styles reference token names (`text-default-950`, `font-sans`, etc.), 
 
 @import "@noactionjaxn/another-react-tailwind-component-library/styles/components.css";
 ```
+
+Only one palette is needed - each component's stylesheet already picks the right shade for light vs. dark per property, so you don't need to declare a separate inverted set yourself.
 
 ## Full component reference
 

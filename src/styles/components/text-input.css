@@ -22,16 +22,16 @@
   }
 
   .another-text-input[data-variant="default"] {
-    @apply border-default-800 text-default-950 bg-default-50;
+    @apply border-default-800 dark:border-default-100 text-default-950 dark:text-default-50 bg-default-50 dark:bg-default-950;
   }
 
   .another-text-input[data-variant="default"]:not(:disabled):hover {
-    @apply bg-default-100;
+    @apply bg-default-100 dark:bg-default-900;
   }
 
   .another-text-input[data-variant="default"]:focus-within,
   .another-text-input[data-variant="default"]:focus-within:hover {
-    @apply bg-default-50 ring-4 ring-cyan-400/50;
+    @apply bg-default-50 dark:bg-default-950 ring-4 ring-cyan-400/50;
   }
 
   .another-text-input[data-size="sm"] {

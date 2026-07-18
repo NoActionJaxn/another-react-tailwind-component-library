@@ -4,7 +4,7 @@
   }
 
   .another-button-group > .another-button {
-    @apply rounded-none border-l border-r border-default-800;
+    @apply rounded-none border-l border-r border-default-800 dark:border-default-100;
   }
 
   .another-button-group > .another-button:first-child {

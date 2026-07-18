@@ -12,6 +12,6 @@
   }
 
   .another-separator[data-variant="default"] {
-    @apply bg-default-200;
+    @apply bg-default-200 dark:bg-default-800;
   }
 }
