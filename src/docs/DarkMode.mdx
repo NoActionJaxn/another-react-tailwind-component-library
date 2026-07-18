@@ -4,7 +4,7 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 # Dark Mode
 
-Set `data-theme="dark"` on `<html>` (or any ancestor) to switch every component to dark mode - `theme.css` inverts the same `--color-default-*` scale under that attribute, so nothing else needs to change.
+Set `data-theme="dark"` on `<html>` (or any ancestor) to switch every component to dark mode. Each component applies its own `dark:` classes explicitly per property, rather than one global token inversion - `theme.css` registers what `dark:` means via `@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));`, so the prefix means "under `data-theme="dark"`" instead of Tailwind's default `prefers-color-scheme` behavior.
 
 ```html
 <html data-theme="dark">
@@ -14,16 +14,19 @@ This is opt-in only - deliberately **not** tied to `prefers-color-scheme`. A com
 
 ## Bringing your own theme
 
-If you're bringing your own theme (see **Styling**), `theme.css`'s dark variant isn't imported either - define your own `:root[data-theme="dark"] { ... }` block re-declaring the same 11 `--color-default-*` tokens to support dark mode with your palette:
+If you're bringing your own theme (see **Styling**), `theme.css`'s `@custom-variant dark` line isn't imported either - add that same line alongside your own `@theme` block:
 
 ```css
-:root[data-theme="dark"] {
-  --color-default-50: /* your darkest shade */;
-  --color-default-100: /* ... */;
-  /* ...through 950, inverted */
-  --color-default-950: /* your lightest shade */;
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  --color-default-50: /* your lightest shade */;
+  /* ...through 950 */
+  --color-default-950: /* your darkest shade */;
 }
 ```
+
+You only need **one** palette (not a separate inverted dark set) - every component's stylesheet already declares which literal shade it uses for light vs. dark per property.
 
 ## Previewing it here
 

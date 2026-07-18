@@ -1,10 +1,17 @@
+/* Makes Tailwind's `dark:` variant mean "under data-theme=dark" instead of
+its default `prefers-color-scheme` media query. Every component applies its
+own `dark:` classes explicitly (see src/styles/components/*.css) rather than
+relying on these tokens changing value - if you bring your own theme (skip
+this file), redeclare this line alongside your own @theme block. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
   /* Fonts */
   --font-sans: "Roboto Flex", sans-serif;
   --font-serif: "Roboto Serif", serif;
   --font-mono: "Roboto Mono", monospace;
   --font-accent: "Roboto Condensed", sans-serif;
-  /* Color Palettes (light, default) */
+  /* Color Palette */
   --color-default-50: var(--color-stone-50);
   --color-default-100: var(--color-stone-100);
   --color-default-200: var(--color-stone-200);
@@ -16,18 +23,4 @@
   --color-default-800: var(--color-stone-800);
   --color-default-900: var(--color-stone-900);
   --color-default-950: var(--color-stone-950);
-}
-
-:root[data-theme="dark"] {
-  --color-default-50: var(--color-stone-950);
-  --color-default-100: var(--color-stone-900);
-  --color-default-200: var(--color-stone-800);
-  --color-default-300: var(--color-stone-700);
-  --color-default-400: var(--color-stone-600);
-  --color-default-500: var(--color-stone-500);
-  --color-default-600: var(--color-stone-400);
-  --color-default-700: var(--color-stone-300);
-  --color-default-800: var(--color-stone-200);
-  --color-default-900: var(--color-stone-100);
-  --color-default-950: var(--color-stone-50);
 }

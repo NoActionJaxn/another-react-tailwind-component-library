@@ -20,10 +20,10 @@
   }
 
   .another-pagination-page-link {
-    @apply flex size-9 cursor-pointer items-center justify-center rounded-sm border-2 border-transparent text-sm font-semibold text-default-800 transition-colors ease-in-out duration-200;
+    @apply flex size-9 cursor-pointer items-center justify-center rounded-sm border-2 border-transparent text-sm font-semibold text-default-800 dark:text-default-100 transition-colors ease-in-out duration-200;
 
     &:hover {
-      @apply bg-default-100;
+      @apply bg-default-100 dark:bg-default-900;
     }
 
     &:focus {
@@ -32,10 +32,10 @@
   }
 
   .another-pagination-page-active .another-pagination-page-link {
-    @apply border-default-800 bg-default-800 text-default-50;
+    @apply border-default-800 dark:border-default-100 bg-default-800 dark:bg-default-100 text-default-50 dark:text-default-900;
   }
 
   .another-pagination-page-active .another-pagination-page-link:hover {
-    @apply bg-default-950;
+    @apply bg-default-950 dark:bg-default-50;
   }
 }

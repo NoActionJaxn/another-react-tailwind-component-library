@@ -1,6 +1,6 @@
 @layer components {
   .another-alert-dialog-overlay {
-    @apply fixed inset-0 z-50 bg-default-950/50;
+    @apply fixed inset-0 z-50 bg-default-950/50 dark:bg-default-50/50;
     animation: another-alert-dialog-overlay-show 150ms ease-out;
   }
 
@@ -22,7 +22,7 @@
   }
 
   .another-alert-dialog-content[data-variant="default"] {
-    @apply border-default-800 bg-default-50 text-default-950;
+    @apply border-default-800 dark:border-default-100 bg-default-50 dark:bg-default-950 text-default-950 dark:text-default-50;
   }
 
   .another-alert-dialog-title {
@@ -30,11 +30,11 @@
   }
 
   .another-alert-dialog-description {
-    @apply mt-2 text-sm leading-normal text-default-600;
+    @apply mt-2 text-sm leading-normal text-default-600 dark:text-default-400;
   }
 
   .another-alert-dialog-body {
-    @apply mt-4 text-sm leading-normal text-default-800;
+    @apply mt-4 text-sm leading-normal text-default-800 dark:text-default-100;
   }
 
   .another-alert-dialog-footer {

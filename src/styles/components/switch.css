@@ -20,29 +20,29 @@
   }
 
   .another-switch-thumb {
-    @apply block rounded-full border-2 bg-default-50 shadow-sm transition-transform ease-in-out duration-200;
+    @apply block rounded-full border-2 bg-default-50 dark:bg-default-950 shadow-sm transition-transform ease-in-out duration-200;
   }
 
   .another-switch[data-variant="default"] {
-    @apply border-default-800 bg-default-300;
+    @apply border-default-800 dark:border-default-100 bg-default-300 dark:bg-default-700;
   }
 
   .another-switch[data-variant="default"]:not(:disabled):hover {
-    @apply bg-default-400;
+    @apply bg-default-400 dark:bg-default-600;
   }
 
   .another-switch[data-variant="default"][data-state="checked"] {
-    @apply bg-default-800;
+    @apply bg-default-800 dark:bg-default-100;
   }
 
   .another-switch[data-variant="default"][data-state="checked"]:not(
       :disabled
     ):hover {
-    @apply bg-default-950;
+    @apply bg-default-950 dark:bg-default-50;
   }
 
   .another-switch[data-variant="default"] .another-switch-thumb {
-    @apply border-default-800;
+    @apply border-default-800 dark:border-default-100;
   }
 
   .another-switch[data-size="sm"] {

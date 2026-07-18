@@ -1,6 +1,6 @@
 @layer components {
   .another-typography {
-    @apply text-default-950;
+    @apply text-default-950 dark:text-default-50;
   }
 
   .another-typography[data-font="sans"] {
@@ -61,6 +61,6 @@
   }
 
   .another-typography code {
-    @apply rounded-sm bg-default-100 px-1 py-0.5 font-mono text-[0.9em];
+    @apply rounded-sm bg-default-100 dark:bg-default-900 px-1 py-0.5 font-mono text-[0.9em];
   }
 }

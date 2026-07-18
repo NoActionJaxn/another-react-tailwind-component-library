@@ -4,7 +4,7 @@
   }
 
   .another-recents[data-variant="default"] {
-    @apply text-default-950;
+    @apply text-default-950 dark:text-default-50;
   }
 
   .another-recents-inner {
@@ -20,6 +20,6 @@
   }
 
   .another-recents-view-more {
-    @apply shrink-0 text-sm font-semibold text-default-600 @md:text-base;
+    @apply shrink-0 text-sm font-semibold text-default-600 dark:text-default-400 @md:text-base;
   }
 }

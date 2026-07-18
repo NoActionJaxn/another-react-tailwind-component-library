@@ -4,7 +4,7 @@
   }
 
   .another-navigation[data-variant="default"] {
-    @apply text-default-950;
+    @apply text-default-950 dark:text-default-50;
   }
 
   .another-navigation-bar {
@@ -34,11 +34,11 @@
 
   .another-navigation-trigger:not([data-disabled]):hover,
   .another-navigation-link:not([data-disabled]):hover {
-    @apply bg-default-100;
+    @apply bg-default-100 dark:bg-default-900;
   }
 
   .another-navigation-trigger[data-state="open"] {
-    @apply bg-default-100;
+    @apply bg-default-100 dark:bg-default-900;
   }
 
   .another-navigation-trigger[data-disabled],
@@ -84,7 +84,7 @@
   }
 
   .another-navigation-viewport {
-    @apply relative mt-2 origin-top overflow-hidden rounded-sm border-2 border-default-800 bg-default-50 shadow-xs;
+    @apply relative mt-2 origin-top overflow-hidden rounded-sm border-2 border-default-800 dark:border-default-100 bg-default-50 dark:bg-default-950 shadow-xs;
     width: var(--radix-navigation-menu-viewport-width);
     height: var(--radix-navigation-menu-viewport-height);
     transition:
@@ -101,12 +101,12 @@
   }
 
   .another-navigation-mobile-panel {
-    @apply fixed inset-x-0 top-0 bottom-0 z-[2147483647] flex flex-col gap-1 overflow-y-auto border-t-2 border-default-200 p-4 @md:hidden;
+    @apply fixed inset-x-0 top-0 bottom-0 z-[2147483647] flex flex-col gap-1 overflow-y-auto border-t-2 border-default-200 dark:border-default-800 p-4 @md:hidden;
     animation: another-navigation-mobile-panel-in 150ms ease-out;
   }
 
   .another-navigation-mobile-panel[data-variant="default"] {
-    @apply bg-default-50;
+    @apply bg-default-50 dark:bg-default-950;
   }
 
   .another-navigation-mobile-link {
@@ -114,7 +114,7 @@
   }
 
   .another-navigation-mobile-link:not([data-disabled]):hover {
-    @apply bg-default-100;
+    @apply bg-default-100 dark:bg-default-900;
   }
 
   .another-navigation-mobile-link[data-disabled] {
@@ -126,7 +126,7 @@
   }
 
   .another-navigation-mobile-item .another-collapsible-trigger:hover {
-    @apply bg-default-100;
+    @apply bg-default-100 dark:bg-default-900;
   }
 
   .another-navigation-mobile-item .another-collapsible-content-inner {

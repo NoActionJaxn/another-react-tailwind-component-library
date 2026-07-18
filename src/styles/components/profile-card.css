@@ -4,11 +4,11 @@
   }
 
   .another-profile-card[data-variant="default"] {
-    @apply border-default-800 bg-default-50 text-default-950;
+    @apply border-default-800 dark:border-default-100 bg-default-50 dark:bg-default-950 text-default-950 dark:text-default-50;
   }
 
   .another-profile-card-cover {
-    @apply h-36 w-full overflow-hidden bg-default-200;
+    @apply h-36 w-full overflow-hidden bg-default-200 dark:bg-default-800;
   }
 
   .another-profile-card-cover > img {
@@ -20,7 +20,7 @@
   }
 
   .another-profile-card-avatar {
-    @apply -mt-16 mb-2 rounded-full ring-4 ring-default-50;
+    @apply -mt-16 mb-2 rounded-full ring-4 ring-default-50 dark:ring-default-950;
   }
 
   .another-profile-card-name {
@@ -32,7 +32,7 @@
   }
 
   .another-profile-card-bio {
-    @apply text-base leading-normal text-default-800;
+    @apply text-base leading-normal text-default-800 dark:text-default-100;
   }
 
   .another-profile-card-meta {
