@@ -10,8 +10,19 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "A modal dialog built on Radix's AlertDialog primitive, interrupting the user to confirm a destructive or otherwise significant action. Unlike a plain Dialog, it can only be dismissed via the Cancel or Action buttons.",
+        component: `A modal dialog built on Radix's AlertDialog primitive, interrupting the user to confirm a destructive or otherwise significant action. Unlike a plain Dialog, it can only be dismissed via the Cancel or Action buttons.
+
+**States & classes** (see \`styles/components/alert-dialog.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-alert-dialog-overlay\` | backdrop, always | background, fade animation |
+| \`.another-alert-dialog-content\` | dialog panel, always | layout, position, show/hide animation |
+| \`.another-alert-dialog-content[data-variant="default"]\` | \`variant="default"\` | background, border, text color |
+| \`.another-alert-dialog-title\` | heading, always | typography |
+| \`.another-alert-dialog-description\` | supporting copy, always | text color |
+| \`.another-alert-dialog-body\` | children content, always | text color |
+| \`.another-alert-dialog-footer\` | button row, always | layout |`,
       },
     },
   },

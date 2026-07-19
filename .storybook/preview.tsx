@@ -32,7 +32,14 @@ const preview: Preview = {
       storySort: {
         order: [
           "Docs",
-          ["Introduction", "Getting Started", "Usage", "Styling", "Dark Mode"],
+          [
+            "Introduction",
+            "Getting Started",
+            "Usage",
+            "Styling",
+            "Dark Mode",
+            "Retheming Components",
+          ],
           "Components",
           "Dialogs",
           "Cards",
@@ -42,9 +49,10 @@ const preview: Preview = {
       },
     },
   },
-  // Toggles the same data-theme attribute theme.css's dark mode reads (see
-  // the :root[data-theme="dark"] block there) - set on <html> so it affects
-  // the whole page, matching how a real consumer app would toggle it.
+  // Toggles the same data-theme attribute every component's dark: classes
+  // read (theme.css registers what dark: means via @custom-variant dark) -
+  // set on <html> so it affects the whole page, matching how a real
+  // consumer app would toggle it.
   decorators: [
     withThemeByDataAttribute({
       themes: {

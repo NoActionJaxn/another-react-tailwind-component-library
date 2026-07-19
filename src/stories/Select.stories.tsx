@@ -10,8 +10,21 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "An accessible select, built on Radix UI, that generates its options from an array of values.",
+        component: `An accessible select, built on Radix UI, that generates its options from an array of values.
+
+**States & classes** (see \`styles/components/select.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-select-trigger\` | root trigger, always | layout, border, focus ring |
+| \`.another-select-trigger[data-placeholder] > span\` | no value selected | placeholder text color |
+| \`.another-select-trigger[data-variant="default"]\` | \`variant="default"\` | border, background, text color |
+| \`.another-select-trigger[data-variant="default"]:not([data-disabled]):hover\` | hovering, not disabled | background |
+| \`.another-select-trigger[data-size="sm"\\|"md"\\|"lg"]\` | \`size\` prop | height, padding, text size |
+| \`.another-select-content[data-variant="default"]\` | open dropdown panel | border, background |
+| \`.another-select-scroll-button\` | scroll up/down buttons, when shown | background |
+| \`.another-select-item\` | each option, always | text color |
+| \`.another-select-item[data-highlighted]\` | keyboard/mouse highlighted | background |`,
       },
     },
   },

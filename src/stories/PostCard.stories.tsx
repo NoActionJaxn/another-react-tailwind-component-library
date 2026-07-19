@@ -12,8 +12,16 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "A flexible card with image, title, meta, description, and footer slots, well suited to a list of blog posts.",
+        component: `A flexible card with image, title, meta, description, and footer slots, well suited to a list of blog posts.
+
+**States & classes** (see \`styles/components/post-card.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-post-card\` | root element, always | border, shadow, transition |
+| \`.another-post-card[data-variant="default"]\` | \`variant="default"\` | background, border, text color |
+| \`.another-post-card-meta\` | meta row, always | text color |
+| \`.another-post-card-description\` | excerpt, always | text color |`,
       },
     },
   },

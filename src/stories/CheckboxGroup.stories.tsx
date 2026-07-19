@@ -10,8 +10,14 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "An accessible group of checkboxes, built from the Checkbox component, that reports the checked values as an array. Supports list and grid layouts.",
+        component: `An accessible group of checkboxes, built from the Checkbox component, that reports the checked values as an array. Supports list and grid layouts.
+
+**States & classes** (see \`styles/components/checkbox.css\`, and **Retheming Components** for how to target these; each individual checkbox also uses **Checkbox**'s own classes):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-checkbox-group-list\` | root element, always | layout |
+| \`.another-checkbox-group-list[data-view="grid"]\` | \`view="grid"\` | grid columns |`,
       },
     },
   },

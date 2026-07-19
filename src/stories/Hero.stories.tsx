@@ -10,8 +10,19 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "A full-bleed marketing hero section built on the Container component. Accepts an optional background image or color slot behind centered content, and uses @container queries so spacing and type scale respond to the container's own width rather than the viewport.",
+        component: `A full-bleed marketing hero section built on the Container component. Accepts an optional background image or color slot behind centered content, and uses @container queries so spacing and type scale respond to the container's own width rather than the viewport.
+
+**States & classes** (see \`styles/components/hero.css\`, and **Retheming Components** for how to target these). Note that \`"inverted"\` is a design variant, not a theme concept - it's meant to always contrast with the surrounding page, so it uses the *opposite* light/dark pairing from \`"default"\` in each mode:
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-hero[data-variant="default"]\` | \`variant="default"\` | background, text color |
+| \`.another-hero[data-variant="inverted"]\` | \`variant="inverted"\` | background, text color |
+| \`.another-hero-eyebrow\` | eyebrow label, always | text color |
+| \`.another-hero[data-variant="inverted"] .another-hero-eyebrow\` | inverted + eyebrow | text color override |
+| \`.another-hero-description\` | supporting copy, always | text color |
+| \`.another-hero[data-variant="inverted"] .another-hero-description\` | inverted + description | text color override |
+| \`.another-hero[data-variant="inverted"] .another-button[data-variant="outline"\\|"ghost"]\` | inverted + an outline/ghost action button | button color override for contrast |`,
       },
     },
   },

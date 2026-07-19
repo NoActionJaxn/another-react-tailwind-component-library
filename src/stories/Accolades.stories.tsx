@@ -9,8 +9,15 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "A single-row strip of press mentions, awards, or ratings that auto-slides and loops seamlessly. Items snap into place, and autoplay pauses on hover (desktop) or touch (mobile) so visitors can scroll or swipe through manually.",
+        component: `A single-row strip of press mentions, awards, or ratings that auto-slides and loops seamlessly. Items snap into place, and autoplay pauses on hover (desktop) or touch (mobile) so visitors can scroll or swipe through manually.
+
+**States & classes** (see \`styles/components/accolades.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-accolades[data-variant="default"]\` | \`variant="default"\` | text color |
+| \`.another-accolades-viewport\` | root scroll container, always | layout, spacing, scrollbar hiding |
+| \`.another-accolades-item\` | each item, always | layout |`,
       },
     },
   },

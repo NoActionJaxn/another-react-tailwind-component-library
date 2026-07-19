@@ -11,8 +11,14 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "A page header pairing a logo slot with the Navigation component, so the same items array that drives the desktop dropdown bar also collapses into a hamburger menu on mobile.",
+        component: `A page header pairing a logo slot with the Navigation component, so the same items array that drives the desktop dropdown bar also collapses into a hamburger menu on mobile.
+
+**States & classes** (see \`styles/components/header.css\`, and **Retheming Components** for how to target these; the embedded nav uses **Navigation**'s own classes):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-header\` | root element, always | position, bottom border |
+| \`.another-header[data-variant="default"]\` | \`variant="default"\` | background, text color |`,
       },
     },
   },

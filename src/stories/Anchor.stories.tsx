@@ -10,8 +10,15 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "A link styled to match the Button link variant, rendered as an <a> by default.",
+        component: `A link styled to match the Button link variant, rendered as an <a> by default.
+
+**States & classes** (see \`styles/components/anchor.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-anchor\` | root element, always | text color, underline, focus ring |
+| \`.another-anchor:hover\` | hovering | text color |
+| \`.another-anchor:disabled\`, \`.another-anchor[aria-disabled="true"]\` | disabled | pointer events, opacity |`,
       },
     },
   },

@@ -11,8 +11,14 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "A Container that lays its children out in a grid, reducing the column count as the container itself narrows, up to a maximum of 9 columns.",
+        component: `A Container that lays its children out in a grid, reducing the column count as the container itself narrows, up to a maximum of 9 columns.
+
+**States & classes** (see \`styles/components/grid-container.css\`, and **Retheming Components** for how to target these). No colors of its own - purely layout:
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-grid-container\` | root element, always | grid layout, gap |
+| \`.another-grid-container[data-columns="1".."9"]\` | \`columns\` prop | column count at each container breakpoint |`,
       },
     },
   },

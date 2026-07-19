@@ -11,8 +11,20 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "A modal dialog built on Radix's Dialog primitive. Unlike AlertDialog, it can be dismissed by clicking the overlay, pressing Escape, or the close button, making it suited to general-purpose content rather than a required confirmation.",
+        component: `A modal dialog built on Radix's Dialog primitive. Unlike AlertDialog, it can be dismissed by clicking the overlay, pressing Escape, or the close button, making it suited to general-purpose content rather than a required confirmation.
+
+**States & classes** (see \`styles/components/dialog.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-dialog-overlay\` | backdrop, always | background, fade animation |
+| \`.another-dialog-content\` | dialog panel, always | layout, position, show/hide animation |
+| \`.another-dialog-content[data-variant="default"]\` | \`variant="default"\` | background, border, text color |
+| \`.another-dialog-close\` | close button, always | position |
+| \`.another-dialog-title\` | heading, always | typography |
+| \`.another-dialog-description\` | supporting copy, always | text color |
+| \`.another-dialog-body\` | children content, always | text color |
+| \`.another-dialog-footer\` | button row, always | layout |`,
       },
     },
   },

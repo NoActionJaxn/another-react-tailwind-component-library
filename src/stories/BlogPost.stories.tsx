@@ -10,8 +10,19 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "A full blog post layout built on the Container component, using @container queries so its title, meta, and body scale with the container's own width rather than the viewport.",
+        component: `A full blog post layout built on the Container component, using @container queries so its title, meta, and body scale with the container's own width rather than the viewport.
+
+**States & classes** (see \`styles/components/blog-post.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-blog-post[data-variant="default"]\` | \`variant="default"\` | text color |
+| \`.another-blog-post-cover\` | cover image wrapper, always | aspect ratio, overflow |
+| \`.another-blog-post-title\` | heading, always | typography |
+| \`.another-blog-post-meta\` | byline row, always | layout, text color |
+| \`.another-blog-post-body\` | body content, always | typography, text color |
+| \`.another-blog-post-body h2\`, \`h3\` | headings inside body | typography |
+| \`.another-blog-post-body blockquote\` | blockquotes inside body | border, text color |`,
       },
     },
   },

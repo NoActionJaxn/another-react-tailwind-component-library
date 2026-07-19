@@ -10,8 +10,17 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "An accessible avatar with automatic fallback while the image loads or if it fails.",
+        component: `An accessible avatar with automatic fallback while the image loads or if it fails.
+
+**States & classes** (see \`styles/components/avatar.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-avatar\` | root element, always | shape, overflow, shadow |
+| \`.another-avatar-image\` | image loaded, always | sizing, object-fit |
+| \`.another-avatar-fallback\` | fallback shown, always | layout, typography |
+| \`.another-avatar[data-variant="default"]\` | \`variant="default"\` | background, text color |
+| \`.another-avatar[data-size="xs"\\|"sm"\\|"md"\\|"lg"\\|"xl"\\|"2xl"]\` | \`size\` prop | dimensions, text size |`,
       },
     },
   },

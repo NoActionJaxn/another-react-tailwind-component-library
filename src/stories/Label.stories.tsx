@@ -10,7 +10,14 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component: "An accessible label for form controls.",
+        component: `An accessible label for form controls.
+
+**States & classes** (see \`styles/components/label.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-label[data-variant="default"]\` | \`variant="default"\` | text color |
+| \`.another-label[data-size="sm"\\|"md"\\|"lg"]\` | \`size\` prop | text size |`,
       },
     },
   },

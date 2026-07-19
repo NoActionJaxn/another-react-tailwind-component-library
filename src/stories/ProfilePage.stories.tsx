@@ -11,8 +11,18 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "A full user profile page layout built on the Container component, using @container queries so the header switches from a stacked, centered layout to a horizontal one as the container widens.",
+        component: `A full user profile page layout built on the Container component, using @container queries so the header switches from a stacked, centered layout to a horizontal one as the container widens.
+
+**States & classes** (see \`styles/components/profile-page.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-profile-page[data-variant="default"]\` | \`variant="default"\` | text color |
+| \`.another-profile-page-cover\` | cover image wrapper, always | background |
+| \`.another-profile-page-avatar\` | avatar slot wrapper, always | ring color |
+| \`.another-profile-page-role\` | role text, always | text color |
+| \`.another-profile-page-meta\` | meta row, always | top border, text color |
+| \`.another-profile-page-bio\` | bio text, always | text color |`,
       },
     },
   },

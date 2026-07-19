@@ -11,8 +11,16 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "A horizontal card with image, title, meta, description, and footer slots, well suited to a vertical list of posts.",
+        component: `A horizontal card with image, title, meta, description, and footer slots, well suited to a vertical list of posts.
+
+**States & classes** (see \`styles/components/list-card.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-list-card\` | root element, always | border, shadow, transition |
+| \`.another-list-card[data-variant="default"]\` | \`variant="default"\` | background, border, text color |
+| \`.another-list-card-meta\` | meta row, always | text color |
+| \`.another-list-card-description\` | excerpt, always | text color |`,
       },
     },
   },

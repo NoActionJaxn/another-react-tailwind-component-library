@@ -10,8 +10,20 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "A single collapsible section built on Radix's Collapsible primitive, animated the same way as Accordion: content height is driven by Radix's --radix-collapsible-content-height variable so it expands and collapses smoothly. Use this for a standalone disclosure; use Accordion for a group of them.",
+        component: `A single collapsible section built on Radix's Collapsible primitive, animated the same way as Accordion: content height is driven by Radix's --radix-collapsible-content-height variable so it expands and collapses smoothly. Use this for a standalone disclosure; use Accordion for a group of them.
+
+**States & classes** (see \`styles/components/collapsible.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-collapsible[data-variant="default"]\` | \`variant="default"\` | text color |
+| \`.another-collapsible-trigger\` | trigger, always | layout, typography, focus ring |
+| \`.another-collapsible-trigger:not([data-disabled]):hover\` | hovering, not disabled | text color |
+| \`.another-collapsible-trigger[data-disabled]\` | disabled | cursor, opacity |
+| \`.another-collapsible-icon\` | chevron icon, always | size, rotation transition |
+| \`.another-collapsible-trigger[data-state="open"] .another-collapsible-icon\` | open | icon rotation |
+| \`.another-collapsible-content[data-state="open"\\|"closed"]\` | opening/closing | expand/collapse animation |
+| \`.another-collapsible-content-inner\` | content wrapper, always | text color, spacing |`,
       },
     },
   },

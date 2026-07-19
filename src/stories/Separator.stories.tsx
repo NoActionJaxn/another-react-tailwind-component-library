@@ -10,7 +10,13 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component: "An accessible visual divider, built on Radix UI.",
+        component: `An accessible visual divider, built on Radix UI.
+
+**States & classes** (see \`styles/components/separator.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-separator[data-variant="default"]\` | \`variant="default"\` | background |`,
       },
     },
   },

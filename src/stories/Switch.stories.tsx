@@ -10,7 +10,21 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component: "An accessible toggle switch with an optional label.",
+        component: `An accessible toggle switch with an optional label.
+
+**States & classes** (see \`styles/components/switch.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-switch\` | root track, always | shape, border, focus ring |
+| \`.another-switch:disabled\` | disabled | opacity |
+| \`.another-switch-thumb\` | the sliding knob, always | background |
+| \`.another-switch[data-variant="default"]\` | \`variant="default"\`, off | border, background |
+| \`.another-switch[data-variant="default"]:not(:disabled):hover\` | hovering, off, not disabled | background |
+| \`.another-switch[data-variant="default"][data-state="checked"]\` | on | background |
+| \`.another-switch[data-variant="default"][data-state="checked"]:not(:disabled):hover\` | hovering, on, not disabled | background |
+| \`.another-switch[data-variant="default"] .another-switch-thumb\` | \`variant="default"\` | thumb border |
+| \`.another-switch[data-size="sm"\\|"md"\\|"lg"]\` | \`size\` prop | track and thumb size, thumb travel distance |`,
       },
     },
   },

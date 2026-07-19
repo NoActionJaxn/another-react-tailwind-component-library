@@ -10,8 +10,23 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "A flexible button component that can render as a native button, anchor, or custom element while preserving your shared styling API.",
+        component: `A flexible button component that can render as a native button, anchor, or custom element while preserving your shared styling API.
+
+**States & classes** (see \`styles/components/button.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-button\` | root element, always | layout, typography, focus ring |
+| \`.another-button:disabled\` | \`disabled\` | opacity |
+| \`.another-button[data-variant="default"]\` | \`variant="default"\` | background, border, text color |
+| \`.another-button[data-variant="default"]:not(:disabled):hover\` | hovering, not disabled | background |
+| \`.another-button[data-variant="outline"]\` | \`variant="outline"\` | border, text color |
+| \`.another-button[data-variant="outline"]:not(:disabled):hover\` | hovering, not disabled | background |
+| \`.another-button[data-variant="ghost"]\` | \`variant="ghost"\` | text color |
+| \`.another-button[data-variant="ghost"]:not(:disabled):hover\` | hovering, not disabled | background |
+| \`.another-button[data-variant="link"]\` | \`variant="link"\` | text color, underline |
+| \`.another-button[data-variant="link"]:not(:disabled):hover\` | hovering, not disabled | text color |
+| \`.another-button[data-size="sm"\\|"md"\\|"lg"]\` | \`size\` prop | padding, height, text size |`,
       },
     },
   },

@@ -10,8 +10,19 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "A page footer with a brand/description block, responsive link columns, and a bottom bar for copyright and secondary links. Columns collapse from three to two per row as the container narrows.",
+        component: `A page footer with a brand/description block, responsive link columns, and a bottom bar for copyright and secondary links. Columns collapse from three to two per row as the container narrows.
+
+**States & classes** (see \`styles/components/footer.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-footer\` | root element, always | top border |
+| \`.another-footer[data-variant="default"]\` | \`variant="default"\` | background, text color |
+| \`.another-footer-description\` | tagline, always | text color |
+| \`.another-footer-column-title\` | column heading, always | text color |
+| \`.another-footer-link\` | each link, always | text color |
+| \`.another-footer-link:hover\` | hovering | text color |
+| \`.another-footer-bottom\` | bottom bar, always | top border, text color |`,
       },
     },
   },

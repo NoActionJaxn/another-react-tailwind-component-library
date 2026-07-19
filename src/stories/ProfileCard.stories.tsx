@@ -12,8 +12,19 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "A card with cover, avatar, name, role, bio, meta, and footer slots, well suited to a user profile.",
+        component: `A card with cover, avatar, name, role, bio, meta, and footer slots, well suited to a user profile.
+
+**States & classes** (see \`styles/components/profile-card.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-profile-card\` | root element, always | border, shadow, transition |
+| \`.another-profile-card[data-variant="default"]\` | \`variant="default"\` | background, border, text color |
+| \`.another-profile-card-cover\` | cover image wrapper, always | background |
+| \`.another-profile-card-avatar\` | avatar slot wrapper, always | ring color |
+| \`.another-profile-card-role\` | role text, always | text color |
+| \`.another-profile-card-bio\` | bio text, always | text color |
+| \`.another-profile-card-meta\` | meta row, always | text color |`,
       },
     },
   },

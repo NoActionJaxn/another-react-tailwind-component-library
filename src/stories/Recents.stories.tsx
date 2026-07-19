@@ -13,8 +13,14 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "A 'recent posts' section built on the GridContainer component, so the card grid collapses to a single column on mobile and expands as the container widens. Pairs a title with a view-more link above a grid of 3-5 items.",
+        component: `A 'recent posts' section built on the GridContainer component, so the card grid collapses to a single column on mobile and expands as the container widens. Pairs a title with a view-more link above a grid of 3-5 items.
+
+**States & classes** (see \`styles/components/recents.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-recents[data-variant="default"]\` | \`variant="default"\` | text color |
+| \`.another-recents-view-more\` | view-more link slot, always | text color |`,
       },
     },
   },

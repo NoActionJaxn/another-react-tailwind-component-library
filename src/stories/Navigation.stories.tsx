@@ -12,8 +12,21 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "A horizontal navigation bar built on Radix's NavigationMenu primitive. Takes an array of items - each is a plain link, or a trigger with a dropdown/submenu when a content component is supplied.",
+        component: `A horizontal navigation bar built on Radix's NavigationMenu primitive. Takes an array of items - each is a plain link, or a trigger with a dropdown/submenu when a content component is supplied.
+
+**States & classes** (see \`styles/components/navigation.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-navigation[data-variant="default"]\` | \`variant="default"\` | text color |
+| \`.another-navigation-trigger\`, \`.another-navigation-link\` | each item, always | layout, typography, focus ring |
+| \`.another-navigation-trigger:not([data-disabled]):hover\`, \`.another-navigation-link:not([data-disabled]):hover\` | hovering, not disabled | background |
+| \`.another-navigation-trigger[data-state="open"]\` | dropdown open | background |
+| \`.another-navigation-trigger[data-disabled]\`, \`.another-navigation-link[data-disabled]\` | disabled | pointer events, cursor, opacity |
+| \`.another-navigation-viewport\` | open dropdown panel, always | background, border, shadow |
+| \`.another-navigation-mobile-panel\` | mobile menu, always | border |
+| \`.another-navigation-mobile-panel[data-variant="default"]\` | \`variant="default"\` | background |
+| \`.another-navigation-mobile-link:not([data-disabled]):hover\` | hovering, not disabled | background |`,
       },
     },
   },

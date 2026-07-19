@@ -9,6 +9,20 @@ const meta = {
   component: ButtonGroupComponent,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component: `Groups Button components edge-to-edge into a single connected control.
+
+**States & classes** (see \`styles/components/button-group.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-button-group\` | root element, always | layout |
+| \`.another-button-group > .another-button\` | each child button, always | border, corner radius |
+| \`.another-button-group > .another-button:first-child\\|:last-child\` | first/last child | outer corner radius, outer border |
+| \`.another-button-group > .another-button:focus\` | a child button focused | stacking order |`,
+      },
+    },
   },
   tags: ["autodocs"],
 } satisfies Meta<typeof ButtonGroupComponent>;

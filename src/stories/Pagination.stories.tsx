@@ -18,8 +18,16 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "Paginates a list of items using react-paginate, rendering each page as either a list or a grid.",
+        component: `Paginates a list of items using react-paginate, rendering each page as either a list or a grid.
+
+**States & classes** (see \`styles/components/pagination.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-pagination-page-link\` | each page number, always | border, text color |
+| \`.another-pagination-page-link:hover\` | hovering | background |
+| \`.another-pagination-page-active .another-pagination-page-link\` | the current page | border, background, text color |
+| \`.another-pagination-page-active .another-pagination-page-link:hover\` | hovering the current page | background |`,
       },
     },
   },

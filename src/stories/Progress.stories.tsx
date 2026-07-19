@@ -11,7 +11,15 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component: "An accessible progress bar, built on Radix UI.",
+        component: `An accessible progress bar, built on Radix UI.
+
+**States & classes** (see \`styles/components/progress.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-progress\` | track, always | background |
+| \`.another-progress[data-variant="default"] .another-progress-indicator\` | \`variant="default"\` | fill color |
+| \`.another-progress[data-size="sm"\\|"md"\\|"lg"]\` | \`size\` prop | height |`,
       },
     },
   },

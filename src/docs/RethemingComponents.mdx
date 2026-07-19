@@ -1,0 +1,94 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Docs/Retheming Components" />
+
+# Retheming Components
+
+**Styling**'s "Bring your own theme" section covers replacing the palette for the whole library at once. This page covers the narrower case: changing how **one** component looks - a single variant, a single property, even a single hover state - without forking the library or touching every other component.
+
+## The technique
+
+Every shipped component style lives inside `@layer components` (see any file under `styles/components/` in the source, or your own `node_modules/@noactionjaxn/another-react-tailwind-component-library/dist/styles/components/`). Plain CSS you write yourself - no `@layer` wrapper at all - always outranks anything inside a `@layer`, regardless of selector specificity. That means you don't need `!important` or specificity tricks: just target the same selector the component uses, in an ordinary CSS rule, anywhere after your own `@import "tailwindcss"`.
+
+```css
+@import "tailwindcss";
+@import "@noactionjaxn/another-react-tailwind-component-library/styles/theme.css";
+@import "@noactionjaxn/another-react-tailwind-component-library/styles/components.css";
+
+/* Your override - plain CSS, not @layer-wrapped - wins automatically. */
+.another-button[data-variant="default"] {
+  background-color: #4f46e5;
+}
+```
+
+## Finding the right selector
+
+Every component's root element carries an `another-<kebab-name>` class (`Button` → `another-button`, `AlertDialog` → `another-alert-dialog`), and variants/sizes/states are plain attributes on that same element (`data-variant`, `data-size`, `data-state`, etc.) - not dynamic class names. Two ways to find the exact selector for what you want to change:
+
+- **Inspect it.** Open your browser's devtools on the rendered component - the class and every `data-*` attribute are right there on the element.
+- **Read the source.** Each component's stylesheet (`styles/components/<kebab-name>.css`) is shipped as plain, readable Tailwind source, not minified or mangled - open the one for the component you're changing and the selector you need is right there next to the property it controls.
+
+## Matching dark mode
+
+Component stylesheets pair every color with an explicit `dark:` class (see **Dark Mode**) rather than relying on the tokens themselves changing value, so a light-mode override needs its own dark-mode counterpart if you want one:
+
+```css
+.another-button[data-variant="default"] {
+  background-color: #4f46e5; /* indigo-600, light mode */
+}
+
+:root[data-theme="dark"] .another-button[data-variant="default"] {
+  background-color: #a5b4fc; /* indigo-300, dark mode */
+}
+```
+
+If you only override the light-mode rule, dark mode keeps using the library's own default color for that property - overrides are additive per property, not all-or-nothing per component.
+
+## Worked example: recoloring one variant, one property
+
+Say you want `Button`'s `default` variant to use your brand color instead of the library's neutral scale, but leave `outline`, `ghost`, and `link` alone. Open `styles/components/button.css` (or inspect a rendered default-variant button) to find the exact rule:
+
+```css
+/* library source, for reference - don't edit this, override it */
+.another-button[data-variant="default"] {
+  background-color: var(--color-default-800);
+  border-color: var(--color-default-800);
+  color: var(--color-default-50);
+}
+```
+
+Your override only needs to touch the property you actually want to change - `border-color` and `color` keep coming from the library's own rule if you don't redeclare them:
+
+```css
+.another-button[data-variant="default"] {
+  background-color: #4f46e5;
+}
+
+.another-button[data-variant="default"]:not(:disabled):hover {
+  background-color: #4338ca;
+}
+
+:root[data-theme="dark"] .another-button[data-variant="default"] {
+  background-color: #a5b4fc;
+}
+
+:root[data-theme="dark"] .another-button[data-variant="default"]:not(:disabled):hover {
+  background-color: #c7d2fe;
+}
+```
+
+## Worked example: overriding a single state, nothing else
+
+Overrides can be as narrow as one interaction state on one component. To change just `Checkbox`'s hover background, without touching its border, its checked state, or any other component:
+
+```css
+.another-checkbox[data-variant="default"]:not(:disabled):hover {
+  background-color: #eef2ff;
+}
+```
+
+Everything else about `Checkbox` - and every other component - keeps its default styling untouched.
+
+## When to reach for "bring your own theme" instead
+
+If you're overriding the same property on many components the same way (e.g. every component's dark-charcoal `default` variant), you're probably better off redefining the `--color-default-*` scale itself (see **Styling**) rather than repeating per-component overrides - that changes every component consistently in one place, the way the token system is designed to be used.

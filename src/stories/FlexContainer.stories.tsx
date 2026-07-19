@@ -11,8 +11,15 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          "A Container that lays its children out with flexbox, switching from a stacked column to a row once the container itself has enough width.",
+        component: `A Container that lays its children out with flexbox, switching from a stacked column to a row once the container itself has enough width.
+
+**States & classes** (see \`styles/components/flex-container.css\`, and **Retheming Components** for how to target these). No colors of its own - purely layout:
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-flex-container\` | root element, always | flex layout, gap |
+| \`.another-flex-container[data-direction="row"\\|"column"]\` | \`direction\` prop | flex-direction at each container breakpoint |
+| \`.another-flex-container[data-wrap="true"\\|"false"]\` | \`wrap\` prop | flex-wrap |`,
       },
     },
   },

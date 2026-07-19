@@ -10,8 +10,9 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "Displays a fallback visually (e.g. a masked value) while the real content stays in the document for assistive technology, via Radix's VisuallyHidden.",
+        component: `Displays a fallback visually (e.g. a masked value) while the real content stays in the document for assistive technology, via Radix's VisuallyHidden.
+
+**States & classes** (see \`styles/components/secure.css\`): \`.another-secure\` is layout-only (\`inline-flex items-center\`) - no colors or variants to retheme.`,
       },
     },
   },

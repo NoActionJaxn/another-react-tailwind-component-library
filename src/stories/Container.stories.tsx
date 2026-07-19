@@ -10,8 +10,9 @@ const meta = {
     // layout: "centered",
     docs: {
       description: {
-        component:
-          "Marks an element as a container query context (@container), letting descendants respond to the container's own width instead of the viewport.",
+        component: `Marks an element as a container query context (@container), letting descendants respond to the container's own width instead of the viewport.
+
+**States & classes**: \`Container\` has no dedicated stylesheet and no colors of its own - it renders a single \`@container\` utility class (see \`src/components/Container.tsx\`) with no root class or variants to target. \`GridContainer\` and \`FlexContainer\` wrap it and add their own layout classes; see those pages for their own tables.`,
       },
     },
   },

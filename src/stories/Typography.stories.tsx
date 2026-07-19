@@ -10,8 +10,16 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "A typography component that applies default sizing for the element it renders as, with selectable font families.",
+        component: `A typography component that applies default sizing for the element it renders as, with selectable font families.
+
+**States & classes** (see \`styles/components/typography.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-typography\` | root element, always | text color |
+| \`.another-typography[data-font="sans"\\|"sans-serif"\\|"mono"\\|"accent"]\` | \`font\` prop | font family |
+| \`h1.another-typography\` .. \`h6.another-typography\`, \`p.another-typography\` | rendered as that tag via \`as\` | type size, weight, leading |
+| \`.another-typography code\` | inline \`<code>\` inside, always | background |`,
       },
     },
   },

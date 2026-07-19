@@ -10,8 +10,18 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "An accessible slider, built on Radix UI, supporting single and range values.",
+        component: `An accessible slider, built on Radix UI, supporting single and range values.
+
+**States & classes** (see \`styles/components/slider.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-slider-track\` | track, always | background |
+| \`.another-slider-thumb\` | each thumb, always | shape, border, focus ring |
+| \`.another-slider[data-variant="default"] .another-slider-range\` | \`variant="default"\` | filled range color |
+| \`.another-slider[data-variant="default"] .another-slider-thumb\` | \`variant="default"\` | thumb border, background |
+| \`.another-slider[data-variant="default"]:not([data-disabled]) .another-slider-thumb:hover\` | hovering, not disabled | thumb background |
+| \`.another-slider[data-size="sm"\\|"md"\\|"lg"] .another-slider-thumb\` | \`size\` prop | thumb size |`,
       },
     },
   },

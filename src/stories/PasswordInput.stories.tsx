@@ -10,7 +10,9 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component: "A password input with a built-in show/hide toggle.",
+        component: `A password input with a built-in show/hide toggle.
+
+**States & classes**: \`PasswordInput\` has no stylesheet of its own - it composes **TextInput** (the field itself) and **Button** (the show/hide toggle). See those pages' tables for the selectors that control its appearance.`,
       },
     },
   },

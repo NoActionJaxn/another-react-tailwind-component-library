@@ -9,8 +9,17 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "A flexible text input with optional prepended and appended content.",
+        component: `A flexible text input with optional prepended and appended content.
+
+**States & classes** (see \`styles/components/text-input.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-text-input\` | root wrapper, always | border, shadow |
+| \`.another-text-input[data-variant="default"]\` | \`variant="default"\` | border, text color, background |
+| \`.another-text-input[data-variant="default"]:not(:disabled):hover\` | hovering, not disabled | background |
+| \`.another-text-input[data-variant="default"]:focus-within\` | input focused | background, focus ring |
+| \`.another-text-input[data-size="sm"\\|"md"\\|"lg"]\` | \`size\` prop | height, text size, inner padding |`,
       },
     },
   },

@@ -10,8 +10,21 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "A vertically stacked set of collapsible sections built on Radix's Accordion primitive. Content height is animated using Radix's --radix-accordion-content-height variable, so it expands and collapses smoothly rather than snapping open.",
+        component: `A vertically stacked set of collapsible sections built on Radix's Accordion primitive. Content height is animated using Radix's --radix-accordion-content-height variable, so it expands and collapses smoothly rather than snapping open.
+
+**States & classes** (see \`styles/components/accordion.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-accordion[data-variant="default"]\` | \`variant="default"\` | text color |
+| \`.another-accordion-item\` | each item, always | border |
+| \`.another-accordion-trigger\` | each item's trigger, always | layout, typography, focus ring |
+| \`.another-accordion-trigger:not([data-disabled]):hover\` | hovering, not disabled | text color |
+| \`.another-accordion-trigger[data-disabled]\` | item disabled | cursor, opacity |
+| \`.another-accordion-icon\` | chevron icon, always | size, rotation transition |
+| \`.another-accordion-trigger[data-state="open"] .another-accordion-icon\` | item open | icon rotation |
+| \`.another-accordion-content[data-state="open"\\|"closed"]\` | opening/closing | expand/collapse animation |
+| \`.another-accordion-content-inner\` | content wrapper, always | text color, spacing |`,
       },
     },
   },

@@ -10,8 +10,20 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component:
-          "An accessible radio group that generates its options from an array of values, with list and grid layouts.",
+        component: `An accessible radio group that generates its options from an array of values, with list and grid layouts.
+
+**States & classes** (see \`styles/components/radio-group.css\`, and **Retheming Components** for how to target these):
+
+| Selector | Applies when | Controls |
+|---|---|---|
+| \`.another-radio-group[data-view="grid"]\` | \`view="grid"\` | grid columns |
+| \`.another-radio\` | each radio, always | shape, border, focus ring |
+| \`.another-radio:disabled\` | disabled | opacity |
+| \`.another-radio-indicator\` | the filled dot, always | background |
+| \`.another-radio[data-variant="default"]\` | \`variant="default"\` | border, background |
+| \`.another-radio[data-variant="default"]:not(:disabled):hover\` | hovering, not disabled | background |
+| \`.another-radio[data-variant="default"][data-state="checked"]\` | checked | background, border |
+| \`.another-radio[data-size="sm"\\|"md"\\|"lg"]\` | \`size\` prop | radio and indicator size |`,
       },
     },
   },
