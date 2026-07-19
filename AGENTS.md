@@ -136,6 +136,19 @@ Each workflow only runs `docker compose pull/up -d <its own service>` inside `/o
 
 Also watch `server_names_hash_bucket_size` if this pattern is ever reintroduced with per-hostname nginx logic — nginx's default (64 bytes) is too small for long domain names and it refuses to start entirely rather than erroring gracefully.
 
+## Publishing a release
+
+The package publishes to GitHub Packages (`publishConfig.registry` in `package.json`), not the public npm registry. To cut a release:
+
+```bash
+npm version patch   # or minor/major - commits package.json and creates a vX.Y.Z tag
+git push origin main --follow-tags
+```
+
+Pushing the tag triggers `.github/workflows/release.yml`, which runs the test suite, publishes via `npm publish` (the `prepublishOnly` script builds automatically), and creates a GitHub Release with auto-generated notes. It verifies the pushed tag matches `package.json`'s version and fails fast if they've drifted — don't push a tag without also having bumped the version in the same commit (`npm version` does both together, so this only bites if you edit the version by hand).
+
+`npm install`, not `npm ci`, in that workflow for the same reason as the Dockerfile: `npm ci` over-strictly validates `@tailwindcss/oxide-wasm32-wasi`'s bundled foreign-platform fallback dependencies on a fresh install with no existing `node_modules`.
+
 ## Notes for agents
 
 - This is a library, not an app: there's no `index.html`/`src/main.tsx` app shell (removed as unused Vite-template leftovers) and no `dev`/`preview` npm scripts. Storybook is the only dev/preview surface (`.storybook/preview.tsx` imports `main.css` directly, independent of any app entry). `npm run build` produces the publishable package (`tsc -p tsconfig.build.json` + `vite build --config vite.lib.config.ts` + `scripts/copy-styles.mjs`) — see `vite.lib.config.ts` and `tsconfig.build.json`, which are separate from the Storybook/dev `vite.config.ts`.
