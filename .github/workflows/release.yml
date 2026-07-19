@@ -32,6 +32,13 @@ jobs:
       # node_modules (see the Dockerfile for the same issue/fix).
       - run: npm install
 
+      # The test suite renders stories in real Chromium (@vitest/browser-playwright,
+      # not jsdom - see AGENTS.md), which needs the browser binary itself, not
+      # just the playwright npm package. --with-deps also covers the system
+      # shared libraries the sandboxed runner doesn't have by default (the
+      # local-dev equivalent is `npx playwright install-deps`, see AGENTS.md).
+      - run: npx playwright install --with-deps chromium
+
       - name: Verify tag matches package.json version
         if: github.ref_type == 'tag'
         run: |
