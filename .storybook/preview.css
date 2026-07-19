@@ -14,3 +14,22 @@ body {
 :root[data-theme="dark"] body {
   background-color: var(--color-default-950);
 }
+
+/* addon-docs wraps every embedded story (the card with the zoom toolbar) in
+its own .sbdocs-preview element, background-colored from the *docs page's*
+theme (DocsContainer.tsx's permanently-dark `darkTheme`) - not from this
+story's own data-theme. That's correct for the surrounding docs prose, but
+wrong here: toggling an embedded story to light mode changes the
+component's own colors (see src/styles/components/*.css) while this wrapper
+stays hardcoded dark, so a light-mode component ends up sitting on a
+mismatched dark backdrop instead of the light one it needs for contrast.
+`!important` because addon-docs' own rule for this class has to be beaten
+regardless of its injection order (Emotion CSS-in-JS mounts at runtime, so
+it isn't reliably before or after this stylesheet in the cascade). */
+.sbdocs.sbdocs-preview {
+  background-color: var(--color-default-50) !important;
+}
+
+:root[data-theme="dark"] .sbdocs.sbdocs-preview {
+  background-color: var(--color-default-950) !important;
+}
