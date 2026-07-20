@@ -97,7 +97,7 @@ const bottom = (
 
 export const Footer: Story = {
   render: (args) => (
-    <div className="w-full border-2 border-dashed border-default-400">
+    <div className="w-full resize-x overflow-auto border-2 border-dashed border-default-400">
       <FooterComponent
         {...args}
         logo={logo}
@@ -109,31 +109,17 @@ export const Footer: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(
+    await expect(
       canvas.getByText(
         "A React and Tailwind component library built on container queries.",
       ),
     ).toBeInTheDocument();
-    expect(canvas.getByText("Product")).toBeInTheDocument();
-    expect(canvas.getByRole("link", { name: "Components" })).toHaveAttribute(
-      "href",
-      "/",
-    );
-    expect(
+    await expect(canvas.getByText("Product")).toBeInTheDocument();
+    await expect(
+      canvas.getByRole("link", { name: "Components" }),
+    ).toHaveAttribute("href", "/");
+    await expect(
       canvas.getByText("© 2026 Another. All rights reserved."),
     ).toBeInTheDocument();
   },
-};
-
-export const Mobile: Story = {
-  render: (args) => (
-    <div className="w-80 border-2 border-dashed border-default-400">
-      <FooterComponent
-        {...args}
-        logo={logo}
-        columns={columns}
-        bottom={bottom}
-      />
-    </div>
-  ),
 };

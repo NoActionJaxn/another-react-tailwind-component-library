@@ -76,9 +76,9 @@ export const Switch: Story = {
     const canvas = within(canvasElement);
     const toggle = canvas.getByRole("switch", { name: "Airplane mode" });
 
-    expect(toggle).not.toBeChecked();
+    await expect(toggle).not.toBeChecked();
 
     await userEvent.click(toggle);
-    expect(toggle).toBeChecked();
+    await expect(toggle).toBeChecked();
   },
 };

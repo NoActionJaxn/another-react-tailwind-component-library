@@ -1,0 +1,41 @@
+@layer components {
+  .another-animated-container-item {
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+  }
+
+  .another-animated-container-item[data-animation="fade"] {
+    animation-name: another-animated-container-fade;
+  }
+
+  .another-animated-container-item[data-animation="pop"] {
+    animation-name: another-animated-container-pop;
+  }
+
+  @keyframes another-animated-container-fade {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes another-animated-container-pop {
+    from {
+      opacity: 0;
+      scale: 0.8;
+    }
+
+    60% {
+      opacity: 1;
+      scale: 1.05;
+    }
+
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+}

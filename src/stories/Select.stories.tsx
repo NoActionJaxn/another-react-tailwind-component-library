@@ -64,6 +64,8 @@ const meta = {
     },
   },
   args: {
+    className: "",
+    id: "select",
     options: ["Small", "Medium", "Large", "Extra Large"],
     label: "Size",
     placeholder: "Select a size",
@@ -83,7 +85,7 @@ export const Select: Story = {
     const canvas = within(canvasElement);
     const trigger = canvas.getByRole("combobox", { name: "Size" });
 
-    expect(trigger).toHaveTextContent("Select a size");
+    await expect(trigger).toHaveTextContent("Select a size");
 
     await userEvent.click(trigger);
 
@@ -92,7 +94,7 @@ export const Select: Story = {
     const option = await screen.findByRole("option", { name: "Medium" });
     await userEvent.click(option);
 
-    expect(trigger).toHaveTextContent("Medium");
+    await expect(trigger).toHaveTextContent("Medium");
   },
 };
 

@@ -26,8 +26,7 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     as: {
-      control: "select",
-      options: ["span", "p", "h1", "h2", "h3", "h4", "h5", "h6"],
+      control: false,
       description: "The element rendered.",
     },
     font: {
@@ -58,8 +57,8 @@ export const Text: Story = {
       "The quick brown fox jumps over the lazy dog.",
     );
 
-    expect(text.tagName).toBe("SPAN");
-    expect(text).toHaveAttribute("data-font", "sans");
+    await expect(text.tagName).toBe("SPAN");
+    await expect(text).toHaveAttribute("data-font", "sans");
   },
 };
 
@@ -78,7 +77,7 @@ export const Titles: Story = {
     const canvas = within(canvasElement);
 
     for (let level = 1; level <= 6; level++) {
-      expect(
+      await expect(
         canvas.getByRole("heading", { level, name: `Heading ${level}` }),
       ).toBeInTheDocument();
     }

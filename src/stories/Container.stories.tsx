@@ -4,7 +4,7 @@ import { expect, within } from "storybook/test";
 import ContainerComponent from "../components/Container";
 
 const meta = {
-  title: "Components/Container",
+  title: "Containers/Container",
   component: ContainerComponent,
   parameters: {
     // layout: "centered",
@@ -19,7 +19,7 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     as: {
-      control: "text",
+      control: false,
       description: "The element rendered.",
     },
   },
@@ -53,6 +53,6 @@ export const Container: Story = {
     // has no accessible role/name of its own to query by directly.
     const containerEl = canvas.getByText("1").parentElement?.parentElement;
 
-    expect(containerEl).toHaveClass("@container");
+    await expect(containerEl).toHaveClass("@container");
   },
 };

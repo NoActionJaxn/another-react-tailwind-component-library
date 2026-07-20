@@ -23,6 +23,10 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
+    as: {
+      control: false,
+      description: "The element rendered.",
+    },
     variant: {
       control: "radio",
       options: ["default"],
@@ -32,8 +36,14 @@ const meta = {
       control: { type: "number", min: 10, max: 200, step: 10 },
       description: "Auto-slide speed in pixels per second.",
     },
+    items: {
+      control: false,
+      description: "Elements rendered as each accolade item.",
+    },
   },
   args: {
+    className: "",
+    as: "section",
     variant: "default",
     speed: 40,
   },
@@ -70,29 +80,13 @@ export const Accolades: Story = {
     // aria-hidden/inert) to make the auto-scroll loop seamless.
     const [visible, hidden] = canvas.getAllByText("Featured in TechCrunch");
 
-    expect(visible.closest(".another-accolades-item")).toHaveAttribute(
+    await expect(visible.closest(".another-accolades-item")).toHaveAttribute(
       "aria-hidden",
       "false",
     );
-    expect(hidden.closest(".another-accolades-item")).toHaveAttribute(
+    await expect(hidden.closest(".another-accolades-item")).toHaveAttribute(
       "aria-hidden",
       "true",
     );
   },
-};
-
-export const Mobile: Story = {
-  render: (args) => (
-    <div className="w-80 border-2 border-dashed border-default-400">
-      <AccoladesComponent {...args} items={items} />
-    </div>
-  ),
-};
-
-export const Desktop: Story = {
-  render: (args) => (
-    <div className="w-full max-w-5xl border-2 border-dashed border-default-400">
-      <AccoladesComponent {...args} items={items} />
-    </div>
-  ),
 };

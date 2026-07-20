@@ -108,26 +108,14 @@ export const Header: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(canvas.getByText("Another")).toBeInTheDocument();
-    expect(canvas.getByRole("link", { name: "Home" })).toHaveAttribute(
+    await expect(canvas.getByText("Another")).toBeInTheDocument();
+    await expect(canvas.getByRole("link", { name: "Home" })).toHaveAttribute(
       "href",
       "/",
     );
-    expect(canvas.getByRole("link", { name: "Pricing" })).toHaveAttribute(
+    await expect(canvas.getByRole("link", { name: "Pricing" })).toHaveAttribute(
       "href",
       "/pricing",
     );
   },
-};
-
-export const Mobile: Story = {
-  render: (args) => (
-    <div className="h-[150vh] w-80">
-      <HeaderComponent {...args} logo={logo} items={items} />
-      <p className="px-4 pt-20 text-sm text-default-500">
-        Open the menu - it takes over the full screen below the fixed logo bar
-        and scrolls independently.
-      </p>
-    </div>
-  ),
 };

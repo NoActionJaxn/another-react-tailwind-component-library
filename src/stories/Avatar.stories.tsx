@@ -72,8 +72,8 @@ export const Avatar: Story = {
   play: async ({ canvasElement }) => {
     const root = canvasElement.querySelector(".another-avatar");
 
-    expect(root).toHaveAttribute("data-size", "md");
-    expect(root).toHaveAttribute("data-variant", "default");
+    await expect(root).toHaveAttribute("data-size", "md");
+    await expect(root).toHaveAttribute("data-variant", "default");
   },
 };
 
@@ -85,7 +85,7 @@ export const FallbackOnly: Story = {
     const canvas = within(canvasElement);
 
     // No src means delayMs is 0, so the fallback renders immediately.
-    expect(canvas.getByText("JH")).toBeInTheDocument();
+    await expect(canvas.getByText("JH")).toBeInTheDocument();
   },
 };
 
@@ -98,8 +98,11 @@ export const BrokenImage: Story = {
 
     // Radix waits for the image to error AND fallbackDelay (600ms) to pass
     // before swapping to the fallback, to avoid a flash on fast loads.
-    await waitFor(() => expect(canvas.getByText("JH")).toBeInTheDocument(), {
-      timeout: 3000,
-    });
+    await waitFor(
+      async () => {
+        await expect(canvas.getByText("JH")).toBeInTheDocument();
+      },
+      { timeout: 3000 },
+    );
   },
 };

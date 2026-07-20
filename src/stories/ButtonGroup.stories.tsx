@@ -25,6 +25,42 @@ const meta = {
     },
   },
   tags: ["autodocs"],
+  args: {
+    className: "",
+    block: false,
+    icon: false,
+    size: "md",
+    variant: "outline",
+  },
+  argTypes: {
+    className: {
+      control: "text",
+      description: "Additional Tailwind classes to append.",
+    },
+    children: {
+      control: false,
+      description:
+        "One or more Button elements to group. Each child's block, icon, size, and variant are overridden by the group's own props unless the child sets its own.",
+    },
+    block: {
+      control: "boolean",
+      description: "Makes the group full width.",
+    },
+    icon: {
+      control: "boolean",
+      description: "Renders every child as a square icon-like button.",
+    },
+    size: {
+      control: { type: "select" },
+      options: ["sm", "md", "lg"],
+      description: "Size applied to every child button.",
+    },
+    variant: {
+      control: { type: "select" },
+      options: ["default", "outline", "ghost", "link"],
+      description: "Visual style variant applied to every child button.",
+    },
+  },
 } satisfies Meta<typeof ButtonGroupComponent>;
 
 export default meta;
@@ -58,13 +94,13 @@ export const ButtonGroup: Story = {
     const canvas = within(canvasElement);
 
     // Buttons that don't specify their own variant inherit the group's.
-    expect(canvas.getByRole("button", { name: "First" })).toHaveAttribute(
+    await expect(canvas.getByRole("button", { name: "First" })).toHaveAttribute(
       "data-variant",
       "outline",
     );
     // "third"/"Fourth"/"Fifth" pass their own variant="default", which
     // overrides the group's variant="outline".
-    expect(canvas.getByRole("button", { name: "third" })).toHaveAttribute(
+    await expect(canvas.getByRole("button", { name: "third" })).toHaveAttribute(
       "data-variant",
       "default",
     );

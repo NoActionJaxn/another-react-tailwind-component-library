@@ -37,6 +37,14 @@ const meta = {
       control: "text",
       description: "The post's title.",
     },
+    cover: {
+      control: false,
+      description: "Element rendered as the cover image.",
+    },
+    meta: {
+      control: false,
+      description: "Element rendered in the meta row.",
+    },
   },
   args: {
     variant: "default",
@@ -96,53 +104,17 @@ export const BlogPost: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(
+    await expect(
       canvas.getByRole("heading", {
         name: "Building a design system from scratch",
         level: 1,
       }),
     ).toBeInTheDocument();
-    expect(
+    await expect(
       canvas.getByText("Jackson Hermitt · July 10, 2026 · 4 min read"),
     ).toBeInTheDocument();
-    expect(
+    await expect(
       canvas.getByRole("heading", { name: "Why container queries", level: 2 }),
     ).toBeInTheDocument();
   },
-};
-
-export const Mobile: Story = {
-  render: (args) => (
-    <div className="w-80 border-2 border-dashed border-default-400">
-      <BlogPostComponent
-        {...args}
-        meta={
-          <>
-            <Avatar size="sm" fallback="JH" />
-            <span>Jackson Hermitt · July 10, 2026</span>
-          </>
-        }
-      >
-        {body}
-      </BlogPostComponent>
-    </div>
-  ),
-};
-
-export const Desktop: Story = {
-  render: (args) => (
-    <div className="w-full max-w-4xl border-2 border-dashed border-default-400">
-      <BlogPostComponent
-        {...args}
-        meta={
-          <>
-            <Avatar size="sm" fallback="JH" />
-            <span>Jackson Hermitt · July 10, 2026 · 4 min read</span>
-          </>
-        }
-      >
-        {body}
-      </BlogPostComponent>
-    </div>
-  ),
 };

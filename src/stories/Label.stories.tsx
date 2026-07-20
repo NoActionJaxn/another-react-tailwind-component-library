@@ -58,7 +58,7 @@ export const Label: Story = {
     const canvas = within(canvasElement);
     const label = canvas.getByText("Email address");
 
-    expect(label.tagName).toBe("LABEL");
-    expect(label).toHaveAttribute("for", "email");
+    await expect(label.tagName).toBe("LABEL");
+    await expect(label).toHaveAttribute("for", "email");
   },
 };

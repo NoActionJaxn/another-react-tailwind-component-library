@@ -43,8 +43,17 @@ const meta = {
       control: "text",
       description: "Supporting copy under the title.",
     },
+    trigger: {
+      control: false,
+      description: "Element rendered as the dialog's trigger.",
+    },
+    footer: {
+      control: false,
+      description: "Element rendered below the dialog's body.",
+    },
   },
   args: {
+    className: "",
     variant: "default",
     title: "Edit profile",
     description: "Update your profile details below.",
@@ -77,21 +86,21 @@ export const Dialog: Story = {
     const canvas = within(canvasElement);
     const trigger = canvas.getByRole("button", { name: "Edit profile" });
 
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
 
     await userEvent.click(trigger);
 
     // Radix renders dialog content into a portal outside canvasElement.
     const dialog = await screen.findByRole("dialog");
-    expect(within(dialog).getByText("Edit profile")).toBeInTheDocument();
+    await expect(within(dialog).getByText("Edit profile")).toBeInTheDocument();
 
     await userEvent.click(screen.getByRole("button", { name: "Close" }));
 
     // Radix's Presence keeps the dialog mounted until its CSS exit
     // transition finishes, so it doesn't disappear synchronously.
-    await waitFor(() =>
-      expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
-    );
+    await waitFor(async () => {
+      await expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
   },
 };
 

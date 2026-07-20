@@ -47,6 +47,22 @@ const meta = {
       control: "text",
       description: "A short bio.",
     },
+    cover: {
+      control: false,
+      description: "Element rendered as the cover image.",
+    },
+    avatar: {
+      control: false,
+      description: "Element rendered as the avatar.",
+    },
+    meta: {
+      control: false,
+      description: "Element rendered in the meta row.",
+    },
+    footer: {
+      control: false,
+      description: "Element rendered as the card's footer.",
+    },
   },
   args: {
     variant: "default",
@@ -84,15 +100,17 @@ export const ProfileCard: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(
+    await expect(
       canvas.getByRole("heading", { name: "Jackson Hermitt" }),
     ).toBeInTheDocument();
-    expect(canvas.getByText("Product Engineer")).toBeInTheDocument();
-    expect(
+    await expect(canvas.getByText("Product Engineer")).toBeInTheDocument();
+    await expect(
       canvas.getByText(
         "Building component libraries and sweating the details.",
       ),
     ).toBeInTheDocument();
-    expect(canvas.getByRole("button", { name: "Follow" })).toBeInTheDocument();
+    await expect(
+      canvas.getByRole("button", { name: "Follow" }),
+    ).toBeInTheDocument();
   },
 };

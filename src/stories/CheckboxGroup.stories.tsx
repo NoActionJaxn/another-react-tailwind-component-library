@@ -69,12 +69,15 @@ export const CheckboxGroup: Story = {
     const medium = canvas.getByRole("checkbox", { name: "Medium" });
     const small = canvas.getByRole("checkbox", { name: "Small" });
 
-    expect(medium).toBeChecked();
-    expect(small).not.toBeChecked();
+    await expect(medium).toBeChecked();
+    await expect(small).not.toBeChecked();
 
     await userEvent.click(small);
 
-    expect(small).toBeChecked();
-    expect(args.onValueChange).toHaveBeenLastCalledWith(["Medium", "Small"]);
+    await expect(small).toBeChecked();
+    await expect(args.onValueChange).toHaveBeenLastCalledWith([
+      "Medium",
+      "Small",
+    ]);
   },
 };

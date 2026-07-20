@@ -6,7 +6,7 @@ import FlexContainerComponent from "../components/FlexContainer";
 const items = ["First", "Second", "Third", "Fourth"];
 
 const meta = {
-  title: "Components/FlexContainer",
+  title: "Containers/FlexContainer",
   component: FlexContainerComponent,
   parameters: {
     docs: {
@@ -61,8 +61,8 @@ export const FlexContainer: Story = {
   play: async ({ canvasElement }) => {
     const flexEl = canvasElement.querySelector(".another-flex-container");
 
-    expect(flexEl).toHaveAttribute("data-direction", "row");
-    expect(flexEl).toHaveAttribute("data-wrap", "true");
-    expect(flexEl?.children).toHaveLength(4);
+    await expect(flexEl).toHaveAttribute("data-direction", "row");
+    await expect(flexEl).toHaveAttribute("data-wrap", "true");
+    await expect(flexEl?.children).toHaveLength(4);
   },
 };

@@ -45,6 +45,22 @@ const meta = {
       control: "text",
       description: "A short bio.",
     },
+    cover: {
+      control: false,
+      description: "Element rendered as the cover image.",
+    },
+    avatar: {
+      control: false,
+      description: "Element rendered as the avatar.",
+    },
+    meta: {
+      control: false,
+      description: "Element rendered in the meta row.",
+    },
+    footer: {
+      control: false,
+      description: "Element rendered as the page's footer.",
+    },
   },
   args: {
     variant: "default",
@@ -90,51 +106,13 @@ export const ProfilePage: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(
+    await expect(
       canvas.getByRole("heading", { name: "Jackson Hermitt" }),
     ).toBeInTheDocument();
-    expect(canvas.getByText("Product Engineer")).toBeInTheDocument();
-    expect(canvas.getByText("San Francisco, CA")).toBeInTheDocument();
-    expect(canvas.getByRole("button", { name: "Follow" })).toBeInTheDocument();
+    await expect(canvas.getByText("Product Engineer")).toBeInTheDocument();
+    await expect(canvas.getByText("San Francisco, CA")).toBeInTheDocument();
+    await expect(
+      canvas.getByRole("button", { name: "Follow" }),
+    ).toBeInTheDocument();
   },
-};
-
-export const Mobile: Story = {
-  render: (args) => (
-    <div className="w-80 border-2 border-dashed border-default-400">
-      <ProfilePageComponent
-        {...args}
-        cover={<div className="h-full w-full bg-default-300" />}
-        avatar={<Avatar size="xl" fallback="JH" />}
-        meta={meta_}
-        footer={
-          <>
-            <Button block>Follow</Button>
-            <Button variant="outline" block>
-              Message
-            </Button>
-          </>
-        }
-      />
-    </div>
-  ),
-};
-
-export const Desktop: Story = {
-  render: (args) => (
-    <div className="w-full max-w-4xl border-2 border-dashed border-default-400">
-      <ProfilePageComponent
-        {...args}
-        cover={<div className="h-full w-full bg-default-300" />}
-        avatar={<Avatar size="2xl" fallback="JH" />}
-        meta={meta_}
-        footer={
-          <>
-            <Button>Follow</Button>
-            <Button variant="outline">Message</Button>
-          </>
-        }
-      />
-    </div>
-  ),
 };

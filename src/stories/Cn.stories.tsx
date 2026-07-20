@@ -51,7 +51,9 @@ export const ConditionalClasses: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(canvas.getByText('"base-class is-active"')).toBeInTheDocument();
+    await expect(
+      canvas.getByText('"base-class is-active"'),
+    ).toBeInTheDocument();
   },
 };
 
@@ -64,7 +66,7 @@ export const ResolvesTailwindConflicts: Story = {
 
     // Both inputs set a background color; tailwind-merge keeps only the
     // later one and drops the earlier conflicting "bg-red-500".
-    expect(canvas.getByText('"p-2 bg-blue-500"')).toBeInTheDocument();
+    await expect(canvas.getByText('"p-2 bg-blue-500"')).toBeInTheDocument();
   },
 };
 
@@ -75,6 +77,6 @@ export const IgnoresFalsyValues: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(canvas.getByText('"text-sm font-bold"')).toBeInTheDocument();
+    await expect(canvas.getByText('"text-sm font-bold"')).toBeInTheDocument();
   },
 };

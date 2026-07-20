@@ -67,10 +67,10 @@ export const GridView: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(
+    await expect(
       canvas.getByText("Post 1: A look at design system decisions"),
     ).toBeInTheDocument();
-    expect(
+    await expect(
       canvas.queryByText("Post 7: A look at design system decisions"),
     ).not.toBeInTheDocument();
 
@@ -80,10 +80,10 @@ export const GridView: Story = {
     const pageTwo = await canvas.findByRole("button", { name: "Page 2" });
     await userEvent.click(pageTwo);
 
-    expect(
+    await expect(
       canvas.getByText("Post 7: A look at design system decisions"),
     ).toBeInTheDocument();
-    expect(
+    await expect(
       canvas.queryByText("Post 1: A look at design system decisions"),
     ).not.toBeInTheDocument();
   },
@@ -117,18 +117,18 @@ export const ListView: Story = {
     const previous = canvas.getByRole("button", { name: "Previous" });
     const next = canvas.getByRole("button", { name: "Next" });
 
-    expect(previous).toBeDisabled();
-    expect(
+    await expect(previous).toBeDisabled();
+    await expect(
       canvas.getByText("Post 1: A look at design system decisions"),
     ).toBeInTheDocument();
 
     await userEvent.click(next);
 
-    expect(previous).not.toBeDisabled();
-    expect(
+    await expect(previous).not.toBeDisabled();
+    await expect(
       canvas.getByText("Post 6: A look at design system decisions"),
     ).toBeInTheDocument();
-    expect(
+    await expect(
       canvas.queryByText("Post 1: A look at design system decisions"),
     ).not.toBeInTheDocument();
   },

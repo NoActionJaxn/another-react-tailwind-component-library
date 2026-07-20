@@ -28,6 +28,10 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
+    as: {
+      control: false,
+      description: "The element rendered.",
+    },
     variant: {
       control: "radio",
       options: ["default", "inverted"],
@@ -46,8 +50,17 @@ const meta = {
       control: "text",
       description: "Supporting copy under the title.",
     },
+    actions: {
+      control: false,
+      description: "Element rendered as the action buttons.",
+    },
+    background: {
+      control: false,
+      description: "Element rendered behind the content.",
+    },
   },
   args: {
+    as: "section",
     variant: "default",
     eyebrow: "Another Component Library",
     title: "Ship interfaces faster, without fighting the viewport",
@@ -80,16 +93,17 @@ export const Hero: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(canvas.getByText("Another Component Library")).toBeInTheDocument();
-    expect(
+    await expect(
+      canvas.getByText("Another Component Library"),
+    ).toBeInTheDocument();
+    await expect(
       canvas.getByRole("heading", {
         name: "Ship interfaces faster, without fighting the viewport",
       }),
     ).toBeInTheDocument();
-    expect(canvas.getByRole("link", { name: "Get started" })).toHaveAttribute(
-      "href",
-      "/",
-    );
+    await expect(
+      canvas.getByRole("link", { name: "Get started" }),
+    ).toHaveAttribute("href", "/");
   },
 };
 
@@ -123,22 +137,6 @@ export const BackgroundImage: Story = {
           </div>
         }
       />
-    </div>
-  ),
-};
-
-export const Mobile: Story = {
-  render: (args) => (
-    <div className="w-80 border-2 border-dashed border-default-400">
-      <HeroComponent {...args} actions={actions} />
-    </div>
-  ),
-};
-
-export const Desktop: Story = {
-  render: (args) => (
-    <div className="w-full max-w-5xl border-2 border-dashed border-default-400">
-      <HeroComponent {...args} actions={actions} />
     </div>
   ),
 };

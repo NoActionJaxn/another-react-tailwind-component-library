@@ -39,6 +39,18 @@ const meta = {
       control: "text",
       description: "The card's excerpt/body copy.",
     },
+    image: {
+      control: false,
+      description: "Element rendered as the card's image.",
+    },
+    meta: {
+      control: false,
+      description: "Element rendered in the meta row.",
+    },
+    footer: {
+      control: false,
+      description: "Element rendered as the card's footer.",
+    },
   },
   args: {
     variant: "default",
@@ -74,15 +86,14 @@ export const ListCard: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(
+    await expect(
       canvas.getByRole("heading", {
         name: "Building a design system from scratch",
       }),
     ).toBeInTheDocument();
-    expect(canvas.getByText("July 9, 2026")).toBeInTheDocument();
-    expect(canvas.getByRole("link", { name: "Read more" })).toHaveAttribute(
-      "href",
-      "/",
-    );
+    await expect(canvas.getByText("July 9, 2026")).toBeInTheDocument();
+    await expect(
+      canvas.getByRole("link", { name: "Read more" }),
+    ).toHaveAttribute("href", "/");
   },
 };

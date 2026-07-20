@@ -112,33 +112,19 @@ export const Recents: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(
+    await expect(
       canvas.getByRole("heading", { name: "Recent posts" }),
     ).toBeInTheDocument();
-    expect(
+    await expect(
       canvas.getByRole("link", { name: "View all posts →" }),
     ).toHaveAttribute("href", "/");
-    expect(
+    await expect(
       canvas.getByRole("heading", {
         name: "Building a design system from scratch",
       }),
     ).toBeInTheDocument();
-    expect(canvas.getAllByRole("link", { name: "Read more" })).toHaveLength(4);
+    await expect(
+      canvas.getAllByRole("link", { name: "Read more" }),
+    ).toHaveLength(4);
   },
-};
-
-export const Mobile: Story = {
-  render: (args) => (
-    <div className="w-80 border-2 border-dashed border-default-400">
-      <RecentsComponent {...args} items={items} viewMore={viewMore} />
-    </div>
-  ),
-};
-
-export const Desktop: Story = {
-  render: (args) => (
-    <div className="w-full max-w-5xl border-2 border-dashed border-default-400">
-      <RecentsComponent {...args} items={items} viewMore={viewMore} />
-    </div>
-  ),
 };

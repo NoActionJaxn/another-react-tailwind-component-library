@@ -40,6 +40,18 @@ const meta = {
       control: "text",
       description: "The card's excerpt/body copy.",
     },
+    image: {
+      control: false,
+      description: "Element rendered as the card's image.",
+    },
+    meta: {
+      control: false,
+      description: "Element rendered in the meta row.",
+    },
+    footer: {
+      control: false,
+      description: "Element rendered as the card's footer.",
+    },
   },
   args: {
     variant: "default",
@@ -80,22 +92,21 @@ export const PostCard: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(
+    await expect(
       canvas.getByRole("heading", {
         name: "Building a design system from scratch",
       }),
     ).toBeInTheDocument();
-    expect(
+    await expect(
       canvas.getByText(
         "A look at the decisions behind our component library, from theming to accessibility.",
       ),
     ).toBeInTheDocument();
-    expect(
+    await expect(
       canvas.getByText("Jackson Hermitt · July 9, 2026"),
     ).toBeInTheDocument();
-    expect(canvas.getByRole("link", { name: "Read more" })).toHaveAttribute(
-      "href",
-      "/",
-    );
+    await expect(
+      canvas.getByRole("link", { name: "Read more" }),
+    ).toHaveAttribute("href", "/");
   },
 };

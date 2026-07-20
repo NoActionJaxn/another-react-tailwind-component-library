@@ -78,12 +78,12 @@ export const Checkbox: Story = {
       name: "Accept terms and conditions",
     });
 
-    expect(checkbox).not.toBeChecked();
+    await expect(checkbox).not.toBeChecked();
 
     await userEvent.click(checkbox);
-    expect(checkbox).toBeChecked();
+    await expect(checkbox).toBeChecked();
 
     await userEvent.click(checkbox);
-    expect(checkbox).not.toBeChecked();
+    await expect(checkbox).not.toBeChecked();
   },
 };
