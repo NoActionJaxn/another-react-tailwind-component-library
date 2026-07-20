@@ -45,6 +45,22 @@ const meta = {
       control: "text",
       description: "A short bio.",
     },
+    cover: {
+      control: false,
+      description: "Element rendered as the cover image.",
+    },
+    avatar: {
+      control: false,
+      description: "Element rendered as the avatar.",
+    },
+    meta: {
+      control: false,
+      description: "Element rendered in the meta row.",
+    },
+    footer: {
+      control: false,
+      description: "Element rendered as the page's footer.",
+    },
   },
   args: {
     variant: "default",

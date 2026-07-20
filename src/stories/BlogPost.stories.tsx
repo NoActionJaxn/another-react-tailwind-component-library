@@ -37,6 +37,14 @@ const meta = {
       control: "text",
       description: "The post's title.",
     },
+    cover: {
+      control: false,
+      description: "Element rendered as the cover image.",
+    },
+    meta: {
+      control: false,
+      description: "Element rendered in the meta row.",
+    },
   },
   args: {
     variant: "default",
