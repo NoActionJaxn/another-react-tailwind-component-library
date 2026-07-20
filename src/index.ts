@@ -20,6 +20,11 @@ export {
   type AnchorProps,
 } from "./components/Anchor.tsx";
 export {
+  default as AnimatedContainer,
+  type AnimatedContainerAnimation,
+  type AnimatedContainerProps,
+} from "./components/AnimatedContainer.tsx";
+export {
   default as Avatar,
   type AvatarProps,
   type AvatarSize,
