@@ -39,6 +39,18 @@ const meta = {
       control: "text",
       description: "The card's excerpt/body copy.",
     },
+    image: {
+      control: false,
+      description: "Element rendered as the card's image.",
+    },
+    meta: {
+      control: false,
+      description: "Element rendered in the meta row.",
+    },
+    footer: {
+      control: false,
+      description: "Element rendered as the card's footer.",
+    },
   },
   args: {
     variant: "default",
