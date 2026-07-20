@@ -41,8 +41,17 @@ const meta = {
       control: "text",
       description: "Supporting copy under the title.",
     },
+    cancel: {
+      control: false,
+      description: "Element rendered as the dismissive button.",
+    },
+    action: {
+      control: false,
+      description: "Element rendered as the confirming button.",
+    },
   },
   args: {
+    className: "",
     variant: "default",
     title: "Delete this project?",
     description:

@@ -43,8 +43,17 @@ const meta = {
       control: "text",
       description: "Supporting copy under the title.",
     },
+    trigger: {
+      control: false,
+      description: "Element rendered as the dialog's trigger.",
+    },
+    footer: {
+      control: false,
+      description: "Element rendered below the dialog's body.",
+    },
   },
   args: {
+    className: "",
     variant: "default",
     title: "Edit profile",
     description: "Update your profile details below.",
