@@ -100,15 +100,17 @@ export const ProfileCard: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(
+    await expect(
       canvas.getByRole("heading", { name: "Jackson Hermitt" }),
     ).toBeInTheDocument();
-    expect(canvas.getByText("Product Engineer")).toBeInTheDocument();
-    expect(
+    await expect(canvas.getByText("Product Engineer")).toBeInTheDocument();
+    await expect(
       canvas.getByText(
         "Building component libraries and sweating the details.",
       ),
     ).toBeInTheDocument();
-    expect(canvas.getByRole("button", { name: "Follow" })).toBeInTheDocument();
+    await expect(
+      canvas.getByRole("button", { name: "Follow" }),
+    ).toBeInTheDocument();
   },
 };

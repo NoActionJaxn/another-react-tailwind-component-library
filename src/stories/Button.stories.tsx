@@ -99,7 +99,7 @@ export const DefaultButton: Story = {
 
     await userEvent.click(button);
 
-    expect(args.onClick).toHaveBeenCalledOnce();
+    await expect(args.onClick).toHaveBeenCalledOnce();
   },
 };
 
@@ -111,11 +111,11 @@ export const DisabledButton: Story = {
     const canvas = within(canvasElement);
     const button = canvas.getByRole("button", { name: "Button" });
 
-    expect(button).toBeDisabled();
+    await expect(button).toBeDisabled();
 
     await userEvent.click(button);
 
-    expect(args.onClick).not.toHaveBeenCalled();
+    await expect(args.onClick).not.toHaveBeenCalled();
   },
 };
 
@@ -128,7 +128,7 @@ export const IconButton: Story = {
     const canvas = within(canvasElement);
     const button = canvas.getByRole("button", { name: "🔥" });
 
-    expect(button).toHaveAttribute("data-size", "md");
+    await expect(button).toHaveAttribute("data-size", "md");
   },
 };
 
@@ -151,7 +151,7 @@ export const AnchorButton: Story = {
     const canvas = within(canvasElement);
     const link = canvas.getByRole("link", { name: "Learn more" });
 
-    expect(link).toHaveAttribute("href", "https://google.com/");
-    expect(link.tagName).toBe("A");
+    await expect(link).toHaveAttribute("href", "https://google.com/");
+    await expect(link.tagName).toBe("A");
   },
 };

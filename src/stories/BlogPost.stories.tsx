@@ -104,16 +104,16 @@ export const BlogPost: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(
+    await expect(
       canvas.getByRole("heading", {
         name: "Building a design system from scratch",
         level: 1,
       }),
     ).toBeInTheDocument();
-    expect(
+    await expect(
       canvas.getByText("Jackson Hermitt · July 10, 2026 · 4 min read"),
     ).toBeInTheDocument();
-    expect(
+    await expect(
       canvas.getByRole("heading", { name: "Why container queries", level: 2 }),
     ).toBeInTheDocument();
   },

@@ -105,14 +105,14 @@ export const Navigation: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(canvas.getByRole("link", { name: "Home" })).toHaveAttribute(
+    await expect(canvas.getByRole("link", { name: "Home" })).toHaveAttribute(
       "href",
       "/",
     );
 
     // Disabled items render as an <a> with no href, so they're not exposed
     // with the "link" role - query by text and check aria-disabled instead.
-    expect(canvas.getByText("Changelog")).toHaveAttribute(
+    await expect(canvas.getByText("Changelog")).toHaveAttribute(
       "aria-disabled",
       "true",
     );
@@ -124,6 +124,6 @@ export const Navigation: Story = {
     const productsLink = await screen.findByRole("link", {
       name: "Component Library React + Tailwind primitives",
     });
-    expect(productsLink).toHaveAttribute("href", "/");
+    await expect(productsLink).toHaveAttribute("href", "/");
   },
 };

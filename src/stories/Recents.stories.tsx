@@ -112,17 +112,19 @@ export const Recents: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(
+    await expect(
       canvas.getByRole("heading", { name: "Recent posts" }),
     ).toBeInTheDocument();
-    expect(
+    await expect(
       canvas.getByRole("link", { name: "View all posts →" }),
     ).toHaveAttribute("href", "/");
-    expect(
+    await expect(
       canvas.getByRole("heading", {
         name: "Building a design system from scratch",
       }),
     ).toBeInTheDocument();
-    expect(canvas.getAllByRole("link", { name: "Read more" })).toHaveLength(4);
+    await expect(
+      canvas.getAllByRole("link", { name: "Read more" }),
+    ).toHaveLength(4);
   },
 };

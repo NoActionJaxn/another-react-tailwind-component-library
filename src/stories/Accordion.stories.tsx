@@ -84,15 +84,15 @@ export const Accordion: Story = {
       name: "Does this library support dark mode?",
     });
 
-    expect(first).toHaveAttribute("aria-expanded", "false");
+    await expect(first).toHaveAttribute("aria-expanded", "false");
 
     await userEvent.click(first);
-    expect(first).toHaveAttribute("aria-expanded", "true");
+    await expect(first).toHaveAttribute("aria-expanded", "true");
 
     // Single (non-multiple) mode: opening another item closes the first.
     await userEvent.click(second);
-    expect(second).toHaveAttribute("aria-expanded", "true");
-    expect(first).toHaveAttribute("aria-expanded", "false");
+    await expect(second).toHaveAttribute("aria-expanded", "true");
+    await expect(first).toHaveAttribute("aria-expanded", "false");
   },
 };
 
@@ -118,7 +118,7 @@ export const Multiple: Story = {
     await userEvent.click(second);
 
     // multiple=true: both stay open at once.
-    expect(first).toHaveAttribute("aria-expanded", "true");
-    expect(second).toHaveAttribute("aria-expanded", "true");
+    await expect(first).toHaveAttribute("aria-expanded", "true");
+    await expect(second).toHaveAttribute("aria-expanded", "true");
   },
 };

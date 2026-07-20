@@ -109,17 +109,16 @@ export const Footer: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(
+    await expect(
       canvas.getByText(
         "A React and Tailwind component library built on container queries.",
       ),
     ).toBeInTheDocument();
-    expect(canvas.getByText("Product")).toBeInTheDocument();
-    expect(canvas.getByRole("link", { name: "Components" })).toHaveAttribute(
-      "href",
-      "/",
-    );
-    expect(
+    await expect(canvas.getByText("Product")).toBeInTheDocument();
+    await expect(
+      canvas.getByRole("link", { name: "Components" }),
+    ).toHaveAttribute("href", "/");
+    await expect(
       canvas.getByText("© 2026 Another. All rights reserved."),
     ).toBeInTheDocument();
   },

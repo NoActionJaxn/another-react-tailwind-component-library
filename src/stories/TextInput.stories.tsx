@@ -92,7 +92,7 @@ export const DefaultTextInput: Story = {
 
     await userEvent.type(input, "Hello");
 
-    expect(input).toHaveValue("Hello");
+    await expect(input).toHaveValue("Hello");
   },
 };
 

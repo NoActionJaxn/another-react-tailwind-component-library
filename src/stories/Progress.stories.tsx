@@ -68,8 +68,8 @@ export const Progress: Story = {
     const canvas = within(canvasElement);
     const progressbar = canvas.getByRole("progressbar");
 
-    expect(progressbar).toHaveAttribute("aria-valuenow", "50");
-    expect(progressbar).toHaveAttribute("aria-valuemax", "100");
+    await expect(progressbar).toHaveAttribute("aria-valuenow", "50");
+    await expect(progressbar).toHaveAttribute("aria-valuemax", "100");
   },
 };
 

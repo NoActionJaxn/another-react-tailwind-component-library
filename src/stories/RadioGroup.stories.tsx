@@ -75,13 +75,13 @@ export const RadioGroup: Story = {
     const medium = canvas.getByRole("radio", { name: "Medium" });
     const large = canvas.getByRole("radio", { name: "Large" });
 
-    expect(medium).toBeChecked();
-    expect(large).not.toBeChecked();
+    await expect(medium).toBeChecked();
+    await expect(large).not.toBeChecked();
 
     await userEvent.click(large);
 
-    expect(large).toBeChecked();
-    expect(medium).not.toBeChecked();
-    expect(args.onValueChange).toHaveBeenLastCalledWith("Large");
+    await expect(large).toBeChecked();
+    await expect(medium).not.toBeChecked();
+    await expect(args.onValueChange).toHaveBeenLastCalledWith("Large");
   },
 };

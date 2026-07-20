@@ -53,6 +53,6 @@ export const Container: Story = {
     // has no accessible role/name of its own to query by directly.
     const containerEl = canvas.getByText("1").parentElement?.parentElement;
 
-    expect(containerEl).toHaveClass("@container");
+    await expect(containerEl).toHaveClass("@container");
   },
 };

@@ -108,12 +108,12 @@ export const Header: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(canvas.getByText("Another")).toBeInTheDocument();
-    expect(canvas.getByRole("link", { name: "Home" })).toHaveAttribute(
+    await expect(canvas.getByText("Another")).toBeInTheDocument();
+    await expect(canvas.getByRole("link", { name: "Home" })).toHaveAttribute(
       "href",
       "/",
     );
-    expect(canvas.getByRole("link", { name: "Pricing" })).toHaveAttribute(
+    await expect(canvas.getByRole("link", { name: "Pricing" })).toHaveAttribute(
       "href",
       "/pricing",
     );

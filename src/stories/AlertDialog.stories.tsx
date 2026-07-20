@@ -80,7 +80,7 @@ export const AlertDialog: Story = {
 
     // Radix renders alertdialog content into a portal outside canvasElement.
     const dialog = await screen.findByRole("alertdialog");
-    expect(
+    await expect(
       within(dialog).getByText("Delete this project?"),
     ).toBeInTheDocument();
 
@@ -90,9 +90,9 @@ export const AlertDialog: Story = {
 
     // Radix's Presence keeps the dialog mounted until its CSS exit
     // transition finishes, so it doesn't disappear synchronously.
-    await waitFor(() =>
-      expect(screen.queryByRole("alertdialog")).not.toBeInTheDocument(),
-    );
+    await waitFor(async () => {
+      await expect(screen.queryByRole("alertdialog")).not.toBeInTheDocument();
+    });
   },
 };
 

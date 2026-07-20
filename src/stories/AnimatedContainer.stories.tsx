@@ -80,10 +80,10 @@ export const AnimatedContainer: Story = {
       ".another-animated-container-item",
     );
 
-    expect(itemEls).toHaveLength(6);
-    itemEls.forEach((item) => {
-      expect(item).toHaveAttribute("data-animation", "fade");
-    });
+    await expect(itemEls).toHaveLength(6);
+    for (const item of itemEls) {
+      await expect(item).toHaveAttribute("data-animation", "fade");
+    }
   },
 };
 
@@ -108,8 +108,8 @@ export const Staggered: Story = {
       ),
     );
 
-    expect(itemEls[0].style.animationDelay).toBe("0ms");
-    expect(itemEls[1].style.animationDelay).toBe("100ms");
-    expect(itemEls[2].style.animationDelay).toBe("200ms");
+    await expect(itemEls[0].style.animationDelay).toBe("0ms");
+    await expect(itemEls[1].style.animationDelay).toBe("100ms");
+    await expect(itemEls[2].style.animationDelay).toBe("200ms");
   },
 };

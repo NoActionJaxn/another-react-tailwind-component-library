@@ -72,11 +72,11 @@ export const Collapsible: Story = {
     const canvas = within(canvasElement);
     const trigger = canvas.getByRole("button", { name: "What's included" });
 
-    expect(trigger).toHaveAttribute("aria-expanded", "false");
+    await expect(trigger).toHaveAttribute("aria-expanded", "false");
 
     await userEvent.click(trigger);
 
-    expect(trigger).toHaveAttribute("aria-expanded", "true");
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
   },
 };
 
@@ -97,6 +97,6 @@ export const DefaultOpen: Story = {
     const canvas = within(canvasElement);
     const trigger = canvas.getByRole("button", { name: "Shipping details" });
 
-    expect(trigger).toHaveAttribute("aria-expanded", "true");
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
   },
 };

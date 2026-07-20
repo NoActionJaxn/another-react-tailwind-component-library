@@ -80,11 +80,11 @@ export const Accolades: Story = {
     // aria-hidden/inert) to make the auto-scroll loop seamless.
     const [visible, hidden] = canvas.getAllByText("Featured in TechCrunch");
 
-    expect(visible.closest(".another-accolades-item")).toHaveAttribute(
+    await expect(visible.closest(".another-accolades-item")).toHaveAttribute(
       "aria-hidden",
       "false",
     );
-    expect(hidden.closest(".another-accolades-item")).toHaveAttribute(
+    await expect(hidden.closest(".another-accolades-item")).toHaveAttribute(
       "aria-hidden",
       "true",
     );

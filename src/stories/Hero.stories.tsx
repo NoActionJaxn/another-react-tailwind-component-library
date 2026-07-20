@@ -93,16 +93,17 @@ export const Hero: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(canvas.getByText("Another Component Library")).toBeInTheDocument();
-    expect(
+    await expect(
+      canvas.getByText("Another Component Library"),
+    ).toBeInTheDocument();
+    await expect(
       canvas.getByRole("heading", {
         name: "Ship interfaces faster, without fighting the viewport",
       }),
     ).toBeInTheDocument();
-    expect(canvas.getByRole("link", { name: "Get started" })).toHaveAttribute(
-      "href",
-      "/",
-    );
+    await expect(
+      canvas.getByRole("link", { name: "Get started" }),
+    ).toHaveAttribute("href", "/");
   },
 };
 

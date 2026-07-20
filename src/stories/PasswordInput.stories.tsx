@@ -75,15 +75,15 @@ export const PasswordInput: Story = {
     const input = canvas.getByLabelText("Password");
     const toggle = canvas.getByRole("button", { name: "Show password" });
 
-    expect(input).toHaveAttribute("type", "password");
+    await expect(input).toHaveAttribute("type", "password");
 
     // It's a press-and-hold control (onMouseDown shows, onMouseUp hides),
     // not a click-to-toggle - fireEvent lets us observe the held state,
     // which userEvent.click's rapid down+up sequence wouldn't.
     await fireEvent.mouseDown(toggle);
-    expect(input).toHaveAttribute("type", "text");
+    await expect(input).toHaveAttribute("type", "text");
 
     await fireEvent.mouseUp(toggle);
-    expect(input).toHaveAttribute("type", "password");
+    await expect(input).toHaveAttribute("type", "password");
   },
 };

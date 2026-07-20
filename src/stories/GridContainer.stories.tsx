@@ -53,7 +53,7 @@ export const GridContainer: Story = {
   play: async ({ canvasElement }) => {
     const gridEl = canvasElement.querySelector(".another-grid-container");
 
-    expect(gridEl).toHaveAttribute("data-columns", "4");
-    expect(gridEl?.children).toHaveLength(9);
+    await expect(gridEl).toHaveAttribute("data-columns", "4");
+    await expect(gridEl?.children).toHaveLength(9);
   },
 };

@@ -106,11 +106,13 @@ export const ProfilePage: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(
+    await expect(
       canvas.getByRole("heading", { name: "Jackson Hermitt" }),
     ).toBeInTheDocument();
-    expect(canvas.getByText("Product Engineer")).toBeInTheDocument();
-    expect(canvas.getByText("San Francisco, CA")).toBeInTheDocument();
-    expect(canvas.getByRole("button", { name: "Follow" })).toBeInTheDocument();
+    await expect(canvas.getByText("Product Engineer")).toBeInTheDocument();
+    await expect(canvas.getByText("San Francisco, CA")).toBeInTheDocument();
+    await expect(
+      canvas.getByRole("button", { name: "Follow" }),
+    ).toBeInTheDocument();
   },
 };

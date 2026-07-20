@@ -54,8 +54,8 @@ export const Secure: Story = {
     const fallback = canvas.getByText("•••• •••• •••• 1234");
     const real = canvas.getByText("4242 4242 4242 1234");
 
-    expect(fallback).toHaveAttribute("aria-hidden", "true");
-    expect(real).toBeInTheDocument();
+    await expect(fallback).toHaveAttribute("aria-hidden", "true");
+    await expect(real).toBeInTheDocument();
   },
 };
 
@@ -66,7 +66,9 @@ export const Revealed: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    expect(canvas.getByText("4242 4242 4242 1234")).toBeInTheDocument();
-    expect(canvas.queryByText("•••• •••• •••• 1234")).not.toBeInTheDocument();
+    await expect(canvas.getByText("4242 4242 4242 1234")).toBeInTheDocument();
+    await expect(
+      canvas.queryByText("•••• •••• •••• 1234"),
+    ).not.toBeInTheDocument();
   },
 };

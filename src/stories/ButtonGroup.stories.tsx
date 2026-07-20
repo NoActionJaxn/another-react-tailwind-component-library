@@ -94,13 +94,13 @@ export const ButtonGroup: Story = {
     const canvas = within(canvasElement);
 
     // Buttons that don't specify their own variant inherit the group's.
-    expect(canvas.getByRole("button", { name: "First" })).toHaveAttribute(
+    await expect(canvas.getByRole("button", { name: "First" })).toHaveAttribute(
       "data-variant",
       "outline",
     );
     // "third"/"Fourth"/"Fifth" pass their own variant="default", which
     // overrides the group's variant="outline".
-    expect(canvas.getByRole("button", { name: "third" })).toHaveAttribute(
+    await expect(canvas.getByRole("button", { name: "third" })).toHaveAttribute(
       "data-variant",
       "default",
     );
