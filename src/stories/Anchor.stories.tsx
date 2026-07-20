@@ -53,8 +53,8 @@ export const Anchor: Story = {
     const canvas = within(canvasElement);
     const link = canvas.getByRole("link", { name: "Learn more" });
 
-    expect(link.tagName).toBe("A");
-    expect(link).toHaveAttribute("href", "#");
+    await expect(link.tagName).toBe("A");
+    await expect(link).toHaveAttribute("href", "#");
   },
 };
 
@@ -66,6 +66,6 @@ export const Disabled: Story = {
     const canvas = within(canvasElement);
     const link = canvas.getByRole("link", { name: "Learn more" });
 
-    expect(link).toHaveAttribute("aria-disabled", "true");
+    await expect(link).toHaveAttribute("aria-disabled", "true");
   },
 };

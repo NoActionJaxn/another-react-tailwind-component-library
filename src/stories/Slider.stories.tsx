@@ -83,12 +83,12 @@ export const Slider: Story = {
     const canvas = within(canvasElement);
     const thumb = canvas.getByRole("slider");
 
-    expect(thumb).toHaveAttribute("aria-valuenow", "50");
+    await expect(thumb).toHaveAttribute("aria-valuenow", "50");
 
     thumb.focus();
     await userEvent.keyboard("{ArrowRight}");
 
-    expect(thumb).toHaveAttribute("aria-valuenow", "51");
+    await expect(thumb).toHaveAttribute("aria-valuenow", "51");
   },
 };
 
@@ -100,13 +100,13 @@ export const RangeSlider: Story = {
     const canvas = within(canvasElement);
     const [lowerThumb, upperThumb] = canvas.getAllByRole("slider");
 
-    expect(lowerThumb).toHaveAttribute("aria-valuenow", "25");
-    expect(upperThumb).toHaveAttribute("aria-valuenow", "75");
+    await expect(lowerThumb).toHaveAttribute("aria-valuenow", "25");
+    await expect(upperThumb).toHaveAttribute("aria-valuenow", "75");
 
     lowerThumb.focus();
     await userEvent.keyboard("{ArrowRight}");
 
-    expect(lowerThumb).toHaveAttribute("aria-valuenow", "26");
-    expect(upperThumb).toHaveAttribute("aria-valuenow", "75");
+    await expect(lowerThumb).toHaveAttribute("aria-valuenow", "26");
+    await expect(upperThumb).toHaveAttribute("aria-valuenow", "75");
   },
 };

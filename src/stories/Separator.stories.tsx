@@ -78,7 +78,7 @@ export const Separator: Story = {
     // tree, so it can't be queried by role - fall back to its own class.
     const separator = canvasElement.querySelector(".another-separator");
 
-    expect(separator).toHaveAttribute("data-orientation", "horizontal");
+    await expect(separator).toHaveAttribute("data-orientation", "horizontal");
   },
 };
 
@@ -90,6 +90,6 @@ export const Vertical: Story = {
   play: async ({ canvasElement }) => {
     const separator = canvasElement.querySelector(".another-separator");
 
-    expect(separator).toHaveAttribute("data-orientation", "vertical");
+    await expect(separator).toHaveAttribute("data-orientation", "vertical");
   },
 };
