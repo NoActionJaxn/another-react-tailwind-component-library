@@ -4,7 +4,7 @@ import { expect, within } from "storybook/test";
 import ContainerComponent from "../components/Container";
 
 const meta = {
-  title: "Components/Container",
+  title: "Containers/Container",
   component: ContainerComponent,
   parameters: {
     // layout: "centered",

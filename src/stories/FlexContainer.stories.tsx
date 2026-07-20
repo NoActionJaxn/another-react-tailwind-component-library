@@ -6,7 +6,7 @@ import FlexContainerComponent from "../components/FlexContainer";
 const items = ["First", "Second", "Third", "Fourth"];
 
 const meta = {
-  title: "Components/FlexContainer",
+  title: "Containers/FlexContainer",
   component: FlexContainerComponent,
   parameters: {
     docs: {

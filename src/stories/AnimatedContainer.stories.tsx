@@ -6,7 +6,7 @@ import AnimatedContainerComponent from "../components/AnimatedContainer";
 const items = Array.from({ length: 6 }, (_, index) => index + 1);
 
 const meta = {
-  title: "Components/AnimatedContainer",
+  title: "Containers/AnimatedContainer",
   component: AnimatedContainerComponent,
   parameters: {
     docs: {
