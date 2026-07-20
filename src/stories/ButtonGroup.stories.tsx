@@ -33,6 +33,10 @@ const meta = {
     variant: "outline",
   },
   argTypes: {
+    className: {
+      control: "text",
+      description: "Additional Tailwind classes to append.",
+    },
     children: {
       control: false,
       description:
