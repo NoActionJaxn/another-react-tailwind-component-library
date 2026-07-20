@@ -64,6 +64,8 @@ const meta = {
     },
   },
   args: {
+    className: "",
+    id: "select",
     options: ["Small", "Medium", "Large", "Extra Large"],
     label: "Size",
     placeholder: "Select a size",

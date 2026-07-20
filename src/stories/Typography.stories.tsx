@@ -26,8 +26,7 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     as: {
-      control: "select",
-      options: ["span", "p", "h1", "h2", "h3", "h4", "h5", "h6"],
+      control: false,
       description: "The element rendered.",
     },
     font: {

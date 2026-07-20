@@ -25,8 +25,7 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     as: {
-      control: "radio",
-      options: ["a", "span"],
+      control: false,
       description: "The element rendered.",
     },
     href: {

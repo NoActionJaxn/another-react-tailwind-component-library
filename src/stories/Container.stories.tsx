@@ -19,7 +19,7 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     as: {
-      control: "text",
+      control: false,
       description: "The element rendered.",
     },
   },
