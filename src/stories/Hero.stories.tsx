@@ -126,19 +126,3 @@ export const BackgroundImage: Story = {
     </div>
   ),
 };
-
-export const Mobile: Story = {
-  render: (args) => (
-    <div className="w-80 border-2 border-dashed border-default-400">
-      <HeroComponent {...args} actions={actions} />
-    </div>
-  ),
-};
-
-export const Desktop: Story = {
-  render: (args) => (
-    <div className="w-full max-w-5xl border-2 border-dashed border-default-400">
-      <HeroComponent {...args} actions={actions} />
-    </div>
-  ),
-};

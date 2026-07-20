@@ -119,15 +119,3 @@ export const Header: Story = {
     );
   },
 };
-
-export const Mobile: Story = {
-  render: (args) => (
-    <div className="h-[150vh] w-80">
-      <HeaderComponent {...args} logo={logo} items={items} />
-      <p className="px-4 pt-20 text-sm text-default-500">
-        Open the menu - it takes over the full screen below the fixed logo bar
-        and scrolls independently.
-      </p>
-    </div>
-  ),
-};

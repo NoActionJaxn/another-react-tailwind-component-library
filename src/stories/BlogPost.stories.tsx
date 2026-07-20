@@ -110,39 +110,3 @@ export const BlogPost: Story = {
     ).toBeInTheDocument();
   },
 };
-
-export const Mobile: Story = {
-  render: (args) => (
-    <div className="w-80 border-2 border-dashed border-default-400">
-      <BlogPostComponent
-        {...args}
-        meta={
-          <>
-            <Avatar size="sm" fallback="JH" />
-            <span>Jackson Hermitt · July 10, 2026</span>
-          </>
-        }
-      >
-        {body}
-      </BlogPostComponent>
-    </div>
-  ),
-};
-
-export const Desktop: Story = {
-  render: (args) => (
-    <div className="w-full max-w-4xl border-2 border-dashed border-default-400">
-      <BlogPostComponent
-        {...args}
-        meta={
-          <>
-            <Avatar size="sm" fallback="JH" />
-            <span>Jackson Hermitt · July 10, 2026 · 4 min read</span>
-          </>
-        }
-      >
-        {body}
-      </BlogPostComponent>
-    </div>
-  ),
-};

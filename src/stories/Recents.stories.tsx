@@ -126,19 +126,3 @@ export const Recents: Story = {
     expect(canvas.getAllByRole("link", { name: "Read more" })).toHaveLength(4);
   },
 };
-
-export const Mobile: Story = {
-  render: (args) => (
-    <div className="w-80 border-2 border-dashed border-default-400">
-      <RecentsComponent {...args} items={items} viewMore={viewMore} />
-    </div>
-  ),
-};
-
-export const Desktop: Story = {
-  render: (args) => (
-    <div className="w-full max-w-5xl border-2 border-dashed border-default-400">
-      <RecentsComponent {...args} items={items} viewMore={viewMore} />
-    </div>
-  ),
-};

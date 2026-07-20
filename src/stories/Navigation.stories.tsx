@@ -98,7 +98,7 @@ const items: NavigationItem[] = [
 
 export const Navigation: Story = {
   render: (args) => (
-    <div className="w-full border-2 border-dashed border-default-400 p-4">
+    <div className="w-full resize-x overflow-auto border-2 border-dashed border-default-400 p-4">
       <NavigationComponent {...args} items={items} />
     </div>
   ),
@@ -126,12 +126,4 @@ export const Navigation: Story = {
     });
     expect(productsLink).toHaveAttribute("href", "/");
   },
-};
-
-export const Mobile: Story = {
-  render: (args) => (
-    <div className="w-80 border-2 border-dashed border-default-400 p-4">
-      <NavigationComponent {...args} items={items} />
-    </div>
-  ),
 };

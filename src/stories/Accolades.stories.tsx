@@ -80,19 +80,3 @@ export const Accolades: Story = {
     );
   },
 };
-
-export const Mobile: Story = {
-  render: (args) => (
-    <div className="w-80 border-2 border-dashed border-default-400">
-      <AccoladesComponent {...args} items={items} />
-    </div>
-  ),
-};
-
-export const Desktop: Story = {
-  render: (args) => (
-    <div className="w-full max-w-5xl border-2 border-dashed border-default-400">
-      <AccoladesComponent {...args} items={items} />
-    </div>
-  ),
-};

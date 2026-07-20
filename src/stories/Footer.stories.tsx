@@ -97,7 +97,7 @@ const bottom = (
 
 export const Footer: Story = {
   render: (args) => (
-    <div className="w-full border-2 border-dashed border-default-400">
+    <div className="w-full resize-x overflow-auto border-2 border-dashed border-default-400">
       <FooterComponent
         {...args}
         logo={logo}
@@ -123,17 +123,4 @@ export const Footer: Story = {
       canvas.getByText("© 2026 Another. All rights reserved."),
     ).toBeInTheDocument();
   },
-};
-
-export const Mobile: Story = {
-  render: (args) => (
-    <div className="w-80 border-2 border-dashed border-default-400">
-      <FooterComponent
-        {...args}
-        logo={logo}
-        columns={columns}
-        bottom={bottom}
-      />
-    </div>
-  ),
 };
