@@ -28,6 +28,10 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
+    as: {
+      control: false,
+      description: "The element rendered.",
+    },
     variant: {
       control: "radio",
       options: ["default", "inverted"],
@@ -46,8 +50,17 @@ const meta = {
       control: "text",
       description: "Supporting copy under the title.",
     },
+    actions: {
+      control: false,
+      description: "Element rendered as the action buttons.",
+    },
+    background: {
+      control: false,
+      description: "Element rendered behind the content.",
+    },
   },
   args: {
+    as: "section",
     variant: "default",
     eyebrow: "Another Component Library",
     title: "Ship interfaces faster, without fighting the viewport",

@@ -23,6 +23,10 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
+    as: {
+      control: false,
+      description: "The element rendered.",
+    },
     variant: {
       control: "radio",
       options: ["default"],
@@ -32,8 +36,14 @@ const meta = {
       control: { type: "number", min: 10, max: 200, step: 10 },
       description: "Auto-slide speed in pixels per second.",
     },
+    items: {
+      control: false,
+      description: "Elements rendered as each accolade item.",
+    },
   },
   args: {
+    className: "",
+    as: "section",
     variant: "default",
     speed: 40,
   },
