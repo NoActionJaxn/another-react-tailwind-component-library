@@ -50,6 +50,14 @@ const preview: Preview = {
         ],
       },
     },
+    // "todo" surfaces violations in the test UI/output without failing the
+    // run - this repo's components haven't been triaged for a11y yet, so
+    // defaulting straight to "error" would fail every existing story.
+    // Tighten to "error" (globally or per-component) as components get
+    // audited.
+    a11y: {
+      test: "todo",
+    },
   },
   // Toggles the same data-theme attribute every component's dark: classes
   // read (theme.css registers what dark: means via @custom-variant dark) -
