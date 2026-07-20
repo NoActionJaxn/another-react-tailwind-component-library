@@ -25,6 +25,38 @@ const meta = {
     },
   },
   tags: ["autodocs"],
+  args: {
+    className: "",
+    block: false,
+    icon: false,
+    size: "md",
+    variant: "outline",
+  },
+  argTypes: {
+    children: {
+      control: false,
+      description:
+        "One or more Button elements to group. Each child's block, icon, size, and variant are overridden by the group's own props unless the child sets its own.",
+    },
+    block: {
+      control: "boolean",
+      description: "Makes the group full width.",
+    },
+    icon: {
+      control: "boolean",
+      description: "Renders every child as a square icon-like button.",
+    },
+    size: {
+      control: { type: "select" },
+      options: ["sm", "md", "lg"],
+      description: "Size applied to every child button.",
+    },
+    variant: {
+      control: { type: "select" },
+      options: ["default", "outline", "ghost", "link"],
+      description: "Visual style variant applied to every child button.",
+    },
+  },
 } satisfies Meta<typeof ButtonGroupComponent>;
 
 export default meta;

@@ -76,6 +76,9 @@ const meta = {
     },
   },
   args: {
+    block: false,
+    icon: false,
+    className: "",
     children: "Button",
     variant: "default",
     size: "md",
