@@ -1,5 +1,8 @@
 import {
   Children,
+  useEffect,
+  useRef,
+  useState,
   type ElementType,
   type HTMLAttributes,
   type ReactNode,
@@ -30,8 +33,31 @@ const AnimatedContainer = ({
   staggerDelay = 100,
   ...rest
 }: AnimatedContainerProps) => {
+  const containerRef = useRef<HTMLElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const node = containerRef.current;
+    if (!node || typeof IntersectionObserver === "undefined") {
+      setIsInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsInView(true);
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <Component
+      ref={containerRef}
       className={cn("another-animated-container", className)}
       {...rest}
     >
@@ -42,6 +68,7 @@ const AnimatedContainer = ({
           style={{
             animationDuration: `${duration}ms`,
             animationDelay: stagger ? `${index * staggerDelay}ms` : undefined,
+            animationPlayState: isInView ? "running" : "paused",
           }}
         >
           {child}
