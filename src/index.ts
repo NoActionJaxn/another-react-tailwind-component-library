@@ -31,6 +31,11 @@ export {
   type AvatarVariant,
 } from "./components/Avatar.tsx";
 export {
+  default as Badge,
+  type BadgeProps,
+  type BadgeVariant,
+} from "./components/Badge.tsx";
+export {
   default as BlogPost,
   type BlogPostProps,
   type BlogPostVariant,
@@ -95,6 +100,7 @@ export {
 } from "./components/Header.tsx";
 export {
   default as Hero,
+  type HeroLayout,
   type HeroProps,
   type HeroVariant,
 } from "./components/Hero.tsx";
@@ -185,6 +191,13 @@ export {
   type SwitchVariant,
 } from "./components/Switch.tsx";
 export {
+  default as Textarea,
+  type TextareaOrientation,
+  type TextareaProps,
+  type TextareaSize,
+  type TextareaVariant,
+} from "./components/Textarea.tsx";
+export {
   default as TextInput,
   type TextInputOrientation,
   type TextInputProps,
@@ -192,6 +205,11 @@ export {
   type TextInputType,
   type TextInputVariant,
 } from "./components/TextInput.tsx";
+export {
+  default as Tooltip,
+  type TooltipProps,
+  type TooltipVariant,
+} from "./components/Tooltip.tsx";
 export {
   default as Typography,
   type TypographyElement,

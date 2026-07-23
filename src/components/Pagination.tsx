@@ -11,6 +11,26 @@ export interface PaginationProps<T> {
   columns?: GridContainerColumns;
   itemsPerPage?: number;
   items: T[];
+  /**
+   * 0-indexed current page, for controlled/server-driven pagination (e.g.
+   * fetching one page of items at a time from an API). Use together with
+   * `pageCount` and `onPageChange`. When omitted, Pagination manages its own
+   * page state and slices `items` client-side using `itemsPerPage`.
+   */
+  page?: number;
+  /**
+   * Called with the 0-indexed page number when the user navigates, for
+   * controlled/server-driven pagination. Use together with `page` and
+   * `pageCount`.
+   */
+  onPageChange?: (page: number) => void;
+  /**
+   * Total number of pages, for controlled/server-driven pagination. When
+   * provided, `items` is treated as already being just this page's items
+   * (Pagination won't slice it), and `page`/`onPageChange` drive navigation
+   * instead of Pagination's own internal state.
+   */
+  pageCount?: number;
   renderItem: (item: T, index: number) => ReactNode;
   view?: PaginationView;
 }
@@ -107,16 +127,34 @@ const Pagination = <T,>({
   columns = 3,
   itemsPerPage = 6,
   items,
+  onPageChange,
+  page: controlledPage,
+  pageCount: controlledPageCount,
   renderItem,
   view = "grid",
 }: PaginationProps<T>) => {
-  const [page, setPage] = useState(0);
-  const pageCount = Math.max(1, Math.ceil(items.length / itemsPerPage));
-  const currentPage = Math.min(page, pageCount - 1);
-  const pageItems = items.slice(
-    currentPage * itemsPerPage,
-    currentPage * itemsPerPage + itemsPerPage,
-  );
+  const [internalPage, setInternalPage] = useState(0);
+  const isControlled = controlledPageCount !== undefined;
+
+  const pageCount = isControlled
+    ? controlledPageCount
+    : Math.max(1, Math.ceil(items.length / itemsPerPage));
+  const currentPage = isControlled
+    ? (controlledPage ?? 0)
+    : Math.min(internalPage, pageCount - 1);
+  const pageItems = isControlled
+    ? items
+    : items.slice(
+        currentPage * itemsPerPage,
+        currentPage * itemsPerPage + itemsPerPage,
+      );
+  const setPage = (updater: (current: number) => number) => {
+    if (isControlled) {
+      onPageChange?.(updater(currentPage));
+    } else {
+      setInternalPage(updater);
+    }
+  };
 
   return (
     <div className={cn("another-pagination", className)} data-view={view}>
@@ -143,7 +181,7 @@ const Pagination = <T,>({
             <PageLinks
               currentPage={currentPage}
               pageCount={pageCount}
-              onPageChange={setPage}
+              onPageChange={(next) => setPage(() => next)}
             />
           </Suspense>
           <Button

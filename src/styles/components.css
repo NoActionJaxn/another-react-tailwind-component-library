@@ -4,6 +4,7 @@
 @import "./components/anchor.css";
 @import "./components/animated-container.css";
 @import "./components/avatar.css";
+@import "./components/badge.css";
 @import "./components/blog-post.css";
 @import "./components/button.css";
 @import "./components/button-group.css";
@@ -31,4 +32,6 @@
 @import "./components/slider.css";
 @import "./components/switch.css";
 @import "./components/text-input.css";
+@import "./components/textarea.css";
+@import "./components/tooltip.css";
 @import "./components/typography.css";

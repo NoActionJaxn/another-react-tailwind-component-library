@@ -3,6 +3,8 @@ import Container from "./Container.tsx";
 import cn from "../lib/cn.ts";
 
 export type HeroVariant = "default" | string;
+export type HeroLayout =
+  "background" | "image-left" | "image-center" | "image-right";
 
 export interface HeroProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   actions?: ReactNode;
@@ -10,6 +12,7 @@ export interface HeroProps extends Omit<HTMLAttributes<HTMLElement>, "title"> {
   background?: ReactNode;
   description?: ReactNode;
   eyebrow?: ReactNode;
+  layout?: HeroLayout;
   title?: ReactNode;
   variant?: HeroVariant;
 }
@@ -22,6 +25,7 @@ const Hero = ({
   className,
   description,
   eyebrow,
+  layout = "background",
   title,
   variant = "default",
   ...rest
@@ -31,11 +35,14 @@ const Hero = ({
       as={as}
       className={cn("another-hero", className)}
       data-variant={variant}
+      data-layout={layout}
       {...rest}
     >
-      {background && (
-        <div className="another-hero-background">{background}</div>
-      )}
+      {layout === "background"
+        ? background && (
+            <div className="another-hero-background">{background}</div>
+          )
+        : null}
       <div className="another-hero-inner">
         <div className="another-hero-content">
           {eyebrow && <p className="another-hero-eyebrow">{eyebrow}</p>}
@@ -46,6 +53,9 @@ const Hero = ({
           {actions && <div className="another-hero-actions">{actions}</div>}
           {children}
         </div>
+        {layout !== "background" && background && (
+          <div className="another-hero-image">{background}</div>
+        )}
       </div>
     </Container>
   );

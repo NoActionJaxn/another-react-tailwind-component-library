@@ -1,0 +1,38 @@
+@layer components {
+  .another-textarea-group {
+    @apply inline-flex flex-col gap-1;
+  }
+
+  .another-textarea-group[data-orientation="horizontal"] {
+    @apply flex-row items-start gap-2;
+  }
+
+  .another-textarea {
+    @apply min-w-xs min-h-24 rounded-sm border-2 border-solid p-2.5 shadow-xs outline-0;
+  }
+
+  .another-textarea[data-variant="default"] {
+    @apply border-default-800 dark:border-default-100 text-default-950 dark:text-default-50 bg-default-50 dark:bg-default-950;
+  }
+
+  .another-textarea[data-variant="default"]:not(:disabled):hover {
+    @apply bg-default-100 dark:bg-default-900;
+  }
+
+  .another-textarea[data-variant="default"]:focus,
+  .another-textarea[data-variant="default"]:focus:hover {
+    @apply bg-default-50 dark:bg-default-950 ring-4 ring-cyan-400/50;
+  }
+
+  .another-textarea[data-size="sm"] {
+    @apply text-sm;
+  }
+
+  .another-textarea[data-size="md"] {
+    @apply text-base;
+  }
+
+  .another-textarea[data-size="lg"] {
+    @apply text-lg;
+  }
+}

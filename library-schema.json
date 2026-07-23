@@ -1,8 +1,8 @@
 {
   "name": "@noactionjaxn/another-react-tailwind-component-library",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "A React + Tailwind CSS v4 component library built on Radix primitives, styled with container queries.",
-  "generated": "2026-07-12T14:13:02.989Z",
+  "generated": "2026-07-23T00:59:39.044Z",
   "components": {
     "Accolades": {
       "import": {
@@ -161,6 +161,46 @@
         }
       }
     },
+    "AnimatedContainer": {
+      "import": {
+        "name": "AnimatedContainer",
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["AnimatedContainerAnimation", "AnimatedContainerProps"],
+      "source": "src/components/AnimatedContainer.tsx",
+      "css": "styles/components/animated-container.css",
+      "props": {
+        "animation": {
+          "type": {
+            "kind": "enum",
+            "literals": ["fade", "pop"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "fade"
+        },
+        "as": {
+          "type": "ElementType",
+          "required": false,
+          "default": "div"
+        },
+        "duration": {
+          "type": "number",
+          "required": false,
+          "default": "300"
+        },
+        "stagger": {
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        "staggerDelay": {
+          "type": "number",
+          "required": false,
+          "default": "100"
+        }
+      }
+    },
     "Avatar": {
       "import": {
         "name": "Avatar",
@@ -209,6 +249,26 @@
         "asChild": {
           "type": "boolean",
           "required": false
+        }
+      }
+    },
+    "Badge": {
+      "import": {
+        "name": "Badge",
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["BadgeProps", "BadgeVariant"],
+      "source": "src/components/Badge.tsx",
+      "css": "styles/components/badge.css",
+      "props": {
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default", "secondary", "destructive", "outline"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
         }
       }
     },
@@ -726,7 +786,7 @@
         "name": "Hero",
         "from": "@noactionjaxn/another-react-tailwind-component-library"
       },
-      "exportedTypes": ["HeroProps", "HeroVariant"],
+      "exportedTypes": ["HeroLayout", "HeroProps", "HeroVariant"],
       "source": "src/components/Hero.tsx",
       "css": "styles/components/hero.css",
       "props": {
@@ -750,6 +810,20 @@
         "eyebrow": {
           "type": "ReactNode",
           "required": false
+        },
+        "layout": {
+          "type": {
+            "kind": "enum",
+            "literals": [
+              "background",
+              "image-left",
+              "image-center",
+              "image-right"
+            ],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "background"
         },
         "title": {
           "type": "ReactNode",
@@ -957,6 +1031,21 @@
         "items": {
           "type": "T[]",
           "required": true
+        },
+        "page": {
+          "type": "number",
+          "required": false,
+          "description": "0-indexed current page, for controlled/server-driven pagination (e.g.\nfetching one page of items at a time from an API). Use together with\n`pageCount` and `onPageChange`. When omitted, Pagination manages its own\npage state and slices `items` client-side using `itemsPerPage`."
+        },
+        "onPageChange": {
+          "type": "(page: number) => void",
+          "required": false,
+          "description": "Called with the 0-indexed page number when the user navigates, for\ncontrolled/server-driven pagination. Use together with `page` and\n`pageCount`."
+        },
+        "pageCount": {
+          "type": "number",
+          "required": false,
+          "description": "Total number of pages, for controlled/server-driven pagination. When\nprovided, `items` is treated as already being just this page's items\n(Pagination won't slice it), and `page`/`onPageChange` drive navigation\ninstead of Pagination's own internal state."
         },
         "renderItem": {
           "type": "(item: T, index: number) => ReactNode",
@@ -1702,6 +1791,58 @@
         }
       }
     },
+    "Textarea": {
+      "import": {
+        "name": "Textarea",
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
+      },
+      "exportedTypes": [
+        "TextareaOrientation",
+        "TextareaProps",
+        "TextareaSize",
+        "TextareaVariant"
+      ],
+      "source": "src/components/Textarea.tsx",
+      "css": "styles/components/textarea.css",
+      "props": {
+        "block": {
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        "label": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "orientation": {
+          "type": {
+            "kind": "enum",
+            "literals": ["horizontal", "vertical"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "vertical"
+        },
+        "size": {
+          "type": {
+            "kind": "enum",
+            "literals": ["sm", "md", "lg"],
+            "openEnum": false
+          },
+          "required": false,
+          "default": "md"
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
     "TextInput": {
       "import": {
         "name": "TextInput",
@@ -1776,6 +1917,57 @@
           },
           "required": false,
           "default": "default"
+        }
+      }
+    },
+    "Tooltip": {
+      "import": {
+        "name": "Tooltip",
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["TooltipProps", "TooltipVariant"],
+      "source": "src/components/Tooltip.tsx",
+      "css": "styles/components/tooltip.css",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "delayDuration": {
+          "type": "number",
+          "required": false,
+          "default": "200",
+          "description": "The duration from when the pointer enters the trigger until the tooltip gets opened. This will\noverride the prop with the same name passed to Provider."
+        },
+        "trigger": {
+          "type": "ReactNode",
+          "required": true
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        },
+        "open": {
+          "type": "boolean",
+          "required": false
+        },
+        "defaultOpen": {
+          "type": "boolean",
+          "required": false
+        },
+        "onOpenChange": {
+          "type": "((open: boolean) => void)",
+          "required": false
+        },
+        "disableHoverableContent": {
+          "type": "boolean",
+          "required": false,
+          "description": "When `true`, trying to hover the content will result in the tooltip closing as the pointer leaves the trigger.\n@defaultValue false"
         }
       }
     },
@@ -1974,6 +2166,46 @@
         }
       ]
     },
+    "AnimatedContainerAnimation": {
+      "kind": "enum",
+      "literals": ["fade", "pop"],
+      "openEnum": false
+    },
+    "AnimatedContainerProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "animation",
+          "required": false,
+          "type": "AnimatedContainerAnimation"
+        },
+        {
+          "name": "as",
+          "required": false,
+          "type": "ElementType"
+        },
+        {
+          "name": "children",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "duration",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "stagger",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "staggerDelay",
+          "required": false,
+          "type": "number"
+        }
+      ]
+    },
     "AvatarVariant": {
       "kind": "enum",
       "literals": ["default"],
@@ -2016,6 +2248,21 @@
           "name": "variant",
           "required": false,
           "type": "AvatarVariant"
+        }
+      ]
+    },
+    "BadgeVariant": {
+      "kind": "enum",
+      "literals": ["default", "secondary", "destructive", "outline"],
+      "openEnum": true
+    },
+    "BadgeProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "variant",
+          "required": false,
+          "type": "BadgeVariant"
         }
       ]
     },
@@ -2449,6 +2696,11 @@
       "literals": ["default"],
       "openEnum": true
     },
+    "HeroLayout": {
+      "kind": "enum",
+      "literals": ["background", "image-left", "image-center", "image-right"],
+      "openEnum": false
+    },
     "HeroProps": {
       "kind": "interface",
       "members": [
@@ -2476,6 +2728,11 @@
           "name": "eyebrow",
           "required": false,
           "type": "ReactNode"
+        },
+        {
+          "name": "layout",
+          "required": false,
+          "type": "HeroLayout"
         },
         {
           "name": "title",
@@ -2651,6 +2908,21 @@
           "name": "items",
           "required": true,
           "type": "T[]"
+        },
+        {
+          "name": "page",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "onPageChange",
+          "required": false,
+          "type": "(page: number) => void"
+        },
+        {
+          "name": "pageCount",
+          "required": false,
+          "type": "number"
         },
         {
           "name": "renderItem",
@@ -3124,6 +3396,51 @@
         }
       ]
     },
+    "TextareaVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "TextareaSize": {
+      "kind": "enum",
+      "literals": ["sm", "md", "lg"],
+      "openEnum": false
+    },
+    "TextareaOrientation": {
+      "kind": "enum",
+      "literals": ["horizontal", "vertical"],
+      "openEnum": false
+    },
+    "TextareaProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "block",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "label",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "orientation",
+          "required": false,
+          "type": "TextareaOrientation"
+        },
+        {
+          "name": "size",
+          "required": false,
+          "type": "TextareaSize"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "TextareaVariant"
+        }
+      ]
+    },
     "TextInputType": {
       "kind": "enum",
       "literals": ["text", "email", "tel", "search", "password", "number"],
@@ -3186,6 +3503,41 @@
           "name": "variant",
           "required": false,
           "type": "TextInputVariant"
+        }
+      ]
+    },
+    "TooltipVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "TooltipProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "children",
+          "required": true,
+          "type": "ReactNode"
+        },
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "delayDuration",
+          "required": false,
+          "type": "number"
+        },
+        {
+          "name": "trigger",
+          "required": true,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "TooltipVariant"
         }
       ]
     },

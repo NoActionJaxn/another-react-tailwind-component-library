@@ -1,0 +1,42 @@
+@layer components {
+  .another-tooltip-content {
+    @apply z-50 rounded-sm border-2 px-3 py-1.5 text-sm leading-snug shadow-xs select-none;
+    animation: another-tooltip-content-show 150ms ease-out;
+  }
+
+  .another-tooltip-content[data-state="closed"] {
+    animation: another-tooltip-content-hide 150ms ease-in;
+  }
+
+  .another-tooltip-content[data-variant="default"] {
+    @apply border-default-800 dark:border-default-100 bg-default-800 dark:bg-default-100 text-default-50 dark:text-default-900;
+  }
+
+  .another-tooltip-arrow {
+    @apply fill-default-800 dark:fill-default-100;
+  }
+
+  @keyframes another-tooltip-content-show {
+    from {
+      opacity: 0;
+      scale: 0.96;
+    }
+
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  @keyframes another-tooltip-content-hide {
+    from {
+      opacity: 1;
+      scale: 1;
+    }
+
+    to {
+      opacity: 0;
+      scale: 0.96;
+    }
+  }
+}

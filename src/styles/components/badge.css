@@ -1,0 +1,21 @@
+@layer components {
+  .another-badge {
+    @apply inline-flex items-center rounded-full border-2 px-2.5 py-0.5 font-sans text-xs font-semibold uppercase tracking-normal;
+  }
+
+  .another-badge[data-variant="default"] {
+    @apply bg-default-800 dark:bg-default-100 border-transparent text-default-50 dark:text-default-900;
+  }
+
+  .another-badge[data-variant="secondary"] {
+    @apply bg-cyan-600 dark:bg-cyan-500 border-transparent text-white;
+  }
+
+  .another-badge[data-variant="destructive"] {
+    @apply bg-red-600 dark:bg-red-500 border-transparent text-white;
+  }
+
+  .another-badge[data-variant="outline"] {
+    @apply bg-transparent border-default-800 dark:border-default-100 text-default-800 dark:text-default-100;
+  }
+}
