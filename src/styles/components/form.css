@@ -1,0 +1,33 @@
+@layer components {
+  .another-form {
+    @apply flex w-full flex-col gap-4;
+  }
+
+  .another-form-field {
+    @apply flex flex-col gap-1;
+  }
+
+  .another-form-label {
+    @apply inline-flex items-center gap-1.5 font-accent text-sm font-semibold text-default-950 dark:text-default-50;
+  }
+
+  .another-form-control {
+    @apply min-w-xs w-full rounded-sm border-2 border-solid border-default-800 bg-default-50 h-11 px-2.5 text-base text-default-950 outline-0 dark:border-default-100 dark:bg-default-950 dark:text-default-50;
+  }
+
+  .another-form-control:not(:disabled):hover {
+    @apply bg-default-100 dark:bg-default-900;
+  }
+
+  .another-form-control:focus {
+    @apply bg-default-50 ring-4 ring-cyan-400/50 dark:bg-default-950;
+  }
+
+  .another-form-control:disabled {
+    @apply opacity-70;
+  }
+
+  .another-form-message {
+    @apply text-sm text-red-600 dark:text-red-400;
+  }
+}

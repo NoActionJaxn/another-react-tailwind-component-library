@@ -2,7 +2,7 @@
   "name": "@noactionjaxn/another-react-tailwind-component-library",
   "version": "0.2.1",
   "description": "A React + Tailwind CSS v4 component library built on Radix primitives, styled with container queries.",
-  "generated": "2026-07-23T01:10:37.807Z",
+  "generated": "2026-07-23T02:16:39.208Z",
   "components": {
     "Accolades": {
       "import": {
@@ -716,6 +716,35 @@
           },
           "required": false,
           "default": "default"
+        }
+      }
+    },
+    "Form": {
+      "import": {
+        "name": "Form",
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
+      },
+      "exportedTypes": [
+        "FormControlProps",
+        "FormFieldProps",
+        "FormLabelProps",
+        "FormMessageProps",
+        "FormProps"
+      ],
+      "source": "src/components/Form.tsx",
+      "css": "styles/components/form.css",
+      "props": {
+        "className": {
+          "type": "string",
+          "required": false
+        },
+        "onClearServerErrors": {
+          "type": "(() => void)",
+          "required": false
+        },
+        "asChild": {
+          "type": "boolean",
+          "required": false
         }
       }
     },
@@ -2638,6 +2667,56 @@
           "name": "variant",
           "required": false,
           "type": "FooterVariant"
+        }
+      ]
+    },
+    "FormProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        }
+      ]
+    },
+    "FormFieldProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        }
+      ]
+    },
+    "FormLabelProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        }
+      ]
+    },
+    "FormControlProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
+        }
+      ]
+    },
+    "FormMessageProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "className",
+          "required": false,
+          "type": "string"
         }
       ]
     },
