@@ -2,7 +2,7 @@
   "name": "@noactionjaxn/another-react-tailwind-component-library",
   "version": "0.2.1",
   "description": "A React + Tailwind CSS v4 component library built on Radix primitives, styled with container queries.",
-  "generated": "2026-07-23T00:59:39.044Z",
+  "generated": "2026-07-23T01:10:37.807Z",
   "components": {
     "Accolades": {
       "import": {
