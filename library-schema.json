@@ -2,7 +2,7 @@
   "name": "@noactionjaxn/another-react-tailwind-component-library",
   "version": "0.2.1",
   "description": "A React + Tailwind CSS v4 component library built on Radix primitives, styled with container queries.",
-  "generated": "2026-07-23T01:10:37.807Z",
+  "generated": "2026-07-23T01:43:59.827Z",
   "components": {
     "Accolades": {
       "import": {
@@ -707,6 +707,50 @@
         "logo": {
           "type": "ReactNode",
           "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "Form": {
+      "import": {
+        "name": "Form",
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
+      },
+      "exportedTypes": [
+        "FormFieldConfig",
+        "FormFieldInputType",
+        "FormFieldOption",
+        "FormProps",
+        "FormVariant"
+      ],
+      "source": "src/components/Form.tsx",
+      "css": "styles/components/form.css",
+      "props": {
+        "fields": {
+          "type": "FormFieldConfig[]",
+          "required": true
+        },
+        "form": {
+          "type": "UseFormReturn<Record<string, unknown>>",
+          "required": false,
+          "description": "A `react-hook-form` instance, created by the consumer via their own\n`useForm()` call. Optional - when omitted, Form runs entirely on native\nbrowser validation instead (no dependency on react-hook-form at all).\nPassed in rather than created internally because `useForm` is a hook -\nit can't be conditionally or lazily invoked, so this is the only way\nfor react-hook-form to be a true optional integration."
+        },
+        "onSubmit": {
+          "type": "(values: Record<string, unknown>) => void | Promise<void>",
+          "required": true
+        },
+        "submitLabel": {
+          "type": "ReactNode",
+          "required": false,
+          "default": "Submit"
         },
         "variant": {
           "type": {
@@ -2638,6 +2682,125 @@
           "name": "variant",
           "required": false,
           "type": "FooterVariant"
+        }
+      ]
+    },
+    "FormFieldInputType": {
+      "kind": "enum",
+      "literals": [
+        "text",
+        "textarea",
+        "checkbox",
+        "checkbox_group",
+        "radio",
+        "select",
+        "file",
+        "hidden"
+      ],
+      "openEnum": false
+    },
+    "FormVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "FormFieldOption": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "label",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "value",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "FormFieldConfig": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "defaultValue",
+          "required": false,
+          "type": "string | string[] | boolean"
+        },
+        {
+          "name": "help",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "label",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "name",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "options",
+          "required": false,
+          "type": "(FormFieldOption | string)[]"
+        },
+        {
+          "name": "placeholder",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "required",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "type",
+          "required": false,
+          "type": "FormFieldInputType"
+        },
+        {
+          "name": "validation",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "width",
+          "required": false,
+          "type": "\"100\" | \"67\" | \"50\" | \"33\""
+        }
+      ]
+    },
+    "FormProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "fields",
+          "required": true,
+          "type": "FormFieldConfig[]"
+        },
+        {
+          "name": "form",
+          "required": false,
+          "type": "UseFormReturn<Record<string, unknown>>"
+        },
+        {
+          "name": "onSubmit",
+          "required": true,
+          "type": "(values: Record<string, unknown>) => void | Promise<void>"
+        },
+        {
+          "name": "submitLabel",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "FormVariant"
         }
       ]
     },
