@@ -2,7 +2,7 @@
   "name": "@noactionjaxn/another-react-tailwind-component-library",
   "version": "0.2.1",
   "description": "A React + Tailwind CSS v4 component library built on Radix primitives, styled with container queries.",
-  "generated": "2026-07-23T02:16:39.208Z",
+  "generated": "2026-07-23T02:43:13.167Z",
   "components": {
     "Accolades": {
       "import": {
@@ -1168,6 +1168,96 @@
           "required": false
         },
         "meta": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "title": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "PriceCard": {
+      "import": {
+        "name": "PriceCard",
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["PriceCardProps", "PriceCardVariant"],
+      "source": "src/components/PriceCard.tsx",
+      "css": "styles/components/price-card.css",
+      "props": {
+        "as": {
+          "type": "ElementType",
+          "required": false,
+          "default": "article"
+        },
+        "badge": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "description": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "features": {
+          "type": "ReactNode[]",
+          "required": false
+        },
+        "footer": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "name": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "period": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "price": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "variant": {
+          "type": {
+            "kind": "enum",
+            "literals": ["default", "featured"],
+            "openEnum": true
+          },
+          "required": false,
+          "default": "default"
+        }
+      }
+    },
+    "Pricing": {
+      "import": {
+        "name": "Pricing",
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["PricingProps", "PricingVariant"],
+      "source": "src/components/Pricing.tsx",
+      "css": "styles/components/pricing.css",
+      "props": {
+        "as": {
+          "type": "ElementType",
+          "required": false,
+          "default": "section"
+        },
+        "description": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "eyebrow": {
           "type": "ReactNode",
           "required": false
         },
@@ -3067,6 +3157,96 @@
           "name": "variant",
           "required": false,
           "type": "PostCardVariant"
+        }
+      ]
+    },
+    "PriceCardVariant": {
+      "kind": "enum",
+      "literals": ["default", "featured"],
+      "openEnum": true
+    },
+    "PriceCardProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "as",
+          "required": false,
+          "type": "ElementType"
+        },
+        {
+          "name": "badge",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "features",
+          "required": false,
+          "type": "ReactNode[]"
+        },
+        {
+          "name": "footer",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "name",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "period",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "price",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "PriceCardVariant"
+        }
+      ]
+    },
+    "PricingVariant": {
+      "kind": "enum",
+      "literals": ["default"],
+      "openEnum": true
+    },
+    "PricingProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "as",
+          "required": false,
+          "type": "ElementType"
+        },
+        {
+          "name": "description",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "eyebrow",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "title",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "type": "PricingVariant"
         }
       ]
     },

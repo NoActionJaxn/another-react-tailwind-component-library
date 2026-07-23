@@ -1,0 +1,29 @@
+@layer components {
+  .another-pricing {
+    @apply w-full;
+  }
+
+  .another-pricing[data-variant="default"] {
+    @apply bg-default-50 dark:bg-default-950 text-default-950 dark:text-default-50;
+  }
+
+  .another-pricing-header {
+    @apply mx-auto flex w-full max-w-2xl flex-col items-center gap-4 px-4 pt-16 pb-8 text-center @md:px-8 @md:pt-28 @md:pb-12;
+  }
+
+  .another-pricing-eyebrow {
+    @apply text-sm font-semibold tracking-wide text-default-500 uppercase @md:text-base;
+  }
+
+  .another-pricing-title {
+    @apply text-3xl leading-tight font-bold @md:text-5xl;
+  }
+
+  .another-pricing-description {
+    @apply max-w-xl text-base leading-relaxed text-default-700 dark:text-default-300 @md:text-lg;
+  }
+
+  .another-pricing-grid {
+    @apply mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-6 px-4 pb-16 @md:grid-cols-2 @md:px-8 @md:pb-28 @lg:grid-cols-3;
+  }
+}

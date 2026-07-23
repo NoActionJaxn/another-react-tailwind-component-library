@@ -148,6 +148,16 @@ export {
   type PostCardVariant,
 } from "./components/PostCard.tsx";
 export {
+  default as PriceCard,
+  type PriceCardProps,
+  type PriceCardVariant,
+} from "./components/PriceCard.tsx";
+export {
+  default as Pricing,
+  type PricingProps,
+  type PricingVariant,
+} from "./components/Pricing.tsx";
+export {
   default as ProfileCard,
   type ProfileCardProps,
   type ProfileCardVariant,

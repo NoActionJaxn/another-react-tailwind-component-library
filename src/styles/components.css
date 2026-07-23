@@ -22,6 +22,8 @@
 @import "./components/navigation.css";
 @import "./components/pagination.css";
 @import "./components/post-card.css";
+@import "./components/price-card.css";
+@import "./components/pricing.css";
 @import "./components/profile-card.css";
 @import "./components/profile-page.css";
 @import "./components/progress.css";
