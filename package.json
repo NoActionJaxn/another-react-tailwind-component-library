@@ -56,14 +56,10 @@
   "peerDependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.0.0",
     "react-paginate": "^8.3.0",
     "tailwindcss": "^4.0.0"
   },
   "peerDependenciesMeta": {
-    "react-hook-form": {
-      "optional": true
-    },
     "react-paginate": {
       "optional": true
     }
@@ -98,7 +94,6 @@
     "react": "^19.2.7",
     "react-docgen-typescript": "^2.4.0",
     "react-dom": "^19.2.7",
-    "react-hook-form": "^7.82.0",
     "react-paginate": "^8.3.0",
     "storybook": "^10.4.6",
     "tailwindcss": "^4.3.2",

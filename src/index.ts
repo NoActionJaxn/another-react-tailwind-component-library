@@ -89,14 +89,6 @@ export {
   type FooterVariant,
 } from "./components/Footer.tsx";
 export {
-  default as Form,
-  type FormFieldConfig,
-  type FormFieldInputType,
-  type FormFieldOption,
-  type FormProps,
-  type FormVariant,
-} from "./components/Form.tsx";
-export {
   default as GridContainer,
   type GridContainerColumns,
   type GridContainerProps,
