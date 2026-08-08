@@ -54,7 +54,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const badge = (label: string) => (
-  <span className="h-36 rounded-sm border-2 border-default-300 px-4 py-2 text-sm font-semibold whitespace-nowrap text-default-600">
+  <span className="h-16 flex items-center justify-center rounded-sm border-2 border-default-300 px-4 py-2 text-sm font-semibold whitespace-nowrap text-default-600">
     {label}
   </span>
 );
