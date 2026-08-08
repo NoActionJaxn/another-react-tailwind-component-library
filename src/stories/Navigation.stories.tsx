@@ -50,9 +50,11 @@ type Story = StoryObj<typeof meta>;
 const navLink = (label: string, description: string, href = "/") => (
   <a
     href={href}
-    className="flex flex-col gap-0.5 rounded-sm px-3 py-2 text-sm no-underline transition-colors duration-150 ease-in-out hover:bg-default-100"
+    className="flex flex-col gap-0.5 rounded-sm px-3 py-2 text-sm no-underline transition-colors duration-150 ease-in-out hover:bg-default-100 dark:hover:bg-default-900"
   >
-    <span className="font-semibold text-default-950">{label}</span>
+    <span className="font-semibold text-default-950 dark:text-default-50">
+      {label}
+    </span>
     <span className="text-default-500">{description}</span>
   </a>
 );
