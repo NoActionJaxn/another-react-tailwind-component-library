@@ -81,12 +81,14 @@ const items = posts.map((post) => (
     <div className="flex h-32 w-full items-center justify-center bg-default-200 text-default-500">
       Post image
     </div>
-    <h3 className="font-accent">{post.title}</h3>
-    <div className="flex items-center gap-2">
+    <h3 className="font-accent text-default-950 dark:text-default-50">
+      {post.title}
+    </h3>
+    <div className="flex items-center gap-2 text-default-600 dark:text-default-400">
       <Avatar size="sm" fallback="JH" />
       <span>Jackson Hermitt · {post.date}</span>
     </div>
-    <p>{post.excerpt}</p>
+    <p className="text-default-700 dark:text-default-300">{post.excerpt}</p>
     <Button asChild block>
       <a href="/">Read more</a>
     </Button>

@@ -51,14 +51,20 @@ export const GridView: Story = {
       renderItem={(post) => (
         <article
           key={post.title}
-          className="flex flex-col gap-2 border border-default-300 p-4"
+          className="flex flex-col gap-2 border border-default-300 p-4 dark:border-default-700"
         >
           <div className="flex h-32 w-full items-center justify-center bg-default-200 text-default-500">
             Post image
           </div>
-          <h3 className="font-accent">{post.title}</h3>
-          <span>{post.date}</span>
-          <p>{post.description}</p>
+          <h3 className="font-accent text-default-950 dark:text-default-50">
+            {post.title}
+          </h3>
+          <span className="text-default-600 dark:text-default-400">
+            {post.date}
+          </span>
+          <p className="text-default-700 dark:text-default-300">
+            {post.description}
+          </p>
         </article>
       )}
     />
@@ -98,15 +104,21 @@ export const ListView: Story = {
         renderItem={(post) => (
           <article
             key={post.title}
-            className="flex items-center gap-4 border border-default-300 p-4"
+            className="flex items-center gap-4 border border-default-300 p-4 dark:border-default-700"
           >
             <div className="flex h-16 w-16 shrink-0 items-center justify-center bg-default-200 text-default-500">
               Img
             </div>
             <div className="flex flex-col gap-1">
-              <h3 className="font-accent">{post.title}</h3>
-              <span>{post.date}</span>
-              <p>{post.description}</p>
+              <h3 className="font-accent text-default-950 dark:text-default-50">
+                {post.title}
+              </h3>
+              <span className="text-default-600 dark:text-default-400">
+                {post.date}
+              </span>
+              <p className="text-default-700 dark:text-default-300">
+                {post.description}
+              </p>
             </div>
           </article>
         )}
@@ -169,14 +181,20 @@ const ServerDrivenDemo = () => {
         renderItem={(post) => (
           <article
             key={post.title}
-            className="flex flex-col gap-2 border border-default-300 p-4"
+            className="flex flex-col gap-2 border border-default-300 p-4 dark:border-default-700"
           >
             <div className="flex h-32 w-full items-center justify-center bg-default-200 text-default-500">
               Post image
             </div>
-            <h3 className="font-accent">{post.title}</h3>
-            <span>{post.date}</span>
-            <p>{post.description}</p>
+            <h3 className="font-accent text-default-950 dark:text-default-50">
+              {post.title}
+            </h3>
+            <span className="text-default-600 dark:text-default-400">
+              {post.date}
+            </span>
+            <p className="text-default-700 dark:text-default-300">
+              {post.description}
+            </p>
           </article>
         )}
       />
