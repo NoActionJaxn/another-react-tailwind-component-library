@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, within } from "storybook/test";
 
 import PricingComponent from "../components/Pricing";
-import PriceCard from "../components/PriceCard.tsx";
 import Badge from "../components/Badge.tsx";
 import Button from "../components/Button.tsx";
 
@@ -12,7 +11,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `A section wrapper for a pricing table, built on the Container component. Renders an optional eyebrow/title/description heading above a responsive grid, and lays out any children (typically several \`PriceCard\`s) in that grid - one column by default, expanding at wider container widths.
+        component: `A section wrapper for a pricing table, built on the Container component. Renders an optional eyebrow/title/description heading above a responsive grid, and lays out any children (typically several pricing tier cards) in that grid - one column by default, expanding at wider container widths.
 
 **States & classes** (see \`styles/components/pricing.css\`, and **Retheming Components** for how to target these):
 
@@ -67,47 +66,50 @@ export const Pricing: Story = {
   render: (args) => (
     <div className="w-full resize-x overflow-auto border-2 border-dashed border-default-400">
       <PricingComponent {...args}>
-        <PriceCard
-          name="Starter"
-          price="$9"
-          period="/month"
-          description="For individuals just getting started."
-          features={["1 project", "1 team member", "Community support"]}
-          footer={
-            <Button block variant="outline">
-              Get started
-            </Button>
-          }
-        />
-        <PriceCard
-          variant="featured"
-          name="Pro"
-          price="$29"
-          period="/month"
-          description="For growing teams that need more room to work."
-          badge={<Badge variant="secondary">Most popular</Badge>}
-          features={[
-            "Unlimited projects",
-            "Up to 20 team members",
-            "Priority support",
-          ]}
-          footer={<Button block>Get started</Button>}
-        />
-        <PriceCard
-          name="Enterprise"
-          price="Custom"
-          description="For organizations with advanced needs."
-          features={[
-            "Unlimited everything",
-            "SSO & audit logs",
-            "Dedicated support",
-          ]}
-          footer={
-            <Button block variant="outline">
-              Contact sales
-            </Button>
-          }
-        />
+        <article className="flex flex-col gap-4 border border-default-300 p-6">
+          <h3 className="font-accent">Starter</h3>
+          <p>
+            <span>$9</span>
+            <span>/month</span>
+          </p>
+          <p>For individuals just getting started.</p>
+          <ul>
+            <li>1 project</li>
+            <li>1 team member</li>
+            <li>Community support</li>
+          </ul>
+          <Button block variant="outline">
+            Get started
+          </Button>
+        </article>
+        <article className="flex flex-col gap-4 border border-default-300 p-6">
+          <Badge variant="secondary">Most popular</Badge>
+          <h3 className="font-accent">Pro</h3>
+          <p>
+            <span>$29</span>
+            <span>/month</span>
+          </p>
+          <p>For growing teams that need more room to work.</p>
+          <ul>
+            <li>Unlimited projects</li>
+            <li>Up to 20 team members</li>
+            <li>Priority support</li>
+          </ul>
+          <Button block>Get started</Button>
+        </article>
+        <article className="flex flex-col gap-4 border border-default-300 p-6">
+          <h3 className="font-accent">Enterprise</h3>
+          <p>Custom</p>
+          <p>For organizations with advanced needs.</p>
+          <ul>
+            <li>Unlimited everything</li>
+            <li>SSO &amp; audit logs</li>
+            <li>Dedicated support</li>
+          </ul>
+          <Button block variant="outline">
+            Contact sales
+          </Button>
+        </article>
       </PricingComponent>
     </div>
   ),

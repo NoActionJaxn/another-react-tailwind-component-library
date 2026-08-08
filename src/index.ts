@@ -36,11 +36,6 @@ export {
   type BadgeVariant,
 } from "./components/Badge.tsx";
 export {
-  default as BlogPost,
-  type BlogPostProps,
-  type BlogPostVariant,
-} from "./components/BlogPost.tsx";
-export {
   Button,
   type ButtonProps,
   type ButtonSize,
@@ -123,11 +118,6 @@ export {
   type LabelVariant,
 } from "./components/Label.tsx";
 export {
-  default as ListCard,
-  type ListCardProps,
-  type ListCardVariant,
-} from "./components/ListCard.tsx";
-export {
   default as Navigation,
   type NavigationItem,
   type NavigationProps,
@@ -143,30 +133,10 @@ export {
   type PasswordInputProps,
 } from "./components/PasswordInput.tsx";
 export {
-  default as PostCard,
-  type PostCardProps,
-  type PostCardVariant,
-} from "./components/PostCard.tsx";
-export {
-  default as PriceCard,
-  type PriceCardProps,
-  type PriceCardVariant,
-} from "./components/PriceCard.tsx";
-export {
   default as Pricing,
   type PricingProps,
   type PricingVariant,
 } from "./components/Pricing.tsx";
-export {
-  default as ProfileCard,
-  type ProfileCardProps,
-  type ProfileCardVariant,
-} from "./components/ProfileCard.tsx";
-export {
-  default as ProfilePage,
-  type ProfilePageProps,
-  type ProfilePageVariant,
-} from "./components/ProfilePage.tsx";
 export {
   default as Progress,
   type ProgressProps,

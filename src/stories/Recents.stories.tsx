@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, within } from "storybook/test";
 
 import RecentsComponent from "../components/Recents";
-import PostCard from "../components/PostCard.tsx";
 import Anchor from "../components/Anchor.tsx";
 import Avatar from "../components/Avatar.tsx";
 import Button from "../components/Button.tsx";
@@ -78,27 +77,20 @@ const posts = [
 ];
 
 const items = posts.map((post) => (
-  <PostCard
-    key={post.title}
-    title={post.title}
-    description={post.excerpt}
-    image={
-      <div className="flex h-full w-full items-center justify-center bg-default-200 text-default-500">
-        Post image
-      </div>
-    }
-    meta={
-      <>
-        <Avatar size="sm" fallback="JH" />
-        <span>Jackson Hermitt · {post.date}</span>
-      </>
-    }
-    footer={
-      <Button asChild block>
-        <a href="/">Read more</a>
-      </Button>
-    }
-  />
+  <article key={post.title} className="flex flex-col gap-2">
+    <div className="flex h-32 w-full items-center justify-center bg-default-200 text-default-500">
+      Post image
+    </div>
+    <h3 className="font-accent">{post.title}</h3>
+    <div className="flex items-center gap-2">
+      <Avatar size="sm" fallback="JH" />
+      <span>Jackson Hermitt · {post.date}</span>
+    </div>
+    <p>{post.excerpt}</p>
+    <Button asChild block>
+      <a href="/">Read more</a>
+    </Button>
+  </article>
 ));
 
 const viewMore = <Anchor href="/">View all posts →</Anchor>;

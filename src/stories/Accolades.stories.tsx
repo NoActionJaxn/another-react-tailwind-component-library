@@ -4,7 +4,7 @@ import { expect, within } from "storybook/test";
 import AccoladesComponent from "../components/Accolades";
 
 const meta = {
-  title: "Components/Accolades",
+  title: "Blocks/Accolades",
   component: AccoladesComponent,
   parameters: {
     docs: {

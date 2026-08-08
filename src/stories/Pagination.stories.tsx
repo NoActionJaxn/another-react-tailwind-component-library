@@ -3,8 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, userEvent, waitFor, within } from "storybook/test";
 
 import PaginationComponent from "../components/Pagination";
-import ListCard from "../components/ListCard";
-import PostCard from "../components/PostCard";
 
 const posts = Array.from({ length: 23 }, (_, index) => ({
   title: `Post ${index + 1}: A look at design system decisions`,
@@ -51,17 +49,17 @@ export const GridView: Story = {
       columns={3}
       view="grid"
       renderItem={(post) => (
-        <PostCard
+        <article
           key={post.title}
-          title={post.title}
-          description={post.description}
-          image={
-            <div className="flex h-full w-full items-center justify-center bg-default-200 text-default-500">
-              Post image
-            </div>
-          }
-          meta={<span>{post.date}</span>}
-        />
+          className="flex flex-col gap-2 border border-default-300 p-4"
+        >
+          <div className="flex h-32 w-full items-center justify-center bg-default-200 text-default-500">
+            Post image
+          </div>
+          <h3 className="font-accent">{post.title}</h3>
+          <span>{post.date}</span>
+          <p>{post.description}</p>
+        </article>
       )}
     />
   ),
@@ -98,17 +96,19 @@ export const ListView: Story = {
         itemsPerPage={5}
         view="list"
         renderItem={(post) => (
-          <ListCard
+          <article
             key={post.title}
-            title={post.title}
-            description={post.description}
-            image={
-              <div className="flex h-full w-full items-center justify-center bg-default-200 text-default-500">
-                Img
-              </div>
-            }
-            meta={<span>{post.date}</span>}
-          />
+            className="flex items-center gap-4 border border-default-300 p-4"
+          >
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center bg-default-200 text-default-500">
+              Img
+            </div>
+            <div className="flex flex-col gap-1">
+              <h3 className="font-accent">{post.title}</h3>
+              <span>{post.date}</span>
+              <p>{post.description}</p>
+            </div>
+          </article>
         )}
       />
     </div>
@@ -167,17 +167,17 @@ const ServerDrivenDemo = () => {
         columns={3}
         view="grid"
         renderItem={(post) => (
-          <PostCard
+          <article
             key={post.title}
-            title={post.title}
-            description={post.description}
-            image={
-              <div className="flex h-full w-full items-center justify-center bg-default-200 text-default-500">
-                Post image
-              </div>
-            }
-            meta={<span>{post.date}</span>}
-          />
+            className="flex flex-col gap-2 border border-default-300 p-4"
+          >
+            <div className="flex h-32 w-full items-center justify-center bg-default-200 text-default-500">
+              Post image
+            </div>
+            <h3 className="font-accent">{post.title}</h3>
+            <span>{post.date}</span>
+            <p>{post.description}</p>
+          </article>
         )}
       />
     </div>

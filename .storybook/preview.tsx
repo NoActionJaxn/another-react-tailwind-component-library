@@ -25,10 +25,10 @@ const preview: Preview = {
     },
     // Puts the standalone Docs pages (src/docs/*.mdx) first in the sidebar,
     // then the flat "Components" group (everything not a container, dialog,
-    // card, or full page), then "Containers", "Dialogs", "Cards", and
-    // "Pages" as their own sections, with "Utilities" (plain helper
-    // functions, not components) last. Each group is sorted alphabetically
-    // internally.
+    // or block), then "Blocks" (larger, section-level compositions),
+    // "Containers", and "Dialogs" as their own sections, with "Utilities"
+    // (plain helper functions, not components) last. Each group is sorted
+    // alphabetically internally.
     options: {
       storySort: {
         order: [
@@ -42,10 +42,9 @@ const preview: Preview = {
             "Retheming Components",
           ],
           "Components",
+          "Blocks",
           "Containers",
           "Dialogs",
-          "Cards",
-          "Pages",
           "Utilities",
         ],
       },
