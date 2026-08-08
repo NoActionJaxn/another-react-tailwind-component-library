@@ -1,6 +1,10 @@
 @layer components {
   .another-header {
-    @apply fixed inset-x-0 top-0 z-40 w-full border-b-2 border-default-200 dark:border-default-800;
+    @apply w-full border-b-2 border-default-200 dark:border-default-800;
+  }
+
+  .another-header[data-fixed="true"] {
+    @apply fixed inset-x-0 top-0 z-40;
   }
 
   .another-header[data-variant="default"] {
@@ -15,8 +19,36 @@
     @apply flex h-10 shrink-0 items-center gap-2 text-lg font-bold;
   }
 
+  /* Rendered via Navigation's desktopExtra slot (see Header.tsx), inside
+  another-navigation-desktop-extra - just needs its own size here, not
+  visibility/positioning (that's shared with another-navigation-root so
+  the two can never disagree - see navigation.css). */
+  .another-header-search {
+    @apply w-64;
+  }
+
+  .another-header-search-mobile {
+    @apply mb-3 flex w-full items-center;
+  }
+
+  /* TextInput's own another-text-input class enforces a 20rem min-w-xs
+  floor (see AGENTS.md's "Interactive control minimum sizing") so it never
+  collapses to content width in a form - but at @md that floor fights the
+  nav for room in the header's single row, overlapping it once the nav
+  items plus a 20rem-minimum search box exceed the available width. The
+  header search only needs to stay usable, not hit that form-field floor,
+  so it's relaxed to a smaller one here and left to actually shrink. */
+  .another-header-search .another-text-input,
+  .another-header-search-mobile .another-text-input {
+    @apply min-w-24;
+  }
+
   .another-header-navigation {
     @apply grow;
+  }
+
+  .another-header-actions {
+    @apply flex h-10 shrink-0 items-center gap-2;
   }
 
   .another-header-navigation .another-navigation-mobile-panel {

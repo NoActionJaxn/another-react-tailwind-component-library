@@ -2,7 +2,7 @@
   "name": "@noactionjaxn/another-react-tailwind-component-library",
   "version": "0.2.1",
   "description": "A React + Tailwind CSS v4 component library built on Radix primitives, styled with container queries.",
-  "generated": "2026-08-08T16:51:42.589Z",
+  "generated": "2026-08-08T19:10:25.806Z",
   "components": {
     "Accolades": {
       "import": {
@@ -245,6 +245,53 @@
           },
           "required": false,
           "default": "default"
+        },
+        "asChild": {
+          "type": "boolean",
+          "required": false
+        }
+      }
+    },
+    "AvatarBadge": {
+      "import": {
+        "name": "AvatarBadge",
+        "from": "@noactionjaxn/another-react-tailwind-component-library"
+      },
+      "exportedTypes": ["AvatarBadgeProps"],
+      "source": "src/components/AvatarBadge.tsx",
+      "css": "styles/components/avatar-badge.css",
+      "props": {
+        "count": {
+          "type": "number",
+          "required": false
+        },
+        "alt": {
+          "type": "string",
+          "required": false
+        },
+        "fallback": {
+          "type": "ReactNode",
+          "required": false
+        },
+        "fallbackDelay": {
+          "type": "number",
+          "required": false
+        },
+        "size": {
+          "type": {
+            "kind": "enum",
+            "literals": ["xs", "sm", "md", "lg", "xl", "2xl"],
+            "openEnum": false
+          },
+          "required": false
+        },
+        "src": {
+          "type": "string",
+          "required": false
+        },
+        "variant": {
+          "type": "string",
+          "required": false
         },
         "asChild": {
           "type": "boolean",
@@ -748,10 +795,19 @@
       "source": "src/components/Header.tsx",
       "css": "styles/components/header.css",
       "props": {
+        "actions": {
+          "type": "ReactNode",
+          "required": false
+        },
         "as": {
           "type": "ElementType",
           "required": false,
           "default": "header"
+        },
+        "fixed": {
+          "type": "boolean",
+          "required": false,
+          "default": "true"
         },
         "items": {
           "type": "NavigationItem[]",
@@ -761,6 +817,20 @@
         "logo": {
           "type": "ReactNode",
           "required": false
+        },
+        "onSearch": {
+          "type": "(value: string) => void",
+          "required": false
+        },
+        "search": {
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        "searchPlaceholder": {
+          "type": "string",
+          "required": false,
+          "default": "Search"
         },
         "variant": {
           "type": {
@@ -882,10 +952,18 @@
           "type": "string",
           "required": false
         },
+        "desktopExtra": {
+          "type": "ReactNode",
+          "required": false
+        },
         "items": {
           "type": "NavigationItem[]",
           "required": false,
           "default": "[]"
+        },
+        "mobileExtra": {
+          "type": "ReactNode",
+          "required": false
         },
         "mobileOpen": {
           "type": "boolean",
@@ -2047,6 +2125,16 @@
         }
       ]
     },
+    "AvatarBadgeProps": {
+      "kind": "interface",
+      "members": [
+        {
+          "name": "count",
+          "required": false,
+          "type": "number"
+        }
+      ]
+    },
     "BadgeVariant": {
       "kind": "enum",
       "literals": ["default", "secondary", "destructive", "outline"],
@@ -2481,9 +2569,19 @@
       "kind": "interface",
       "members": [
         {
+          "name": "actions",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
           "name": "as",
           "required": false,
           "type": "ElementType"
+        },
+        {
+          "name": "fixed",
+          "required": false,
+          "type": "boolean"
         },
         {
           "name": "items",
@@ -2494,6 +2592,21 @@
           "name": "logo",
           "required": false,
           "type": "ReactNode"
+        },
+        {
+          "name": "onSearch",
+          "required": false,
+          "type": "(value: string) => void"
+        },
+        {
+          "name": "search",
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "name": "searchPlaceholder",
+          "required": false,
+          "type": "string"
         },
         {
           "name": "variant",
@@ -2626,9 +2739,19 @@
           "type": "string"
         },
         {
+          "name": "desktopExtra",
+          "required": false,
+          "type": "ReactNode"
+        },
+        {
           "name": "items",
           "required": false,
           "type": "NavigationItem[]"
+        },
+        {
+          "name": "mobileExtra",
+          "required": false,
+          "type": "ReactNode"
         },
         {
           "name": "mobileOpen",

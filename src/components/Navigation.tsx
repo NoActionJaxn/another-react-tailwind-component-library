@@ -21,7 +21,9 @@ export interface NavigationItem {
 export interface NavigationProps
   extends RadixNavigationMenu.NavigationMenuProps {
   className?: string;
+  desktopExtra?: ReactNode;
   items?: NavigationItem[];
+  mobileExtra?: ReactNode;
   mobileOpen?: boolean;
   onMobileOpenChange?: (open: boolean) => void;
   variant?: NavigationVariant;
@@ -29,7 +31,9 @@ export interface NavigationProps
 
 const Navigation = ({
   className,
+  desktopExtra,
   items = [],
+  mobileExtra,
   mobileOpen: mobileOpenProp,
   onMobileOpenChange,
   variant = "default",
@@ -96,6 +100,10 @@ const Navigation = ({
           </div>
         </RadixNavigationMenu.Root>
 
+        {desktopExtra && (
+          <div className="another-navigation-desktop-extra">{desktopExtra}</div>
+        )}
+
         <Button
           className="another-navigation-mobile-trigger"
           variant="ghost"
@@ -111,6 +119,7 @@ const Navigation = ({
 
       {mobileOpen && (
         <div className="another-navigation-mobile-panel" data-variant={variant}>
+          {mobileExtra}
           {items.map((item, index) => {
             const value = item.value ?? String(index);
 

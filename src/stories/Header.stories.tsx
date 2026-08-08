@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { expect, within } from "storybook/test";
+import { expect, fn, userEvent, within } from "storybook/test";
 
 import HeaderComponent from "../components/Header";
 import { type NavigationItem } from "../components/Navigation";
 import Container from "../components/Container.tsx";
+import AvatarBadge from "../components/AvatarBadge.tsx";
 
 const meta = {
   title: "Components/Header",
@@ -17,13 +18,42 @@ const meta = {
 
 | Selector | Applies when | Controls |
 |---|---|---|
-| \`.another-header\` | root element, always | position, bottom border |
-| \`.another-header[data-variant="default"]\` | \`variant="default"\` | background, text color |`,
+| \`.another-header\` | root element, always | bottom border |
+| \`.another-header[data-fixed="true"]\` | \`fixed\` (default \`true\`) | position, offset, stacking |
+| \`.another-header[data-variant="default"]\` | \`variant="default"\` | background, text color |
+| \`.another-header-search\` | \`search\` is true | the desktop search input, floating right of the nav links |
+| \`.another-header-search-mobile\` | \`search\` is true | the same search input rendered inside the mobile hamburger panel instead, above the nav links - it and \`.another-header-search\` share Navigation's own desktop/mobile breakpoint, so exactly one is ever shown |
+| \`.another-header-actions\` | \`actions\` is set | layout for arbitrary trailing content (e.g. a user menu trigger), appended after the nav |`,
       },
     },
   },
   tags: ["autodocs"],
   argTypes: {
+    actions: {
+      control: false,
+      description:
+        "Arbitrary content appended after the nav, e.g. a user menu trigger.",
+    },
+    fixed: {
+      control: "boolean",
+      description:
+        "Pins the header to the top of the viewport with position: fixed. Set to false to render it in normal document flow instead.",
+    },
+    onSearch: {
+      control: false,
+      description:
+        "Called with the current search value when the search form is submitted (Enter key). Only relevant when search is true.",
+    },
+    search: {
+      control: "boolean",
+      description:
+        "Renders a built-in search input in the header. Hidden entirely when false (the default).",
+    },
+    searchPlaceholder: {
+      control: "text",
+      description:
+        "Placeholder text (and accessible label) for the search input.",
+    },
     variant: {
       control: "radio",
       options: ["default"],
@@ -31,6 +61,9 @@ const meta = {
     },
   },
   args: {
+    fixed: true,
+    search: false,
+    searchPlaceholder: "Search",
     variant: "default",
   },
 } satisfies Meta<typeof HeaderComponent>;
@@ -42,9 +75,11 @@ type Story = StoryObj<typeof meta>;
 const navLink = (label: string, description: string, href = "/") => (
   <a
     href={href}
-    className="flex flex-col gap-0.5 rounded-sm px-3 py-2 text-sm no-underline transition-colors duration-150 ease-in-out hover:bg-default-100"
+    className="flex flex-col gap-0.5 rounded-sm px-3 py-2 text-sm no-underline transition-colors duration-150 ease-in-out hover:bg-default-100 dark:hover:bg-default-900"
   >
-    <span className="font-semibold text-default-950">{label}</span>
+    <span className="font-semibold text-default-950 dark:text-default-50">
+      {label}
+    </span>
     <span className="text-default-500">{description}</span>
   </a>
 );
@@ -94,12 +129,8 @@ const logo = (
 
 export const Header: Story = {
   render: (args) => (
-    <div className="h-[150vh] w-full">
+    <div className="h-96 w-full">
       <HeaderComponent {...args} logo={logo} items={items} />
-      <p className="px-4 pt-20 text-sm text-default-500">
-        The header is fixed to the top of the viewport - scroll this page to see
-        it stay in place.
-      </p>
     </div>
   ),
   // Dropdown/mobile-menu interaction is covered by Navigation.stories.tsx,
@@ -116,6 +147,67 @@ export const Header: Story = {
     await expect(canvas.getByRole("link", { name: "Pricing" })).toHaveAttribute(
       "href",
       "/pricing",
+    );
+  },
+};
+
+export const WithSearch: Story = {
+  args: {
+    search: true,
+    onSearch: fn(),
+  },
+  render: (args) => (
+    <div className="h-96 w-full">
+      <HeaderComponent {...args} logo={logo} items={items} />
+    </div>
+  ),
+  play: async ({ args, canvasElement }) => {
+    const canvas = within(canvasElement);
+    const searchInput = canvas.getByRole("searchbox", { name: "Search" });
+
+    await userEvent.type(searchInput, "components{Enter}");
+
+    await expect(args.onSearch).toHaveBeenCalledOnce();
+    await expect(args.onSearch).toHaveBeenCalledWith("components");
+  },
+};
+
+export const WithActions: Story = {
+  render: (args) => (
+    <div className="h-96 w-full">
+      <HeaderComponent
+        {...args}
+        logo={logo}
+        items={items}
+        actions={<AvatarBadge fallback="JH" size="sm" count={3} />}
+      />
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    await expect(canvas.getByText("Another")).toBeInTheDocument();
+    await expect(canvas.getByText("JH")).toBeInTheDocument();
+    await expect(canvas.getByText("3")).toBeInTheDocument();
+  },
+};
+
+export const Static: Story = {
+  args: {
+    fixed: false,
+  },
+  render: (args) => (
+    <div className="h-96 w-full">
+      <HeaderComponent {...args} logo={logo} items={items} />
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    await expect(canvas.getByText("Another")).toBeInTheDocument();
+    await expect(canvas.getByRole("banner")).toHaveAttribute(
+      "data-fixed",
+      "false",
     );
   },
 };

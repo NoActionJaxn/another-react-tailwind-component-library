@@ -31,6 +31,10 @@ export {
   type AvatarVariant,
 } from "./components/Avatar.tsx";
 export {
+  default as AvatarBadge,
+  type AvatarBadgeProps,
+} from "./components/AvatarBadge.tsx";
+export {
   default as Badge,
   type BadgeProps,
   type BadgeVariant,

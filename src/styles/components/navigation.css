@@ -8,15 +8,28 @@
   }
 
   .another-navigation-bar {
-    @apply flex w-full items-center justify-end;
+    @apply flex w-full items-center justify-end gap-4;
   }
 
   .another-navigation-root {
-    @apply relative hidden @md:flex;
+    /* shrink-0: the nav links are the primary content of the bar - any
+    squeeze under width pressure should come out of desktopExtra (see
+    another-navigation-desktop-extra) instead of compressing/wrapping
+    these. */
+    @apply relative hidden shrink-0 @md:flex;
   }
 
   .another-navigation-mobile-trigger {
     @apply flex @md:hidden;
+  }
+
+  /* Shares the exact same hidden/@md:flex toggle as another-navigation-root
+  (both react to this Navigation instance's own container width) so
+  whatever's passed as desktopExtra and another-navigation-mobile-panel's
+  mobileExtra are always mutually exclusive - never both visible, never
+  both hidden - regardless of how a consumer (e.g. Header) sizes itself. */
+  .another-navigation-desktop-extra {
+    @apply hidden min-w-0 shrink items-center @md:flex;
   }
 
   .another-navigation-list {
