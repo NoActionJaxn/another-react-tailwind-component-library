@@ -133,11 +133,6 @@ export {
   type PasswordInputProps,
 } from "./components/PasswordInput.tsx";
 export {
-  default as Pricing,
-  type PricingProps,
-  type PricingVariant,
-} from "./components/Pricing.tsx";
-export {
   default as Progress,
   type ProgressProps,
   type ProgressSize,

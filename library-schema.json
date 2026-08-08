@@ -2,7 +2,7 @@
   "name": "@noactionjaxn/another-react-tailwind-component-library",
   "version": "0.2.1",
   "description": "A React + Tailwind CSS v4 component library built on Radix primitives, styled with container queries.",
-  "generated": "2026-08-08T16:13:45.838Z",
+  "generated": "2026-08-08T16:51:42.589Z",
   "components": {
     "Accolades": {
       "import": {
@@ -1054,43 +1054,6 @@
         },
         "variant": {
           "type": "string",
-          "required": false,
-          "default": "default"
-        }
-      }
-    },
-    "Pricing": {
-      "import": {
-        "name": "Pricing",
-        "from": "@noactionjaxn/another-react-tailwind-component-library"
-      },
-      "exportedTypes": ["PricingProps", "PricingVariant"],
-      "source": "src/components/Pricing.tsx",
-      "css": "styles/components/pricing.css",
-      "props": {
-        "as": {
-          "type": "ElementType",
-          "required": false,
-          "default": "section"
-        },
-        "description": {
-          "type": "ReactNode",
-          "required": false
-        },
-        "eyebrow": {
-          "type": "ReactNode",
-          "required": false
-        },
-        "title": {
-          "type": "ReactNode",
-          "required": false
-        },
-        "variant": {
-          "type": {
-            "kind": "enum",
-            "literals": ["default"],
-            "openEnum": true
-          },
           "required": false,
           "default": "default"
         }
@@ -2746,41 +2709,6 @@
           "name": "disableShowPassword",
           "required": false,
           "type": "boolean"
-        }
-      ]
-    },
-    "PricingVariant": {
-      "kind": "enum",
-      "literals": ["default"],
-      "openEnum": true
-    },
-    "PricingProps": {
-      "kind": "interface",
-      "members": [
-        {
-          "name": "as",
-          "required": false,
-          "type": "ElementType"
-        },
-        {
-          "name": "description",
-          "required": false,
-          "type": "ReactNode"
-        },
-        {
-          "name": "eyebrow",
-          "required": false,
-          "type": "ReactNode"
-        },
-        {
-          "name": "title",
-          "required": false,
-          "type": "ReactNode"
-        },
-        {
-          "name": "variant",
-          "required": false,
-          "type": "PricingVariant"
         }
       ]
     },
