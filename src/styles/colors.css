@@ -1,0 +1,28 @@
+/* `static`: always output these, even when no class uses them. */
+@theme static {
+  --color-default-50: var(--color-stone-50);
+  --color-default-100: var(--color-stone-100);
+  --color-default-200: var(--color-stone-200);
+  --color-default-300: var(--color-stone-300);
+  --color-default-400: var(--color-stone-400);
+  --color-default-500: var(--color-stone-500);
+  --color-default-600: var(--color-stone-600);
+  --color-default-700: var(--color-stone-700);
+  --color-default-800: var(--color-stone-800);
+  --color-default-900: var(--color-stone-900);
+  --color-default-950: var(--color-stone-950);
+}
+
+:root {
+  --scheme-50: var(--color-default-50);
+  --scheme-100: var(--color-default-100);
+  --scheme-200: var(--color-default-200);
+  --scheme-300: var(--color-default-300);
+  --scheme-400: var(--color-default-400);
+  --scheme-500: var(--color-default-500);
+  --scheme-600: var(--color-default-600);
+  --scheme-700: var(--color-default-700);
+  --scheme-800: var(--color-default-800);
+  --scheme-900: var(--color-default-900);
+  --scheme-950: var(--color-default-950);
+}

@@ -1,0 +1,53 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-button] {
+    --_radius: var(--button-radius, var(--radius-sm));
+    --_font-family: var(--button-font-family, var(--font-sans));
+    --_font-weight: var(--button-font-weight, var(--font-weight-semibold));
+    --_text-transform: var(--button-text-transform, uppercase);
+    --_focus-color: var(--button-focus-color, var(--scheme-500));
+  }
+
+  [data-button][data-size="sm"] {
+    --_padding-x: var(--button-sm-padding-x, calc(var(--spacing) * 3));
+    --_padding-y: var(--button-sm-padding-y, calc(var(--spacing) * 1.5));
+  }
+
+  [data-button][data-size="md"] {
+    --_padding-x: var(--button-md-padding-x, calc(var(--spacing) * 4));
+    --_padding-y: var(--button-md-padding-y, calc(var(--spacing) * 2));
+  }
+
+  [data-button][data-size="lg"] {
+    --_padding-x: var(--button-lg-padding-x, calc(var(--spacing) * 5));
+    --_padding-y: var(--button-lg-padding-y, calc(var(--spacing) * 2.5));
+  }
+
+  [data-button][data-variant="solid"] {
+    --_bg: var(--button-solid-bg, var(--scheme-600));
+    --_bg-hover: var(--button-solid-bg-hover, var(--scheme-700));
+    --_text: var(--button-solid-text, white);
+    --_border: var(--button-solid-border, transparent);
+  }
+
+  [data-button][data-variant="soft"] {
+    --_bg: var(--button-soft-bg, var(--scheme-100));
+    --_bg-hover: var(--button-soft-bg-hover, var(--scheme-200));
+    --_text: var(--button-soft-text, var(--scheme-900));
+    --_border: var(--button-soft-border, transparent);
+  }
+
+  [data-button][data-variant="outline"] {
+    --_bg: var(--button-outline-bg, transparent);
+    --_bg-hover: var(--button-outline-bg-hover, var(--scheme-50));
+    --_text: var(--button-outline-text, var(--scheme-800));
+    --_border: var(--button-outline-border, var(--scheme-300));
+  }
+
+  [data-button][data-variant="ghost"] {
+    --_bg: var(--button-ghost-bg, transparent);
+    --_bg-hover: var(--button-ghost-bg-hover, var(--scheme-100));
+    --_text: var(--button-ghost-text, var(--scheme-800));
+    --_border: var(--button-ghost-border, transparent);
+  }
+}

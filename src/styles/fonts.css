@@ -1,0 +1,5 @@
+@theme {
+  --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Roboto Serif", ui-serif, Georgia, serif;
+  --font-mono: "Roboto Mono", ui-monospace, Menlo, Consolas, monospace;
+}
