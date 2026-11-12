@@ -1,0 +1,55 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-code-block] {
+    --_radius: var(--code-block-radius, var(--radius-md));
+    --_font-family: var(--code-block-font-family, var(--font-mono));
+  }
+
+  /* The copy button is a ghost Button; recolor it to suit the block. */
+  [data-code-block] [data-button] {
+    --button-ghost-text: var(--_copy-text);
+    --button-ghost-bg-hover: var(--_copy-bg-hover);
+  }
+
+  [data-code-block][data-size="sm"] {
+    --_padding-x: var(--code-block-sm-padding-x, calc(var(--spacing) * 3));
+    --_padding-y: var(--code-block-sm-padding-y, calc(var(--spacing) * 2));
+  }
+
+  [data-code-block][data-size="md"] {
+    --_padding-x: var(--code-block-md-padding-x, calc(var(--spacing) * 4));
+    --_padding-y: var(--code-block-md-padding-y, calc(var(--spacing) * 3));
+  }
+
+  [data-code-block][data-size="lg"] {
+    --_padding-x: var(--code-block-lg-padding-x, calc(var(--spacing) * 5));
+    --_padding-y: var(--code-block-lg-padding-y, calc(var(--spacing) * 4));
+  }
+
+  [data-code-block][data-variant="solid"] {
+    --_bg: var(--code-block-solid-bg, var(--scheme-900));
+    --_text: var(--code-block-solid-text, var(--scheme-50));
+    --_border: var(--code-block-solid-border, transparent);
+    --_copy-text: var(--code-block-solid-copy-text, var(--scheme-100));
+    --_copy-bg-hover: var(--code-block-solid-copy-bg-hover, var(--scheme-700));
+  }
+
+  [data-code-block][data-variant="soft"] {
+    --_bg: var(--code-block-soft-bg, var(--scheme-100));
+    --_text: var(--code-block-soft-text, var(--scheme-900));
+    --_border: var(--code-block-soft-border, transparent);
+    --_copy-text: var(--code-block-soft-copy-text, var(--scheme-800));
+    --_copy-bg-hover: var(--code-block-soft-copy-bg-hover, var(--scheme-200));
+  }
+
+  [data-code-block][data-variant="outline"] {
+    --_bg: var(--code-block-outline-bg, transparent);
+    --_text: var(--code-block-outline-text, var(--scheme-900));
+    --_border: var(--code-block-outline-border, var(--scheme-300));
+    --_copy-text: var(--code-block-outline-copy-text, var(--scheme-800));
+    --_copy-bg-hover: var(
+      --code-block-outline-copy-bg-hover,
+      var(--scheme-100)
+    );
+  }
+}

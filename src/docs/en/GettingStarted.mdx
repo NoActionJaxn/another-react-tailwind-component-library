@@ -1,0 +1,112 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Getting Started" />
+
+# Getting Started
+
+React components styled with Tailwind CSS and built on
+[Radix UI](https://www.radix-ui.com/primitives) primitives, so keyboard
+navigation, focus management and ARIA come built in.
+
+## Requirements
+
+- React 19
+- Tailwind CSS 4.1 or later, set up in your app (for example with
+  `@tailwindcss/vite`)
+
+## Install
+
+```sh
+npm install another-react-tailwind-component-library
+```
+
+React, React DOM and Tailwind are peer dependencies: the library uses the
+versions your app already has.
+
+## Add the CSS
+
+The library's stylesheet includes Tailwind itself, so it replaces
+`@import "tailwindcss"` in your main CSS file. Add an `@source` line so Tailwind
+also scans the library's components for the classes they use.
+
+```css
+@import "another-react-tailwind-component-library/src/styles/index.css";
+@source "../node_modules/another-react-tailwind-component-library/src";
+
+/* Your own styles and theme overrides go after it. */
+```
+
+Keep the import on the first line. It loads the Roboto fonts from Google Fonts,
+and browsers ignore a font `@import` that comes after other rules. The `@source`
+path is relative to your CSS file: adjust it if that file isn't one folder below
+`node_modules`.
+
+## Use a component
+
+```tsx
+import {
+  Button,
+  Label,
+  TextInput,
+} from "another-react-tailwind-component-library";
+
+export function SignUp() {
+  return (
+    <form className="flex items-end gap-2">
+      <div className="flex flex-col gap-2">
+        <Label htmlFor="email">Email</Label>
+        <TextInput id="email" type="email" placeholder="you@example.com" />
+      </div>
+      <Button type="submit">Sign up</Button>
+    </form>
+  );
+}
+```
+
+Most components take the same three styling props:
+
+- `variant`: the style, from `solid`, `soft`, `outline` and `ghost`. Each
+  component supports the ones that make sense for it.
+- `size`: `sm`, `md` (the default) or `lg`. Form controls and buttons of the
+  same size line up in a row.
+- `colorScheme`: the color palette to use. See [Theming](?path=/docs/theming--docs).
+
+`className` and `style` are passed through last, so they can override anything.
+Components built on Radix take that primitive's props too; each component page
+lists them.
+
+## Providers
+
+Two components need a provider placed once, near the root of your app:
+
+```tsx
+import {
+  ToastProvider,
+  ToastViewport,
+  TooltipProvider,
+} from "another-react-tailwind-component-library";
+
+export function App() {
+  return (
+    <TooltipProvider>
+      <ToastProvider>
+        {/* your app */}
+        <ToastViewport />
+      </ToastProvider>
+    </TooltipProvider>
+  );
+}
+```
+
+## Fonts
+
+Tailwind's `font-sans`, `font-serif` and `font-mono` use Roboto, Roboto Serif
+and Roboto Mono. Use them in your own markup as usual, or redefine
+`--font-sans` and the others in `@theme` to change the fonts everywhere.
+
+## Next steps
+
+- [Theming](?path=/docs/theming--docs): replace the default colors, add your own
+  color schemes and override per-component variables.
+- The **Components** section: every component, with live controls, its props
+  and its CSS variables.

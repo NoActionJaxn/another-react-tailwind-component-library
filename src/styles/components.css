@@ -4,6 +4,8 @@
 @import "../components/Avatar/Avatar.css";
 @import "../components/Button/Button.css";
 @import "../components/Checkbox/Checkbox.css";
+@import "../components/Code/Code.css";
+@import "../components/CodeBlock/CodeBlock.css";
 @import "../components/Collapsible/Collapsible.css";
 @import "../components/HoverCard/HoverCard.css";
 @import "../components/Label/Label.css";
@@ -23,3 +25,4 @@
 @import "../components/Toggle/Toggle.css";
 @import "../components/Toolbar/Toolbar.css";
 @import "../components/Tooltip/Tooltip.css";
+@import "../components/Typography/Typography.css";

@@ -8,6 +8,7 @@ const docsDir = path.resolve(process.cwd(), "src/docs");
 const docsPages = fs
   .readdirSync(path.join(docsDir, "en"))
   .filter((file) => file.endsWith(".mdx"))
+  .sort()
   .map((file) =>
     fs.existsSync(path.join(docsDir, locale, file))
       ? `../src/docs/${locale}/${file}`

@@ -1,0 +1,51 @@
+@layer components {
+  [data-typography] {
+    --_text: var(--typography-text, currentColor);
+  }
+  [data-typography][data-size="xxs"] {
+    --_font-size: var(--typography-xxs-font-size, 0.625rem);
+    --_line-height: var(--typography-xxs-line-height, calc(0.875 / 0.625));
+  }
+  [data-typography][data-size="xs"] {
+    --_font-size: var(--typography-xs-font-size, var(--text-xs));
+    --_line-height: var(
+      --typography-xs-line-height,
+      var(--text-xs--line-height)
+    );
+  }
+  [data-typography][data-size="sm"] {
+    --_font-size: var(--typography-sm-font-size, var(--text-sm));
+    --_line-height: var(
+      --typography-sm-line-height,
+      var(--text-sm--line-height)
+    );
+  }
+  [data-typography][data-size="md"] {
+    --_font-size: var(--typography-md-font-size, var(--text-base));
+    --_line-height: var(
+      --typography-md-line-height,
+      var(--text-base--line-height)
+    );
+  }
+  [data-typography][data-size="lg"] {
+    --_font-size: var(--typography-lg-font-size, var(--text-xl));
+    --_line-height: var(
+      --typography-lg-line-height,
+      var(--text-xl--line-height)
+    );
+  }
+  [data-typography][data-size="xl"] {
+    --_font-size: var(--typography-xl-font-size, var(--text-2xl));
+    --_line-height: var(
+      --typography-xl-line-height,
+      var(--text-2xl--line-height)
+    );
+  }
+  [data-typography][data-size="xxl"] {
+    --_font-size: var(--typography-xxl-font-size, var(--text-3xl));
+    --_line-height: var(
+      --typography-xxl-line-height,
+      var(--text-3xl--line-height)
+    );
+  }
+}

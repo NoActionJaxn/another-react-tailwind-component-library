@@ -1,0 +1,41 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-code] {
+    --_radius: var(--code-radius, var(--radius-sm));
+    --_font-family: var(--code-font-family, var(--font-mono));
+    --_padding-x: var(--code-padding-x, 0.375em);
+    --_padding-y: var(--code-padding-y, 0.125em);
+    --_copy-gap: var(--code-copy-gap, 0.25em);
+    --_focus-color: var(--code-focus-color, var(--scheme-400));
+    --_focus-width: var(--code-focus-width, 4px);
+    --_focus-offset: var(--code-focus-offset, 0px);
+  }
+
+  [data-code][data-size="sm"] {
+    --_font-size: var(--code-sm-font-size, 0.75em);
+  }
+
+  [data-code][data-size="md"] {
+    --_font-size: var(--code-md-font-size, 0.875em);
+  }
+
+  [data-code][data-size="lg"] {
+    --_font-size: var(--code-lg-font-size, 1em);
+  }
+
+  [data-code][data-variant="soft"] {
+    --_bg: var(--code-soft-bg, var(--scheme-100));
+    --_text: var(--code-soft-text, var(--scheme-900));
+    --_border: var(--code-soft-border, transparent);
+    --_copy-text: var(--code-soft-copy-text, var(--scheme-800));
+    --_copy-bg-hover: var(--code-soft-copy-bg-hover, var(--scheme-200));
+  }
+
+  [data-code][data-variant="outline"] {
+    --_bg: var(--code-outline-bg, transparent);
+    --_text: var(--code-outline-text, var(--scheme-900));
+    --_border: var(--code-outline-border, var(--scheme-300));
+    --_copy-text: var(--code-outline-copy-text, var(--scheme-800));
+    --_copy-bg-hover: var(--code-outline-copy-bg-hover, var(--scheme-100));
+  }
+}

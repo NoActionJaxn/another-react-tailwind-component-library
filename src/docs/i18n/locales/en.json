@@ -103,6 +103,31 @@
         "--checkbox-gap": "Space between the box and its label"
       }
     },
+    "Code": {
+      "description": "Inline code, such as a command or a function name. Sizes are relative to the surrounding text.",
+      "props": {
+        "copyable": "Show a button that copies the code.",
+        "copyLabel": "Accessible name of the copy button.",
+        "copiedLabel": "Accessible name of the copy button after copying."
+      },
+      "story": {
+        "children": "npm install"
+      },
+      "cssVariables": {
+        "copy-gap": "Space between the code and its copy button"
+      }
+    },
+    "CodeBlock": {
+      "description": "A block of preformatted code with a copy button. Long lines scroll horizontally.",
+      "props": {
+        "copyable": "Show a button that copies the code.",
+        "copyLabel": "Accessible name of the copy button.",
+        "copiedLabel": "Accessible name of the copy button after copying."
+      },
+      "story": {
+        "children": "import { Button } from \"another-react-tailwind-component-library\";\n\nexport function App() {\n  return <Button>Hello</Button>;\n}"
+      }
+    },
     "Collapsible": {
       "description": "A section that expands and collapses. Unstyled: style the trigger and content yourself. Content animates its height.",
       "props": {},
@@ -370,6 +395,17 @@
         "trigger": "Hover me",
         "content": "Add to library"
       }
+    },
+    "Typography": {
+      "description": "Styled text. Renders a <span> by default; use asChild to style another element such as a heading or paragraph.",
+      "props": {
+        "font": "Font family: Roboto (sans), Roboto Serif (serif) or Roboto Mono (mono).",
+        "size": "Font size and line height, from xxs to xxl.",
+        "asChild": "Render the child element (e.g. an <h1> or <p>) with typography styles instead of a <span>."
+      },
+      "story": {
+        "children": "The quick brown fox jumps over the lazy dog."
+      }
     }
   },
   "docs": {
@@ -456,7 +492,11 @@
         "trigger-radius": "Trigger corner radius",
         "trigger-text": "Trigger text color",
         "trigger-active-text": "Active trigger text color",
-        "trigger-active-bg": "Active trigger background color"
+        "trigger-active-bg": "Active trigger background color",
+        "font-size": "Font size",
+        "line-height": "Line height",
+        "copy-text": "Copy button icon color",
+        "copy-bg-hover": "Copy button background on hover"
       },
       "parts": {
         "menu-content": "Menu (shared with DropdownMenu, ContextMenu, Menubar and Select)",
