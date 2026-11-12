@@ -1,0 +1,17 @@
+/* Shared by DropdownMenu, ContextMenu, Menubar and Select content. */
+@layer components {
+  [data-menu-content] {
+    --_bg: var(--menu-bg, white);
+    --_text: var(--menu-text, var(--scheme-900));
+    --_border: var(--menu-border, var(--scheme-300));
+    --_radius: var(--menu-radius, var(--radius-md));
+    --_shadow: var(--menu-shadow, var(--shadow-lg));
+    --_padding: var(--menu-padding, var(--spacing));
+    --_item-radius: var(--menu-item-radius, var(--radius-sm));
+    --_item-padding-x: var(--menu-item-padding-x, calc(var(--spacing) * 2));
+    --_item-padding-y: var(--menu-item-padding-y, calc(var(--spacing) * 1.5));
+    --_item-highlight-bg: var(--menu-item-highlight-bg, var(--scheme-100));
+    --_label-text: var(--menu-label-text, var(--scheme-600));
+    --_separator: var(--menu-separator, var(--scheme-200));
+  }
+}

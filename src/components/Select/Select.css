@@ -1,0 +1,55 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+/* Trigger mirrors TextInput; the dropdown uses the shared --menu-* variables. */
+@layer components {
+  [data-select] {
+    --_radius: var(--select-radius, var(--radius-sm));
+    --_gap: var(--select-gap, calc(var(--spacing) * 2));
+    --_font-family: var(--select-font-family, var(--font-sans));
+    --_font-weight: var(--select-font-weight, var(--font-weight-normal));
+    --_focus-color: var(--select-focus-color, var(--scheme-400));
+    --_focus-width: var(--select-focus-width, 4px);
+    --_focus-offset: var(--select-focus-offset, 0px);
+  }
+
+  [data-select][data-size="sm"] {
+    --_padding-x: var(--select-sm-padding-x, calc(var(--spacing) * 3));
+    --_padding-y: var(--select-sm-padding-y, calc(var(--spacing) * 1.5));
+  }
+
+  [data-select][data-size="md"] {
+    --_padding-x: var(--select-md-padding-x, calc(var(--spacing) * 4));
+    --_padding-y: var(--select-md-padding-y, calc(var(--spacing) * 2));
+  }
+
+  [data-select][data-size="lg"] {
+    --_padding-x: var(--select-lg-padding-x, calc(var(--spacing) * 5));
+    --_padding-y: var(--select-lg-padding-y, calc(var(--spacing) * 2.5));
+  }
+
+  [data-select][data-variant="outline"] {
+    --_bg: var(--select-outline-bg, transparent);
+    --_bg-hover: var(--select-outline-bg-hover, transparent);
+    --_text: var(--select-outline-text, var(--scheme-900));
+    --_placeholder: var(--select-outline-placeholder, var(--scheme-500));
+    --_border: var(--select-outline-border, var(--scheme-300));
+    --_border-hover: var(--select-outline-border-hover, var(--scheme-400));
+  }
+
+  [data-select][data-variant="soft"] {
+    --_bg: var(--select-soft-bg, var(--scheme-100));
+    --_bg-hover: var(--select-soft-bg-hover, var(--scheme-200));
+    --_text: var(--select-soft-text, var(--scheme-900));
+    --_placeholder: var(--select-soft-placeholder, var(--scheme-600));
+    --_border: var(--select-soft-border, transparent);
+    --_border-hover: var(--select-soft-border-hover, transparent);
+  }
+
+  [data-select][data-variant="ghost"] {
+    --_bg: var(--select-ghost-bg, transparent);
+    --_bg-hover: var(--select-ghost-bg-hover, var(--scheme-100));
+    --_text: var(--select-ghost-text, var(--scheme-900));
+    --_placeholder: var(--select-ghost-placeholder, var(--scheme-500));
+    --_border: var(--select-ghost-border, transparent);
+    --_border-hover: var(--select-ghost-border-hover, transparent);
+  }
+}

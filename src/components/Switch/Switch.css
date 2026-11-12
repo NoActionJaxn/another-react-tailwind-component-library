@@ -1,0 +1,33 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-switch] {
+    --_gap: var(--switch-gap, calc(var(--spacing) * 2));
+    --_track: var(--switch-track, var(--scheme-300));
+    --_track-checked: var(--switch-track-checked, var(--scheme-600));
+    --_border-width: var(--switch-border-width, 0px);
+    --_border: var(--switch-border, var(--scheme-500));
+    --_border-checked: var(--switch-border-checked, var(--scheme-600));
+    --_thumb: var(--switch-thumb, white);
+    /* Height minus 2px padding and the border on each side. */
+    --_thumb-size: calc(var(--_height) - 4px - 2 * var(--_border-width));
+    --_thumb-travel: calc(var(--_width) - var(--_height));
+    --_focus-color: var(--switch-focus-color, var(--scheme-400));
+    --_focus-width: var(--switch-focus-width, 4px);
+    --_focus-offset: var(--switch-focus-offset, 0px);
+  }
+
+  [data-switch][data-size="sm"] {
+    --_width: var(--switch-sm-width, calc(var(--spacing) * 7));
+    --_height: var(--switch-sm-height, calc(var(--spacing) * 4));
+  }
+
+  [data-switch][data-size="md"] {
+    --_width: var(--switch-md-width, calc(var(--spacing) * 9));
+    --_height: var(--switch-md-height, calc(var(--spacing) * 5));
+  }
+
+  [data-switch][data-size="lg"] {
+    --_width: var(--switch-lg-width, calc(var(--spacing) * 11));
+    --_height: var(--switch-lg-height, calc(var(--spacing) * 6));
+  }
+}

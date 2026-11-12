@@ -1,0 +1,20 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-progress] {
+    --_track: var(--progress-track, var(--scheme-200));
+    --_fill: var(--progress-fill, var(--scheme-600));
+    --_radius: var(--progress-radius, 9999px);
+  }
+
+  [data-progress][data-size="sm"] {
+    --_height: var(--progress-sm-height, var(--spacing));
+  }
+
+  [data-progress][data-size="md"] {
+    --_height: var(--progress-md-height, calc(var(--spacing) * 2));
+  }
+
+  [data-progress][data-size="lg"] {
+    --_height: var(--progress-lg-height, calc(var(--spacing) * 3));
+  }
+}

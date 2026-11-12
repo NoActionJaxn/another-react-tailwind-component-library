@@ -21,7 +21,8 @@ Tests are stories: add `play` functions to stories for interaction tests rather 
 - `src/index.ts`: public exports (components, their prop/variant types, `schemeVars`, `ColorScheme`)
 - `src/components/<Name>/`: `Name.tsx`, `Name.css`, `Name.stories.tsx`, `index.ts`
 - `src/styles/index.css`: entry. Google Fonts import → `tailwindcss` → `theme.css` (`fonts.css`, `colors.css`) → `components.css` (imports every `Name.css`)
-- `src/utils/`: `tw()` (classnames + tailwind-merge), `schemeVars()`, `ColorScheme`
+- `src/utils/`: `tw()` (classnames + tailwind-merge), `schemeVars()`, `schemeStyle(colorScheme, style)`, `ColorScheme`
+- `src/components/_menu/`, `src/components/_dialog/`: internal shared styles (not exported). `_menu` (`--menu-*`) styles DropdownMenu, ContextMenu, Menubar and Select dropdowns; `_dialog` (`--dialog-*`) styles Dialog and AlertDialog. `Toggle/classes.ts` styles Toggle, ToggleGroupItem and Toolbar buttons.
 - `src/docs/Theming.mdx`: user-facing theming docs with a variable table per component
 - `playground/playground.css`: library CSS + example `brand` scheme; loaded by the playground and Storybook
 
@@ -59,9 +60,13 @@ Tests are stories: add `play` functions to stories for interaction tests rather 
 - Build classes with `tw()` and pass the user's `className` last.
 - Export `<Name>Props` plus union types (`<Name>Variant`, `<Name>Size`) and re-export them from `index.ts` and `src/index.ts`.
 
+**Radix primitives**: every component except Button/TextInput wraps a Radix primitive. Compound components export one part per Radix part (`Dialog`, `DialogTrigger`, `DialogContent`, …); parts with no styling are re-exported as is (`export const Dialog = DialogPrimitive.Root`). Shared class strings live in a separate `.ts` file, not the component file (react-refresh only allows component exports there). Reuse library components inside others rather than restyling: AlertDialog Action/Cancel and ToastAction render `Button`; labelled controls render `Label`; Select's trigger mirrors TextInput's variables and sizes.
+
+**Portals**: Dialog, AlertDialog, Popover, HoverCard, Tooltip, menus and Select render content in a portal, so it can't inherit `--scheme-*` or variable overrides from the trigger's parents. Their content parts take `colorScheme` and apply it with `schemeStyle()`, and render their own `data-*` attribute so their variables resolve on the content.
+
 **Wrapped controls** (TextInput): the outer element carries `data-<name>`, the variables and all visuals, and is a Tailwind `group`. States come from the inner control: `focus-within:` for the ring, `has-disabled:` for disabled, `group-focus-within:` for icon color. `className`/`style`/`colorScheme` go on the wrapper; every other prop and `ref` go on the inner control.
 
-**Labelled controls** (Checkbox, Radio): render the library `Label` with `htmlFor` pointing at the control (`useId()` unless an `id` is passed), sized to match the control. `label` is optional; without it, callers pass `aria-label`. RadioGroup passes `size` to its Radios through context. Their wrappers are block-level `flex w-fit`, not `inline-flex`: an inline wrapper sits on the text baseline, which moves when the check/dot indicator mounts.
+**Labelled controls** (Checkbox, Radio, Switch): render the library `Label` with `htmlFor` pointing at the control (`useId()` unless an `id` is passed), sized to match the control. `label` is optional; without it, callers pass `aria-label`. RadioGroup passes `size` to its Radios through context (ToggleGroup and Toolbar do the same for their items). Their wrappers are block-level `flex w-fit`, not `inline-flex`: an inline wrapper sits on the text baseline, which moves when the check/dot indicator mounts.
 
 **Variants** are styles, never colors, drawn from `solid | soft | outline | ghost`. A component supports only the ones that make sense (TextInput: `outline | soft | ghost`, no `solid`). Button shades:
 
@@ -99,6 +104,7 @@ Tests are stories: add `play` functions to stories for interaction tests rather 
 - Tailwind drops theme variables no class uses. Anything read at runtime (schemes, palettes picked by name) must be in `@theme static` or plain `:root`.
 - The Google Fonts `@import url(...)` must stay the first line of `src/styles/index.css`. Placed anywhere else, it ends up after Tailwind's rules and browsers ignore it.
 - Tailwind escapes class names in built CSS (`.bg-\(--_bg\)`): search output by declaration (`background-color:var(--_bg)`), not by class.
+- Inside `[...]` arbitrary values Tailwind turns `_` into a space, which breaks `var(--_x)` (e.g. in `calc()`). Do the math in the component CSS as a `--_*` variable and use the `(--_x)` syntax instead.
 
 ## Style
 

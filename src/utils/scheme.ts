@@ -12,3 +12,11 @@ export function schemeVars(name: ColorScheme): CSSProperties {
   }
   return vars as CSSProperties;
 }
+
+/** Merges schemeVars(colorScheme) under a style prop. */
+export function schemeStyle(
+  colorScheme: ColorScheme | undefined,
+  style?: CSSProperties,
+): CSSProperties | undefined {
+  return colorScheme ? { ...schemeVars(colorScheme), ...style } : style;
+}

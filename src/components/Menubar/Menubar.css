@@ -1,0 +1,11 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-menubar] {
+    --_bg: var(--menubar-bg, white);
+    --_text: var(--menubar-text, var(--scheme-900));
+    --_border: var(--menubar-border, var(--scheme-300));
+    --_radius: var(--menubar-radius, var(--radius-md));
+    --_trigger-radius: var(--menubar-trigger-radius, var(--radius-sm));
+    --_trigger-active-bg: var(--menubar-trigger-active-bg, var(--scheme-100));
+  }
+}

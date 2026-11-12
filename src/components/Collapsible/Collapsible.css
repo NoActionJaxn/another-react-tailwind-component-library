@@ -1,0 +1,32 @@
+@layer components {
+  [data-collapsible-content] {
+    --_duration: var(--collapsible-duration, 200ms);
+    overflow: hidden;
+  }
+
+  [data-collapsible-content][data-state="open"] {
+    animation: collapsible-open var(--_duration) ease-out;
+  }
+
+  [data-collapsible-content][data-state="closed"] {
+    animation: collapsible-close var(--_duration) ease-out;
+  }
+
+  @keyframes collapsible-open {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-collapsible-content-height);
+    }
+  }
+
+  @keyframes collapsible-close {
+    from {
+      height: var(--radix-collapsible-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}

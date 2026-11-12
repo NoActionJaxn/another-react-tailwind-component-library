@@ -1,0 +1,41 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-toggle] {
+    --_radius: var(--toggle-radius, var(--radius-sm));
+    --_font-weight: var(--toggle-font-weight, var(--font-weight-medium));
+    --_on-bg: var(--toggle-on-bg, var(--scheme-200));
+    --_on-text: var(--toggle-on-text, var(--scheme-900));
+    --_focus-color: var(--toggle-focus-color, var(--scheme-400));
+    --_focus-width: var(--toggle-focus-width, 4px);
+    --_focus-offset: var(--toggle-focus-offset, 0px);
+  }
+
+  [data-toggle][data-size="sm"] {
+    --_padding-x: var(--toggle-sm-padding-x, calc(var(--spacing) * 2));
+    --_padding-y: var(--toggle-sm-padding-y, calc(var(--spacing) * 1.5));
+  }
+
+  [data-toggle][data-size="md"] {
+    --_padding-x: var(--toggle-md-padding-x, calc(var(--spacing) * 2.5));
+    --_padding-y: var(--toggle-md-padding-y, calc(var(--spacing) * 2));
+  }
+
+  [data-toggle][data-size="lg"] {
+    --_padding-x: var(--toggle-lg-padding-x, calc(var(--spacing) * 3));
+    --_padding-y: var(--toggle-lg-padding-y, calc(var(--spacing) * 2.5));
+  }
+
+  [data-toggle][data-variant="ghost"] {
+    --_bg: var(--toggle-ghost-bg, transparent);
+    --_bg-hover: var(--toggle-ghost-bg-hover, var(--scheme-100));
+    --_text: var(--toggle-ghost-text, var(--scheme-800));
+    --_border: var(--toggle-ghost-border, transparent);
+  }
+
+  [data-toggle][data-variant="outline"] {
+    --_bg: var(--toggle-outline-bg, transparent);
+    --_bg-hover: var(--toggle-outline-bg-hover, var(--scheme-100));
+    --_text: var(--toggle-outline-text, var(--scheme-800));
+    --_border: var(--toggle-outline-border, var(--scheme-300));
+  }
+}

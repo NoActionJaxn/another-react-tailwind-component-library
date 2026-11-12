@@ -1,0 +1,10 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-toolbar] {
+    --_bg: var(--toolbar-bg, white);
+    --_border: var(--toolbar-border, var(--scheme-300));
+    --_radius: var(--toolbar-radius, var(--radius-md));
+    --_separator: var(--toolbar-separator, var(--scheme-300));
+    --_link-text: var(--toolbar-link-text, var(--scheme-700));
+  }
+}

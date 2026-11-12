@@ -1,0 +1,8 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-scroll-area] {
+    --_thumb: var(--scroll-area-thumb, var(--scheme-300));
+    --_thumb-hover: var(--scroll-area-thumb-hover, var(--scheme-400));
+    --_size: var(--scroll-area-scrollbar-size, calc(var(--spacing) * 2.5));
+  }
+}

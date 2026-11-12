@@ -1,0 +1,37 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-toast] {
+    --_bg: var(--toast-bg, white);
+    --_text: var(--toast-text, var(--scheme-900));
+    --_description: var(--toast-description, var(--scheme-600));
+    --_border: var(--toast-border, var(--scheme-300));
+    --_radius: var(--toast-radius, var(--radius-md));
+    --_shadow: var(--toast-shadow, var(--shadow-lg));
+    --_padding: var(--toast-padding, calc(var(--spacing) * 4));
+    --_focus-color: var(--toast-focus-color, var(--scheme-400));
+    --_focus-width: var(--toast-focus-width, 4px);
+    --_focus-offset: var(--toast-focus-offset, 0px);
+  }
+
+  [data-toast][data-swipe="move"] {
+    transform: translateX(var(--radix-toast-swipe-move-x));
+  }
+
+  [data-toast][data-swipe="cancel"] {
+    transform: translateX(0);
+    transition: transform 200ms ease-out;
+  }
+
+  [data-toast][data-swipe="end"] {
+    animation: toast-swipe-out 150ms ease-out;
+  }
+
+  @keyframes toast-swipe-out {
+    from {
+      transform: translateX(var(--radix-toast-swipe-end-x));
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+}

@@ -1,0 +1,6 @@
+@layer components {
+  [data-separator] {
+    --_color: var(--separator-color, var(--scheme-300));
+    --_size: var(--separator-size, 1px);
+  }
+}

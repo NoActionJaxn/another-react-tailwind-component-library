@@ -1,0 +1,16 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-tabs] {
+    --_gap: var(--tabs-gap, calc(var(--spacing) * 2));
+    --_list-bg: var(--tabs-list-bg, var(--scheme-100));
+    --_list-radius: var(--tabs-list-radius, var(--radius-md));
+    --_list-padding: var(--tabs-list-padding, var(--spacing));
+    --_trigger-radius: var(--tabs-trigger-radius, var(--radius-sm));
+    --_trigger-text: var(--tabs-trigger-text, var(--scheme-600));
+    --_trigger-active-text: var(--tabs-trigger-active-text, var(--scheme-900));
+    --_trigger-active-bg: var(--tabs-trigger-active-bg, white);
+    --_focus-color: var(--tabs-focus-color, var(--scheme-400));
+    --_focus-width: var(--tabs-focus-width, 4px);
+    --_focus-offset: var(--tabs-focus-offset, 0px);
+  }
+}

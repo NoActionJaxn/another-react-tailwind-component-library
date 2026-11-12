@@ -1,0 +1,38 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-accordion] {
+    --_text: var(--accordion-text, var(--scheme-900));
+    --_content-text: var(--accordion-content-text, var(--scheme-700));
+    --_border: var(--accordion-border, var(--scheme-300));
+    --_padding-y: var(--accordion-padding-y, calc(var(--spacing) * 4));
+    --_font-weight: var(--accordion-font-weight, var(--font-weight-medium));
+    --_duration: var(--accordion-duration, 200ms);
+    --_focus-color: var(--accordion-focus-color, var(--scheme-400));
+  }
+
+  [data-accordion-content][data-state="open"] {
+    animation: accordion-open var(--_duration) ease-out;
+  }
+
+  [data-accordion-content][data-state="closed"] {
+    animation: accordion-close var(--_duration) ease-out;
+  }
+
+  @keyframes accordion-open {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-close {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}

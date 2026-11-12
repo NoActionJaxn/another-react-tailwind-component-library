@@ -1,0 +1,27 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-slider] {
+    --_track: var(--slider-track, var(--scheme-200));
+    --_range: var(--slider-range, var(--scheme-600));
+    --_thumb-bg: var(--slider-thumb-bg, white);
+    --_thumb-border: var(--slider-thumb-border, var(--scheme-600));
+    --_focus-color: var(--slider-focus-color, var(--scheme-400));
+    --_focus-width: var(--slider-focus-width, 4px);
+    --_focus-offset: var(--slider-focus-offset, 0px);
+  }
+
+  [data-slider][data-size="sm"] {
+    --_track-size: var(--slider-sm-track-size, var(--spacing));
+    --_thumb-size: var(--slider-sm-thumb-size, calc(var(--spacing) * 4));
+  }
+
+  [data-slider][data-size="md"] {
+    --_track-size: var(--slider-md-track-size, calc(var(--spacing) * 1.5));
+    --_thumb-size: var(--slider-md-thumb-size, calc(var(--spacing) * 5));
+  }
+
+  [data-slider][data-size="lg"] {
+    --_track-size: var(--slider-lg-track-size, calc(var(--spacing) * 2));
+    --_thumb-size: var(--slider-lg-thumb-size, calc(var(--spacing) * 6));
+  }
+}

@@ -139,3 +139,314 @@ component's color scheme.
 | `--text-input-outline-bg` / `-bg-hover` / `-text` / `-placeholder` / `-border` / `-border-hover` | `transparent` / `transparent` / 900 / 500 / 300 / 400           |
 | `--text-input-soft-bg` / `-bg-hover` / `-text` / `-placeholder` / `-border` / `-border-hover`    | 100 / 200 / 900 / 600 / `transparent` / `transparent`           |
 | `--text-input-ghost-bg` / `-bg-hover` / `-text` / `-placeholder` / `-border` / `-border-hover`   | `transparent` / 100 / 900 / 500 / `transparent` / `transparent` |
+
+## Portals
+
+Dialogs, popovers, hover cards, tooltips, menus and select dropdowns render at the end of `<body>`, outside your layout. They can't inherit a `colorScheme` or `--*` overrides from the trigger's parents. Pass `colorScheme` to the content part (`<DialogContent colorScheme="brand">`), or set variables on `:root`.
+
+## Shared variables
+
+### Menu
+
+Used by DropdownMenu, ContextMenu, Menubar dropdowns and Select dropdowns.
+
+| Variable                   | Default                      |
+| -------------------------- | ---------------------------- |
+| `--menu-bg`                | `white`                      |
+| `--menu-text`              | scheme 900                   |
+| `--menu-border`            | scheme 300                   |
+| `--menu-radius`            | `var(--radius-md)`           |
+| `--menu-shadow`            | `var(--shadow-lg)`           |
+| `--menu-padding`           | `var(--spacing)`             |
+| `--menu-item-radius`       | `var(--radius-sm)`           |
+| `--menu-item-padding-x`    | `calc(var(--spacing) * 2)`   |
+| `--menu-item-padding-y`    | `calc(var(--spacing) * 1.5)` |
+| `--menu-item-highlight-bg` | scheme 100                   |
+| `--menu-label-text`        | scheme 600                   |
+| `--menu-separator`         | scheme 200                   |
+
+### Dialog
+
+Used by Dialog and AlertDialog.
+
+| Variable               | Default                                                   |
+| ---------------------- | --------------------------------------------------------- |
+| `--dialog-overlay`     | `color-mix(in oklab, var(--scheme-950) 50%, transparent)` |
+| `--dialog-bg`          | `white`                                                   |
+| `--dialog-text`        | scheme 900                                                |
+| `--dialog-description` | scheme 600                                                |
+| `--dialog-border`      | scheme 300                                                |
+| `--dialog-radius`      | `var(--radius-lg)`                                        |
+| `--dialog-shadow`      | `var(--shadow-lg)`                                        |
+| `--dialog-padding`     | `calc(var(--spacing) * 6)`                                |
+| `--dialog-gap`         | `calc(var(--spacing) * 4)`                                |
+| `--dialog-max-width`   | `32rem`                                                   |
+| `--dialog-focus-color` | scheme 400                                                |
+
+## More components
+
+### Accordion
+
+| Variable                   | Default                     |
+| -------------------------- | --------------------------- |
+| `--accordion-text`         | scheme 900                  |
+| `--accordion-content-text` | scheme 700                  |
+| `--accordion-border`       | scheme 300                  |
+| `--accordion-padding-y`    | `calc(var(--spacing) * 4)`  |
+| `--accordion-font-weight`  | `var(--font-weight-medium)` |
+| `--accordion-duration`     | `200ms`                     |
+| `--accordion-focus-color`  | scheme 400                  |
+
+### Avatar
+
+| Variable               | Default                     |
+| ---------------------- | --------------------------- |
+| `--avatar-radius`      | `9999px`                    |
+| `--avatar-bg`          | scheme 200                  |
+| `--avatar-text`        | scheme 800                  |
+| `--avatar-font-weight` | `var(--font-weight-medium)` |
+| `--avatar-sm-size`     | `calc(var(--spacing) * 8)`  |
+| `--avatar-md-size`     | `calc(var(--spacing) * 10)` |
+| `--avatar-lg-size`     | `calc(var(--spacing) * 12)` |
+
+### Collapsible
+
+| Variable                 | Default |
+| ------------------------ | ------- |
+| `--collapsible-duration` | `200ms` |
+
+### HoverCard
+
+| Variable               | Default                    |
+| ---------------------- | -------------------------- |
+| `--hover-card-bg`      | `white`                    |
+| `--hover-card-text`    | scheme 900                 |
+| `--hover-card-border`  | scheme 300                 |
+| `--hover-card-radius`  | `var(--radius-md)`         |
+| `--hover-card-shadow`  | `var(--shadow-lg)`         |
+| `--hover-card-padding` | `calc(var(--spacing) * 4)` |
+| `--hover-card-width`   | `16rem`                    |
+
+### Menubar
+
+Uses the shared menu variables for its dropdowns.
+
+| Variable                      | Default            |
+| ----------------------------- | ------------------ |
+| `--menubar-bg`                | `white`            |
+| `--menubar-text`              | scheme 900         |
+| `--menubar-border`            | scheme 300         |
+| `--menubar-radius`            | `var(--radius-md)` |
+| `--menubar-trigger-radius`    | `var(--radius-sm)` |
+| `--menubar-trigger-active-bg` | scheme 100         |
+
+### NavigationMenu
+
+| Variable                          | Default            |
+| --------------------------------- | ------------------ |
+| `--navigation-menu-text`          | scheme 900         |
+| `--navigation-menu-item-radius`   | `var(--radius-sm)` |
+| `--navigation-menu-item-hover-bg` | scheme 100         |
+| `--navigation-menu-bg`            | `white`            |
+| `--navigation-menu-border`        | scheme 300         |
+| `--navigation-menu-radius`        | `var(--radius-md)` |
+| `--navigation-menu-shadow`        | `var(--shadow-lg)` |
+| `--navigation-menu-focus-color`   | scheme 400         |
+| `--navigation-menu-focus-width`   | `4px`              |
+| `--navigation-menu-focus-offset`  | `0px`              |
+
+### Popover
+
+| Variable            | Default                    |
+| ------------------- | -------------------------- |
+| `--popover-bg`      | `white`                    |
+| `--popover-text`    | scheme 900                 |
+| `--popover-border`  | scheme 300                 |
+| `--popover-radius`  | `var(--radius-md)`         |
+| `--popover-shadow`  | `var(--shadow-lg)`         |
+| `--popover-padding` | `calc(var(--spacing) * 4)` |
+| `--popover-width`   | `18rem`                    |
+
+### Progress
+
+| Variable               | Default                    |
+| ---------------------- | -------------------------- |
+| `--progress-track`     | scheme 200                 |
+| `--progress-fill`      | scheme 600                 |
+| `--progress-radius`    | `9999px`                   |
+| `--progress-sm-height` | `var(--spacing)`           |
+| `--progress-md-height` | `calc(var(--spacing) * 2)` |
+| `--progress-lg-height` | `calc(var(--spacing) * 3)` |
+
+### ScrollArea
+
+| Variable                       | Default                      |
+| ------------------------------ | ---------------------------- |
+| `--scroll-area-thumb`          | scheme 300                   |
+| `--scroll-area-thumb-hover`    | scheme 400                   |
+| `--scroll-area-scrollbar-size` | `calc(var(--spacing) * 2.5)` |
+
+### Select
+
+The dropdown uses the shared menu variables.
+
+| Variable                        | Default                      |
+| ------------------------------- | ---------------------------- |
+| `--select-radius`               | `var(--radius-sm)`           |
+| `--select-gap`                  | `calc(var(--spacing) * 2)`   |
+| `--select-font-family`          | `var(--font-sans)`           |
+| `--select-font-weight`          | `var(--font-weight-normal)`  |
+| `--select-focus-color`          | scheme 400                   |
+| `--select-focus-width`          | `4px`                        |
+| `--select-focus-offset`         | `0px`                        |
+| `--select-sm-padding-x`         | `calc(var(--spacing) * 3)`   |
+| `--select-sm-padding-y`         | `calc(var(--spacing) * 1.5)` |
+| `--select-md-padding-x`         | `calc(var(--spacing) * 4)`   |
+| `--select-md-padding-y`         | `calc(var(--spacing) * 2)`   |
+| `--select-lg-padding-x`         | `calc(var(--spacing) * 5)`   |
+| `--select-lg-padding-y`         | `calc(var(--spacing) * 2.5)` |
+| `--select-outline-bg`           | `transparent`                |
+| `--select-outline-bg-hover`     | `transparent`                |
+| `--select-outline-text`         | scheme 900                   |
+| `--select-outline-placeholder`  | scheme 500                   |
+| `--select-outline-border`       | scheme 300                   |
+| `--select-outline-border-hover` | scheme 400                   |
+| `--select-soft-bg`              | scheme 100                   |
+| `--select-soft-bg-hover`        | scheme 200                   |
+| `--select-soft-text`            | scheme 900                   |
+| `--select-soft-placeholder`     | scheme 600                   |
+| `--select-soft-border`          | `transparent`                |
+| `--select-soft-border-hover`    | `transparent`                |
+| `--select-ghost-bg`             | `transparent`                |
+| `--select-ghost-bg-hover`       | scheme 100                   |
+| `--select-ghost-text`           | scheme 900                   |
+| `--select-ghost-placeholder`    | scheme 500                   |
+| `--select-ghost-border`         | `transparent`                |
+| `--select-ghost-border-hover`   | `transparent`                |
+
+### Separator
+
+| Variable            | Default    |
+| ------------------- | ---------- |
+| `--separator-color` | scheme 300 |
+| `--separator-size`  | `1px`      |
+
+### Slider
+
+| Variable                 | Default                      |
+| ------------------------ | ---------------------------- |
+| `--slider-track`         | scheme 200                   |
+| `--slider-range`         | scheme 600                   |
+| `--slider-thumb-bg`      | `white`                      |
+| `--slider-thumb-border`  | scheme 600                   |
+| `--slider-focus-color`   | scheme 400                   |
+| `--slider-focus-width`   | `4px`                        |
+| `--slider-focus-offset`  | `0px`                        |
+| `--slider-sm-track-size` | `var(--spacing)`             |
+| `--slider-sm-thumb-size` | `calc(var(--spacing) * 4)`   |
+| `--slider-md-track-size` | `calc(var(--spacing) * 1.5)` |
+| `--slider-md-thumb-size` | `calc(var(--spacing) * 5)`   |
+| `--slider-lg-track-size` | `calc(var(--spacing) * 2)`   |
+| `--slider-lg-thumb-size` | `calc(var(--spacing) * 6)`   |
+
+### Switch
+
+| Variable                  | Default                     |
+| ------------------------- | --------------------------- |
+| `--switch-gap`            | `calc(var(--spacing) * 2)`  |
+| `--switch-track`          | scheme 300                  |
+| `--switch-track-checked`  | scheme 600                  |
+| `--switch-border-width`   | `0px`                       |
+| `--switch-border`         | scheme 500                  |
+| `--switch-border-checked` | scheme 600                  |
+| `--switch-thumb`          | `white`                     |
+| `--switch-focus-color`    | scheme 400                  |
+| `--switch-focus-width`    | `4px`                       |
+| `--switch-focus-offset`   | `0px`                       |
+| `--switch-sm-width`       | `calc(var(--spacing) * 7)`  |
+| `--switch-sm-height`      | `calc(var(--spacing) * 4)`  |
+| `--switch-md-width`       | `calc(var(--spacing) * 9)`  |
+| `--switch-md-height`      | `calc(var(--spacing) * 5)`  |
+| `--switch-lg-width`       | `calc(var(--spacing) * 11)` |
+| `--switch-lg-height`      | `calc(var(--spacing) * 6)`  |
+
+### Tabs
+
+| Variable                     | Default                    |
+| ---------------------------- | -------------------------- |
+| `--tabs-gap`                 | `calc(var(--spacing) * 2)` |
+| `--tabs-list-bg`             | scheme 100                 |
+| `--tabs-list-radius`         | `var(--radius-md)`         |
+| `--tabs-list-padding`        | `var(--spacing)`           |
+| `--tabs-trigger-radius`      | `var(--radius-sm)`         |
+| `--tabs-trigger-text`        | scheme 600                 |
+| `--tabs-trigger-active-text` | scheme 900                 |
+| `--tabs-trigger-active-bg`   | `white`                    |
+| `--tabs-focus-color`         | scheme 400                 |
+| `--tabs-focus-width`         | `4px`                      |
+| `--tabs-focus-offset`        | `0px`                      |
+
+### Toast
+
+| Variable               | Default                    |
+| ---------------------- | -------------------------- |
+| `--toast-bg`           | `white`                    |
+| `--toast-text`         | scheme 900                 |
+| `--toast-description`  | scheme 600                 |
+| `--toast-border`       | scheme 300                 |
+| `--toast-radius`       | `var(--radius-md)`         |
+| `--toast-shadow`       | `var(--shadow-lg)`         |
+| `--toast-padding`      | `calc(var(--spacing) * 4)` |
+| `--toast-focus-color`  | scheme 400                 |
+| `--toast-focus-width`  | `4px`                      |
+| `--toast-focus-offset` | `0px`                      |
+
+### Toggle
+
+Also used by ToggleGroup items and Toolbar buttons.
+
+| Variable                    | Default                      |
+| --------------------------- | ---------------------------- |
+| `--toggle-radius`           | `var(--radius-sm)`           |
+| `--toggle-font-weight`      | `var(--font-weight-medium)`  |
+| `--toggle-on-bg`            | scheme 200                   |
+| `--toggle-on-text`          | scheme 900                   |
+| `--toggle-focus-color`      | scheme 400                   |
+| `--toggle-focus-width`      | `4px`                        |
+| `--toggle-focus-offset`     | `0px`                        |
+| `--toggle-sm-padding-x`     | `calc(var(--spacing) * 2)`   |
+| `--toggle-sm-padding-y`     | `calc(var(--spacing) * 1.5)` |
+| `--toggle-md-padding-x`     | `calc(var(--spacing) * 2.5)` |
+| `--toggle-md-padding-y`     | `calc(var(--spacing) * 2)`   |
+| `--toggle-lg-padding-x`     | `calc(var(--spacing) * 3)`   |
+| `--toggle-lg-padding-y`     | `calc(var(--spacing) * 2.5)` |
+| `--toggle-ghost-bg`         | `transparent`                |
+| `--toggle-ghost-bg-hover`   | scheme 100                   |
+| `--toggle-ghost-text`       | scheme 800                   |
+| `--toggle-ghost-border`     | `transparent`                |
+| `--toggle-outline-bg`       | `transparent`                |
+| `--toggle-outline-bg-hover` | scheme 100                   |
+| `--toggle-outline-text`     | scheme 800                   |
+| `--toggle-outline-border`   | scheme 300                   |
+
+### Toolbar
+
+Buttons and toggle items use the Toggle variables (ghost variant).
+
+| Variable              | Default            |
+| --------------------- | ------------------ |
+| `--toolbar-bg`        | `white`            |
+| `--toolbar-border`    | scheme 300         |
+| `--toolbar-radius`    | `var(--radius-md)` |
+| `--toolbar-separator` | scheme 300         |
+| `--toolbar-link-text` | scheme 700         |
+
+### Tooltip
+
+| Variable              | Default                    |
+| --------------------- | -------------------------- |
+| `--tooltip-bg`        | scheme 900                 |
+| `--tooltip-text`      | `white`                    |
+| `--tooltip-radius`    | `var(--radius-sm)`         |
+| `--tooltip-padding-x` | `calc(var(--spacing) * 2)` |
+| `--tooltip-padding-y` | `var(--spacing)`           |

@@ -1,0 +1,15 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-navigation-menu] {
+    --_text: var(--navigation-menu-text, var(--scheme-900));
+    --_item-radius: var(--navigation-menu-item-radius, var(--radius-sm));
+    --_item-hover-bg: var(--navigation-menu-item-hover-bg, var(--scheme-100));
+    --_bg: var(--navigation-menu-bg, white);
+    --_border: var(--navigation-menu-border, var(--scheme-300));
+    --_radius: var(--navigation-menu-radius, var(--radius-md));
+    --_shadow: var(--navigation-menu-shadow, var(--shadow-lg));
+    --_focus-color: var(--navigation-menu-focus-color, var(--scheme-400));
+    --_focus-width: var(--navigation-menu-focus-width, 4px);
+    --_focus-offset: var(--navigation-menu-focus-offset, 0px);
+  }
+}
