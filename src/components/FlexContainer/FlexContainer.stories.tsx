@@ -5,7 +5,7 @@ import { FlexContainer } from "./FlexContainer";
 const gapOptions = ["none", "xs", "sm", "md", "lg", "xl"];
 
 const meta = {
-  title: "Components/FlexContainer",
+  title: "Containers/FlexContainer",
   component: FlexContainer,
   parameters: docsParameters("FlexContainer", { layout: "padded" }),
   args: {
@@ -14,12 +14,11 @@ const meta = {
     justify: "start",
     columns: 3,
     gap: "md",
-    size: "lg",
     asChild: false,
   },
   argTypes: docsArgTypes(
     "FlexContainer",
-    ["size", "colorScheme", "gap", { asChild: "layoutAsChild" }],
+    ["colorScheme", "gap", { asChild: "layoutAsChild" }],
     {
       direction: {
         control: "inline-radio",
@@ -49,11 +48,6 @@ const meta = {
         control: "inline-radio",
         options: gapOptions,
         table: { defaultValue: { summary: "none" } },
-      },
-      size: {
-        control: "inline-radio",
-        options: ["sm", "md", "lg", "xl", "2xl", "full"],
-        table: { defaultValue: { summary: "lg" } },
       },
       asChild: { table: { defaultValue: { summary: "false" } } },
       colorScheme: {

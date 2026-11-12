@@ -1,0 +1,57 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Utilities/tw" />
+
+# tw
+
+`tw()` builds a class string. It accepts everything
+[classnames](https://github.com/JedWatson/classnames) does (strings,
+conditionals, objects, arrays), then runs the result through
+[tailwind-merge](https://github.com/dcastil/tailwind-merge) so that when two
+classes set the same thing, the later one wins.
+
+```tsx
+import { tw } from "another-react-tailwind-component-library";
+
+tw("px-4 py-2", isActive && "bg-default-200", { "opacity-50": disabled });
+// "px-4 py-2 bg-default-200 opacity-50" (when active and disabled)
+
+tw("px-4 py-2", "px-6");
+// "py-2 px-6": px-6 replaces px-4
+```
+
+## Overriding a component's classes
+
+Every component builds its classes with `tw()` and puts your `className` last,
+so your classes replace the component's own instead of fighting them on CSS
+order. Use the same pattern in your own components:
+
+```tsx
+function Panel({ className, ...props }: ComponentProps<"div">) {
+  return <div className={tw("rounded-md p-4 shadow", className)} {...props} />;
+}
+
+<Panel className="p-8" />; // p-8 wins over p-4
+```
+
+## Limits
+
+tailwind-merge decides conflicts from class names alone. Two classes it
+can't tell apart can drop one another: for example a text-decoration color and
+thickness both written as `decoration-(--var)`. When that happens, set one of
+the values in CSS instead.
+
+## Editor and Prettier setup
+
+To sort and autocomplete classes inside `tw()` calls, tell the Tailwind tools
+about the function.
+
+```json
+// .prettierrc.json (with prettier-plugin-tailwindcss)
+{ "tailwindFunctions": ["tw"] }
+```
+
+```json
+// .vscode/settings.json (Tailwind CSS IntelliSense)
+{ "tailwindCSS.classFunctions": ["tw"] }
+```

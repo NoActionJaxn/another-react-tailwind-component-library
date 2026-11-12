@@ -1,0 +1,82 @@
+/* --_* vars resolve on the hero and are inherited by its parts. */
+@layer components {
+  [data-hero] {
+    --_gap: var(--hero-gap, calc(var(--spacing) * 10));
+    --_content-gap: var(--hero-content-gap, calc(var(--spacing) * 4));
+    --_content-max-width: var(--hero-content-max-width, 40rem);
+    --_actions-gap: var(--hero-actions-gap, calc(var(--spacing) * 2));
+    --_actions-item-gap: var(--hero-actions-item-gap, calc(var(--spacing) * 3));
+    --_title-font-weight: var(
+      --hero-title-font-weight,
+      var(--font-weight-bold)
+    );
+    /* Both layouts share --_min-height; the split image is capped to fit inside it. */
+    --_image-max-height: calc(var(--_min-height) - 2 * var(--_padding-y));
+  }
+
+  /* Grows with the window, at Tailwind's md and lg breakpoints. */
+  [data-hero] {
+    --_padding-y: var(--hero-padding-y, calc(var(--spacing) * 10));
+    --_min-height: var(--hero-min-height, 28rem);
+    --_title-font-size: var(--hero-title-font-size, var(--text-3xl));
+    --_description-font-size: var(
+      --hero-description-font-size,
+      var(--text-base)
+    );
+  }
+
+  @media (width >= --theme(--breakpoint-md)) {
+    [data-hero] {
+      --_padding-y: var(--hero-md-padding-y, calc(var(--spacing) * 16));
+      --_min-height: var(--hero-md-min-height, 32rem);
+      --_title-font-size: var(--hero-md-title-font-size, var(--text-4xl));
+      --_description-font-size: var(
+        --hero-md-description-font-size,
+        var(--text-lg)
+      );
+    }
+  }
+
+  @media (width >= --theme(--breakpoint-lg)) {
+    [data-hero] {
+      --_padding-y: var(--hero-lg-padding-y, calc(var(--spacing) * 24));
+      --_min-height: var(--hero-lg-min-height, 40rem);
+      --_title-font-size: var(--hero-lg-title-font-size, var(--text-5xl));
+      --_description-font-size: var(
+        --hero-lg-description-font-size,
+        var(--text-xl)
+      );
+    }
+  }
+
+  [data-hero][data-variant="soft"] {
+    --_bg: var(--hero-soft-bg, var(--scheme-100));
+  }
+
+  [data-hero][data-variant="ghost"] {
+    --_bg: var(--hero-ghost-bg, transparent);
+  }
+
+  [data-hero][data-layout="split"] {
+    --_title-text: var(--hero-split-title-text, var(--scheme-950));
+    --_description-text: var(--hero-split-description-text, var(--scheme-700));
+  }
+
+  /* Text sits on the image, so it's light and the image gets a dark overlay. */
+  [data-hero][data-layout="full"] {
+    --_title-text: var(--hero-full-title-text, white);
+    --_description-text: var(--hero-full-description-text, var(--scheme-100));
+    --_overlay: var(
+      --hero-full-overlay,
+      color-mix(in oklab, var(--scheme-950) 60%, transparent)
+    );
+  }
+
+  [data-hero][data-layout="full"]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--_overlay);
+  }
+}

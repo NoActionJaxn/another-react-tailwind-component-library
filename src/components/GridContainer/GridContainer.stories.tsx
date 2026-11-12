@@ -3,7 +3,7 @@ import { docsArgTypes, docsParameters, format, m } from "../../docs/i18n";
 import { GridContainer } from "./GridContainer";
 
 const meta = {
-  title: "Components/GridContainer",
+  title: "Containers/GridContainer",
   component: GridContainer,
   parameters: docsParameters("GridContainer", { layout: "padded" }),
   args: {
@@ -12,12 +12,11 @@ const meta = {
     justify: "stretch",
     flow: "row",
     gap: "md",
-    size: "lg",
     asChild: false,
   },
   argTypes: docsArgTypes(
     "GridContainer",
-    ["size", "colorScheme", "gap", { asChild: "layoutAsChild" }],
+    ["colorScheme", "gap", { asChild: "layoutAsChild" }],
     {
       columns: { control: "number" },
       minColumnWidth: { control: "text" },
@@ -41,11 +40,6 @@ const meta = {
         control: "inline-radio",
         options: ["none", "xs", "sm", "md", "lg", "xl"],
         table: { defaultValue: { summary: "none" } },
-      },
-      size: {
-        control: "inline-radio",
-        options: ["sm", "md", "lg", "xl", "2xl", "full"],
-        table: { defaultValue: { summary: "lg" } },
       },
       asChild: { table: { defaultValue: { summary: "false" } } },
       colorScheme: {

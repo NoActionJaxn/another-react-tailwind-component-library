@@ -18,12 +18,13 @@ Tests are stories: add `play` functions to stories for interaction tests rather 
 
 ## Layout
 
-- `src/index.ts`: public exports (components, their prop/variant types, `schemeVars`, `ColorScheme`)
+- `src/index.ts`: public exports (components, their prop/variant types, `tw`, `schemeVars`, `schemeStyle`, `ColorScheme`)
 - `src/components/<Name>/`: `Name.tsx`, `Name.css`, `Name.stories.tsx`, `Name.mdx` (docs page), `index.ts`
 - `src/styles/index.css`: entry. Google Fonts import → `tailwindcss` → `theme.css` (`fonts.css`, `colors.css`) → `components.css` (imports every `Name.css`)
 - `src/utils/`: `tw()` (classnames + tailwind-merge), `schemeVars()`, `schemeStyle(colorScheme, style)`, `ColorScheme`
 - `src/components/_menu/`, `src/components/_dialog/`: internal shared styles (not exported). `_menu` (`--menu-*`) styles DropdownMenu, ContextMenu, Menubar and Select dropdowns; `_dialog` (`--dialog-*`) styles Dialog and AlertDialog. `Toggle/classes.ts` styles Toggle, ToggleGroupItem and Toolbar buttons. `Code/useCopy.ts` is the clipboard hook shared by Code and CodeBlock.
-- `src/docs/<locale>/*.mdx`: general docs pages (currently `en/Theming.mdx`)
+- `src/docs/<locale>/*.mdx`: general docs pages (`GettingStarted`, `Theming`, `Tw`)
+- Storybook sections (story `title` prefix; order set by `storySort` in `.storybook/preview.tsx`): `Components/`, `Containers/` (Container, FlexContainer, GridContainer), `Blocks/` (Card, Hero), `Dialogs/` (Dialog, AlertDialog), `Utilities/` (docs pages). New components go under `Components/` unless they fit another section.
 - `src/docs/blocks/`: `ComponentDocs` (layout of every component page) and `CssVariables` (variable tables read from the component CSS)
 - `src/docs/i18n/`: docs localization. `locales/<locale>.json` holds every docs string; `index.ts` exports `m` (typed strings for the active locale), `docsParameters`, `docsArgTypes` and `format`
 - `playground/playground.css`: library CSS + example `brand` scheme; loaded by the playground and Storybook
@@ -94,6 +95,8 @@ All Storybook documentation text comes from `src/docs/i18n/locales/<locale>.json
 | ghost   | `transparent` / 100 | 800     | `transparent` |
 
 **Sizes**: `sm | md | lg`, default `md`. Typography is the exception: `xxs … xxl` (`md` = `text-base`), themed via `--typography-<size>-font-size` / `-line-height`. Button padding x/y is spacing 3/1.5, 4/2, 5/2.5, with `text-sm` / `text-base` / `text-lg`. Form controls use the same padding-y, border and text sizes so they line up with Button in a row.
+
+**Responsive (no `size`)**: Container, FlexContainer, GridContainer and Hero adapt to the window instead of taking `size`. Their CSS sets base values on `[data-name]`, then overrides them in `@media (width >= --theme(--breakpoint-md)) { [data-name] { … } }` blocks, with public names `--<name>-<breakpoint>-<prop>`. The docs tables group these by breakpoint.
 
 **Borders**: if any variant has a border, every variant gets `border` (1px), `transparent` when unused, so switching variants never shifts layout. Visible borders use a light shade (`--scheme-300`), not the text color. Exception: Checkbox and Radio borders default to `--scheme-500`, because the border is the only sign of an unchecked control and WCAG requires 3:1 contrast for it (300 is about 1.5:1).
 

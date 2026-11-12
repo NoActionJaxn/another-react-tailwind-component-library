@@ -10,6 +10,20 @@ const preview: Preview = {
       },
     },
 
+    options: {
+      storySort: {
+        order: [
+          "Getting Started",
+          "Theming",
+          "Components",
+          "Containers",
+          "Blocks",
+          "Dialogs",
+          "Utilities",
+        ],
+      },
+    },
+
     a11y: {
       test: "todo",
     },

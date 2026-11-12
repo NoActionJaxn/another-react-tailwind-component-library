@@ -3,23 +3,17 @@ import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Container } from "./Container";
 
 const meta = {
-  title: "Components/Container",
+  title: "Containers/Container",
   component: Container,
   parameters: docsParameters("Container", { layout: "fullscreen" }),
   args: {
-    size: "lg",
     colorScheme: "default",
     asChild: false,
   },
   argTypes: docsArgTypes(
     "Container",
-    ["size", "colorScheme", { asChild: "layoutAsChild" }],
+    ["colorScheme", { asChild: "layoutAsChild" }],
     {
-      size: {
-        control: "inline-radio",
-        options: ["sm", "md", "lg", "xl", "2xl", "full"],
-        table: { defaultValue: { summary: "lg" } },
-      },
       colorScheme: {
         // "brand" is defined in playground/playground.css
         control: "inline-radio",

@@ -14,7 +14,7 @@ import {
 } from "./Dialog";
 
 const meta = {
-  title: "Components/Dialog",
+  title: "Dialogs/Dialog",
   component: Dialog,
   parameters: docsParameters("Dialog", { layout: "centered" }),
   args: {},

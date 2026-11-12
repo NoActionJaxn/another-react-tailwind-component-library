@@ -81,6 +81,16 @@
         "children": "Read the documentation"
       }
     },
+    "AnimatedContainer": {
+      "description": "Animates its direct children in when the container first scrolls into view. Use asChild to animate the items of a FlexContainer, GridContainer or list. Respects reduced-motion settings.",
+      "props": {
+        "animation": "Entrance animation: fade, or pop (fade plus a slight scale-up).",
+        "duration": "Animation length in milliseconds. Overrides --animated-container-duration.",
+        "stagger": "Start each child a little after the previous one.",
+        "staggerDelay": "Delay between children in milliseconds when stagger is on. Overrides --animated-container-stagger-delay."
+      },
+      "story": {}
+    },
     "AspectRatio": {
       "description": "Keeps its child at a set width-to-height ratio. Unstyled.",
       "props": {
@@ -174,10 +184,8 @@
       }
     },
     "Container": {
-      "description": "Centers page content and limits its width, with horizontal padding so it never touches the screen edges.",
-      "props": {
-        "size": "Maximum width, from Tailwind's breakpoints: sm (40rem), md (48rem), lg (64rem), xl (80rem), 2xl (96rem), or full (no limit)."
-      },
+      "description": "Centers page content. Its maximum width steps up with Tailwind's breakpoints (full width on small screens, then 40rem, 48rem, 64rem, 80rem, 96rem), and its side padding grows on larger screens.",
+      "props": {},
       "story": {
         "children": "Page content stays centered and stops growing at the container's maximum width."
       }
@@ -212,13 +220,12 @@
       }
     },
     "FlexContainer": {
-      "description": "A Container that lays out its children with flexbox: centered, width-limited and padded like Container, with flex direction, alignment and gap.",
+      "description": "A Container that lays out its children with flexbox: centered and width-limited like Container (adjusting to the window), with flex direction, alignment and gap.",
       "props": {
         "direction": "Main axis: row or column, optionally reversed.",
         "align": "Cross-axis alignment of items (align-items).",
         "justify": "Main-axis distribution of items (justify-content).",
         "wrap": "Whether items wrap onto new lines.",
-        "size": "Maximum width, from Tailwind's breakpoints: sm (40rem), md (48rem), lg (64rem), xl (80rem), 2xl (96rem), or full (no limit).",
         "columns": "Up to that many items per row, wrapping to fewer as the container narrows. Items in a short last row grow to fill it.",
         "minColumnWidth": "Narrowest a column may get before the layout drops to fewer columns (any CSS length). Default 15rem."
       },
@@ -228,17 +235,29 @@
       }
     },
     "GridContainer": {
-      "description": "A Container that lays out its children in a CSS grid: centered, width-limited and padded like Container, with columns, rows and gap.",
+      "description": "A Container that lays out its children in a CSS grid: centered and width-limited like Container (adjusting to the window), with columns, rows and gap.",
       "props": {
         "columns": "A number: up to that many equal columns, dropping to fewer as the container narrows. A string: any grid-template-columns value (e.g. \"200px 1fr\"), used as is.",
         "rows": "A number for that many equal rows, or any grid-template-rows value.",
         "align": "Vertical alignment of items in their cells (align-items).",
         "justify": "Horizontal alignment of items in their cells (justify-items).",
         "flow": "How auto-placed items fill the grid (grid-auto-flow).",
-        "size": "Maximum width, from Tailwind's breakpoints: sm (40rem), md (48rem), lg (64rem), xl (80rem), 2xl (96rem), or full (no limit).",
         "minColumnWidth": "Narrowest a column may get before the layout drops to fewer columns (any CSS length). Default 15rem."
       },
       "story": {}
+    },
+    "Hero": {
+      "description": "The opening section of a page: a title, description and actions next to an image, or, with full, on top of it as a background. The content is wrapped in a Container. Padding, height and text sizes grow with the window; below the md breakpoint the side-by-side layout stacks.",
+      "props": {
+        "full": "Show the image as a full-width background with the text on top, instead of side by side."
+      },
+      "story": {
+        "title": "Build interfaces faster",
+        "description": "Accessible React components styled with Tailwind CSS. Theme them with a color scheme and a few CSS variables.",
+        "primary": "Get started",
+        "secondary": "Browse components",
+        "imageAlt": "Gray gradient"
+      }
     },
     "HoverCard": {
       "description": "A preview card that appears when a pointer hovers over a link.",
@@ -509,7 +528,9 @@
         "base": "All",
         "size": "Size: {value}",
         "variant": "Variant: {value}",
-        "gap": "Gap: {value}"
+        "gap": "Gap: {value}",
+        "layout": "Layout: {value}",
+        "breakpoint": "From the {value} breakpoint up"
       },
       "values": {
         "scheme": "scheme {step}",
@@ -597,7 +618,18 @@
         "decoration": "Underline color",
         "decoration-hover": "Underline color on hover",
         "decoration-thickness": "Underline thickness",
-        "underline-offset": "Distance between the text and its underline"
+        "underline-offset": "Distance between the text and its underline",
+        "easing": "Animation timing function",
+        "stagger-delay": "Delay between children when staggered",
+        "pop-scale": "Starting scale of the pop animation",
+        "content-gap": "Space between the title, description and actions",
+        "content-max-width": "Maximum width of the text",
+        "actions-gap": "Extra space above the actions",
+        "actions-item-gap": "Space between actions",
+        "title-font-weight": "Title font weight",
+        "title-font-size": "Title font size",
+        "title-text": "Title color",
+        "min-height": "Minimum height"
       },
       "parts": {
         "menu-content": "Menu (shared with DropdownMenu, ContextMenu, Menubar and Select)",

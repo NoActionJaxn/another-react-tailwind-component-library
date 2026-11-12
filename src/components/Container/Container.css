@@ -1,30 +1,39 @@
-/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+/* Steps up with Tailwind's breakpoints, like Tailwind's `container` class. */
 @layer components {
   [data-container] {
+    --_max-width: var(--container-max-width, 100%);
     --_padding-x: var(--container-padding-x, calc(var(--spacing) * 4));
   }
 
-  [data-container][data-size="sm"] {
-    --_max-width: var(--container-sm-max-width, var(--breakpoint-sm));
+  @media (width >= --theme(--breakpoint-sm)) {
+    [data-container] {
+      --_max-width: var(--container-sm-max-width, var(--breakpoint-sm));
+    }
   }
 
-  [data-container][data-size="md"] {
-    --_max-width: var(--container-md-max-width, var(--breakpoint-md));
+  @media (width >= --theme(--breakpoint-md)) {
+    [data-container] {
+      --_max-width: var(--container-md-max-width, var(--breakpoint-md));
+      --_padding-x: var(--container-md-padding-x, calc(var(--spacing) * 6));
+    }
   }
 
-  [data-container][data-size="lg"] {
-    --_max-width: var(--container-lg-max-width, var(--breakpoint-lg));
+  @media (width >= --theme(--breakpoint-lg)) {
+    [data-container] {
+      --_max-width: var(--container-lg-max-width, var(--breakpoint-lg));
+      --_padding-x: var(--container-lg-padding-x, calc(var(--spacing) * 8));
+    }
   }
 
-  [data-container][data-size="xl"] {
-    --_max-width: var(--container-xl-max-width, var(--breakpoint-xl));
+  @media (width >= --theme(--breakpoint-xl)) {
+    [data-container] {
+      --_max-width: var(--container-xl-max-width, var(--breakpoint-xl));
+    }
   }
 
-  [data-container][data-size="2xl"] {
-    --_max-width: var(--container-2xl-max-width, var(--breakpoint-2xl));
-  }
-
-  [data-container][data-size="full"] {
-    --_max-width: var(--container-full-max-width, none);
+  @media (width >= --theme(--breakpoint-2xl)) {
+    [data-container] {
+      --_max-width: var(--container-2xl-max-width, var(--breakpoint-2xl));
+    }
   }
 }

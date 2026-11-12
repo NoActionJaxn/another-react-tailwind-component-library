@@ -31,6 +31,15 @@ function describe(component: ComponentKey, name: string, suffix: string) {
   return overrides[name] ?? overrides[suffix] ?? suffixes[suffix] ?? "";
 }
 
+/** The `--breakpoint-*` name of the `@media` block around `index`, if any. */
+function enclosingBreakpoint(source: string, index: number) {
+  const start = source.lastIndexOf("@media", index);
+  if (start < 0) return undefined;
+  const between = source.slice(start, index);
+  const depth = between.split("{").length - between.split("}").length;
+  return depth > 0 ? between.match(/--breakpoint-([\w-]+)/)?.[1] : undefined;
+}
+
 /** Reads `--_x: var(--public-name, default)` declarations from a component's CSS. */
 function parse(component: ComponentKey, css: string, shared: boolean): Group[] {
   const groups = new Map<string, Row[]>();
@@ -38,35 +47,33 @@ function parse(component: ComponentKey, css: string, shared: boolean): Group[] {
     /@keyframes[^{]*\{(?:[^{}]*\{[^{}]*\})*[^{}]*\}/g,
     "",
   );
-  for (const [, selector, body] of source.matchAll(
-    /(\[data-[^{]+)\{([^{}]*)\}/g,
-  )) {
+  for (const match of source.matchAll(/(\[data-[^{]+)\{([^{}]*)\}/g)) {
+    const [, selector, body] = match;
     const part = selector.match(/\[data-([\w-]+)\]/)![1];
-    const size = selector.match(/data-size="([^"]+)"/)?.[1];
-    const variant = selector.match(/data-variant="([^"]+)"/)?.[1];
-    const gap = selector.match(/data-gap="([^"]+)"/)?.[1];
+    // A breakpoint, `[data-variant="solid"]`, `[data-gap="md"]`, … each get a group.
+    const breakpoint = enclosingBreakpoint(source, match.index);
+    const [, attr, keyValue] = breakpoint
+      ? [undefined, "breakpoint", breakpoint]
+      : (selector.match(/data-([\w-]+)="([^"]+)"/) ?? []);
     const base = part.replace(/-(content|overlay|group)$/, "");
     const prefix = shared
       ? `${(vars.parts as Record<string, string>)[part] ?? part} · `
       : "";
-    const label = size
-      ? prefix + format(vars.groups.size, { value: size })
-      : variant
-        ? prefix + format(vars.groups.variant, { value: variant })
-        : gap
-          ? prefix + format(vars.groups.gap, { value: gap })
-          : part === base && !shared
-            ? vars.groups.base
-            : ((vars.parts as Record<string, string>)[part] ?? part);
+    const template = attr
+      ? (vars.groups as Record<string, string>)[attr]
+      : undefined;
+    const label = keyValue
+      ? prefix + format(template ?? `${attr}: {value}`, { value: keyValue })
+      : part === base && !shared
+        ? vars.groups.base
+        : ((vars.parts as Record<string, string>)[part] ?? part);
     for (const [, name, value] of body.matchAll(
       /--_[\w-]+:\s*var\(\s*(--[\w-]+)\s*,\s*([\s\S]*?)\);/g,
     )) {
       const owner = [part, base].find((p) => name.startsWith(`--${p}-`))!;
       let suffix = name.slice(owner.length + 3);
-      for (const value of [size, variant, gap]) {
-        if (value && suffix.startsWith(`${value}-`)) {
-          suffix = suffix.slice(value.length + 1);
-        }
+      if (keyValue && suffix.startsWith(`${keyValue}-`)) {
+        suffix = suffix.slice(keyValue.length + 1);
       }
       const rows = groups.get(label) ?? [];
       rows.push({

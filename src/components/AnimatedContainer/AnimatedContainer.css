@@ -1,0 +1,132 @@
+/* Animates each direct child; --_* resolve on the container and its children. */
+@layer components {
+  [data-animated-container] {
+    --_duration: var(--animated-container-duration, 300ms);
+    --_easing: var(--animated-container-easing, ease-out);
+    --_stagger-delay: var(--animated-container-stagger-delay, 100ms);
+    --_pop-scale: var(--animated-container-pop-scale, 0.95);
+  }
+
+  [data-animated-container] > * {
+    --_index: 0;
+    animation-duration: var(--_duration);
+    animation-timing-function: var(--_easing);
+    animation-fill-mode: both;
+  }
+
+  [data-animated-container]:not([data-in-view]) > * {
+    animation-play-state: paused;
+  }
+
+  [data-animated-container][data-animation="fade"] > * {
+    animation-name: animated-container-fade;
+  }
+
+  [data-animated-container][data-animation="pop"] > * {
+    animation-name: animated-container-pop;
+  }
+
+  [data-animated-container][data-stagger] > * {
+    animation-delay: calc(var(--_index) * var(--_stagger-delay));
+  }
+
+  /* Stagger position of each child; children past the 20th share the last delay. */
+  [data-animated-container] > :nth-child(2) {
+    --_index: 1;
+  }
+
+  [data-animated-container] > :nth-child(3) {
+    --_index: 2;
+  }
+
+  [data-animated-container] > :nth-child(4) {
+    --_index: 3;
+  }
+
+  [data-animated-container] > :nth-child(5) {
+    --_index: 4;
+  }
+
+  [data-animated-container] > :nth-child(6) {
+    --_index: 5;
+  }
+
+  [data-animated-container] > :nth-child(7) {
+    --_index: 6;
+  }
+
+  [data-animated-container] > :nth-child(8) {
+    --_index: 7;
+  }
+
+  [data-animated-container] > :nth-child(9) {
+    --_index: 8;
+  }
+
+  [data-animated-container] > :nth-child(10) {
+    --_index: 9;
+  }
+
+  [data-animated-container] > :nth-child(11) {
+    --_index: 10;
+  }
+
+  [data-animated-container] > :nth-child(12) {
+    --_index: 11;
+  }
+
+  [data-animated-container] > :nth-child(13) {
+    --_index: 12;
+  }
+
+  [data-animated-container] > :nth-child(14) {
+    --_index: 13;
+  }
+
+  [data-animated-container] > :nth-child(15) {
+    --_index: 14;
+  }
+
+  [data-animated-container] > :nth-child(16) {
+    --_index: 15;
+  }
+
+  [data-animated-container] > :nth-child(17) {
+    --_index: 16;
+  }
+
+  [data-animated-container] > :nth-child(18) {
+    --_index: 17;
+  }
+
+  [data-animated-container] > :nth-child(19) {
+    --_index: 18;
+  }
+
+  [data-animated-container] > :nth-child(20) {
+    --_index: 19;
+  }
+
+  [data-animated-container] > :nth-child(n + 21) {
+    --_index: 20;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-animated-container] > * {
+      animation: none;
+    }
+  }
+
+  @keyframes animated-container-fade {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes animated-container-pop {
+    from {
+      opacity: 0;
+      transform: scale(var(--_pop-scale));
+    }
+  }
+}
