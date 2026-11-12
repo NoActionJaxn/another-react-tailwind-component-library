@@ -32,13 +32,14 @@ const meta = {
     colorScheme: "default",
     placeholder: m.components.TextInput.story.placeholder,
     disabled: false,
+    block: false,
     prependElement: "none",
     appendElement: "none",
     "aria-label": m.components.TextInput.story.ariaLabel,
   },
   argTypes: docsArgTypes(
     "TextInput",
-    ["variant", "size", "colorScheme", "disabled"],
+    ["variant", "size", "colorScheme", "disabled", "block"],
     {
       type: {
         control: "inline-radio",
@@ -62,6 +63,7 @@ const meta = {
         table: { defaultValue: { summary: m.common.defaults.inherited } },
       },
       disabled: { table: { defaultValue: { summary: "false" } } },
+      block: { table: { defaultValue: { summary: "false" } } },
       prependElement: iconControl,
       appendElement: iconControl,
     },

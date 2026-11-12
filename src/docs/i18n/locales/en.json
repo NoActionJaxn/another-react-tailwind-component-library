@@ -17,7 +17,10 @@
       "onOpenChange": "Called with the new open state when it changes.",
       "modal": "When true, blocks interaction with the rest of the page while open.",
       "openDelay": "Milliseconds before it opens on hover.",
-      "closeDelay": "Milliseconds before it closes after the pointer leaves."
+      "closeDelay": "Milliseconds before it closes after the pointer leaves.",
+      "block": "Fill the full width of the parent.",
+      "gap": "Space between items, from none to xl.",
+      "layoutAsChild": "Render the child element (e.g. <ul> or <section>) as the container instead of a <div>."
     },
     "icons": {
       "none": "None",
@@ -34,6 +37,9 @@
       "medium": "Medium",
       "more": "More",
       "settings": "Settings"
+    },
+    "layout": {
+      "item": "Item {n}"
     }
   },
   "components": {
@@ -64,6 +70,17 @@
         "action": "Delete"
       }
     },
+    "Anchor": {
+      "description": "A styled link. Inherits the surrounding font size. Use asChild to style a router link (e.g. React Router's Link).",
+      "props": {
+        "href": "Link destination.",
+        "underline": "When the underline shows: always, on hover, or never.",
+        "asChild": "Render the child element (e.g. a router Link) with anchor styles instead of an <a>."
+      },
+      "story": {
+        "children": "Read the documentation"
+      }
+    },
     "AspectRatio": {
       "description": "Keeps its child at a set width-to-height ratio. Unstyled.",
       "props": {
@@ -87,6 +104,23 @@
       },
       "story": {
         "children": "Button"
+      }
+    },
+    "Card": {
+      "description": "A container for one subject, with an optional cover image, header, description and footer. Compose only the sections you need; spacing adjusts to what's there.",
+      "props": {},
+      "story": {
+        "imageAlt": "Gray gradient",
+        "header": "Project update",
+        "description": "The new release is ready for review. Check the changes and approve it to publish.",
+        "cancel": "Later",
+        "confirm": "Review"
+      },
+      "cssVariables": {
+        "--card-footer-gap": "Space between footer items",
+        "gap": "Space between sections",
+        "padding": "Padding around the header, description and footer",
+        "--card-container-padding": "Space between the card edge and the cover image"
       }
     },
     "Checkbox": {
@@ -139,6 +173,15 @@
         "--collapsible-duration": "Expand and collapse animation duration"
       }
     },
+    "Container": {
+      "description": "Centers page content and limits its width, with horizontal padding so it never touches the screen edges.",
+      "props": {
+        "size": "Maximum width, from Tailwind's breakpoints: sm (40rem), md (48rem), lg (64rem), xl (80rem), 2xl (96rem), or full (no limit)."
+      },
+      "story": {
+        "children": "Page content stays centered and stops growing at the container's maximum width."
+      }
+    },
     "ContextMenu": {
       "description": "A menu that opens on right-click (or long-press) over its trigger area.",
       "props": {},
@@ -168,6 +211,35 @@
         "trigger": "Open menu"
       }
     },
+    "FlexContainer": {
+      "description": "A Container that lays out its children with flexbox: centered, width-limited and padded like Container, with flex direction, alignment and gap.",
+      "props": {
+        "direction": "Main axis: row or column, optionally reversed.",
+        "align": "Cross-axis alignment of items (align-items).",
+        "justify": "Main-axis distribution of items (justify-content).",
+        "wrap": "Whether items wrap onto new lines.",
+        "size": "Maximum width, from Tailwind's breakpoints: sm (40rem), md (48rem), lg (64rem), xl (80rem), 2xl (96rem), or full (no limit).",
+        "columns": "Up to that many items per row, wrapping to fewer as the container narrows. Items in a short last row grow to fill it.",
+        "minColumnWidth": "Narrowest a column may get before the layout drops to fewer columns (any CSS length). Default 15rem."
+      },
+      "story": {},
+      "defaults": {
+        "wrap": "wrap with columns, otherwise nowrap"
+      }
+    },
+    "GridContainer": {
+      "description": "A Container that lays out its children in a CSS grid: centered, width-limited and padded like Container, with columns, rows and gap.",
+      "props": {
+        "columns": "A number: up to that many equal columns, dropping to fewer as the container narrows. A string: any grid-template-columns value (e.g. \"200px 1fr\"), used as is.",
+        "rows": "A number for that many equal rows, or any grid-template-rows value.",
+        "align": "Vertical alignment of items in their cells (align-items).",
+        "justify": "Horizontal alignment of items in their cells (justify-items).",
+        "flow": "How auto-placed items fill the grid (grid-auto-flow).",
+        "size": "Maximum width, from Tailwind's breakpoints: sm (40rem), md (48rem), lg (64rem), xl (80rem), 2xl (96rem), or full (no limit).",
+        "minColumnWidth": "Narrowest a column may get before the layout drops to fewer columns (any CSS length). Default 15rem."
+      },
+      "story": {}
+    },
     "HoverCard": {
       "description": "A preview card that appears when a pointer hovers over a link.",
       "props": {},
@@ -175,6 +247,19 @@
         "trigger": "@radix-ui",
         "content": "Unstyled, accessible components for React.",
         "fallback": "R"
+      }
+    },
+    "Image": {
+      "description": "An image with a placeholder: if src is missing or fails to load, it shows an icon (or your fallback) in the same box.",
+      "props": {
+        "src": "Image URL.",
+        "alt": "Text alternative. Leave empty for decorative images.",
+        "fit": "How the image fills its box (CSS object-fit).",
+        "aspectRatio": "Box aspect ratio, e.g. \"16 / 9\" or 1. Keeps the space reserved while loading and for the fallback.",
+        "fallback": "Shown instead of the image when src is missing or fails. Defaults to Radix ImageIcon."
+      },
+      "story": {
+        "alt": "Gray gradient"
       }
     },
     "Label": {
@@ -423,7 +508,8 @@
       "groups": {
         "base": "All",
         "size": "Size: {value}",
-        "variant": "Variant: {value}"
+        "variant": "Variant: {value}",
+        "gap": "Gap: {value}"
       },
       "values": {
         "scheme": "scheme {step}",
@@ -496,7 +582,22 @@
         "font-size": "Font size",
         "line-height": "Line height",
         "copy-text": "Copy button icon color",
-        "copy-bg-hover": "Copy button background on hover"
+        "copy-bg-hover": "Copy button background on hover",
+        "header-text": "Header text color",
+        "description-text": "Description text color",
+        "header-font-size": "Header font size",
+        "description-font-size": "Description font size",
+        "header-font-weight": "Header font weight",
+        "description-gap": "Space between the header and the description",
+        "image-aspect-ratio": "Cover image aspect ratio",
+        "image-radius": "Cover image corner radius",
+        "icon-size": "Icon size",
+        "min-column-width": "Narrowest a column may get before the layout uses fewer columns",
+        "text-hover": "Text color on hover",
+        "decoration": "Underline color",
+        "decoration-hover": "Underline color on hover",
+        "decoration-thickness": "Underline thickness",
+        "underline-offset": "Distance between the text and its underline"
       },
       "parts": {
         "menu-content": "Menu (shared with DropdownMenu, ContextMenu, Menubar and Select)",
@@ -508,7 +609,8 @@
         "popover-content": "All",
         "hover-card-content": "All",
         "tooltip-content": "All",
-        "toggle": "Toggle (shared with Toggle, ToggleGroup and Toolbar)"
+        "toggle": "Toggle (shared with Toggle, ToggleGroup and Toolbar)",
+        "container": "Container (shared with Container, FlexContainer and GridContainer)"
       }
     }
   }

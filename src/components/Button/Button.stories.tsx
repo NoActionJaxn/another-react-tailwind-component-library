@@ -13,12 +13,13 @@ const meta = {
     size: "md",
     colorScheme: "default",
     disabled: false,
+    block: false,
     asChild: false,
     onClick: fn(),
   },
   argTypes: docsArgTypes(
     "Button",
-    ["variant", "size", "colorScheme", "disabled"],
+    ["variant", "size", "colorScheme", "disabled", "block"],
     {
       variant: {
         control: "inline-radio",
@@ -37,6 +38,7 @@ const meta = {
         table: { defaultValue: { summary: m.common.defaults.inherited } },
       },
       disabled: { table: { defaultValue: { summary: "false" } } },
+      block: { table: { defaultValue: { summary: "false" } } },
       asChild: { table: { defaultValue: { summary: "false" } } },
     },
   ),

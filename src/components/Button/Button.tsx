@@ -9,6 +9,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   colorScheme?: ColorScheme;
   size?: ButtonSize;
   asChild?: boolean;
+  block?: boolean;
 }
 
 const sizes = {
@@ -22,6 +23,7 @@ export function Button({
   colorScheme,
   size = "md",
   asChild = false,
+  block = false,
   type,
   disabled,
   onClick,
@@ -49,6 +51,7 @@ export function Button({
         "disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-(--_bg)",
         "aria-disabled:cursor-not-allowed aria-disabled:opacity-50 aria-disabled:hover:bg-(--_bg)",
         sizes[size],
+        block && "flex w-full",
         className,
       )}
       {...props}

@@ -1,0 +1,17 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-image] {
+    --_radius: var(--image-radius, var(--radius-md));
+    --_bg: var(--image-bg, var(--scheme-100));
+    --_icon: var(--image-icon, var(--scheme-500));
+    --_icon-size: var(--image-icon-size, calc(var(--spacing) * 6));
+  }
+
+  [data-image][data-variant="ghost"] {
+    --_border: var(--image-ghost-border, transparent);
+  }
+
+  [data-image][data-variant="outline"] {
+    --_border: var(--image-outline-border, var(--scheme-300));
+  }
+}

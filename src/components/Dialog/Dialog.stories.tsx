@@ -36,6 +36,7 @@ const meta = {
           </DialogDescription>
         </DialogHeader>
         <TextInput
+          block
           aria-label={m.components.Dialog.story.namePlaceholder}
           placeholder={m.components.Dialog.story.namePlaceholder}
         />

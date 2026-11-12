@@ -1,0 +1,18 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-anchor] {
+    --_text: var(--anchor-text, var(--scheme-700));
+    --_text-hover: var(--anchor-text-hover, var(--scheme-950));
+    --_font-weight: var(--anchor-font-weight, var(--font-weight-medium));
+    --_decoration: var(--anchor-decoration, var(--scheme-400));
+    --_decoration-hover: var(--anchor-decoration-hover, currentColor);
+    --_decoration-thickness: var(--anchor-decoration-thickness, 1px);
+    --_underline-offset: var(--anchor-underline-offset, 3px);
+    --_radius: var(--anchor-radius, var(--radius-xs));
+    --_focus-color: var(--anchor-focus-color, var(--scheme-400));
+    --_focus-width: var(--anchor-focus-width, 4px);
+    --_focus-offset: var(--anchor-focus-offset, 0px);
+    /* Set here: tailwind-merge drops a decoration color class next to a thickness one. */
+    text-decoration-thickness: var(--_decoration-thickness);
+  }
+}

@@ -16,6 +16,7 @@ export interface TextInputProps extends Omit<
   size?: TextInputSize;
   prependElement?: ReactNode;
   appendElement?: ReactNode;
+  block?: boolean;
 }
 
 const sizes = {
@@ -42,6 +43,7 @@ export function TextInput({
   size = "md",
   prependElement,
   appendElement,
+  block = false,
   className,
   style,
   ...props
@@ -54,7 +56,7 @@ export function TextInput({
       style={colorScheme ? { ...schemeVars(colorScheme), ...style } : style}
       onMouseDown={focusInput}
       className={tw(
-        "group flex w-full min-w-0 cursor-text items-center border transition-colors",
+        "group inline-flex min-w-0 cursor-text items-center border transition-colors",
         "gap-(--_gap) rounded-(--_radius) px-(--_padding-x)",
         "font-(family-name:--_font-family) font-(--_font-weight)",
         "border-(--_border) bg-(--_bg) text-(--_text)",
@@ -62,6 +64,7 @@ export function TextInput({
         "outline-(--_focus-color) focus-within:outline-(length:--_focus-width) focus-within:outline-offset-(--_focus-offset) focus-within:outline-solid",
         "has-disabled:cursor-not-allowed has-disabled:opacity-50 has-disabled:hover:border-(--_border) has-disabled:hover:bg-(--_bg)",
         sizes[size],
+        block && "flex w-full",
         className,
       )}
     >

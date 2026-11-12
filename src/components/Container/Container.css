@@ -1,0 +1,30 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-container] {
+    --_padding-x: var(--container-padding-x, calc(var(--spacing) * 4));
+  }
+
+  [data-container][data-size="sm"] {
+    --_max-width: var(--container-sm-max-width, var(--breakpoint-sm));
+  }
+
+  [data-container][data-size="md"] {
+    --_max-width: var(--container-md-max-width, var(--breakpoint-md));
+  }
+
+  [data-container][data-size="lg"] {
+    --_max-width: var(--container-lg-max-width, var(--breakpoint-lg));
+  }
+
+  [data-container][data-size="xl"] {
+    --_max-width: var(--container-xl-max-width, var(--breakpoint-xl));
+  }
+
+  [data-container][data-size="2xl"] {
+    --_max-width: var(--container-2xl-max-width, var(--breakpoint-2xl));
+  }
+
+  [data-container][data-size="full"] {
+    --_max-width: var(--container-full-max-width, none);
+  }
+}

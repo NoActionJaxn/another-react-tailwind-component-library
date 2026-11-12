@@ -21,6 +21,7 @@ export default function App() {
       </div>
       <div className="flex max-w-md gap-4">
         <TextInput
+          block
           type="email"
           placeholder="you@example.com"
           aria-label="Email"

@@ -44,6 +44,7 @@ function parse(component: ComponentKey, css: string, shared: boolean): Group[] {
     const part = selector.match(/\[data-([\w-]+)\]/)![1];
     const size = selector.match(/data-size="([^"]+)"/)?.[1];
     const variant = selector.match(/data-variant="([^"]+)"/)?.[1];
+    const gap = selector.match(/data-gap="([^"]+)"/)?.[1];
     const base = part.replace(/-(content|overlay|group)$/, "");
     const prefix = shared
       ? `${(vars.parts as Record<string, string>)[part] ?? part} · `
@@ -52,15 +53,17 @@ function parse(component: ComponentKey, css: string, shared: boolean): Group[] {
       ? prefix + format(vars.groups.size, { value: size })
       : variant
         ? prefix + format(vars.groups.variant, { value: variant })
-        : part === base && !shared
-          ? vars.groups.base
-          : ((vars.parts as Record<string, string>)[part] ?? part);
+        : gap
+          ? prefix + format(vars.groups.gap, { value: gap })
+          : part === base && !shared
+            ? vars.groups.base
+            : ((vars.parts as Record<string, string>)[part] ?? part);
     for (const [, name, value] of body.matchAll(
       /--_[\w-]+:\s*var\(\s*(--[\w-]+)\s*,\s*([\s\S]*?)\);/g,
     )) {
       const owner = [part, base].find((p) => name.startsWith(`--${p}-`))!;
       let suffix = name.slice(owner.length + 3);
-      for (const value of [size, variant]) {
+      for (const value of [size, variant, gap]) {
         if (value && suffix.startsWith(`${value}-`)) {
           suffix = suffix.slice(value.length + 1);
         }

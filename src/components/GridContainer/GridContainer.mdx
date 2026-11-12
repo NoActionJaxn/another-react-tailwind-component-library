@@ -1,0 +1,9 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ComponentDocs } from "../../docs/blocks/ComponentDocs";
+import * as Stories from "./GridContainer.stories";
+import css from "./GridContainer.css?raw";
+import shared0 from "../Container/Container.css?raw";
+
+<Meta of={Stories} />
+
+<ComponentDocs component="GridContainer" css={[css]} sharedCss={[shared0]} />
