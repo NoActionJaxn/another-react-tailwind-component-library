@@ -59,7 +59,9 @@ Tests are stories: add `play` functions to stories for interaction tests rather 
 - Build classes with `tw()` and pass the user's `className` last.
 - Export `<Name>Props` plus union types (`<Name>Variant`, `<Name>Size`) and re-export them from `index.ts` and `src/index.ts`.
 
-**Variants** are styles, never colors: `solid | soft | outline | ghost`. Shades:
+**Wrapped controls** (TextInput): the outer element carries `data-<name>`, the variables and all visuals, and is a Tailwind `group`. States come from the inner control: `focus-within:` for the ring, `has-disabled:` for disabled, `group-focus-within:` for icon color. `className`/`style`/`colorScheme` go on the wrapper; every other prop and `ref` go on the inner control.
+
+**Variants** are styles, never colors, drawn from `solid | soft | outline | ghost`. A component supports only the ones that make sense (TextInput: `outline | soft | ghost`, no `solid`). Button shades:
 
 | Variant | bg / hover          | text    | border        |
 | ------- | ------------------- | ------- | ------------- |
@@ -68,7 +70,7 @@ Tests are stories: add `play` functions to stories for interaction tests rather 
 | outline | `transparent` / 50  | 800     | 300           |
 | ghost   | `transparent` / 100 | 800     | `transparent` |
 
-**Sizes**: `sm | md | lg`, default `md`. Button padding x/y is spacing 3/1.5, 4/2, 5/2.5, with `text-sm` / `text-base` / `text-lg`.
+**Sizes**: `sm | md | lg`, default `md`. Button padding x/y is spacing 3/1.5, 4/2, 5/2.5, with `text-sm` / `text-base` / `text-lg`. Form controls use the same padding-y, border and text sizes so they line up with Button in a row.
 
 **Borders**: if any variant has a border, every variant gets `border` (1px), `transparent` when unused, so switching variants never shifts layout. Visible borders use a light shade (`--scheme-300`), not the text color.
 
@@ -76,7 +78,7 @@ Tests are stories: add `play` functions to stories for interaction tests rather 
 
 - `cursor-pointer`; `transition-colors`
 - Hover: `hover:bg-(--_bg-hover)`
-- Focus: `focus-visible:outline-2 outline-offset-2`, color `--_focus-color` (default `--scheme-500`)
+- Focus: a solid outline on any focus (`focus:`, so clicks show it too), from `--_focus-color` (default `--scheme-400`), `--_focus-width` (4px) and `--_focus-offset` (0px). All components use the same defaults. Set the outline color without a state prefix (`outline-(--_focus-color)`) so `transition-colors` has nothing to animate; prefixing it causes a flash from the text color on focus.
 - Disabled: `cursor-not-allowed opacity-50`, and hover keeps the base background. Style both `disabled:` and `aria-disabled:`. With `asChild`, `disabled` becomes `aria-disabled` + `tabIndex={-1}` + a click that is prevented, since links etc. have no `disabled`.
 
 **Contrast**: text/background pairs must meet WCAG AA for the default scheme.

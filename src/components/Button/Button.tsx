@@ -46,7 +46,7 @@ export function Button({
         "rounded-(--_radius) px-(--_padding-x) py-(--_padding-y)",
         "font-(family-name:--_font-family) font-(--_font-weight) [text-transform:var(--_text-transform)]",
         "border-(--_border) bg-(--_bg) text-(--_text) hover:bg-(--_bg-hover)",
-        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--_focus-color)",
+        "outline-(--_focus-color) focus:outline-(length:--_focus-width) focus:outline-offset-(--_focus-offset) focus:outline-solid",
         "disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-(--_bg)",
         "aria-disabled:cursor-not-allowed aria-disabled:opacity-50 aria-disabled:hover:bg-(--_bg)",
         sizes[size],

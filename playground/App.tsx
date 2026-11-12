@@ -1,4 +1,4 @@
-import { Button, schemeVars } from "../src";
+import { Button, TextInput, schemeVars } from "../src";
 
 const variants = ["solid", "soft", "outline", "ghost"] as const;
 
@@ -18,6 +18,14 @@ export default function App() {
             {v}
           </Button>
         ))}
+      </div>
+      <div className="flex max-w-md gap-4">
+        <TextInput
+          type="email"
+          placeholder="you@example.com"
+          aria-label="Email"
+        />
+        <Button>Subscribe</Button>
       </div>
     </div>
   );

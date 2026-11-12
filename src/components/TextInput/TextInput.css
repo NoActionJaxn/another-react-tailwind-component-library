@@ -1,0 +1,56 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-text-input] {
+    --_radius: var(--text-input-radius, var(--radius-sm));
+    --_font-family: var(--text-input-font-family, var(--font-sans));
+    --_font-weight: var(--text-input-font-weight, var(--font-weight-normal));
+    --_focus-color: var(--text-input-focus-color, var(--scheme-400));
+    --_focus-width: var(--text-input-focus-width, 4px);
+    --_focus-offset: var(--text-input-focus-offset, 0px);
+    --_gap: var(--text-input-gap, calc(var(--spacing) * 2));
+    --_icon: var(--text-input-icon, var(--_placeholder));
+    --_icon-focus: var(--text-input-icon-focus, var(--_text));
+  }
+
+  [data-text-input][data-size="sm"] {
+    --_padding-x: var(--text-input-sm-padding-x, calc(var(--spacing) * 3));
+    --_padding-y: var(--text-input-sm-padding-y, calc(var(--spacing) * 1.5));
+  }
+
+  [data-text-input][data-size="md"] {
+    --_padding-x: var(--text-input-md-padding-x, calc(var(--spacing) * 4));
+    --_padding-y: var(--text-input-md-padding-y, calc(var(--spacing) * 2));
+  }
+
+  [data-text-input][data-size="lg"] {
+    --_padding-x: var(--text-input-lg-padding-x, calc(var(--spacing) * 5));
+    --_padding-y: var(--text-input-lg-padding-y, calc(var(--spacing) * 2.5));
+  }
+
+  [data-text-input][data-variant="outline"] {
+    --_bg: var(--text-input-outline-bg, transparent);
+    --_bg-hover: var(--text-input-outline-bg-hover, transparent);
+    --_text: var(--text-input-outline-text, var(--scheme-900));
+    --_placeholder: var(--text-input-outline-placeholder, var(--scheme-500));
+    --_border: var(--text-input-outline-border, var(--scheme-400));
+    --_border-hover: var(--text-input-outline-border-hover, var(--scheme-500));
+  }
+
+  [data-text-input][data-variant="soft"] {
+    --_bg: var(--text-input-soft-bg, var(--scheme-100));
+    --_bg-hover: var(--text-input-soft-bg-hover, var(--scheme-200));
+    --_text: var(--text-input-soft-text, var(--scheme-900));
+    --_placeholder: var(--text-input-soft-placeholder, var(--scheme-600));
+    --_border: var(--text-input-soft-border, transparent);
+    --_border-hover: var(--text-input-soft-border-hover, transparent);
+  }
+
+  [data-text-input][data-variant="ghost"] {
+    --_bg: var(--text-input-ghost-bg, transparent);
+    --_bg-hover: var(--text-input-ghost-bg-hover, var(--scheme-100));
+    --_text: var(--text-input-ghost-text, var(--scheme-900));
+    --_placeholder: var(--text-input-ghost-placeholder, var(--scheme-500));
+    --_border: var(--text-input-ghost-border, transparent);
+    --_border-hover: var(--text-input-ghost-border-hover, transparent);
+  }
+}
