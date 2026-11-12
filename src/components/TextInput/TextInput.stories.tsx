@@ -1,26 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import {
+  EnvelopeClosedIcon,
+  Link2Icon,
+  MagnifyingGlassIcon,
+} from "@radix-ui/react-icons";
 import type { ReactNode } from "react";
 import { TextInput } from "./TextInput";
 
-const Icon = ({ d }: { d: string }) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={2}
-    aria-hidden
-  >
-    <path d={d} strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
 const icons: Record<string, ReactNode> = {
   None: undefined,
-  Search: <Icon d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14Zm10 3-5-5" />,
-  Mail: <Icon d="M3 6h18v12H3zM3 7l9 6 9-6" />,
-  Link: (
-    <Icon d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" />
-  ),
+  Search: <MagnifyingGlassIcon aria-hidden />,
+  Mail: <EnvelopeClosedIcon aria-hidden />,
+  Link: <Link2Icon aria-hidden />,
 };
 
 const meta = {

@@ -1,0 +1,8 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-label] {
+    --_font-family: var(--label-font-family, var(--font-sans));
+    --_font-weight: var(--label-font-weight, var(--font-weight-medium));
+    --_text: var(--label-text, var(--scheme-900));
+  }
+}

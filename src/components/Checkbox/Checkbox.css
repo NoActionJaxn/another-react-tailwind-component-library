@@ -1,0 +1,29 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-checkbox] {
+    --_radius: var(--checkbox-radius, var(--radius-xs));
+    --_gap: var(--checkbox-gap, calc(var(--spacing) * 2));
+    --_bg: var(--checkbox-bg, transparent);
+    --_border: var(--checkbox-border, var(--scheme-500));
+    --_border-hover: var(--checkbox-border-hover, var(--scheme-700));
+    --_checked-bg: var(--checkbox-checked-bg, var(--scheme-600));
+    --_checked-bg-hover: var(--checkbox-checked-bg-hover, var(--scheme-700));
+    --_indicator: var(--checkbox-indicator, white);
+    --_indicator-scale: var(--checkbox-indicator-scale, 1);
+    --_focus-color: var(--checkbox-focus-color, var(--scheme-400));
+    --_focus-width: var(--checkbox-focus-width, 4px);
+    --_focus-offset: var(--checkbox-focus-offset, 0px);
+  }
+
+  [data-checkbox][data-size="sm"] {
+    --_box-size: var(--checkbox-sm-size, calc(var(--spacing) * 4));
+  }
+
+  [data-checkbox][data-size="md"] {
+    --_box-size: var(--checkbox-md-size, calc(var(--spacing) * 5));
+  }
+
+  [data-checkbox][data-size="lg"] {
+    --_box-size: var(--checkbox-lg-size, calc(var(--spacing) * 6));
+  }
+}

@@ -1,0 +1,32 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-radio-group] {
+    --_group-gap: var(--radio-group-gap, calc(var(--spacing) * 3));
+  }
+
+  [data-radio] {
+    --_gap: var(--radio-gap, calc(var(--spacing) * 2));
+    --_bg: var(--radio-bg, transparent);
+    --_border: var(--radio-border, var(--scheme-500));
+    --_border-hover: var(--radio-border-hover, var(--scheme-700));
+    --_checked-bg: var(--radio-checked-bg, var(--scheme-600));
+    --_checked-bg-hover: var(--radio-checked-bg-hover, var(--scheme-700));
+    --_indicator: var(--radio-indicator, white);
+    --_indicator-scale: var(--radio-indicator-scale, 1);
+    --_focus-color: var(--radio-focus-color, var(--scheme-400));
+    --_focus-width: var(--radio-focus-width, 4px);
+    --_focus-offset: var(--radio-focus-offset, 0px);
+  }
+
+  [data-radio][data-size="sm"] {
+    --_box-size: var(--radio-sm-size, calc(var(--spacing) * 4));
+  }
+
+  [data-radio][data-size="md"] {
+    --_box-size: var(--radio-md-size, calc(var(--spacing) * 5));
+  }
+
+  [data-radio][data-size="lg"] {
+    --_box-size: var(--radio-lg-size, calc(var(--spacing) * 6));
+  }
+}

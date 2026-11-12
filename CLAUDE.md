@@ -61,6 +61,8 @@ Tests are stories: add `play` functions to stories for interaction tests rather 
 
 **Wrapped controls** (TextInput): the outer element carries `data-<name>`, the variables and all visuals, and is a Tailwind `group`. States come from the inner control: `focus-within:` for the ring, `has-disabled:` for disabled, `group-focus-within:` for icon color. `className`/`style`/`colorScheme` go on the wrapper; every other prop and `ref` go on the inner control.
 
+**Labelled controls** (Checkbox, Radio): render the library `Label` with `htmlFor` pointing at the control (`useId()` unless an `id` is passed), sized to match the control. `label` is optional; without it, callers pass `aria-label`. RadioGroup passes `size` to its Radios through context. Their wrappers are block-level `flex w-fit`, not `inline-flex`: an inline wrapper sits on the text baseline, which moves when the check/dot indicator mounts.
+
 **Variants** are styles, never colors, drawn from `solid | soft | outline | ghost`. A component supports only the ones that make sense (TextInput: `outline | soft | ghost`, no `solid`). Button shades:
 
 | Variant | bg / hover          | text    | border        |
@@ -72,7 +74,7 @@ Tests are stories: add `play` functions to stories for interaction tests rather 
 
 **Sizes**: `sm | md | lg`, default `md`. Button padding x/y is spacing 3/1.5, 4/2, 5/2.5, with `text-sm` / `text-base` / `text-lg`. Form controls use the same padding-y, border and text sizes so they line up with Button in a row.
 
-**Borders**: if any variant has a border, every variant gets `border` (1px), `transparent` when unused, so switching variants never shifts layout. Visible borders use a light shade (`--scheme-300`), not the text color.
+**Borders**: if any variant has a border, every variant gets `border` (1px), `transparent` when unused, so switching variants never shifts layout. Visible borders use a light shade (`--scheme-300`), not the text color. Exception: Checkbox and Radio borders default to `--scheme-500`, because the border is the only sign of an unchecked control and WCAG requires 3:1 contrast for it (300 is about 1.5:1).
 
 **States** (interactive components):
 
