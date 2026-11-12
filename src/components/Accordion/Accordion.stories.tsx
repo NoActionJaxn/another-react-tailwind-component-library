@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import {
   Accordion,
   AccordionContent,
@@ -9,28 +10,31 @@ import {
 const meta = {
   title: "Components/Accordion",
   component: Accordion,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("Accordion", { layout: "centered" }),
   args: { type: "single", collapsible: true, colorScheme: "default" },
-  argTypes: {
+  argTypes: docsArgTypes("Accordion", ["colorScheme"], {
     colorScheme: {
       // "brand" is defined in playground/playground.css
       control: "inline-radio",
       options: ["default", "brand"],
     },
-  },
+  }),
   render: (args) => (
     <Accordion {...args} className="w-80">
       <AccordionItem value="1">
-        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+        <AccordionTrigger>
+          {m.components.Accordion.story.question1}
+        </AccordionTrigger>
         <AccordionContent>
-          Yes. It follows the WAI-ARIA pattern.
+          {m.components.Accordion.story.answer1}
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="2">
-        <AccordionTrigger>Is it themeable?</AccordionTrigger>
+        <AccordionTrigger>
+          {m.components.Accordion.story.question2}
+        </AccordionTrigger>
         <AccordionContent>
-          Yes, through the --accordion-* variables.
+          {m.components.Accordion.story.answer2}
         </AccordionContent>
       </AccordionItem>
     </Accordion>

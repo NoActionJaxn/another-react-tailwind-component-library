@@ -1,26 +1,30 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Progress } from "./Progress";
 
 const meta = {
   title: "Components/Progress",
   component: Progress,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("Progress", { layout: "centered" }),
   args: {
     value: 60,
     size: "md",
     colorScheme: "default",
-    "aria-label": "Upload progress",
+    "aria-label": m.components.Progress.story.ariaLabel,
   },
-  argTypes: {
-    colorScheme: {
-      // "brand" is defined in playground/playground.css
-      control: "inline-radio",
-      options: ["default", "brand"],
+  argTypes: docsArgTypes(
+    "Progress",
+    ["size", "colorScheme", { "aria-label": "ariaLabel" }],
+    {
+      colorScheme: {
+        // "brand" is defined in playground/playground.css
+        control: "inline-radio",
+        options: ["default", "brand"],
+      },
+      size: { control: "inline-radio", options: ["sm", "md", "lg"] },
+      value: { control: { type: "range", min: 0, max: 100 } },
     },
-    size: { control: "inline-radio", options: ["sm", "md", "lg"] },
-    value: { control: { type: "range", min: 0, max: 100 } },
-  },
+  ),
   render: (args) => (
     <div className="w-72">
       <Progress {...args} />

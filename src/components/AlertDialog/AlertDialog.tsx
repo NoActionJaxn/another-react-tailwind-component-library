@@ -17,7 +17,6 @@ export const AlertDialogTrigger = AlertDialogPrimitive.Trigger;
 export interface AlertDialogContentProps extends ComponentProps<
   typeof AlertDialogPrimitive.Content
 > {
-  /** Content renders in a portal, so it can't inherit a scheme from the trigger's parents. */
   colorScheme?: ColorScheme;
 }
 
@@ -82,7 +81,6 @@ export function AlertDialogDescription({
   );
 }
 
-/** Confirms. Renders the library Button (solid by default). */
 export function AlertDialogAction(props: Omit<ButtonProps, "asChild">) {
   return (
     <AlertDialogPrimitive.Action asChild>
@@ -91,7 +89,6 @@ export function AlertDialogAction(props: Omit<ButtonProps, "asChild">) {
   );
 }
 
-/** Dismisses. Renders the library Button (outline by default). */
 export function AlertDialogCancel({
   variant = "outline",
   ...props

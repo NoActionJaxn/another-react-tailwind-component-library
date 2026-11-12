@@ -20,9 +20,7 @@ export interface RadioGroupProps extends ComponentProps<
   typeof RadioGroupPrimitive.Root
 > {
   colorScheme?: ColorScheme;
-  /** Size for every Radio in the group. */
   size?: RadioSize;
-  /** Default checked icon for every Radio in the group. */
   icon?: ReactNode;
 }
 
@@ -52,10 +50,8 @@ export function RadioGroup({
 export interface RadioProps extends ComponentProps<
   typeof RadioGroupPrimitive.Item
 > {
-  /** Rendered with Label. Without it, pass `aria-label`. */
   label?: ReactNode;
   colorScheme?: ColorScheme;
-  /** Shown when checked. Defaults to the group's `icon`, then Radix `DotFilledIcon`. */
   icon?: ReactNode;
 }
 

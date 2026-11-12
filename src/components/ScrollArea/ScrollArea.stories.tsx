@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, format, m } from "../../docs/i18n";
 import { Separator } from "../Separator";
 import { ScrollArea } from "./ScrollArea";
 
 const meta = {
   title: "Components/ScrollArea",
   component: ScrollArea,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("ScrollArea", { layout: "centered" }),
   args: { colorScheme: "default" },
-  argTypes: {
+  argTypes: docsArgTypes("ScrollArea", ["colorScheme"], {
     colorScheme: {
       // "brand" is defined in playground/playground.css
       control: "inline-radio",
@@ -18,7 +18,7 @@ const meta = {
       control: "inline-radio",
       options: ["vertical", "horizontal", "both"],
     },
-  },
+  }),
   render: (args) => (
     <ScrollArea
       {...args}
@@ -27,7 +27,9 @@ const meta = {
       <div className="p-4 text-sm">
         {Array.from({ length: 30 }, (_, i) => (
           <div key={i}>
-            <div className="py-1.5">Tag {i + 1}</div>
+            <div className="py-1.5">
+              {format(m.components.ScrollArea.story.item, { n: i + 1 })}
+            </div>
             <Separator />
           </div>
         ))}

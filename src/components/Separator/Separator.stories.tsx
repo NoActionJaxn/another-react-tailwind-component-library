@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Separator } from "./Separator";
 
 const meta = {
   title: "Components/Separator",
   component: Separator,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("Separator", { layout: "centered" }),
   args: { orientation: "horizontal", colorScheme: "default" },
-  argTypes: {
+  argTypes: docsArgTypes("Separator", ["orientation", "colorScheme"], {
     colorScheme: {
       // "brand" is defined in playground/playground.css
       control: "inline-radio",
@@ -17,15 +17,15 @@ const meta = {
       control: "inline-radio",
       options: ["horizontal", "vertical"],
     },
-  },
+  }),
   render: (args) => (
     <div className="w-64 text-sm">
-      <p>Above</p>
+      <p>{m.components.Separator.story.above}</p>
       <Separator {...args} className="my-3" />
       <div className="flex h-5 items-center gap-3">
-        <span>Left</span>
+        <span>{m.components.Separator.story.left}</span>
         <Separator orientation="vertical" />
-        <span>Right</span>
+        <span>{m.components.Separator.story.right}</span>
       </div>
     </div>
   ),

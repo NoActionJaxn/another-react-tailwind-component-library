@@ -18,9 +18,7 @@ export const DialogClose = DialogPrimitive.Close;
 export interface DialogContentProps extends ComponentProps<
   typeof DialogPrimitive.Content
 > {
-  /** Content renders in a portal, so it can't inherit a scheme from the trigger's parents. */
   colorScheme?: ColorScheme;
-  /** Show the × close button. */
   showClose?: boolean;
 }
 

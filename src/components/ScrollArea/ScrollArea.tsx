@@ -6,7 +6,6 @@ export interface ScrollAreaProps extends ComponentProps<
   typeof ScrollAreaPrimitive.Root
 > {
   colorScheme?: ColorScheme;
-  /** Which custom scrollbars to render. */
   scrollbars?: "vertical" | "horizontal" | "both";
 }
 

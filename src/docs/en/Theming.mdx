@@ -1,0 +1,75 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Theming" />
+
+# Theming
+
+Components get their colors from a **color scheme**: any set of
+`--color-<name>-50` … `--color-<name>-950` variables, following Tailwind's
+color format. The library ships one scheme, `default`, which uses Tailwind's
+`stone` palette.
+
+There are three ways to customize it, from broadest to most specific.
+
+## 1. Replace the default scheme
+
+Redefine the 11 `--color-default-*` variables after importing the library CSS.
+Every component picks up the change.
+
+```css
+@theme static {
+  --color-default-50: var(--color-slate-50);
+  /* … 100 to 900 … */
+  --color-default-950: var(--color-slate-950);
+}
+```
+
+## 2. Add your own schemes
+
+Define a palette with any name, then select it with the `colorScheme` prop or
+the `schemeVars()` helper. Use `@theme static` (or plain `:root`) so Tailwind
+keeps the variables even though no class names them. This applies to Tailwind's
+own palettes too: declare them this way before using one as a scheme.
+
+```css
+@theme static {
+  --color-brand-50: #eff6ff;
+  /* … 100 to 900 … */
+  --color-brand-950: #172554;
+}
+```
+
+```tsx
+import { Button, schemeVars } from 'another-react-tailwind-component-library'
+
+// One component
+<Button colorScheme="brand">Save</Button>
+
+// A whole section: children inherit the scheme
+<section style={schemeVars('brand')}>
+  <Button>Save</Button>
+  <Button variant="outline">Cancel</Button>
+</section>
+```
+
+Components read the active scheme from `--scheme-50` … `--scheme-950`. You can
+also set those directly in CSS, for example on a class.
+
+## 3. Override component variables
+
+Each component has `--<component>-*` variables. Set them globally or for a
+section. Values are resolved on the component, so `var(--scheme-*)` follows the
+component's color scheme.
+
+```css
+:root {
+  --button-radius: 9999px;
+  --button-solid-text: var(--scheme-950);
+}
+```
+
+Every component's page lists its variables, with defaults and descriptions, under **CSS variables**.
+
+## Portals
+
+Dialogs, popovers, hover cards, tooltips, menus and select dropdowns render at the end of `<body>`, outside your layout. They can't inherit a `colorScheme` or `--*` overrides from the trigger's parents. Pass `colorScheme` to the content part (`<DialogContent colorScheme="brand">`), or set variables on `:root`.

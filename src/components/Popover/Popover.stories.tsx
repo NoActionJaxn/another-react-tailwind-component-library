@@ -1,20 +1,24 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import { Popover, PopoverContent, PopoverTrigger } from "./Popover";
 
 const meta = {
   title: "Components/Popover",
   component: Popover,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("Popover", { layout: "centered" }),
   args: {},
-  argTypes: {},
+  argTypes: docsArgTypes(
+    "Popover",
+    ["open", "defaultOpen", "onOpenChange", "modal"],
+    {},
+  ),
   render: (args) => (
     <Popover {...args}>
       <PopoverTrigger asChild>
-        <Button variant="outline">Open popover</Button>
+        <Button variant="outline">{m.components.Popover.story.trigger}</Button>
       </PopoverTrigger>
-      <PopoverContent>Place any content here.</PopoverContent>
+      <PopoverContent>{m.components.Popover.story.content}</PopoverContent>
     </Popover>
   ),
 } satisfies Meta<typeof Popover>;

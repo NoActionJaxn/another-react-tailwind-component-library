@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import { TextInput } from "../TextInput";
 import {
@@ -15,28 +16,36 @@ import {
 const meta = {
   title: "Components/Dialog",
   component: Dialog,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("Dialog", { layout: "centered" }),
   args: {},
-  argTypes: {},
+  argTypes: docsArgTypes(
+    "Dialog",
+    ["open", "defaultOpen", "onOpenChange", "modal"],
+    {},
+  ),
   render: (args) => (
     <Dialog {...args}>
       <DialogTrigger asChild>
-        <Button>Edit profile</Button>
+        <Button>{m.components.Dialog.story.trigger}</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
+          <DialogTitle>{m.components.Dialog.story.title}</DialogTitle>
           <DialogDescription>
-            Changes are saved when you click Save.
+            {m.components.Dialog.story.description}
           </DialogDescription>
         </DialogHeader>
-        <TextInput aria-label="Name" placeholder="Name" />
+        <TextInput
+          aria-label={m.components.Dialog.story.namePlaceholder}
+          placeholder={m.components.Dialog.story.namePlaceholder}
+        />
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="outline">
+              {m.components.Dialog.story.cancel}
+            </Button>
           </DialogClose>
-          <Button>Save</Button>
+          <Button>{m.components.Dialog.story.save}</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

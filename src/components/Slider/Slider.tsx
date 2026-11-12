@@ -10,7 +10,6 @@ export interface SliderProps extends ComponentProps<
   size?: SliderSize;
 }
 
-/** Renders one thumb per value; `aria-label` names every thumb. */
 export function Slider({
   colorScheme,
   size = "md",

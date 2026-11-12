@@ -14,9 +14,7 @@ export interface TextInputProps extends Omit<
   variant?: TextInputVariant;
   colorScheme?: ColorScheme;
   size?: TextInputSize;
-  /** Shown before the input, usually an icon. */
   prependElement?: ReactNode;
-  /** Shown after the input, usually an icon. */
   appendElement?: ReactNode;
 }
 

@@ -1,27 +1,31 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { FontBoldIcon } from "@radix-ui/react-icons";
 import { Toggle } from "./Toggle";
 
 const meta = {
   title: "Components/Toggle",
   component: Toggle,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("Toggle", { layout: "centered" }),
   args: {
     variant: "ghost",
     size: "md",
     colorScheme: "default",
-    "aria-label": "Bold",
+    "aria-label": m.components.Toggle.story.ariaLabel,
   },
-  argTypes: {
-    colorScheme: {
-      // "brand" is defined in playground/playground.css
-      control: "inline-radio",
-      options: ["default", "brand"],
+  argTypes: docsArgTypes(
+    "Toggle",
+    ["variant", "size", "colorScheme", { "aria-label": "ariaLabel" }],
+    {
+      colorScheme: {
+        // "brand" is defined in playground/playground.css
+        control: "inline-radio",
+        options: ["default", "brand"],
+      },
+      size: { control: "inline-radio", options: ["sm", "md", "lg"] },
+      variant: { control: "inline-radio", options: ["ghost", "outline"] },
     },
-    size: { control: "inline-radio", options: ["sm", "md", "lg"] },
-    variant: { control: "inline-radio", options: ["ghost", "outline"] },
-  },
+  ),
   render: (args) => (
     <Toggle {...args}>
       <FontBoldIcon />

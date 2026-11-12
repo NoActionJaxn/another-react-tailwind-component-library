@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import {
   Collapsible,
@@ -9,19 +10,22 @@ import {
 const meta = {
   title: "Components/Collapsible",
   component: Collapsible,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("Collapsible", { layout: "centered" }),
   args: {},
-  argTypes: {},
+  argTypes: docsArgTypes(
+    "Collapsible",
+    ["open", "defaultOpen", "onOpenChange", "disabled"],
+    {},
+  ),
   render: (args) => (
     <Collapsible {...args} className="w-72">
       <CollapsibleTrigger asChild>
-        <Button variant="ghost">Toggle details</Button>
+        <Button variant="ghost">
+          {m.components.Collapsible.story.trigger}
+        </Button>
       </CollapsibleTrigger>
       <CollapsibleContent>
-        <p className="pt-2 text-sm">
-          Hidden details, revealed with a height animation.
-        </p>
+        <p className="pt-2 text-sm">{m.components.Collapsible.story.content}</p>
       </CollapsibleContent>
     </Collapsible>
   ),

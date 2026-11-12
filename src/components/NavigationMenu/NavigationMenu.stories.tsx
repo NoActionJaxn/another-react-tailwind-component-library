@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,34 +12,41 @@ import {
 const meta = {
   title: "Components/NavigationMenu",
   component: NavigationMenu,
-  parameters: { layout: "padded" },
-  tags: ["autodocs"],
+  parameters: docsParameters("NavigationMenu", { layout: "padded" }),
   args: { colorScheme: "default" },
-  argTypes: {
+  argTypes: docsArgTypes("NavigationMenu", ["colorScheme"], {
     colorScheme: {
       // "brand" is defined in playground/playground.css
       control: "inline-radio",
       options: ["default", "brand"],
     },
-  },
+  }),
   render: (args) => (
     <NavigationMenu {...args}>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+          <NavigationMenuTrigger>
+            {m.components.NavigationMenu.story.products}
+          </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-64 gap-1">
               <li>
-                <NavigationMenuLink href="#">Analytics</NavigationMenuLink>
+                <NavigationMenuLink href="#">
+                  {m.components.NavigationMenu.story.analytics}
+                </NavigationMenuLink>
               </li>
               <li>
-                <NavigationMenuLink href="#">Automation</NavigationMenuLink>
+                <NavigationMenuLink href="#">
+                  {m.components.NavigationMenu.story.automation}
+                </NavigationMenuLink>
               </li>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink href="#">Pricing</NavigationMenuLink>
+          <NavigationMenuLink href="#">
+            {m.components.NavigationMenu.story.pricing}
+          </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

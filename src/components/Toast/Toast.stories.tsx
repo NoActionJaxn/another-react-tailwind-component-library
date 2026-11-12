@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { useState } from "react";
 import { Button } from "../Button";
 import {
@@ -15,25 +16,30 @@ import {
 const meta = {
   title: "Components/Toast",
   component: Toast,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("Toast", { layout: "centered" }),
   args: { colorScheme: "default" },
-  argTypes: {
+  argTypes: docsArgTypes("Toast", ["colorScheme"], {
     colorScheme: {
       // "brand" is defined in playground/playground.css
       control: "inline-radio",
       options: ["default", "brand"],
     },
-  },
+  }),
   render: function Render(args: ToastProps) {
     const [open, setOpen] = useState(false);
     return (
       <ToastProvider>
-        <Button onClick={() => setOpen(true)}>Show toast</Button>
+        <Button onClick={() => setOpen(true)}>
+          {m.components.Toast.story.trigger}
+        </Button>
         <Toast {...args} open={open} onOpenChange={setOpen}>
-          <ToastTitle>Saved</ToastTitle>
-          <ToastDescription>Your changes were saved.</ToastDescription>
-          <ToastAction altText="Undo the save">Undo</ToastAction>
+          <ToastTitle>{m.components.Toast.story.title}</ToastTitle>
+          <ToastDescription>
+            {m.components.Toast.story.description}
+          </ToastDescription>
+          <ToastAction altText={m.components.Toast.story.actionAltText}>
+            {m.components.Toast.story.action}
+          </ToastAction>
           <ToastClose />
         </Toast>
         <ToastViewport />

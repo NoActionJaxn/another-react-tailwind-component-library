@@ -1,25 +1,29 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Switch } from "./Switch";
 
 const meta = {
   title: "Components/Switch",
   component: Switch,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("Switch", { layout: "centered" }),
   args: {
-    label: "Airplane mode",
+    label: m.components.Switch.story.label,
     size: "md",
     colorScheme: "default",
     disabled: false,
   },
-  argTypes: {
-    colorScheme: {
-      // "brand" is defined in playground/playground.css
-      control: "inline-radio",
-      options: ["default", "brand"],
+  argTypes: docsArgTypes(
+    "Switch",
+    ["label", "size", "colorScheme", "disabled"],
+    {
+      colorScheme: {
+        // "brand" is defined in playground/playground.css
+        control: "inline-radio",
+        options: ["default", "brand"],
+      },
+      size: { control: "inline-radio", options: ["sm", "md", "lg"] },
     },
-    size: { control: "inline-radio", options: ["sm", "md", "lg"] },
-  },
+  ),
   render: (args) => <Switch {...args} />,
 } satisfies Meta<typeof Switch>;
 

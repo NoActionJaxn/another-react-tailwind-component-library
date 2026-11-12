@@ -1,0 +1,475 @@
+{
+  "common": {
+    "defaults": {
+      "inherited": "inherited from parent"
+    },
+    "props": {
+      "colorScheme": "Color scheme: \"default\" or the name of any --color-<name>-50 … 950 palette. Unset, it inherits from the parent element.",
+      "portalColorScheme": "Color scheme for the content. Content renders in a portal, so it can't inherit a scheme from the trigger's parents.",
+      "size": "Size of the component.",
+      "variant": "Visual style. Colors come from the color scheme.",
+      "disabled": "Prevents interaction and dims the component.",
+      "orientation": "Layout and keyboard direction.",
+      "label": "Text shown next to the control, rendered with Label. Without it, pass aria-label.",
+      "ariaLabel": "Accessible name, for when there is no visible label.",
+      "open": "Open state, when controlled.",
+      "defaultOpen": "Open state on first render, when uncontrolled.",
+      "onOpenChange": "Called with the new open state when it changes.",
+      "modal": "When true, blocks interaction with the rest of the page while open.",
+      "openDelay": "Milliseconds before it opens on hover.",
+      "closeDelay": "Milliseconds before it closes after the pointer leaves."
+    },
+    "icons": {
+      "none": "None",
+      "search": "Search",
+      "mail": "Mail",
+      "link": "Link"
+    },
+    "menu": {
+      "account": "Account",
+      "profile": "Profile",
+      "billing": "Billing",
+      "showToolbar": "Show toolbar",
+      "small": "Small",
+      "medium": "Medium",
+      "more": "More",
+      "settings": "Settings"
+    }
+  },
+  "components": {
+    "Accordion": {
+      "description": "Vertically stacked headings that each reveal a section of content.",
+      "props": {
+        "type": "\"single\" opens one item at a time; \"multiple\" allows several.",
+        "collapsible": "With type \"single\", lets the open item be closed again."
+      },
+      "story": {
+        "question1": "Is it accessible?",
+        "answer1": "Yes. It follows the WAI-ARIA pattern.",
+        "question2": "Is it themeable?",
+        "answer2": "Yes, through the --accordion-* variables."
+      },
+      "cssVariables": {
+        "--accordion-padding-y": "Vertical padding of triggers and content"
+      }
+    },
+    "AlertDialog": {
+      "description": "A modal dialog that interrupts the user and asks them to confirm an action. AlertDialogAction and AlertDialogCancel render Button.",
+      "props": {},
+      "story": {
+        "trigger": "Delete account",
+        "title": "Delete account?",
+        "description": "This can't be undone.",
+        "cancel": "Cancel",
+        "action": "Delete"
+      }
+    },
+    "AspectRatio": {
+      "description": "Keeps its child at a set width-to-height ratio. Unstyled.",
+      "props": {
+        "ratio": "Width divided by height, e.g. 16 / 9."
+      },
+      "story": {
+        "content": "16 / 9"
+      }
+    },
+    "Avatar": {
+      "description": "An image of a person, with a fallback (usually initials) while it loads or if it fails.",
+      "props": {},
+      "story": {
+        "fallback": "JD"
+      }
+    },
+    "Button": {
+      "description": "Triggers an action. Style with variant, color with colorScheme.",
+      "props": {
+        "asChild": "Render the child element (e.g. a link) with button styles instead of a <button>."
+      },
+      "story": {
+        "children": "Button"
+      }
+    },
+    "Checkbox": {
+      "description": "A control that toggles between checked and unchecked, with an optional indeterminate state.",
+      "props": {
+        "checked": "Checked state: true, false or \"indeterminate\".",
+        "icon": "Icon shown when checked. Defaults to Radix CheckIcon.",
+        "indeterminateIcon": "Icon shown when checked is \"indeterminate\". Defaults to Radix MinusIcon."
+      },
+      "story": {
+        "label": "Accept terms"
+      },
+      "cssVariables": {
+        "--checkbox-gap": "Space between the box and its label"
+      }
+    },
+    "Collapsible": {
+      "description": "A section that expands and collapses. Unstyled: style the trigger and content yourself. Content animates its height.",
+      "props": {},
+      "story": {
+        "trigger": "Toggle details",
+        "content": "Hidden details, revealed with a height animation."
+      },
+      "cssVariables": {
+        "--collapsible-duration": "Expand and collapse animation duration"
+      }
+    },
+    "ContextMenu": {
+      "description": "A menu that opens on right-click (or long-press) over its trigger area.",
+      "props": {},
+      "story": {
+        "trigger": "Right-click here"
+      }
+    },
+    "Dialog": {
+      "description": "A modal window over the page. DialogContent includes a close button unless showClose is false.",
+      "props": {},
+      "story": {
+        "trigger": "Edit profile",
+        "title": "Edit profile",
+        "description": "Changes are saved when you click Save.",
+        "namePlaceholder": "Name",
+        "cancel": "Cancel",
+        "save": "Save"
+      },
+      "cssVariables": {
+        "--dialog-gap": "Space between header, body and footer"
+      }
+    },
+    "DropdownMenu": {
+      "description": "A menu of actions or options that opens from a button.",
+      "props": {},
+      "story": {
+        "trigger": "Open menu"
+      }
+    },
+    "HoverCard": {
+      "description": "A preview card that appears when a pointer hovers over a link.",
+      "props": {},
+      "story": {
+        "trigger": "@radix-ui",
+        "content": "Unstyled, accessible components for React.",
+        "fallback": "R"
+      }
+    },
+    "Label": {
+      "description": "Text that names a form control. Clicking it focuses or toggles the control.",
+      "props": {
+        "htmlFor": "id of the control this label names."
+      },
+      "story": {
+        "children": "Email",
+        "placeholder": "you@example.com"
+      }
+    },
+    "Menubar": {
+      "description": "A horizontal bar of menus, like an application's File and Edit menus.",
+      "props": {},
+      "story": {
+        "file": "File",
+        "edit": "Edit",
+        "undo": "Undo",
+        "redo": "Redo"
+      }
+    },
+    "NavigationMenu": {
+      "description": "Site navigation links, with optional panels that open below the list.",
+      "props": {},
+      "story": {
+        "products": "Products",
+        "analytics": "Analytics",
+        "automation": "Automation",
+        "pricing": "Pricing"
+      }
+    },
+    "Popover": {
+      "description": "Floating content anchored to a trigger, opened by clicking it.",
+      "props": {},
+      "story": {
+        "trigger": "Open popover",
+        "content": "Place any content here."
+      }
+    },
+    "Progress": {
+      "description": "Shows how far a task has progressed.",
+      "props": {
+        "value": "Current progress, from 0 to max. Leave unset when the amount is unknown.",
+        "max": "Value that means complete."
+      },
+      "story": {
+        "ariaLabel": "Upload progress"
+      },
+      "cssVariables": {
+        "--progress-track": "Track color (the unfilled part)"
+      }
+    },
+    "Radio": {
+      "description": "A set of options where only one can be selected. RadioGroup passes size and icon to its Radios.",
+      "props": {
+        "size": "Size of every Radio in the group.",
+        "icon": "Default checked icon for every Radio in the group. Radio's own icon prop overrides it.",
+        "defaultValue": "Value selected initially."
+      },
+      "story": {
+        "ariaLabel": "Contact method",
+        "email": "Email",
+        "phone": "Phone",
+        "mail": "Mail"
+      },
+      "cssVariables": {
+        "--radio-gap": "Space between the circle and its label",
+        "--radio-group-gap": "Space between radios in a group"
+      }
+    },
+    "ScrollArea": {
+      "description": "A scrollable area with custom, themeable scrollbars.",
+      "props": {
+        "scrollbars": "Which custom scrollbars to render."
+      },
+      "story": {
+        "item": "Tag {n}"
+      }
+    },
+    "Select": {
+      "description": "Picks one value from a list. The trigger matches TextInput's variants and sizes.",
+      "props": {},
+      "story": {
+        "ariaLabel": "Fruit",
+        "placeholder": "Pick a fruit",
+        "group": "Fruit",
+        "apple": "Apple",
+        "banana": "Banana",
+        "carrot": "Carrot"
+      },
+      "cssVariables": {
+        "--select-gap": "Space between the value and the chevron"
+      }
+    },
+    "Separator": {
+      "description": "A line that separates content, horizontally or vertically.",
+      "props": {
+        "decorative": "Purely visual: hidden from screen readers. Set false when it separates meaningful sections."
+      },
+      "story": {
+        "above": "Above",
+        "left": "Left",
+        "right": "Right"
+      },
+      "cssVariables": {
+        "--separator-size": "Line thickness"
+      }
+    },
+    "Slider": {
+      "description": "Picks a value, or a range, by dragging along a track. Renders one thumb per value.",
+      "props": {
+        "defaultValue": "Initial values, one per thumb.",
+        "max": "Highest value.",
+        "step": "Distance between selectable values.",
+        "aria-label": "Accessible name, applied to every thumb."
+      },
+      "story": {
+        "ariaLabel": "Volume"
+      }
+    },
+    "Switch": {
+      "description": "A control that turns a setting on or off.",
+      "props": {},
+      "story": {
+        "label": "Airplane mode"
+      },
+      "cssVariables": {
+        "--switch-gap": "Space between the switch and its label",
+        "width": "Track width",
+        "height": "Track height"
+      }
+    },
+    "Tabs": {
+      "description": "Sections of content shown one at a time, chosen from a row of tabs.",
+      "props": {
+        "defaultValue": "Tab selected initially."
+      },
+      "story": {
+        "account": "Account",
+        "password": "Password",
+        "billing": "Billing",
+        "accountContent": "Manage your account.",
+        "passwordContent": "Change your password."
+      },
+      "cssVariables": {
+        "--tabs-gap": "Space between the tab list and content"
+      }
+    },
+    "TextInput": {
+      "description": "A single-line text field for text, email, search or URL input.",
+      "props": {
+        "type": "Input type. Only text, email, search and url are allowed; anything else falls back to text.",
+        "prependElement": "Shown before the input, usually an icon.",
+        "appendElement": "Shown after the input, usually an icon."
+      },
+      "story": {
+        "placeholder": "Placeholder",
+        "ariaLabel": "Text input"
+      },
+      "cssVariables": {
+        "--text-input-gap": "Space between icons and text"
+      }
+    },
+    "Toast": {
+      "description": "A short, temporary message. Place a ToastProvider and ToastViewport once in the app. ToastAction renders Button.",
+      "props": {},
+      "story": {
+        "trigger": "Show toast",
+        "title": "Saved",
+        "description": "Your changes were saved.",
+        "action": "Undo",
+        "actionAltText": "Undo the save"
+      }
+    },
+    "Toggle": {
+      "description": "A button that stays pressed or unpressed.",
+      "props": {
+        "pressed": "Pressed state, when controlled."
+      },
+      "story": {
+        "ariaLabel": "Bold"
+      }
+    },
+    "ToggleGroup": {
+      "description": "A set of toggles where one or several can be pressed. variant and size apply to every item.",
+      "props": {
+        "type": "\"single\" allows one pressed item; \"multiple\" allows several."
+      },
+      "story": {
+        "ariaLabel": "Text alignment",
+        "left": "Left",
+        "center": "Center",
+        "right": "Right"
+      }
+    },
+    "Toolbar": {
+      "description": "A row of buttons, toggles and links. Buttons use the Toggle styles.",
+      "props": {
+        "size": "Size of buttons and toggles in the toolbar."
+      },
+      "story": {
+        "ariaLabel": "Formatting",
+        "textStyle": "Text style",
+        "bold": "Bold",
+        "italic": "Italic",
+        "insertLink": "Insert link",
+        "edited": "Edited 2m ago"
+      }
+    },
+    "Tooltip": {
+      "description": "A short label that appears on hover or focus. Wrap the app (or a section) in TooltipProvider once.",
+      "props": {
+        "side": "Preferred side of the trigger to show on.",
+        "showArrow": "Show the arrow pointing at the trigger."
+      },
+      "story": {
+        "trigger": "Hover me",
+        "content": "Add to library"
+      }
+    }
+  },
+  "docs": {
+    "headings": {
+      "props": "Props",
+      "cssVariables": "CSS variables"
+    },
+    "cssVariables": {
+      "intro": "Override any of these in your CSS, globally or for a section, e.g. :root { --button-radius: 9999px; }. Defaults that use a scheme shade follow the component's color scheme.",
+      "columns": {
+        "variable": "Variable",
+        "default": "Default",
+        "description": "Description"
+      },
+      "groups": {
+        "base": "All",
+        "size": "Size: {value}",
+        "variant": "Variant: {value}"
+      },
+      "values": {
+        "scheme": "scheme {step}",
+        "spacing": "spacing × {n}"
+      },
+      "suffixes": {
+        "bg": "Background color",
+        "bg-hover": "Background color on hover",
+        "text": "Text color",
+        "placeholder": "Placeholder text color",
+        "description": "Description text color",
+        "content-text": "Content text color",
+        "label-text": "Label and shortcut text color",
+        "link-text": "Link text color",
+        "border": "Border color",
+        "border-hover": "Border color on hover",
+        "border-width": "Border width",
+        "border-checked": "Border color when on",
+        "checked-bg": "Background color when checked",
+        "checked-bg-hover": "Background color on hover when checked",
+        "on-bg": "Background color when pressed",
+        "on-text": "Text color when pressed",
+        "radius": "Corner radius",
+        "shadow": "Box shadow",
+        "overlay": "Backdrop color behind the dialog",
+        "padding": "Padding",
+        "padding-x": "Horizontal padding",
+        "padding-y": "Vertical padding",
+        "gap": "Space between elements",
+        "width": "Width",
+        "height": "Height",
+        "max-width": "Maximum width",
+        "size": "Width and height",
+        "font-family": "Font family",
+        "font-weight": "Font weight",
+        "text-transform": "Text case, e.g. uppercase or none",
+        "focus-color": "Focus ring color",
+        "focus-width": "Focus ring width",
+        "focus-offset": "Gap between the component and its focus ring",
+        "icon": "Icon color",
+        "icon-focus": "Icon color while focused",
+        "indicator": "Check or dot color",
+        "indicator-scale": "Scale of the check or dot icon",
+        "duration": "Open and close animation duration",
+        "color": "Line color",
+        "fill": "Color of the filled part",
+        "track": "Track color",
+        "track-checked": "Track color when on",
+        "track-size": "Track thickness",
+        "range": "Color of the selected range",
+        "thumb": "Thumb color",
+        "thumb-hover": "Thumb color on hover",
+        "thumb-bg": "Thumb background color",
+        "thumb-border": "Thumb border color",
+        "thumb-size": "Thumb width and height",
+        "scrollbar-size": "Scrollbar thickness",
+        "separator": "Separator color",
+        "item-radius": "Item corner radius",
+        "item-padding-x": "Item horizontal padding",
+        "item-padding-y": "Item vertical padding",
+        "item-highlight-bg": "Item background when highlighted by pointer or keyboard",
+        "item-hover-bg": "Item background on hover or when open",
+        "list-bg": "Tab list background color",
+        "list-padding": "Tab list padding",
+        "list-radius": "Tab list corner radius",
+        "trigger-radius": "Trigger corner radius",
+        "trigger-text": "Trigger text color",
+        "trigger-active-text": "Active trigger text color",
+        "trigger-active-bg": "Active trigger background color"
+      },
+      "parts": {
+        "menu-content": "Menu (shared with DropdownMenu, ContextMenu, Menubar and Select)",
+        "dialog-overlay": "Overlay (shared with Dialog and AlertDialog)",
+        "dialog-content": "Content (shared with Dialog and AlertDialog)",
+        "radio-group": "Radio group",
+        "accordion-content": "Content",
+        "collapsible-content": "All",
+        "popover-content": "All",
+        "hover-card-content": "All",
+        "tooltip-content": "All",
+        "toggle": "Toggle (shared with Toggle, ToggleGroup and Toolbar)"
+      }
+    }
+  }
+}

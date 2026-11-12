@@ -10,7 +10,6 @@ export const PopoverClose = PopoverPrimitive.Close;
 export interface PopoverContentProps extends ComponentProps<
   typeof PopoverPrimitive.Content
 > {
-  /** Content renders in a portal, so it can't inherit a scheme from the trigger's parents. */
   colorScheme?: ColorScheme;
 }
 

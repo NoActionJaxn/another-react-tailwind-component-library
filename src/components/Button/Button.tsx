@@ -8,7 +8,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   colorScheme?: ColorScheme;
   size?: ButtonSize;
-  /** Render the child element (e.g. a link) with button styles instead of a <button>. */
   asChild?: boolean;
 }
 

@@ -9,7 +9,6 @@ export interface NavigationMenuProps extends ComponentProps<
   colorScheme?: ColorScheme;
 }
 
-/** Renders the viewport that holds open content below the list. */
 export function NavigationMenu({
   colorScheme,
   className,

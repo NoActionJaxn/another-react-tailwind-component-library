@@ -8,13 +8,10 @@ export type CheckboxSize = "sm" | "md" | "lg";
 export interface CheckboxProps extends ComponentProps<
   typeof CheckboxPrimitive.Root
 > {
-  /** Rendered with Label. Without it, pass `aria-label`. */
   label?: ReactNode;
   colorScheme?: ColorScheme;
   size?: CheckboxSize;
-  /** Shown when checked. Defaults to Radix `CheckIcon`. */
   icon?: ReactNode;
-  /** Shown when `checked="indeterminate"`. Defaults to Radix `MinusIcon`. */
   indeterminateIcon?: ReactNode;
 }
 

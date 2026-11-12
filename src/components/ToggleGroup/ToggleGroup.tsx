@@ -18,7 +18,6 @@ const GroupContext = createContext<{
 export type ToggleGroupProps = ComponentProps<
   typeof ToggleGroupPrimitive.Root
 > & {
-  /** Applied to every item. Items use the Toggle variables. */
   variant?: ToggleVariant;
   size?: ToggleSize;
   colorScheme?: ColorScheme;

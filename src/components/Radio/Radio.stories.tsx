@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { fn } from "storybook/test";
 import { Radio, RadioGroup } from "./Radio";
 
@@ -6,18 +7,17 @@ const meta = {
   title: "Components/Radio",
   component: RadioGroup,
   subcomponents: { Radio },
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("Radio", { layout: "centered" }),
   args: {
     defaultValue: "email",
     size: "md",
     colorScheme: "default",
     orientation: "vertical",
     disabled: false,
-    "aria-label": "Contact method",
+    "aria-label": m.components.Radio.story.ariaLabel,
     onValueChange: fn(),
   },
-  argTypes: {
+  argTypes: docsArgTypes("Radio", ["colorScheme", "orientation", "disabled"], {
     size: {
       control: "inline-radio",
       options: ["sm", "md", "lg"],
@@ -27,19 +27,19 @@ const meta = {
       // "brand" is defined in playground/playground.css
       control: "inline-radio",
       options: ["default", "brand"],
-      table: { defaultValue: { summary: "inherited from parent" } },
+      table: { defaultValue: { summary: m.common.defaults.inherited } },
     },
     orientation: {
       control: "inline-radio",
       options: ["vertical", "horizontal"],
     },
     disabled: { table: { defaultValue: { summary: "false" } } },
-  },
+  }),
   render: (args) => (
     <RadioGroup {...args}>
-      <Radio value="email" label="Email" />
-      <Radio value="phone" label="Phone" />
-      <Radio value="mail" label="Mail" />
+      <Radio value="email" label={m.components.Radio.story.email} />
+      <Radio value="phone" label={m.components.Radio.story.phone} />
+      <Radio value="mail" label={m.components.Radio.story.mail} />
     </RadioGroup>
   ),
 } satisfies Meta<typeof RadioGroup>;

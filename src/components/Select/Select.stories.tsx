@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import {
   Select,
   SelectContent,
@@ -13,38 +14,48 @@ import {
 const meta = {
   title: "Components/Select",
   component: SelectTrigger,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("Select", { layout: "centered" }),
   args: {
     variant: "outline",
     size: "md",
     colorScheme: "default",
-    "aria-label": "Fruit",
+    "aria-label": m.components.Select.story.ariaLabel,
   },
-  argTypes: {
-    colorScheme: {
-      // "brand" is defined in playground/playground.css
-      control: "inline-radio",
-      options: ["default", "brand"],
+  argTypes: docsArgTypes(
+    "Select",
+    ["variant", "size", "colorScheme", { "aria-label": "ariaLabel" }],
+    {
+      colorScheme: {
+        // "brand" is defined in playground/playground.css
+        control: "inline-radio",
+        options: ["default", "brand"],
+      },
+      size: { control: "inline-radio", options: ["sm", "md", "lg"] },
+      variant: {
+        control: "inline-radio",
+        options: ["outline", "soft", "ghost"],
+      },
     },
-    size: { control: "inline-radio", options: ["sm", "md", "lg"] },
-    variant: { control: "inline-radio", options: ["outline", "soft", "ghost"] },
-  },
+  ),
   render: (args) => (
     <div className="w-60">
       <Select>
         <SelectTrigger {...args}>
-          <SelectValue placeholder="Pick a fruit" />
+          <SelectValue placeholder={m.components.Select.story.placeholder} />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Fruit</SelectLabel>
-            <SelectItem value="apple">Apple</SelectItem>
-            <SelectItem value="banana">Banana</SelectItem>
+            <SelectLabel>{m.components.Select.story.ariaLabel}</SelectLabel>
+            <SelectItem value="apple">
+              {m.components.Select.story.apple}
+            </SelectItem>
+            <SelectItem value="banana">
+              {m.components.Select.story.banana}
+            </SelectItem>
           </SelectGroup>
           <SelectSeparator />
           <SelectItem value="carrot" disabled>
-            Carrot
+            {m.components.Select.story.carrot}
           </SelectItem>
         </SelectContent>
       </Select>

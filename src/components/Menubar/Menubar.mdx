@@ -1,0 +1,9 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ComponentDocs } from "../../docs/blocks/ComponentDocs";
+import * as Stories from "./Menubar.stories";
+import css from "./Menubar.css?raw";
+import shared0 from "../_menu/menu.css?raw";
+
+<Meta of={Stories} />
+
+<ComponentDocs component="Menubar" css={[css]} sharedCss={[shared0]} />

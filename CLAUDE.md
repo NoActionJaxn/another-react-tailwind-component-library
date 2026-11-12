@@ -19,12 +19,28 @@ Tests are stories: add `play` functions to stories for interaction tests rather 
 ## Layout
 
 - `src/index.ts`: public exports (components, their prop/variant types, `schemeVars`, `ColorScheme`)
-- `src/components/<Name>/`: `Name.tsx`, `Name.css`, `Name.stories.tsx`, `index.ts`
+- `src/components/<Name>/`: `Name.tsx`, `Name.css`, `Name.stories.tsx`, `Name.mdx` (docs page), `index.ts`
 - `src/styles/index.css`: entry. Google Fonts import → `tailwindcss` → `theme.css` (`fonts.css`, `colors.css`) → `components.css` (imports every `Name.css`)
 - `src/utils/`: `tw()` (classnames + tailwind-merge), `schemeVars()`, `schemeStyle(colorScheme, style)`, `ColorScheme`
 - `src/components/_menu/`, `src/components/_dialog/`: internal shared styles (not exported). `_menu` (`--menu-*`) styles DropdownMenu, ContextMenu, Menubar and Select dropdowns; `_dialog` (`--dialog-*`) styles Dialog and AlertDialog. `Toggle/classes.ts` styles Toggle, ToggleGroupItem and Toolbar buttons.
-- `src/docs/Theming.mdx`: user-facing theming docs with a variable table per component
+- `src/docs/<locale>/*.mdx`: general docs pages (currently `en/Theming.mdx`)
+- `src/docs/blocks/`: `ComponentDocs` (layout of every component page) and `CssVariables` (variable tables read from the component CSS)
+- `src/docs/i18n/`: docs localization. `locales/<locale>.json` holds every docs string; `index.ts` exports `m` (typed strings for the active locale), `docsParameters`, `docsArgTypes` and `format`
 - `playground/playground.css`: library CSS + example `brand` scheme; loaded by the playground and Storybook
+
+## Docs localization
+
+All Storybook documentation text comes from `src/docs/i18n/locales/<locale>.json`, never from code: component descriptions, prop descriptions, story content (button text, labels, placeholders, aria-labels) and control labels. Only English exists today.
+
+- Stories: `parameters: docsParameters("Name", { layout: "centered" })`, `argTypes: docsArgTypes("Name", [common props], { … })`, and text via `m.components.Name.story.*` / `m.common.*`. Shared prop texts live in `common.props`; list them in `docsArgTypes`' second argument (`"size"`, or `{ "aria-label": "ariaLabel" }`). Component-specific `props` override common ones.
+- Keep the story meta a plain object literal: Storybook indexes it statically, so `const meta = helper({...})` breaks indexing. Only property values may be calls. For the same reason story names can't be localized.
+- No JSDoc prop descriptions in component source; the locale file is the single source.
+- Component pages: `Name.mdx` is only `<Meta of={Stories} />` + `<ComponentDocs component="Name" css={[css]} sharedCss={[…]} />` with CSS imported via `?raw`; it holds no prose, so it isn't per locale. Stories don't use the `autodocs` tag (the MDX page replaces it).
+- CSS variable tables are generated from `--_x: var(--public, default)` declarations, grouped by `data-size` / `data-variant` selectors. Descriptions come from `docs.cssVariables.suffixes` (keyed by the name ending, e.g. `bg-hover`), overridden per component by `components.Name.cssVariables` (full name or ending). A new variable ending needs a `suffixes` entry; shared files need a `docs.cssVariables.parts` label.
+- Radix roots re-exported as is have no docgen props: list their main props (`open`, `onOpenChange`, …) in `docsArgTypes` so the props table isn't empty.
+- General docs pages: one MDX per locale in `src/docs/<locale>/`; a missing page falls back to `en/`. Missing JSON keys fall back to English.
+- Build another language: add `locales/<locale>.json` (partial is fine) and optionally `src/docs/<locale>/`, then `STORYBOOK_LOCALE=<locale> npm run build-storybook -- -o storybook-static/<locale>`.
+- Text a component renders itself (e.g. a close button's aria-label) is library text, not docs text: expose it as a prop with an English default.
 
 ## Design tokens
 
@@ -96,7 +112,7 @@ Tests are stories: add `play` functions to stories for interaction tests rather 
 2. Import `Name.css` in `src/styles/components.css`.
 3. Export from `src/index.ts`.
 4. Stories: a single `Default` story with controls for `variant`, `size` and `colorScheme` (add more only when asked).
-5. Add the component's variable table to `src/docs/Theming.mdx`.
+5. Add the component's entry (description, props, story strings, any `cssVariables` overrides) to `src/docs/i18n/locales/en.json`, and a `Name.mdx` page using `ComponentDocs`.
 6. Run `npm run lint:fix`, then the pre-commit checks (`lint`, `typecheck`, `test`) and `npm run build-storybook`.
 
 ## Tailwind gotchas

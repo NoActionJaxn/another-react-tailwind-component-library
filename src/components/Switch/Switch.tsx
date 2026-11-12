@@ -7,7 +7,6 @@ export type SwitchSize = "sm" | "md" | "lg";
 export interface SwitchProps extends ComponentProps<
   typeof SwitchPrimitive.Root
 > {
-  /** Rendered with Label. Without it, pass `aria-label`. */
   label?: ReactNode;
   colorScheme?: ColorScheme;
   size?: SwitchSize;

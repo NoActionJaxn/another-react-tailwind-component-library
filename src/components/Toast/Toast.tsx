@@ -4,7 +4,6 @@ import type { ComponentProps } from "react";
 import { schemeStyle, tw, type ColorScheme } from "../../utils";
 import { Button, type ButtonProps } from "../Button";
 
-/** Wrap the app once, with a ToastViewport inside it. */
 export const ToastProvider = ToastPrimitive.Provider;
 
 export function ToastViewport({
@@ -64,7 +63,6 @@ export function ToastDescription({
   );
 }
 
-/** Renders the library Button (outline, small). `altText` describes it for screen readers. */
 export function ToastAction({
   altText,
   variant = "outline",

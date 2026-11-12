@@ -7,7 +7,6 @@ const SizeContext = createContext<ToggleSize>("sm");
 
 export type ToolbarProps = ComponentProps<typeof ToolbarPrimitive.Root> & {
   colorScheme?: ColorScheme;
-  /** Size of buttons and toggles. They use the Toggle variables (ghost variant). */
   size?: ToggleSize;
 };
 

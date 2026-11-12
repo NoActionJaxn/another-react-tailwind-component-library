@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import {
   Menubar,
   MenubarCheckboxItem,
@@ -19,47 +20,52 @@ import {
 const meta = {
   title: "Components/Menubar",
   component: Menubar,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("Menubar", { layout: "centered" }),
   args: { colorScheme: "default" },
-  argTypes: {
+  argTypes: docsArgTypes("Menubar", ["colorScheme"], {
     colorScheme: {
       // "brand" is defined in playground/playground.css
       control: "inline-radio",
       options: ["default", "brand"],
     },
-  },
+  }),
   render: (args) => (
     <Menubar {...args}>
       <MenubarMenu>
-        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarTrigger>{m.components.Menubar.story.file}</MenubarTrigger>
         <MenubarContent>
-          <MenubarLabel>Account</MenubarLabel>
+          <MenubarLabel>{m.common.menu.account}</MenubarLabel>
           <MenubarItem>
-            Profile <MenubarShortcut>⌘P</MenubarShortcut>
+            {m.common.menu.profile} <MenubarShortcut>⌘P</MenubarShortcut>
           </MenubarItem>
-          <MenubarItem disabled>Billing</MenubarItem>
+          <MenubarItem disabled>{m.common.menu.billing}</MenubarItem>
           <MenubarSeparator />
-          <MenubarCheckboxItem checked>Show toolbar</MenubarCheckboxItem>
+          <MenubarCheckboxItem checked>
+            {m.common.menu.showToolbar}
+          </MenubarCheckboxItem>
           <MenubarSeparator />
           <MenubarRadioGroup value="md">
-            <MenubarRadioItem value="sm">Small</MenubarRadioItem>
-            <MenubarRadioItem value="md">Medium</MenubarRadioItem>
+            <MenubarRadioItem value="sm">
+              {m.common.menu.small}
+            </MenubarRadioItem>
+            <MenubarRadioItem value="md">
+              {m.common.menu.medium}
+            </MenubarRadioItem>
           </MenubarRadioGroup>
           <MenubarSeparator />
           <MenubarSub>
-            <MenubarSubTrigger>More</MenubarSubTrigger>
+            <MenubarSubTrigger>{m.common.menu.more}</MenubarSubTrigger>
             <MenubarSubContent>
-              <MenubarItem>Settings</MenubarItem>
+              <MenubarItem>{m.common.menu.settings}</MenubarItem>
             </MenubarSubContent>
           </MenubarSub>
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu>
-        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarTrigger>{m.components.Menubar.story.edit}</MenubarTrigger>
         <MenubarContent>
-          <MenubarItem>Undo</MenubarItem>
-          <MenubarItem>Redo</MenubarItem>
+          <MenubarItem>{m.components.Menubar.story.undo}</MenubarItem>
+          <MenubarItem>{m.components.Menubar.story.redo}</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>

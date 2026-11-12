@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import {
   ContextMenu,
   ContextMenuCheckboxItem,
@@ -18,33 +19,38 @@ import {
 const meta = {
   title: "Components/ContextMenu",
   component: ContextMenu,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("ContextMenu", { layout: "centered" }),
   args: {},
-  argTypes: {},
+  argTypes: docsArgTypes("ContextMenu", ["onOpenChange", "modal"], {}),
   render: (args) => (
     <ContextMenu {...args}>
       <ContextMenuTrigger className="flex h-32 w-64 items-center justify-center rounded-md border border-dashed border-default-400 text-sm text-default-700">
-        Right-click here
+        {m.components.ContextMenu.story.trigger}
       </ContextMenuTrigger>
       <ContextMenuContent>
-        <ContextMenuLabel>Account</ContextMenuLabel>
+        <ContextMenuLabel>{m.common.menu.account}</ContextMenuLabel>
         <ContextMenuItem>
-          Profile <ContextMenuShortcut>⌘P</ContextMenuShortcut>
+          {m.common.menu.profile} <ContextMenuShortcut>⌘P</ContextMenuShortcut>
         </ContextMenuItem>
-        <ContextMenuItem disabled>Billing</ContextMenuItem>
+        <ContextMenuItem disabled>{m.common.menu.billing}</ContextMenuItem>
         <ContextMenuSeparator />
-        <ContextMenuCheckboxItem checked>Show toolbar</ContextMenuCheckboxItem>
+        <ContextMenuCheckboxItem checked>
+          {m.common.menu.showToolbar}
+        </ContextMenuCheckboxItem>
         <ContextMenuSeparator />
         <ContextMenuRadioGroup value="md">
-          <ContextMenuRadioItem value="sm">Small</ContextMenuRadioItem>
-          <ContextMenuRadioItem value="md">Medium</ContextMenuRadioItem>
+          <ContextMenuRadioItem value="sm">
+            {m.common.menu.small}
+          </ContextMenuRadioItem>
+          <ContextMenuRadioItem value="md">
+            {m.common.menu.medium}
+          </ContextMenuRadioItem>
         </ContextMenuRadioGroup>
         <ContextMenuSeparator />
         <ContextMenuSub>
-          <ContextMenuSubTrigger>More</ContextMenuSubTrigger>
+          <ContextMenuSubTrigger>{m.common.menu.more}</ContextMenuSubTrigger>
           <ContextMenuSubContent>
-            <ContextMenuItem>Settings</ContextMenuItem>
+            <ContextMenuItem>{m.common.menu.settings}</ContextMenuItem>
           </ContextMenuSubContent>
         </ContextMenuSub>
       </ContextMenuContent>

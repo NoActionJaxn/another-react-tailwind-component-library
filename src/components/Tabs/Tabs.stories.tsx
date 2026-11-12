@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./Tabs";
 
 const meta = {
   title: "Components/Tabs",
   component: Tabs,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("Tabs", { layout: "centered" }),
   args: {
     defaultValue: "account",
     orientation: "horizontal",
     colorScheme: "default",
   },
-  argTypes: {
+  argTypes: docsArgTypes("Tabs", ["orientation", "colorScheme"], {
     colorScheme: {
       // "brand" is defined in playground/playground.css
       control: "inline-radio",
@@ -21,18 +21,26 @@ const meta = {
       control: "inline-radio",
       options: ["horizontal", "vertical"],
     },
-  },
+  }),
   render: (args) => (
     <Tabs {...args} className="w-80">
       <TabsList>
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
+        <TabsTrigger value="account">
+          {m.components.Tabs.story.account}
+        </TabsTrigger>
+        <TabsTrigger value="password">
+          {m.components.Tabs.story.password}
+        </TabsTrigger>
         <TabsTrigger value="billing" disabled>
-          Billing
+          {m.components.Tabs.story.billing}
         </TabsTrigger>
       </TabsList>
-      <TabsContent value="account">Manage your account.</TabsContent>
-      <TabsContent value="password">Change your password.</TabsContent>
+      <TabsContent value="account">
+        {m.components.Tabs.story.accountContent}
+      </TabsContent>
+      <TabsContent value="password">
+        {m.components.Tabs.story.passwordContent}
+      </TabsContent>
     </Tabs>
   ),
 } satisfies Meta<typeof Tabs>;

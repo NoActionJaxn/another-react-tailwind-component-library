@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Slider } from "./Slider";
 
 const meta = {
   title: "Components/Slider",
   component: Slider,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("Slider", { layout: "centered" }),
   args: {
     defaultValue: [40],
     max: 100,
@@ -13,16 +13,16 @@ const meta = {
     size: "md",
     colorScheme: "default",
     disabled: false,
-    "aria-label": "Volume",
+    "aria-label": m.components.Slider.story.ariaLabel,
   },
-  argTypes: {
+  argTypes: docsArgTypes("Slider", ["size", "colorScheme", "disabled"], {
     colorScheme: {
       // "brand" is defined in playground/playground.css
       control: "inline-radio",
       options: ["default", "brand"],
     },
     size: { control: "inline-radio", options: ["sm", "md", "lg"] },
-  },
+  }),
   render: (args) => (
     <div className="w-72">
       <Slider {...args} />

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import {
   DropdownMenu,
@@ -19,35 +20,45 @@ import {
 const meta = {
   title: "Components/DropdownMenu",
   component: DropdownMenu,
-  parameters: { layout: "centered" },
-  tags: ["autodocs"],
+  parameters: docsParameters("DropdownMenu", { layout: "centered" }),
   args: {},
-  argTypes: {},
+  argTypes: docsArgTypes(
+    "DropdownMenu",
+    ["open", "defaultOpen", "onOpenChange", "modal"],
+    {},
+  ),
   render: (args) => (
     <DropdownMenu {...args}>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">Open menu</Button>
+        <Button variant="outline">
+          {m.components.DropdownMenu.story.trigger}
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>Account</DropdownMenuLabel>
+        <DropdownMenuLabel>{m.common.menu.account}</DropdownMenuLabel>
         <DropdownMenuItem>
-          Profile <DropdownMenuShortcut>⌘P</DropdownMenuShortcut>
+          {m.common.menu.profile}{" "}
+          <DropdownMenuShortcut>⌘P</DropdownMenuShortcut>
         </DropdownMenuItem>
-        <DropdownMenuItem disabled>Billing</DropdownMenuItem>
+        <DropdownMenuItem disabled>{m.common.menu.billing}</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem checked>
-          Show toolbar
+          {m.common.menu.showToolbar}
         </DropdownMenuCheckboxItem>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value="md">
-          <DropdownMenuRadioItem value="sm">Small</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="md">Medium</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="sm">
+            {m.common.menu.small}
+          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="md">
+            {m.common.menu.medium}
+          </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
         <DropdownMenuSeparator />
         <DropdownMenuSub>
-          <DropdownMenuSubTrigger>More</DropdownMenuSubTrigger>
+          <DropdownMenuSubTrigger>{m.common.menu.more}</DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
-            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem>{m.common.menu.settings}</DropdownMenuItem>
           </DropdownMenuSubContent>
         </DropdownMenuSub>
       </DropdownMenuContent>
