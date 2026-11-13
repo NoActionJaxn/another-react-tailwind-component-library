@@ -10,6 +10,9 @@
     --_item-bg: var(--accolades-item-bg, white);
     --_image-height: var(--accolades-image-height, calc(var(--spacing) * 16));
     --_quote-font-size: var(--accolades-quote-font-size, var(--text-sm));
+    --_animation-duration: var(--accolades-animation-duration, 300ms);
+    --_animation-easing: var(--accolades-animation-easing, ease-out);
+    --_pop-scale: var(--accolades-pop-scale, 0.9);
     --_quote-text: var(--accolades-quote-text, var(--scheme-800));
     --_link-font-size: var(--accolades-link-font-size, var(--text-sm));
   }
@@ -23,6 +26,31 @@
   @media (width >= --theme(--breakpoint-lg)) {
     [data-accolades] {
       --_item-basis: var(--accolades-lg-item-basis, calc(100% / 3));
+    }
+  }
+
+  /* fade / pop: items animate in as they enter the view and out as they leave. */
+  [data-accolades]:not([data-animation="none"]) [data-accolades-slide] > * {
+    transition-property: opacity, scale;
+    transition-duration: var(--_animation-duration);
+    transition-timing-function: var(--_animation-easing);
+  }
+
+  [data-accolades]:not([data-animation="none"])
+    [data-accolades-slide]:not([data-in-view])
+    > * {
+    opacity: 0;
+  }
+
+  [data-accolades][data-animation="pop"]
+    [data-accolades-slide]:not([data-in-view])
+    > * {
+    scale: var(--_pop-scale);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-accolades-slide] > * {
+      transition: none;
     }
   }
 }

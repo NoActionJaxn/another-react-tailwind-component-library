@@ -21,7 +21,9 @@ const meta = {
   component: ContextMenu,
   parameters: docsParameters("ContextMenu", { layout: "centered" }),
   args: {},
-  argTypes: docsArgTypes("ContextMenu", ["onOpenChange", "modal"], {}),
+  argTypes: docsArgTypes("ContextMenu", ["onOpenChange", "modal"], {
+    modal: { table: { defaultValue: { summary: "true" } } },
+  }),
   render: (args) => (
     <ContextMenu {...args}>
       <ContextMenuTrigger className="flex h-32 w-64 items-center justify-center rounded-md border border-dashed border-default-400 text-sm text-default-700">

@@ -11,7 +11,11 @@ const meta = {
   argTypes: docsArgTypes(
     "HoverCard",
     ["open", "defaultOpen", "onOpenChange", "openDelay", "closeDelay"],
-    {},
+    {
+      closeDelay: { table: { defaultValue: { summary: "300" } } },
+      openDelay: { table: { defaultValue: { summary: "700" } } },
+      defaultOpen: { table: { defaultValue: { summary: "false" } } },
+    },
   ),
   render: (args) => (
     <HoverCard {...args}>

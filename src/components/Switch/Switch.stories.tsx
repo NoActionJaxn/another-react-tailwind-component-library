@@ -16,6 +16,7 @@ const meta = {
     "Switch",
     ["label", "size", "colorScheme", "disabled"],
     {
+      disabled: { table: { defaultValue: { summary: "false" } } },
       colorScheme: {
         // "brand" is defined in playground/playground.css
         control: "inline-radio",

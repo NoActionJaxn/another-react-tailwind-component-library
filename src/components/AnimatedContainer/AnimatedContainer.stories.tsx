@@ -9,6 +9,7 @@ const meta = {
   component: AnimatedContainer,
   parameters: docsParameters("AnimatedContainer", { layout: "padded" }),
   args: {
+    colorScheme: "default",
     animation: "fade",
     duration: 300,
     stagger: true,
@@ -29,6 +30,9 @@ const meta = {
       staggerDelay: { table: { defaultValue: { summary: "100" } } },
       asChild: { table: { defaultValue: { summary: "false" } } },
       colorScheme: {
+        // "brand" is defined in playground/playground.css
+        control: "inline-radio",
+        options: ["default", "brand"],
         table: { defaultValue: { summary: m.common.defaults.inherited } },
       },
     },

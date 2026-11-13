@@ -21,7 +21,10 @@ const meta = {
   argTypes: docsArgTypes(
     "Dialog",
     ["open", "defaultOpen", "onOpenChange", "modal"],
-    {},
+    {
+      modal: { table: { defaultValue: { summary: "true" } } },
+      defaultOpen: { table: { defaultValue: { summary: "false" } } },
+    },
   ),
   render: (args) => (
     <Dialog {...args}>

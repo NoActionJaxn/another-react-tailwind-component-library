@@ -25,7 +25,10 @@ const meta = {
   argTypes: docsArgTypes(
     "DropdownMenu",
     ["open", "defaultOpen", "onOpenChange", "modal"],
-    {},
+    {
+      modal: { table: { defaultValue: { summary: "true" } } },
+      defaultOpen: { table: { defaultValue: { summary: "false" } } },
+    },
   ),
   render: (args) => (
     <DropdownMenu {...args}>

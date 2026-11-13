@@ -1,7 +1,7 @@
 /* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
 @layer components {
   [data-badge] {
-    --_radius: var(--badge-radius, 9999px);
+    --_radius: var(--badge-radius, var(--radius-sm));
     --_font-weight: var(--badge-font-weight, var(--font-weight-medium));
   }
 

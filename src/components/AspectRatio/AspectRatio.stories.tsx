@@ -7,7 +7,9 @@ const meta = {
   component: AspectRatio,
   parameters: docsParameters("AspectRatio", { layout: "centered" }),
   args: { ratio: 16 / 9 },
-  argTypes: docsArgTypes("AspectRatio", [], {}),
+  argTypes: docsArgTypes("AspectRatio", [], {
+    ratio: { table: { defaultValue: { summary: "1" } } },
+  }),
   render: (args) => (
     <div className="w-80">
       <AspectRatio {...args}>

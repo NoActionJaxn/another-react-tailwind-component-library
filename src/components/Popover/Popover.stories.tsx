@@ -11,7 +11,10 @@ const meta = {
   argTypes: docsArgTypes(
     "Popover",
     ["open", "defaultOpen", "onOpenChange", "modal"],
-    {},
+    {
+      modal: { table: { defaultValue: { summary: "false" } } },
+      defaultOpen: { table: { defaultValue: { summary: "false" } } },
+    },
   ),
   render: (args) => (
     <Popover {...args}>

@@ -13,6 +13,8 @@
       --avatar-sm-badge-dot-size,
       calc(var(--spacing) * 2)
     );
+    --_badge-size: var(--avatar-sm-badge-size, calc(var(--spacing) * 3.5));
+    --_badge-font-size: var(--avatar-sm-badge-font-size, 0.5rem);
   }
 
   [data-avatar][data-size="md"] {
@@ -21,6 +23,8 @@
       --avatar-md-badge-dot-size,
       calc(var(--spacing) * 2.5)
     );
+    --_badge-size: var(--avatar-md-badge-size, calc(var(--spacing) * 4.5));
+    --_badge-font-size: var(--avatar-md-badge-font-size, 0.625rem);
   }
 
   [data-avatar][data-size="lg"] {
@@ -29,6 +33,8 @@
       --avatar-lg-badge-dot-size,
       calc(var(--spacing) * 3)
     );
+    --_badge-size: var(--avatar-lg-badge-size, calc(var(--spacing) * 5));
+    --_badge-font-size: var(--avatar-lg-badge-font-size, 0.75rem);
   }
 
   /* Centered on the avatar's edge: 14.6% in from the box is where a circle's edge crosses the diagonal. */

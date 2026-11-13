@@ -7,6 +7,8 @@ const meta = {
   component: GridContainer,
   parameters: docsParameters("GridContainer", { layout: "padded" }),
   args: {
+    minColumnWidth: "15rem",
+    colorScheme: "default",
     columns: 3,
     align: "stretch",
     justify: "stretch",
@@ -19,7 +21,10 @@ const meta = {
     ["colorScheme", "gap", { asChild: "layoutAsChild" }],
     {
       columns: { control: "number" },
-      minColumnWidth: { control: "text" },
+      minColumnWidth: {
+        control: "text",
+        table: { defaultValue: { summary: "15rem" } },
+      },
       rows: { control: "text" },
       align: {
         control: "inline-radio",
@@ -43,6 +48,9 @@ const meta = {
       },
       asChild: { table: { defaultValue: { summary: "false" } } },
       colorScheme: {
+        // "brand" is defined in playground/playground.css
+        control: "inline-radio",
+        options: ["default", "brand"],
         table: { defaultValue: { summary: m.common.defaults.inherited } },
       },
     },

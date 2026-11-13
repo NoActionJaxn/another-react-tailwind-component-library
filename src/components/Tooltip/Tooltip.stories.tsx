@@ -13,6 +13,8 @@ const meta = {
   component: TooltipContent,
   parameters: docsParameters("Tooltip", { layout: "centered" }),
   args: {
+    showArrow: true,
+    sideOffset: 4,
     side: "top",
     colorScheme: "default",
     children: m.components.Tooltip.story.content,

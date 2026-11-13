@@ -6,7 +6,7 @@ const meta = {
   title: "Components/Separator",
   component: Separator,
   parameters: docsParameters("Separator", { layout: "centered" }),
-  args: { orientation: "horizontal", colorScheme: "default" },
+  args: { decorative: true, orientation: "horizontal", colorScheme: "default" },
   argTypes: docsArgTypes("Separator", ["orientation", "colorScheme"], {
     colorScheme: {
       // "brand" is defined in playground/playground.css
@@ -14,6 +14,7 @@ const meta = {
       options: ["default", "brand"],
     },
     orientation: {
+      table: { defaultValue: { summary: "horizontal" } },
       control: "inline-radio",
       options: ["horizontal", "vertical"],
     },

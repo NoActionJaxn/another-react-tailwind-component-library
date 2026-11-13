@@ -9,6 +9,8 @@ const meta = {
   component: FlexContainer,
   parameters: docsParameters("FlexContainer", { layout: "padded" }),
   args: {
+    minColumnWidth: "15rem",
+    colorScheme: "default",
     direction: "row",
     align: "stretch",
     justify: "start",
@@ -36,7 +38,10 @@ const meta = {
         table: { defaultValue: { summary: "start" } },
       },
       columns: { control: "number" },
-      minColumnWidth: { control: "text" },
+      minColumnWidth: {
+        control: "text",
+        table: { defaultValue: { summary: "15rem" } },
+      },
       wrap: {
         control: "inline-radio",
         options: ["nowrap", "wrap", "wrap-reverse"],
@@ -51,6 +56,9 @@ const meta = {
       },
       asChild: { table: { defaultValue: { summary: "false" } } },
       colorScheme: {
+        // "brand" is defined in playground/playground.css
+        control: "inline-radio",
+        options: ["default", "brand"],
         table: { defaultValue: { summary: m.common.defaults.inherited } },
       },
     },

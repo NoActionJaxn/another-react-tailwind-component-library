@@ -13,6 +13,7 @@ const meta = {
   parameters: docsParameters("Accordion", { layout: "centered" }),
   args: { type: "single", collapsible: true, colorScheme: "default" },
   argTypes: docsArgTypes("Accordion", ["colorScheme"], {
+    collapsible: { table: { defaultValue: { summary: "false" } } },
     colorScheme: {
       // "brand" is defined in playground/playground.css
       control: "inline-radio",

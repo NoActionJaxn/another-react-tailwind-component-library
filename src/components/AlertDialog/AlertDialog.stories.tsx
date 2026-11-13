@@ -21,7 +21,9 @@ const meta = {
   argTypes: docsArgTypes(
     "AlertDialog",
     ["open", "defaultOpen", "onOpenChange"],
-    {},
+    {
+      defaultOpen: { table: { defaultValue: { summary: "false" } } },
+    },
   ),
   render: (args) => (
     <AlertDialog {...args}>

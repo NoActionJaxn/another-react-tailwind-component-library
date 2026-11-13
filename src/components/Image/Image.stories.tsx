@@ -21,6 +21,10 @@ const meta = {
     className: "w-80",
   },
   argTypes: docsArgTypes("Image", ["variant", "colorScheme"], {
+    fallback: {
+      control: false,
+      table: { defaultValue: { summary: "ImageIcon" } },
+    },
     variant: {
       control: "inline-radio",
       options: ["ghost", "outline"],

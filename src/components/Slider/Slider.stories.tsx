@@ -7,6 +7,7 @@ const meta = {
   component: Slider,
   parameters: docsParameters("Slider", { layout: "centered" }),
   args: {
+    min: 0,
     defaultValue: [40],
     max: 100,
     step: 1,
@@ -16,6 +17,10 @@ const meta = {
     "aria-label": m.components.Slider.story.ariaLabel,
   },
   argTypes: docsArgTypes("Slider", ["size", "colorScheme", "disabled"], {
+    disabled: { table: { defaultValue: { summary: "false" } } },
+    step: { table: { defaultValue: { summary: "1" } } },
+    max: { table: { defaultValue: { summary: "100" } } },
+    min: { table: { defaultValue: { summary: "0" } } },
     colorScheme: {
       // "brand" is defined in playground/playground.css
       control: "inline-radio",

@@ -1,12 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
-import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "./Avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "./Avatar";
 
 const meta = {
   title: "Components/Avatar",
   component: Avatar,
   parameters: docsParameters("Avatar", { layout: "centered" }),
-  args: { size: "md", colorScheme: "default" },
+  args: {
+    size: "md",
+    colorScheme: "default",
+    badge: true,
+    badgeContent: "",
+    badgeLabel: m.components.Avatar.story.badge,
+    badgePosition: "bottom-end",
+  },
   argTypes: docsArgTypes("Avatar", ["size", "colorScheme"], {
     colorScheme: {
       // "brand" is defined in playground/playground.css
@@ -14,12 +21,18 @@ const meta = {
       options: ["default", "brand"],
     },
     size: { control: "inline-radio", options: ["sm", "md", "lg"] },
+    badge: { table: { defaultValue: { summary: "false" } } },
+    badgeContent: { control: "text" },
+    badgePosition: {
+      control: "inline-radio",
+      options: ["top-end", "bottom-end", "top-start", "bottom-start"],
+      table: { defaultValue: { summary: "bottom-end" } },
+    },
   }),
   render: (args) => (
     <Avatar {...args}>
       <AvatarImage alt="" />
       <AvatarFallback>{m.components.Avatar.story.fallback}</AvatarFallback>
-      <AvatarBadge aria-label={m.components.Avatar.story.badge} role="status" />
     </Avatar>
   ),
 } satisfies Meta<typeof Avatar>;

@@ -15,7 +15,10 @@ const meta = {
   argTypes: docsArgTypes(
     "Collapsible",
     ["open", "defaultOpen", "onOpenChange", "disabled"],
-    {},
+    {
+      disabled: { table: { defaultValue: { summary: "false" } } },
+      defaultOpen: { table: { defaultValue: { summary: "false" } } },
+    },
   ),
   render: (args) => (
     <Collapsible {...args} className="w-72">

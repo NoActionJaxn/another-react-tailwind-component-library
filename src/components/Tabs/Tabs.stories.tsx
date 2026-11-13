@@ -18,6 +18,7 @@ const meta = {
       options: ["default", "brand"],
     },
     orientation: {
+      table: { defaultValue: { summary: "horizontal" } },
       control: "inline-radio",
       options: ["horizontal", "vertical"],
     },

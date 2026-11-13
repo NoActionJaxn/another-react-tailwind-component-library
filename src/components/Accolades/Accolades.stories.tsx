@@ -22,15 +22,24 @@ const meta = {
   component: Accolades,
   parameters: docsParameters("Accolades", { layout: "padded" }),
   args: {
+    animation: "none",
     delay: 4000,
     loop: true,
     colorScheme: "default",
+    pauseLabel: "Pause",
+    playLabel: "Play",
     "aria-label": text.label,
   },
   argTypes: docsArgTypes(
     "Accolades",
     ["colorScheme", { "aria-label": "ariaLabel" }],
     {
+      children: { control: false },
+      animation: {
+        control: "inline-radio",
+        options: ["none", "fade", "pop"],
+        table: { defaultValue: { summary: "none" } },
+      },
       delay: { table: { defaultValue: { summary: "4000" } } },
       loop: { table: { defaultValue: { summary: "true" } } },
       pauseLabel: { table: { defaultValue: { summary: "Pause" } } },

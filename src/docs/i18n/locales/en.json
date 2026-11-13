@@ -1,10 +1,11 @@
 {
   "common": {
     "defaults": {
-      "inherited": "inherited from parent"
+      "inherited": "inherited from parent",
+      "notSet": "not set"
     },
     "props": {
-      "colorScheme": "Color scheme: \"default\" or the name of any --color-<name>-50 … 950 palette. Unset, it inherits from the parent element.",
+      "colorScheme": "Color scheme: \"default\" or the name of any `--color-<name>-50` … 950 palette. Unset, it inherits from the parent element.",
       "portalColorScheme": "Color scheme for the content. Content renders in a portal, so it can't inherit a scheme from the trigger's parents.",
       "size": "Size of the component.",
       "variant": "Visual style. Colors come from the color scheme.",
@@ -20,7 +21,18 @@
       "closeDelay": "Milliseconds before it closes after the pointer leaves.",
       "block": "Fill the full width of the parent.",
       "gap": "Space between items, from none to xl.",
-      "layoutAsChild": "Render the child element (e.g. <ul> or <section>) as the container instead of a <div>."
+      "layoutAsChild": "Render the child element (e.g. `<ul>` or `<section>`) as the container instead of a `<div>`.",
+      "children": "Content to render inside.",
+      "className": "Extra classes, merged last with tw() so they override the component's own.",
+      "onClick": "Called when the component is clicked.",
+      "onCheckedChange": "Called with the new checked state when it changes.",
+      "onValueChange": "Called with the new value when it changes.",
+      "placeholder": "Hint text shown while the field is empty.",
+      "defaultValue": "Initial value when uncontrolled (no value prop).",
+      "min": "Lowest allowed value.",
+      "max": "Highest allowed value.",
+      "step": "Amount the value changes by per step.",
+      "sideOffset": "Distance in pixels between the trigger and the content."
     },
     "icons": {
       "none": "None",
@@ -50,7 +62,8 @@
         "loop": "Wrap from the last item back to the first.",
         "slideLabel": "Accessible name for each item, from its position and the total. Defaults to \"1 of 5\".",
         "pauseLabel": "Accessible name of the button while playing.",
-        "playLabel": "Accessible name of the button while paused."
+        "playLabel": "Accessible name of the button while paused.",
+        "animation": "How items enter and leave the view: none, fade, or pop (fade plus a slight scale)."
       },
       "story": {
         "label": "What customers say",
@@ -97,7 +110,7 @@
       "props": {
         "href": "Link destination.",
         "underline": "When the underline shows: always, on hover, or never.",
-        "asChild": "Render the child element (e.g. a router Link) with anchor styles instead of an <a>."
+        "asChild": "Render the child element (e.g. a router Link) with anchor styles instead of an `<a>`."
       },
       "story": {
         "children": "Read the documentation"
@@ -123,8 +136,13 @@
       }
     },
     "Avatar": {
-      "description": "An image of a person, with a fallback (usually initials) while it loads or if it fails. Add an AvatarBadge for a status dot or a count on its edge.",
-      "props": {},
+      "description": "An image of a person, with a fallback (usually initials) while it loads or if it fails. Turn on badge for a status dot or a count on its edge; use AvatarBadge directly for a custom one.",
+      "props": {
+        "badge": "Show a badge on the avatar's edge.",
+        "badgeContent": "Text in the badge, such as a notification count (\"3\", \"99+\"). Empty shows a dot.",
+        "badgeLabel": "Accessible name of the badge, such as \"Online\" or \"3 new messages\". Needed for a dot, which has no text.",
+        "badgePosition": "Corner the badge sits on."
+      },
       "story": {
         "fallback": "JD",
         "badge": "Online"
@@ -138,7 +156,7 @@
     "Badge": {
       "description": "A small label for a status, category or count.",
       "props": {
-        "asChild": "Render the child element (e.g. a link) with badge styles instead of a <span>."
+        "asChild": "Render the child element (e.g. a link) with badge styles instead of a `<span>`."
       },
       "story": {
         "children": "New"
@@ -147,7 +165,7 @@
     "Button": {
       "description": "Triggers an action. Style with variant, color with colorScheme.",
       "props": {
-        "asChild": "Render the child element (e.g. a link) with button styles instead of a <button>."
+        "asChild": "Render the child element (e.g. a link) with button styles instead of a `<button>`."
       },
       "story": {
         "children": "Button"
@@ -538,11 +556,11 @@
       }
     },
     "Typography": {
-      "description": "Styled text. Renders a <span> by default; use asChild to style another element such as a heading or paragraph.",
+      "description": "Styled text. Renders a `<span>` by default; use asChild to style another element such as a heading or paragraph.",
       "props": {
         "font": "Font family: Roboto (sans), Roboto Serif (serif) or Roboto Mono (mono).",
         "size": "Font size and line height, from xxs to xxl.",
-        "asChild": "Render the child element (e.g. an <h1> or <p>) with typography styles instead of a <span>."
+        "asChild": "Render the child element (e.g. an `<h1>` or `<p>`) with typography styles instead of a `<span>`."
       },
       "story": {
         "children": "The quick brown fox jumps over the lazy dog."
@@ -675,7 +693,11 @@
         "quote-font-size": "Quote font size",
         "quote-text": "Quote color",
         "link-font-size": "Link font size",
-        "controls-gap": "Space between the items and the pause button"
+        "controls-gap": "Space between the items and the pause button",
+        "animation-duration": "Length of the fade or pop",
+        "animation-easing": "Timing function of the fade or pop",
+        "badge-size": "AvatarBadge size when it has content (always a circle)",
+        "badge-font-size": "AvatarBadge text size"
       },
       "parts": {
         "menu-content": "Menu (shared with DropdownMenu, ContextMenu, Menubar and Select)",

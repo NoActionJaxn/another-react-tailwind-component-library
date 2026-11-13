@@ -5,4 +5,4 @@ export {
   AccoladesLink,
   AccoladesQuote,
 } from "./Accolades";
-export type { AccoladesProps } from "./Accolades";
+export type { AccoladesAnimation, AccoladesProps } from "./Accolades";

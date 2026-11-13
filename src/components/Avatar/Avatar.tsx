@@ -9,6 +9,10 @@ export interface AvatarProps extends ComponentProps<
 > {
   colorScheme?: ColorScheme;
   size?: AvatarSize;
+  badge?: boolean;
+  badgeContent?: string | number;
+  badgeLabel?: string;
+  badgePosition?: AvatarBadgePosition;
 }
 
 const sizes = {
@@ -20,8 +24,13 @@ const sizes = {
 export function Avatar({
   colorScheme,
   size = "md",
+  badge = false,
+  badgeContent,
+  badgeLabel,
+  badgePosition = "bottom-end",
   className,
   style,
+  children,
   ...props
 }: AvatarProps) {
   return (
@@ -35,7 +44,18 @@ export function Avatar({
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+      {badge && (
+        <AvatarBadge
+          position={badgePosition}
+          role={badgeLabel ? "status" : undefined}
+          aria-label={badgeLabel}
+        >
+          {badgeContent === "" ? undefined : badgeContent}
+        </AvatarBadge>
+      )}
+    </AvatarPrimitive.Root>
   );
 }
 
@@ -87,8 +107,10 @@ export function AvatarBadge({
       data-position={position}
       size={size}
       className={tw(
-        "absolute ring-(length:--_ring-width) ring-(--_ring)",
-        dot && "size-(--_badge-dot-size) p-0",
+        "absolute aspect-square min-w-0 rounded-full p-0 ring-(length:--_ring-width) ring-(--_ring)",
+        dot
+          ? "size-(--_badge-dot-size)"
+          : "size-(--_badge-size) text-(length:--_badge-font-size) leading-none",
         className,
       )}
       {...props}

@@ -7,6 +7,7 @@ const meta = {
   component: Progress,
   parameters: docsParameters("Progress", { layout: "centered" }),
   args: {
+    max: 100,
     value: 60,
     size: "md",
     colorScheme: "default",

@@ -18,6 +18,8 @@ const meta = {
     "Checkbox",
     ["label", "size", "colorScheme", "disabled"],
     {
+      indeterminateIcon: { control: false },
+      icon: { control: false },
       checked: {
         control: "inline-radio",
         options: [false, true, "indeterminate"],

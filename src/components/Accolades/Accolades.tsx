@@ -15,7 +15,9 @@ import { Anchor, type AnchorProps } from "../Anchor";
 import { Button } from "../Button";
 import { Image, type ImageProps } from "../Image";
 
+export type AccoladesAnimation = "none" | "fade" | "pop";
 export interface AccoladesProps extends HTMLAttributes<HTMLElement> {
+  animation?: AccoladesAnimation;
   delay?: number;
   loop?: boolean;
   colorScheme?: ColorScheme;
@@ -30,6 +32,7 @@ const reducedMotion = () =>
   window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 export function Accolades({
+  animation = "none",
   delay = 4000,
   loop = true,
   colorScheme,
@@ -54,7 +57,8 @@ export function Accolades({
     [delay],
   );
   const [viewportRef, api] = useEmblaCarousel(
-    { loop, align: "start", slidesToScroll: 1 },
+    // A slide counts as in view once 60% of it shows, so it fades as it leaves.
+    { loop, align: "start", slidesToScroll: 1, inViewThreshold: 0.6 },
     [autoplay],
   );
   // Paused with the button (reduced-motion users start paused). A ref, so the
@@ -74,6 +78,17 @@ export function Accolades({
     };
   }, [api, autoplay]);
 
+  const [inView, setInView] = useState<number[]>([]);
+  useEffect(() => {
+    if (!api || animation === "none") return;
+    const update = () => setInView(api.slidesInView());
+    update();
+    api.on("slidesInView", update).on("reInit", update);
+    return () => {
+      api.off("slidesInView", update).off("reInit", update);
+    };
+  }, [api, animation]);
+
   function toggle() {
     pausedRef.current = !paused;
     setPaused(!paused);
@@ -85,6 +100,7 @@ export function Accolades({
   return (
     <section
       data-accolades
+      data-animation={animation}
       aria-roledescription="carousel"
       style={colorScheme ? { ...schemeVars(colorScheme), ...style } : style}
       className={tw("relative flex flex-col gap-(--_controls-gap)", className)}
@@ -95,9 +111,11 @@ export function Accolades({
           {items.map((item, index) => (
             <div
               key={index}
+              data-accolades-slide
               role="group"
               aria-roledescription="slide"
               aria-label={slideLabel(index + 1, items.length)}
+              data-in-view={inView.includes(index) || undefined}
               className="flex min-w-0 shrink-0 grow-0 basis-(--_item-basis) ps-(--_gap)"
             >
               {item}

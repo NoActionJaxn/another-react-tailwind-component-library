@@ -18,6 +18,10 @@ const meta = {
     onValueChange: fn(),
   },
   argTypes: docsArgTypes("Radio", ["colorScheme", "orientation", "disabled"], {
+    icon: {
+      control: false,
+      table: { defaultValue: { summary: "DotFilledIcon" } },
+    },
     size: {
       control: "inline-radio",
       options: ["sm", "md", "lg"],
@@ -30,6 +34,7 @@ const meta = {
       table: { defaultValue: { summary: m.common.defaults.inherited } },
     },
     orientation: {
+      table: { defaultValue: { summary: "vertical" } },
       control: "inline-radio",
       options: ["vertical", "horizontal"],
     },
