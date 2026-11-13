@@ -20,11 +20,13 @@ export interface DialogContentProps extends ComponentProps<
 > {
   colorScheme?: ColorScheme;
   showClose?: boolean;
+  closeLabel?: string;
 }
 
 export function DialogContent({
   colorScheme,
   showClose = true,
+  closeLabel = "Close",
   className,
   style,
   children,
@@ -47,7 +49,7 @@ export function DialogContent({
         {children}
         {showClose && (
           <DialogPrimitive.Close
-            aria-label="Close"
+            aria-label={closeLabel}
             className="absolute top-4 right-4 flex size-6 cursor-pointer items-center justify-center rounded-sm text-(--_description) outline-(--_focus-color) transition-colors hover:text-(--_text) focus:outline-2 focus:outline-solid [&_svg]:size-4"
           >
             <Cross2Icon />

@@ -17,7 +17,7 @@ const cover = `data:image/svg+xml,${encodeURIComponent(
 )}`;
 
 const meta = {
-  title: "Blocks/Card",
+  title: "Cards/Card",
   component: Card,
   parameters: docsParameters("Card", { layout: "centered" }),
   args: {

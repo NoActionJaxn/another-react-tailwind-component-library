@@ -1,0 +1,13 @@
+/* Builds on Card: its --_* vars (padding, gaps, text colors) apply too. */
+@layer components {
+  [data-price-card] {
+    --_price-font-size: var(--price-card-price-font-size, var(--text-4xl));
+    --_price-font-weight: var(
+      --price-card-price-font-weight,
+      var(--font-weight-bold)
+    );
+    --_price-text: var(--price-card-price-text, var(--scheme-950));
+    --_unit-font-size: var(--price-card-unit-font-size, var(--text-sm));
+    --_unit-text: var(--price-card-unit-text, var(--scheme-600));
+  }
+}

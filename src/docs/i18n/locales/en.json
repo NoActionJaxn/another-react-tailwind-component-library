@@ -254,7 +254,9 @@
     },
     "Dialog": {
       "description": "A modal window over the page. DialogContent includes a close button unless showClose is false.",
-      "props": {},
+      "props": {
+        "closeLabel": "DialogContent: accessible name of the close button."
+      },
       "story": {
         "trigger": "Edit profile",
         "title": "Edit profile",
@@ -330,10 +332,15 @@
         "alt": "Text alternative. Leave empty for decorative images.",
         "fit": "How the image fills its box (CSS object-fit).",
         "aspectRatio": "Box aspect ratio, e.g. \"16 / 9\" or 1. Keeps the space reserved while loading and for the fallback.",
-        "fallback": "Shown instead of the image when src is missing or fails. Defaults to Radix ImageIcon."
+        "fallback": "Shown instead of the image when src is missing or fails. Defaults to Radix ImageIcon.",
+        "zoomOnHover": "Zoom the image inside its frame on hover (and keyboard focus).",
+        "openInDialog": "Make the image a button that opens it full size in a Dialog.",
+        "dialogSrc": "Image shown in the dialog, e.g. a higher-resolution version. Defaults to src.",
+        "openLabel": "Accessible name of the image button and dialog when alt is empty.",
+        "closeLabel": "Accessible name of the dialog's close button."
       },
       "story": {
-        "alt": "Gray gradient"
+        "alt": "Mountains under a blue sky"
       }
     },
     "Label": {
@@ -372,6 +379,32 @@
       "story": {
         "trigger": "Open popover",
         "content": "Place any content here."
+      }
+    },
+    "PriceCard": {
+      "description": "A pricing plan: a title with an optional badge, the price and its unit (\"$29 /month\"), your own content (usually a feature list), and a full-width button. Built on Card, so it takes Card's variant and size.",
+      "props": {
+        "title": "Plan name.",
+        "badge": "Short label at the top right, such as \"Most popular\". Omit for none.",
+        "badgeProps": "Props for the Badge, such as variant or colorScheme. Defaults to the soft variant.",
+        "price": "Price, as displayed (e.g. \"$29\").",
+        "unit": "Billing unit shown after the price as \"/unit\" (e.g. \"month\"). Omit for a one-off price.",
+        "buttonLabel": "Button text.",
+        "buttonProps": "Props for the Button, such as onClick, variant, or asChild with a link.",
+        "children": "Custom content between the price and the button, usually a feature list."
+      },
+      "story": {
+        "title": "Pro",
+        "badge": "Most popular",
+        "price": "$29",
+        "unit": "month",
+        "buttonLabel": "Get started",
+        "features": [
+          "Unlimited projects",
+          "Priority support",
+          "Custom color schemes",
+          "Team sharing"
+        ]
       }
     },
     "Progress": {
@@ -697,7 +730,15 @@
         "animation-duration": "Length of the fade or pop",
         "animation-easing": "Timing function of the fade or pop",
         "badge-size": "AvatarBadge size when it has content (always a circle)",
-        "badge-font-size": "AvatarBadge text size"
+        "badge-font-size": "AvatarBadge text size",
+        "price-font-size": "Price font size",
+        "price-font-weight": "Price font weight",
+        "price-text": "Price color",
+        "unit-font-size": "Unit font size",
+        "unit-text": "Unit color",
+        "zoom-scale": "How far the image zooms on hover",
+        "zoom-duration": "Length of the zoom animation",
+        "close-size": "Close button size"
       },
       "parts": {
         "menu-content": "Menu (shared with DropdownMenu, ContextMenu, Menubar and Select)",
@@ -711,7 +752,8 @@
         "tooltip-content": "All",
         "toggle": "Toggle (shared with Toggle, ToggleGroup and Toolbar)",
         "container": "Container (shared with Container, FlexContainer and GridContainer)",
-        "avatar-badge": "AvatarBadge"
+        "avatar-badge": "AvatarBadge",
+        "image-dialog": "Pop-out dialog"
       }
     }
   }

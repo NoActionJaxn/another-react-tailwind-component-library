@@ -5,6 +5,11 @@
     --_bg: var(--image-bg, var(--scheme-100));
     --_icon: var(--image-icon, var(--scheme-500));
     --_icon-size: var(--image-icon-size, calc(var(--spacing) * 6));
+    --_zoom-scale: var(--image-zoom-scale, 1.1);
+    --_zoom-duration: var(--image-zoom-duration, 300ms);
+    --_focus-color: var(--image-focus-color, var(--scheme-400));
+    --_focus-width: var(--image-focus-width, 4px);
+    --_focus-offset: var(--image-focus-offset, 0px);
   }
 
   [data-image][data-variant="ghost"] {
@@ -13,5 +18,15 @@
 
   [data-image][data-variant="outline"] {
     --_border: var(--image-outline-border, var(--scheme-300));
+  }
+
+  /* The pop-out has no panel: just the image on the overlay. */
+  [data-image-dialog] {
+    --dialog-bg: transparent;
+    --dialog-border: transparent;
+    --dialog-shadow: none;
+    --dialog-padding: 0px;
+    --dialog-max-width: none;
+    --_close-size: var(--image-dialog-close-size, calc(var(--spacing) * 8));
   }
 }

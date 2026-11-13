@@ -56,6 +56,7 @@ const preview: Preview = {
           "Components",
           "Containers",
           "Blocks",
+          "Cards",
           "Dialogs",
           "Utilities",
         ],

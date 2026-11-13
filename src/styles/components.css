@@ -22,6 +22,7 @@
 @import "../components/Menubar/Menubar.css";
 @import "../components/NavigationMenu/NavigationMenu.css";
 @import "../components/Popover/Popover.css";
+@import "../components/PriceCard/PriceCard.css";
 @import "../components/Progress/Progress.css";
 @import "../components/Radio/Radio.css";
 @import "../components/ScrollArea/ScrollArea.css";

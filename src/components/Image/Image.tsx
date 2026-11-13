@@ -1,6 +1,14 @@
-import { ImageIcon } from "@radix-ui/react-icons";
+import { Cross2Icon, ImageIcon } from "@radix-ui/react-icons";
 import { useState, type ImgHTMLAttributes, type ReactNode } from "react";
 import { schemeVars, tw, type ColorScheme } from "../../utils";
+import { Button } from "../Button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "../Dialog";
 
 export type ImageVariant = "ghost" | "outline";
 export type ImageFit = "cover" | "contain" | "fill" | "none" | "scale-down";
@@ -10,6 +18,11 @@ export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   aspectRatio?: string | number;
   colorScheme?: ColorScheme;
   fallback?: ReactNode;
+  zoomOnHover?: boolean;
+  openInDialog?: boolean;
+  dialogSrc?: string;
+  openLabel?: string;
+  closeLabel?: string;
 }
 
 const fits = {
@@ -26,6 +39,11 @@ export function Image({
   aspectRatio,
   colorScheme,
   fallback,
+  zoomOnHover = false,
+  openInDialog = false,
+  dialogSrc,
+  openLabel = "Open image",
+  closeLabel = "Close",
   src,
   alt,
   width,
@@ -69,9 +87,9 @@ export function Image({
     );
   }
 
-  return (
+  const image = (imageClassName: string, rest = {}) => (
     <img
-      {...shared}
+      {...rest}
       {...props}
       src={src}
       alt={alt}
@@ -81,7 +99,72 @@ export function Image({
         setFailedSrc(src);
         onError?.(event);
       }}
-      className={tw(fits[fit], shared.className)}
+      className={imageClassName}
     />
+  );
+
+  if (!zoomOnHover && !openInDialog) {
+    return image(tw(fits[fit], shared.className), shared);
+  }
+
+  // Zoom and dialog need a frame: it carries the box styles and clips the zoomed image.
+  const Frame = openInDialog ? "button" : "div";
+  const frame = (
+    <Frame
+      {...shared}
+      type={openInDialog ? "button" : undefined}
+      aria-label={openInDialog && !alt ? openLabel : undefined}
+      style={{ width, height, ...shared.style }}
+      className={tw(
+        "group/image overflow-hidden p-0",
+        openInDialog &&
+          "cursor-zoom-in outline-(--_focus-color) focus:outline-(length:--_focus-width) focus:outline-offset-(--_focus-offset) focus:outline-solid",
+        shared.className,
+      )}
+    >
+      {image(
+        tw(
+          "block size-full",
+          fits[fit],
+          zoomOnHover &&
+            "transition-transform duration-(--_zoom-duration) ease-out group-hover/image:scale-(--_zoom-scale) group-focus-visible/image:scale-(--_zoom-scale) motion-reduce:transition-none",
+        ),
+      )}
+    </Frame>
+  );
+
+  if (!openInDialog) return frame;
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>{frame}</DialogTrigger>
+      <DialogContent
+        data-image-dialog
+        colorScheme={colorScheme}
+        showClose={false}
+        aria-describedby={undefined}
+        className="w-fit"
+      >
+        <DialogTitle className="sr-only">{alt || openLabel}</DialogTitle>
+        <div className="relative">
+          <img
+            src={dialogSrc ?? src}
+            alt={alt}
+            className="block max-h-[80vh] max-w-[calc(100vw-4rem)] rounded-(--_radius)"
+          />
+          {/* Centered on the image's top-right corner. */}
+          <DialogClose asChild>
+            <Button
+              variant="soft"
+              size="sm"
+              aria-label={closeLabel}
+              className="absolute top-0 right-0 size-(--_close-size) translate-x-1/2 -translate-y-1/2 rounded-full p-0 shadow-md"
+            >
+              <Cross2Icon aria-hidden />
+            </Button>
+          </DialogClose>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }

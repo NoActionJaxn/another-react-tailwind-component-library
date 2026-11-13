@@ -24,6 +24,7 @@ export * from "./components/Label";
 export * from "./components/Menubar";
 export * from "./components/NavigationMenu";
 export * from "./components/Popover";
+export * from "./components/PriceCard";
 export * from "./components/Progress";
 export * from "./components/Radio";
 export * from "./components/ScrollArea";
