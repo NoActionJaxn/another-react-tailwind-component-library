@@ -1,0 +1,9 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ComponentDocs } from "../../docs/blocks/ComponentDocs";
+import * as Stories from "./IconButton.stories";
+import css from "./IconButton.css?raw";
+import shared0 from "../Button/Button.css?raw";
+
+<Meta of={Stories} />
+
+<ComponentDocs component="IconButton" css={[css]} sharedCss={[shared0]} />

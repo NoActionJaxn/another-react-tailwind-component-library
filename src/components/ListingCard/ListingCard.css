@@ -1,0 +1,16 @@
+/* Builds on Card: its --_* vars apply too. */
+@layer components {
+  [data-listing-card] {
+    --_badge-inset: var(--listing-card-badge-inset, calc(var(--spacing) * 2));
+    --_price-font-size: var(--listing-card-price-font-size, var(--text-base));
+    --_price-font-weight: var(
+      --listing-card-price-font-weight,
+      var(--font-weight-semibold)
+    );
+    --_price-text: var(--listing-card-price-text, var(--scheme-950));
+    --_unit-font-size: var(--listing-card-unit-font-size, var(--text-sm));
+    --_unit-text: var(--listing-card-unit-text, var(--scheme-600));
+    --_details-font-size: var(--listing-card-details-font-size, var(--text-sm));
+    --_details-text: var(--listing-card-details-text, var(--scheme-700));
+  }
+}

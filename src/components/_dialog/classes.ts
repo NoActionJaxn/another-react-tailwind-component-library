@@ -7,6 +7,6 @@ export const dialogTitle = "text-lg leading-tight font-semibold";
 
 export const dialogDescription = "text-sm text-(--_description)";
 
-export const dialogHeader = "flex flex-col gap-1.5";
+export const dialogHeader = "flex flex-col gap-1.5 pr-6";
 
 export const dialogFooter = "flex flex-wrap justify-end gap-2";

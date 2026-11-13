@@ -12,7 +12,7 @@ import {
 } from "react";
 import { schemeVars, tw, type ColorScheme } from "../../utils";
 import { Anchor, type AnchorProps } from "../Anchor";
-import { Button } from "../Button";
+import { IconButton } from "../IconButton";
 import { Image, type ImageProps } from "../Image";
 
 export type AccoladesAnimation = "none" | "fade" | "pop";
@@ -123,15 +123,15 @@ export function Accolades({
           ))}
         </div>
       </div>
-      <Button
+      <IconButton
         variant="ghost"
         size="sm"
         aria-label={paused ? playLabel : pauseLabel}
         onClick={toggle}
-        className="self-end px-1.5"
+        className="self-end"
       >
         {paused ? <PlayIcon aria-hidden /> : <PauseIcon aria-hidden />}
-      </Button>
+      </IconButton>
     </section>
   );
 }

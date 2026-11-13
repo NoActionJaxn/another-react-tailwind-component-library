@@ -1,0 +1,8 @@
+/* Builds on Card: its --_* vars apply too. */
+@layer components {
+  [data-profile-card] {
+    --_avatar-size: var(--profile-card-avatar-size, calc(var(--spacing) * 20));
+    --_avatar-font-size: var(--profile-card-avatar-font-size, var(--text-2xl));
+    --_bio-text: var(--profile-card-bio-text, var(--scheme-800));
+  }
+}

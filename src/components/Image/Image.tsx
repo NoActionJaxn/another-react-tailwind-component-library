@@ -1,7 +1,7 @@
 import { Cross2Icon, ImageIcon } from "@radix-ui/react-icons";
 import { useState, type ImgHTMLAttributes, type ReactNode } from "react";
 import { schemeVars, tw, type ColorScheme } from "../../utils";
-import { Button } from "../Button";
+import { IconButton } from "../IconButton";
 import {
   Dialog,
   DialogClose,
@@ -154,14 +154,15 @@ export function Image({
           />
           {/* Centered on the image's top-right corner. */}
           <DialogClose asChild>
-            <Button
+            <IconButton
               variant="soft"
               size="sm"
+              round
               aria-label={closeLabel}
-              className="absolute top-0 right-0 size-(--_close-size) translate-x-1/2 -translate-y-1/2 rounded-full p-0 shadow-md"
+              className="absolute top-0 right-0 size-(--_close-size) translate-x-1/2 -translate-y-1/2 shadow-md"
             >
               <Cross2Icon aria-hidden />
-            </Button>
+            </IconButton>
           </DialogClose>
         </div>
       </DialogContent>

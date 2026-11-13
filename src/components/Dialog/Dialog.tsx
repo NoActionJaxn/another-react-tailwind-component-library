@@ -2,6 +2,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import type { ComponentProps } from "react";
 import { schemeStyle, tw, type ColorScheme } from "../../utils";
+import { IconButton } from "../IconButton";
 import {
   dialogContent,
   dialogDescription,
@@ -48,11 +49,15 @@ export function DialogContent({
       >
         {children}
         {showClose && (
-          <DialogPrimitive.Close
-            aria-label={closeLabel}
-            className="absolute top-4 right-4 flex size-6 cursor-pointer items-center justify-center rounded-sm text-(--_description) outline-(--_focus-color) transition-colors hover:text-(--_text) focus:outline-2 focus:outline-solid [&_svg]:size-4"
-          >
-            <Cross2Icon />
+          <DialogPrimitive.Close asChild>
+            <IconButton
+              variant="ghost"
+              size="sm"
+              aria-label={closeLabel}
+              className="absolute top-3 right-3"
+            >
+              <Cross2Icon aria-hidden />
+            </IconButton>
           </DialogPrimitive.Close>
         )}
       </DialogPrimitive.Content>

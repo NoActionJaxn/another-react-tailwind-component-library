@@ -53,4 +53,32 @@
     --_border: var(--text-input-ghost-border, transparent);
     --_border-hover: var(--text-input-ghost-border-hover, transparent);
   }
+
+  /* With a label: the field wraps the label and the box. */
+  [data-text-input-field] {
+    --_label-gap: var(--text-input-label-gap, calc(var(--spacing) * 1.5));
+    --_label-width: var(--text-input-label-width, auto);
+    --_label-overlap: var(--text-input-label-overlap, calc(var(--spacing) * 2));
+    --_label-inset: var(--text-input-label-inset, calc(var(--spacing) * 2.5));
+    --_label-surface: var(--text-input-label-surface, white);
+    --_label-text: var(--text-input-label-text, var(--scheme-700));
+    --_required: var(--text-input-required, var(--color-red-600));
+  }
+
+  /* On the border, the label's background hides the border line: the page above, the field below. */
+  [data-text-input][data-variant="outline"],
+  [data-text-input][data-variant="ghost"] {
+    --_label-bg: linear-gradient(var(--_label-surface), var(--_label-surface));
+  }
+
+  [data-text-input][data-variant="soft"] {
+    --_label-bg: linear-gradient(var(--_label-surface) 50%, var(--_bg) 50%);
+  }
+
+  [data-text-input][data-variant="soft"]:hover:not(:has(:disabled)) {
+    --_label-bg: linear-gradient(
+      var(--_label-surface) 50%,
+      var(--_bg-hover) 50%
+    );
+  }
 }

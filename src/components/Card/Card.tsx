@@ -4,26 +4,25 @@ import { schemeVars, tw, type ColorScheme } from "../../utils";
 import { Image, type ImageProps } from "../Image";
 
 export type CardVariant = "outline" | "soft" | "ghost";
-export type CardSize = "sm" | "md" | "lg";
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   variant?: CardVariant;
-  size?: CardSize;
   colorScheme?: ColorScheme;
+  asChild?: boolean;
 }
 
 export function Card({
   variant = "outline",
-  size = "md",
   colorScheme,
+  asChild = false,
   className,
   style,
   ...props
 }: CardProps) {
+  const Component = asChild ? Slot : "div";
   return (
-    <div
+    <Component
       data-card
       data-variant={variant}
-      data-size={size}
       style={colorScheme ? { ...schemeVars(colorScheme), ...style } : style}
       className={tw(
         "flex flex-col gap-(--_gap) overflow-hidden p-(--_container-padding)",

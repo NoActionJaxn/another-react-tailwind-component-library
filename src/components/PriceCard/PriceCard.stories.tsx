@@ -18,40 +18,30 @@ const meta = {
     buttonLabel: text.buttonLabel,
     buttonProps: { onClick: fn() },
     variant: "outline",
-    size: "md",
     colorScheme: "default",
     className: "w-80",
   },
-  argTypes: docsArgTypes(
-    "PriceCard",
-    ["variant", "size", "colorScheme", "className"],
-    {
-      title: { control: "text" },
-      badge: { control: "text" },
-      price: { control: "text" },
-      unit: { control: "text" },
-      buttonLabel: { control: "text" },
-      badgeProps: { control: false },
-      buttonProps: { control: false },
-      children: { control: false },
-      variant: {
-        control: "inline-radio",
-        options: ["outline", "soft", "ghost"],
-        table: { defaultValue: { summary: "outline" } },
-      },
-      size: {
-        control: "inline-radio",
-        options: ["sm", "md", "lg"],
-        table: { defaultValue: { summary: "md" } },
-      },
-      colorScheme: {
-        // "brand" is defined in playground/playground.css
-        control: "inline-radio",
-        options: ["default", "brand"],
-        table: { defaultValue: { summary: m.common.defaults.inherited } },
-      },
+  argTypes: docsArgTypes("PriceCard", ["variant", "colorScheme", "className"], {
+    title: { control: "text" },
+    badge: { control: "text" },
+    price: { control: "text" },
+    unit: { control: "text" },
+    buttonLabel: { control: "text" },
+    badgeProps: { control: false },
+    buttonProps: { control: false },
+    children: { control: false },
+    variant: {
+      control: "inline-radio",
+      options: ["outline", "soft", "ghost"],
+      table: { defaultValue: { summary: "outline" } },
     },
-  ),
+    colorScheme: {
+      // "brand" is defined in playground/playground.css
+      control: "inline-radio",
+      options: ["default", "brand"],
+      table: { defaultValue: { summary: m.common.defaults.inherited } },
+    },
+  }),
   render: (args) => (
     <PriceCard {...args}>
       <ul className="flex flex-col gap-2">

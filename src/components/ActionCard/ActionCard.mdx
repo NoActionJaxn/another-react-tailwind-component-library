@@ -1,0 +1,9 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ComponentDocs } from "../../docs/blocks/ComponentDocs";
+import * as Stories from "./ActionCard.stories";
+import css from "./ActionCard.css?raw";
+import shared0 from "../Card/Card.css?raw";
+
+<Meta of={Stories} />
+
+<ComponentDocs component="ActionCard" css={[css]} sharedCss={[shared0]} />

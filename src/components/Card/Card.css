@@ -17,50 +17,16 @@
     );
     --_image-aspect-ratio: var(--card-image-aspect-ratio, 16 / 9);
     --_footer-gap: var(--card-footer-gap, calc(var(--spacing) * 2));
+    --_padding: var(--card-padding, calc(var(--spacing) * 5));
+    --_gap: var(--card-gap, calc(var(--spacing) * 4));
+    --_description-gap: var(--card-description-gap, calc(var(--spacing) * 1.5));
+    --_header-font-size: var(--card-header-font-size, var(--text-lg));
+    --_description-font-size: var(--card-description-font-size, var(--text-sm));
   }
 
   /* A header followed by its description sits closer than other sections. */
   [data-card-header] + [data-card-description] {
     margin-top: calc(var(--_description-gap) - var(--_gap));
-  }
-
-  [data-card][data-size="sm"] {
-    --_padding: var(--card-sm-padding, calc(var(--spacing) * 4));
-    --_gap: var(--card-sm-gap, calc(var(--spacing) * 3));
-    --_description-gap: var(--card-sm-description-gap, var(--spacing));
-    --_header-font-size: var(--card-sm-header-font-size, var(--text-base));
-    --_description-font-size: var(
-      --card-sm-description-font-size,
-      var(--text-sm)
-    );
-  }
-
-  [data-card][data-size="md"] {
-    --_padding: var(--card-md-padding, calc(var(--spacing) * 5));
-    --_gap: var(--card-md-gap, calc(var(--spacing) * 4));
-    --_description-gap: var(
-      --card-md-description-gap,
-      calc(var(--spacing) * 1.5)
-    );
-    --_header-font-size: var(--card-md-header-font-size, var(--text-lg));
-    --_description-font-size: var(
-      --card-md-description-font-size,
-      var(--text-sm)
-    );
-  }
-
-  [data-card][data-size="lg"] {
-    --_padding: var(--card-lg-padding, calc(var(--spacing) * 6));
-    --_gap: var(--card-lg-gap, calc(var(--spacing) * 5));
-    --_description-gap: var(
-      --card-lg-description-gap,
-      calc(var(--spacing) * 2)
-    );
-    --_header-font-size: var(--card-lg-header-font-size, var(--text-xl));
-    --_description-font-size: var(
-      --card-lg-description-font-size,
-      var(--text-base)
-    );
   }
 
   [data-card][data-variant="outline"] {

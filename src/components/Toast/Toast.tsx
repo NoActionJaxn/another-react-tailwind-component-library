@@ -3,6 +3,7 @@ import * as ToastPrimitive from "@radix-ui/react-toast";
 import type { ComponentProps } from "react";
 import { schemeStyle, tw, type ColorScheme } from "../../utils";
 import { Button, type ButtonProps } from "../Button";
+import { IconButton } from "../IconButton";
 
 export const ToastProvider = ToastPrimitive.Provider;
 
@@ -31,7 +32,7 @@ export function Toast({ colorScheme, className, style, ...props }: ToastProps) {
       data-toast
       style={schemeStyle(colorScheme, style)}
       className={tw(
-        "relative grid gap-1 rounded-(--_radius) border border-(--_border) bg-(--_bg) p-(--_padding) pr-10 text-(--_text) shadow-(--_shadow) outline-(--_focus-color) focus:outline-(length:--_focus-width) focus:outline-offset-(--_focus-offset) focus:outline-solid",
+        "relative grid gap-1 rounded-(--_radius) border border-(--_border) bg-(--_bg) p-(--_padding) pr-12 text-(--_text) shadow-(--_shadow) outline-(--_focus-color) focus:outline-(length:--_focus-width) focus:outline-offset-(--_focus-offset) focus:outline-solid",
         className,
       )}
       {...props}
@@ -83,19 +84,20 @@ export function ToastAction({
 }
 
 export function ToastClose({
+  "aria-label": label = "Close",
   className,
   ...props
 }: ComponentProps<typeof ToastPrimitive.Close>) {
   return (
-    <ToastPrimitive.Close
-      aria-label="Close"
-      className={tw(
-        "absolute top-3 right-3 flex size-6 cursor-pointer items-center justify-center rounded-sm text-(--_description) outline-(--_focus-color) transition-colors hover:text-(--_text) focus:outline-(length:--_focus-width) focus:outline-offset-(--_focus-offset) focus:outline-solid [&_svg]:size-4",
-        className,
-      )}
-      {...props}
-    >
-      <Cross2Icon />
+    <ToastPrimitive.Close asChild {...props}>
+      <IconButton
+        variant="ghost"
+        size="sm"
+        aria-label={label}
+        className={tw("absolute top-2 right-2", className)}
+      >
+        <Cross2Icon aria-hidden />
+      </IconButton>
     </ToastPrimitive.Close>
   );
 }

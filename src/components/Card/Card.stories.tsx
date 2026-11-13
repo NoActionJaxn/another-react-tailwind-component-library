@@ -22,19 +22,13 @@ const meta = {
   parameters: docsParameters("Card", { layout: "centered" }),
   args: {
     variant: "outline",
-    size: "md",
     colorScheme: "default",
   },
-  argTypes: docsArgTypes("Card", ["variant", "size", "colorScheme"], {
+  argTypes: docsArgTypes("Card", ["variant", "colorScheme"], {
     variant: {
       control: "inline-radio",
       options: ["outline", "soft", "ghost"],
       table: { defaultValue: { summary: "outline" } },
-    },
-    size: {
-      control: "inline-radio",
-      options: ["sm", "md", "lg"],
-      table: { defaultValue: { summary: "md" } },
     },
     colorScheme: {
       // "brand" is defined in playground/playground.css

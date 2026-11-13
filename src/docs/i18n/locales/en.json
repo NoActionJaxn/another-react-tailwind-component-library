@@ -94,6 +94,21 @@
         "--accordion-padding-y": "Vertical padding of triggers and content"
       }
     },
+    "ActionCard": {
+      "description": "A Card that is one big link or button: hovering lifts it and zooms its image (use ActionCardImage). Compose it with CardHeader and CardDescription; it has no footer.",
+      "props": {
+        "href": "Link destination. With href the card is an `<a>`; without it, a button that calls onClick.",
+        "target": "Link target, e.g. \"_blank\". Only with href.",
+        "rel": "Link rel, e.g. \"noopener\". Only with href.",
+        "onClick": "Called when the card is clicked or activated with Enter or Space.",
+        "asChild": "Render the child element (e.g. a router Link) as the card. Put the card content inside it."
+      },
+      "story": {
+        "imageAlt": "Mountains under a blue sky",
+        "header": "Explore the Alps",
+        "description": "Seven days of trails, huts and glaciers, with a guide for every route."
+      }
+    },
     "AlertDialog": {
       "description": "A modal dialog that interrupts the user and asks them to confirm an action. AlertDialogAction and AlertDialogCancel render Button.",
       "props": {},
@@ -173,7 +188,9 @@
     },
     "Card": {
       "description": "A container for one subject, with an optional cover image, header, description and footer. Compose only the sections you need; spacing adjusts to what's there.",
-      "props": {},
+      "props": {
+        "asChild": "Card: render the child element (e.g. a link) as the card instead of a `<div>`. CardImage, CardHeader, CardDescription and CardFooter take it too."
+      },
       "story": {
         "imageAlt": "Gray gradient",
         "header": "Project update",
@@ -325,6 +342,18 @@
         "fallback": "R"
       }
     },
+    "IconButton": {
+      "description": "A square Button that holds a single icon, such as settings or close. It has the same variants, sizes and states as Button, and lines up with it in a row. aria-label is required, since the icon has no visible text.",
+      "props": {
+        "aria-label": "Accessible name, e.g. \"Settings\". Required: the icon has no visible text.",
+        "round": "Make the button a circle instead of a rounded square.",
+        "asChild": "Render the child element (e.g. a link) with icon button styles instead of a `<button>`. Put the icon inside it.",
+        "children": "The icon, e.g. a Radix icon with aria-hidden."
+      },
+      "story": {
+        "label": "Settings"
+      }
+    },
     "Image": {
       "description": "An image with a placeholder: if src is missing or fails to load, it shows an icon (or your fallback) in the same box.",
       "props": {
@@ -351,6 +380,31 @@
       "story": {
         "children": "Email",
         "placeholder": "you@example.com"
+      }
+    },
+    "ListingCard": {
+      "description": "A listing such as a product or rental: an image with an optional badge, a title with a price, a subtitle, details (children) and action buttons at the bottom, such as Add to cart.",
+      "props": {
+        "title": "Listing name.",
+        "imageSrc": "Image URL. Omit for no image.",
+        "imageAlt": "Image alt text. Empty by default, since the title describes the listing.",
+        "badge": "Short label over the image's top-left corner, e.g. \"New\".",
+        "badgeProps": "Props for the Badge, e.g. variant or colorScheme. Defaults to the soft variant.",
+        "price": "Price, as displayed (e.g. \"$180\"), at the right of the title.",
+        "unit": "Unit shown after the price as \"/unit\" (e.g. \"night\").",
+        "subtitle": "Secondary line under the title, e.g. a location.",
+        "children": "Details shown in a wrapping row, e.g. guests, bedrooms and amenities.",
+        "actions": "Buttons at the bottom, e.g. Add to cart. Use Button's block prop for a full-width button."
+      },
+      "story": {
+        "title": "Lakeside cabin",
+        "imageAlt": "",
+        "badge": "New",
+        "price": "$180",
+        "unit": "night",
+        "subtitle": "Lake Tahoe, California",
+        "details": ["4 guests", "2 bedrooms", "Wi-Fi", "Lake view"],
+        "addToCart": "Add to cart"
       }
     },
     "Menubar": {
@@ -382,7 +436,7 @@
       }
     },
     "PriceCard": {
-      "description": "A pricing plan: a title with an optional badge, the price and its unit (\"$29 /month\"), your own content (usually a feature list), and a full-width button. Built on Card, so it takes Card's variant and size.",
+      "description": "A pricing plan: a title with an optional badge, the price and its unit (\"$29 /month\"), your own content (usually a feature list), and a full-width button. Built on Card, so it takes Card's variant.",
       "props": {
         "title": "Plan name.",
         "badge": "Short label at the top right, such as \"Most popular\". Omit for none.",
@@ -405,6 +459,29 @@
           "Custom color schemes",
           "Team sharing"
         ]
+      }
+    },
+    "ProfileCard": {
+      "description": "A person at a glance: a large avatar, their name and role, an optional bio (children) and optional actions. Built on Card and Avatar.",
+      "props": {
+        "name": "Person's name. Also used for the fallback initials.",
+        "subtitle": "Role, title or handle, shown under the name.",
+        "avatarSrc": "Avatar image URL. Without one (or while it loads), the fallback shows.",
+        "avatarAlt": "Avatar image alt text. Empty by default, since the name is shown next to it.",
+        "avatarFallback": "Shown when there's no image. Defaults to the initials of name.",
+        "avatarProps": "Props for the Avatar, e.g. badge, badgeContent or colorScheme.",
+        "actions": "Buttons or links shown at the bottom, e.g. Follow and Message. They share the full width equally.",
+        "children": "Bio or other text under the subtitle."
+      },
+      "defaults": {
+        "fallback": "initials of name"
+      },
+      "story": {
+        "name": "Jordan Lee",
+        "subtitle": "Product designer",
+        "bio": "Designs calm, accessible interfaces. Previously at two tiny startups and one big one.",
+        "follow": "Follow",
+        "message": "Message"
       }
     },
     "Progress": {
@@ -517,18 +594,29 @@
       }
     },
     "TextInput": {
-      "description": "A single-line text field for text, email, search or URL input.",
+      "description": "A single-line text field for text, email, search or URL input, with an optional built-in label: above the field, beside it, or on its top border. Required fields get a star after the label.",
       "props": {
         "type": "Input type. Only text, email, search and url are allowed; anything else falls back to text.",
         "prependElement": "Shown before the input, usually an icon.",
-        "appendElement": "Shown after the input, usually an icon."
+        "appendElement": "Shown after the input, usually an icon.",
+        "label": "Visible label, linked to the input. Without one, pass aria-label instead.",
+        "labelPlacement": "Where the label sits: \"top\" (above the field), \"left\" (beside it) or \"border\" (on the top border, Material style).",
+        "required": "Marks the field as required: adds the required attribute and a star after the label."
       },
       "story": {
         "placeholder": "Placeholder",
-        "ariaLabel": "Text input"
+        "ariaLabel": "Text input",
+        "label": "Email"
       },
       "cssVariables": {
-        "--text-input-gap": "Space between icons and text"
+        "--text-input-gap": "Space between icons and text",
+        "--text-input-label-gap": "Space between the label and the field (top and left placements)",
+        "--text-input-label-overlap": "Room above the field for a border label",
+        "--text-input-label-inset": "Border label distance from the field's left edge",
+        "--text-input-label-surface": "Background behind a border label: match it to the page or container",
+        "--text-input-label-text": "Border label color",
+        "--text-input-required": "Required star color",
+        "--text-input-label-width": "Width of a left label. Set the same width on a form's fields so they line up."
       }
     },
     "Toast": {
@@ -738,7 +826,14 @@
         "unit-text": "Unit color",
         "zoom-scale": "How far the image zooms on hover",
         "zoom-duration": "Length of the zoom animation",
-        "close-size": "Close button size"
+        "close-size": "Close button size",
+        "hover-shadow": "Box shadow on hover",
+        "avatar-size": "Avatar size",
+        "avatar-font-size": "Avatar initials size",
+        "bio-text": "Bio text color",
+        "badge-inset": "Badge distance from the image's corner",
+        "details-font-size": "Details font size",
+        "details-text": "Details text color"
       },
       "parts": {
         "menu-content": "Menu (shared with DropdownMenu, ContextMenu, Menubar and Select)",
@@ -753,7 +848,8 @@
         "toggle": "Toggle (shared with Toggle, ToggleGroup and Toolbar)",
         "container": "Container (shared with Container, FlexContainer and GridContainer)",
         "avatar-badge": "AvatarBadge",
-        "image-dialog": "Pop-out dialog"
+        "image-dialog": "Pop-out dialog",
+        "text-input-field": "Label"
       }
     }
   }

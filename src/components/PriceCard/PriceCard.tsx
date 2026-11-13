@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { tw } from "../../utils";
+import { hasContent, tw } from "../../utils";
 import { Badge, type BadgeProps } from "../Badge";
 import { Button, type ButtonProps } from "../Button";
 import {
@@ -36,7 +36,7 @@ export function PriceCard({
     <Card data-price-card className={tw("w-full", className)} {...props}>
       <CardHeader className="flex items-start justify-between gap-3">
         <h3>{title}</h3>
-        {badge != null && (
+        {hasContent(badge) && (
           <Badge variant="soft" {...badgeProps}>
             {badge}
           </Badge>
@@ -46,7 +46,7 @@ export function PriceCard({
         <span className="text-(length:--_price-font-size) leading-none font-(--_price-font-weight) tracking-tight text-(--_price-text)">
           {price}
         </span>
-        {unit != null && (
+        {hasContent(unit) && (
           <span className="text-(length:--_unit-font-size) text-(--_unit-text)">
             /{unit}
           </span>

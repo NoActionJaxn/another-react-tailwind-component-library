@@ -1,7 +1,7 @@
 import { CheckIcon, CopyIcon } from "@radix-ui/react-icons";
 import { useRef, type HTMLAttributes } from "react";
 import { schemeVars, tw, type ColorScheme } from "../../utils";
-import { Button } from "../Button";
+import { IconButton } from "../IconButton";
 import { useCopy } from "../Code/useCopy";
 
 export type CodeBlockVariant = "solid" | "soft" | "outline";
@@ -57,15 +57,15 @@ export function CodeBlock({
         <code ref={ref}>{children}</code>
       </pre>
       {copyable && (
-        <Button
+        <IconButton
           variant="ghost"
           size="sm"
           aria-label={copied ? copiedLabel : copyLabel}
           onClick={() => copy(ref.current?.textContent ?? "")}
-          className="absolute end-2 top-2 px-1.5"
+          className="absolute end-1.5 top-1.5"
         >
           {copied ? <CheckIcon aria-hidden /> : <CopyIcon aria-hidden />}
-        </Button>
+        </IconButton>
       )}
     </div>
   );

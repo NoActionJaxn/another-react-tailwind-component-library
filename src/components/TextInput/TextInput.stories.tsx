@@ -35,12 +35,28 @@ const meta = {
     block: false,
     prependElement: "none",
     appendElement: "none",
-    "aria-label": m.components.TextInput.story.ariaLabel,
+    label: m.components.TextInput.story.label,
+    labelPlacement: "top",
+    required: false,
   },
   argTypes: docsArgTypes(
     "TextInput",
-    ["variant", "size", "colorScheme", "disabled", "block"],
+    [
+      "variant",
+      "size",
+      "colorScheme",
+      "disabled",
+      "block",
+      { "aria-label": "ariaLabel" },
+    ],
     {
+      label: { control: "text" },
+      labelPlacement: {
+        control: "inline-radio",
+        options: ["top", "left", "border"],
+        table: { defaultValue: { summary: "top" } },
+      },
+      required: { table: { defaultValue: { summary: "false" } } },
       type: {
         control: "inline-radio",
         options: ["text", "email", "search", "url"],

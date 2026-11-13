@@ -9,6 +9,5 @@ export type {
   CardImageProps,
   CardProps,
   CardSectionProps,
-  CardSize,
   CardVariant,
 } from "./Card";

@@ -1,0 +1,30 @@
+/* Builds on Card: its --_* vars apply too. */
+@layer components {
+  [data-action-card] {
+    --_hover-shadow: var(--action-card-hover-shadow, var(--shadow-lg));
+    --_focus-color: var(--action-card-focus-color, var(--scheme-400));
+    --_focus-width: var(--action-card-focus-width, 4px);
+    --_focus-offset: var(--action-card-focus-offset, 0px);
+  }
+
+  [data-action-card][data-variant="outline"] {
+    --_bg-hover: var(--action-card-outline-bg-hover, white);
+    --_border-hover: var(--action-card-outline-border-hover, var(--scheme-400));
+  }
+
+  [data-action-card][data-variant="soft"] {
+    --_bg-hover: var(--action-card-soft-bg-hover, var(--scheme-200));
+    --_border-hover: var(--action-card-soft-border-hover, transparent);
+  }
+
+  [data-action-card][data-variant="ghost"] {
+    --_bg-hover: var(--action-card-ghost-bg-hover, var(--scheme-100));
+    --_border-hover: var(--action-card-ghost-border-hover, transparent);
+    --_hover-shadow: var(--action-card-ghost-hover-shadow, none);
+  }
+
+  /* The image zooms while the whole card is hovered or focused, not only the image. */
+  [data-action-card]:is(:hover, :focus) [data-image] > img {
+    scale: var(--_zoom-scale);
+  }
+}
