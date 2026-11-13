@@ -5,11 +5,13 @@ import { schemeVars, tw, type ColorScheme } from "../../utils";
 export interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
   colorScheme?: ColorScheme;
   asChild?: boolean;
+  block?: boolean;
 }
 
 export function Container({
   colorScheme,
   asChild = false,
+  block = false,
   className,
   style,
   ...props
@@ -21,6 +23,7 @@ export function Container({
       style={colorScheme ? { ...schemeVars(colorScheme), ...style } : style}
       className={tw(
         "mx-auto w-full max-w-(--_max-width) px-(--_padding-x)",
+        block && "max-w-none",
         className,
       )}
       {...props}

@@ -23,11 +23,13 @@ const meta = {
   parameters: docsParameters("Hero", { layout: "fullscreen" }),
   args: {
     full: false,
+    block: false,
     variant: "ghost",
     colorScheme: "default",
   },
-  argTypes: docsArgTypes("Hero", ["variant", "colorScheme"], {
+  argTypes: docsArgTypes("Hero", ["variant", "colorScheme", "block"], {
     full: { table: { defaultValue: { summary: "false" } } },
+    block: { table: { defaultValue: { summary: "false" } } },
     variant: {
       control: "inline-radio",
       options: ["soft", "ghost"],

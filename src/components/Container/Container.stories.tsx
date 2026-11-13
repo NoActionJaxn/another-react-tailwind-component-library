@@ -9,10 +9,11 @@ const meta = {
   args: {
     colorScheme: "default",
     asChild: false,
+    block: false,
   },
   argTypes: docsArgTypes(
     "Container",
-    ["colorScheme", { asChild: "layoutAsChild" }],
+    ["colorScheme", { asChild: "layoutAsChild" }, "block"],
     {
       colorScheme: {
         // "brand" is defined in playground/playground.css
@@ -21,6 +22,7 @@ const meta = {
         table: { defaultValue: { summary: m.common.defaults.inherited } },
       },
       asChild: { table: { defaultValue: { summary: "false" } } },
+      block: { table: { defaultValue: { summary: "false" } } },
     },
   ),
   render: (args) => (

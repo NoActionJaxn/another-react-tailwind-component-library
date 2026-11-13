@@ -17,10 +17,11 @@ const meta = {
     columns: 3,
     gap: "md",
     asChild: false,
+    block: false,
   },
   argTypes: docsArgTypes(
     "FlexContainer",
-    ["colorScheme", "gap", { asChild: "layoutAsChild" }],
+    ["colorScheme", "gap", { asChild: "layoutAsChild" }, "block"],
     {
       direction: {
         control: "inline-radio",
@@ -55,6 +56,7 @@ const meta = {
         table: { defaultValue: { summary: "none" } },
       },
       asChild: { table: { defaultValue: { summary: "false" } } },
+      block: { table: { defaultValue: { summary: "false" } } },
       colorScheme: {
         // "brand" is defined in playground/playground.css
         control: "inline-radio",

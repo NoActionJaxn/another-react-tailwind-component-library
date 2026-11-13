@@ -7,12 +7,14 @@ import { Image, type ImageProps } from "../Image";
 export type HeroVariant = "soft" | "ghost";
 export interface HeroProps extends HTMLAttributes<HTMLElement> {
   full?: boolean;
+  block?: boolean;
   variant?: HeroVariant;
   colorScheme?: ColorScheme;
 }
 
 export function Hero({
   full = false,
+  block = false,
   variant = "ghost",
   colorScheme,
   className,
@@ -33,6 +35,7 @@ export function Hero({
       {...props}
     >
       <Container
+        block={block}
         className={tw(
           "grid items-center gap-(--_gap)",
           full ? "justify-items-center text-center" : "md:grid-cols-2",

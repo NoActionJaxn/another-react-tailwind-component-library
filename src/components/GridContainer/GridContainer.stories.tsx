@@ -15,10 +15,11 @@ const meta = {
     flow: "row",
     gap: "md",
     asChild: false,
+    block: false,
   },
   argTypes: docsArgTypes(
     "GridContainer",
-    ["colorScheme", "gap", { asChild: "layoutAsChild" }],
+    ["colorScheme", "gap", { asChild: "layoutAsChild" }, "block"],
     {
       columns: { control: "number" },
       minColumnWidth: {
@@ -47,6 +48,7 @@ const meta = {
         table: { defaultValue: { summary: "none" } },
       },
       asChild: { table: { defaultValue: { summary: "false" } } },
+      block: { table: { defaultValue: { summary: "false" } } },
       colorScheme: {
         // "brand" is defined in playground/playground.css
         control: "inline-radio",
