@@ -16,7 +16,8 @@ const locales = import.meta.glob<DeepPartial<Messages>>("./locales/*.json", {
 export const locale: string = import.meta.env.STORYBOOK_LOCALE ?? "en";
 
 function merge<T>(base: T, override: unknown): T {
-  if (typeof base !== "object" || base === null) {
+  // Arrays (e.g. a list of story quotes) are replaced whole, not merged by index.
+  if (typeof base !== "object" || base === null || Array.isArray(base)) {
     return (override ?? base) as T;
   }
   const result = { ...(base as Record<string, unknown>) };

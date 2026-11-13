@@ -1,0 +1,28 @@
+/* --_* vars resolve on the carousel and are inherited by its items. */
+@layer components {
+  [data-accolades] {
+    --_gap: var(--accolades-gap, calc(var(--spacing) * 4));
+    --_controls-gap: var(--accolades-controls-gap, calc(var(--spacing) * 2));
+    --_item-basis: var(--accolades-item-basis, 100%);
+    --_item-gap: var(--accolades-item-gap, calc(var(--spacing) * 4));
+    --_item-padding: var(--accolades-item-padding, calc(var(--spacing) * 6));
+    --_item-radius: var(--accolades-item-radius, var(--radius-lg));
+    --_item-bg: var(--accolades-item-bg, white);
+    --_image-height: var(--accolades-image-height, calc(var(--spacing) * 16));
+    --_quote-font-size: var(--accolades-quote-font-size, var(--text-sm));
+    --_quote-text: var(--accolades-quote-text, var(--scheme-800));
+    --_link-font-size: var(--accolades-link-font-size, var(--text-sm));
+  }
+
+  @media (width >= --theme(--breakpoint-md)) {
+    [data-accolades] {
+      --_item-basis: var(--accolades-md-item-basis, 50%);
+    }
+  }
+
+  @media (width >= --theme(--breakpoint-lg)) {
+    [data-accolades] {
+      --_item-basis: var(--accolades-lg-item-basis, calc(100% / 3));
+    }
+  }
+}

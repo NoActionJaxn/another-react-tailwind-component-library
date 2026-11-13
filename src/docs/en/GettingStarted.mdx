@@ -23,6 +23,23 @@ npm install another-react-tailwind-component-library
 React, React DOM and Tailwind are peer dependencies: the library uses the
 versions your app already has.
 
+### Optional dependencies
+
+Accolades uses [Embla Carousel](https://www.embla-carousel.com/). It's an
+optional peer dependency, so install it only if you use Accolades, and import
+Accolades from its own entry point. The main entry never loads Embla.
+
+```sh
+npm install embla-carousel-react embla-carousel-autoplay
+```
+
+```tsx
+import {
+  Accolades,
+  AccoladesItem,
+} from "another-react-tailwind-component-library/accolades";
+```
+
 ## Add the CSS
 
 The library's stylesheet includes Tailwind itself, so it replaces

@@ -68,6 +68,8 @@
     "@vitest/browser-playwright": "^5.1.0",
     "@vitest/coverage-v8": "^5.1.0",
     "babel-plugin-react-compiler": "^1.0.0",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-hooks": "^7.1.1",
@@ -87,8 +89,18 @@
     "vitest": "^5.1.0"
   },
   "peerDependencies": {
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^4.1.0"
+  },
+  "peerDependenciesMeta": {
+    "embla-carousel-react": {
+      "optional": true
+    },
+    "embla-carousel-autoplay": {
+      "optional": true
+    }
   }
 }

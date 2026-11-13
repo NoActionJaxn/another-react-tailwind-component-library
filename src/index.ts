@@ -4,6 +4,7 @@ export * from "./components/Anchor";
 export * from "./components/AnimatedContainer";
 export * from "./components/AspectRatio";
 export * from "./components/Avatar";
+export * from "./components/Badge";
 export * from "./components/Button";
 export * from "./components/Card";
 export * from "./components/Checkbox";

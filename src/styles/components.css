@@ -1,9 +1,11 @@
 @import "../components/_menu/menu.css";
 @import "../components/_dialog/dialog.css";
+@import "../components/Accolades/Accolades.css";
 @import "../components/Accordion/Accordion.css";
 @import "../components/Anchor/Anchor.css";
 @import "../components/AnimatedContainer/AnimatedContainer.css";
 @import "../components/Avatar/Avatar.css";
+@import "../components/Badge/Badge.css";
 @import "../components/Button/Button.css";
 @import "../components/Card/Card.css";
 @import "../components/Checkbox/Checkbox.css";

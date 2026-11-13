@@ -9,13 +9,56 @@
 
   [data-avatar][data-size="sm"] {
     --_size: var(--avatar-sm-size, calc(var(--spacing) * 8));
+    --_badge-dot-size: var(
+      --avatar-sm-badge-dot-size,
+      calc(var(--spacing) * 2)
+    );
   }
 
   [data-avatar][data-size="md"] {
     --_size: var(--avatar-md-size, calc(var(--spacing) * 10));
+    --_badge-dot-size: var(
+      --avatar-md-badge-dot-size,
+      calc(var(--spacing) * 2.5)
+    );
   }
 
   [data-avatar][data-size="lg"] {
     --_size: var(--avatar-lg-size, calc(var(--spacing) * 12));
+    --_badge-dot-size: var(
+      --avatar-lg-badge-dot-size,
+      calc(var(--spacing) * 3)
+    );
+  }
+
+  /* Centered on the avatar's edge: 14.6% in from the box is where a circle's edge crosses the diagonal. */
+  [data-avatar-badge] {
+    --_inset: var(--avatar-badge-inset, 14.6%);
+    --_ring: var(--avatar-badge-ring, white);
+    --_ring-width: var(--avatar-badge-ring-width, 2px);
+  }
+
+  [data-avatar-badge][data-position="top-end"] {
+    top: var(--_inset);
+    right: var(--_inset);
+    translate: 50% -50%;
+  }
+
+  [data-avatar-badge][data-position="bottom-end"] {
+    bottom: var(--_inset);
+    right: var(--_inset);
+    translate: 50% 50%;
+  }
+
+  [data-avatar-badge][data-position="top-start"] {
+    top: var(--_inset);
+    left: var(--_inset);
+    translate: -50% -50%;
+  }
+
+  [data-avatar-badge][data-position="bottom-start"] {
+    bottom: var(--_inset);
+    left: var(--_inset);
+    translate: -50% 50%;
   }
 }

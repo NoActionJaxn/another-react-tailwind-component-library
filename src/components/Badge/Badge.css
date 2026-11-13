@@ -1,0 +1,40 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-badge] {
+    --_radius: var(--badge-radius, 9999px);
+    --_font-weight: var(--badge-font-weight, var(--font-weight-medium));
+  }
+
+  [data-badge][data-size="sm"] {
+    --_padding-x: var(--badge-sm-padding-x, calc(var(--spacing) * 1.5));
+    --_padding-y: var(--badge-sm-padding-y, 0px);
+  }
+
+  [data-badge][data-size="md"] {
+    --_padding-x: var(--badge-md-padding-x, calc(var(--spacing) * 2));
+    --_padding-y: var(--badge-md-padding-y, calc(var(--spacing) * 0.5));
+  }
+
+  [data-badge][data-size="lg"] {
+    --_padding-x: var(--badge-lg-padding-x, calc(var(--spacing) * 2.5));
+    --_padding-y: var(--badge-lg-padding-y, calc(var(--spacing) * 0.5));
+  }
+
+  [data-badge][data-variant="solid"] {
+    --_bg: var(--badge-solid-bg, var(--scheme-600));
+    --_text: var(--badge-solid-text, white);
+    --_border: var(--badge-solid-border, transparent);
+  }
+
+  [data-badge][data-variant="soft"] {
+    --_bg: var(--badge-soft-bg, var(--scheme-100));
+    --_text: var(--badge-soft-text, var(--scheme-900));
+    --_border: var(--badge-soft-border, transparent);
+  }
+
+  [data-badge][data-variant="outline"] {
+    --_bg: var(--badge-outline-bg, transparent);
+    --_text: var(--badge-outline-text, var(--scheme-800));
+    --_border: var(--badge-outline-border, var(--scheme-300));
+  }
+}

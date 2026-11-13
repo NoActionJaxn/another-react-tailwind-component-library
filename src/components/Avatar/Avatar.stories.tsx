@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
-import { Avatar, AvatarFallback, AvatarImage } from "./Avatar";
+import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "./Avatar";
 
 const meta = {
   title: "Components/Avatar",
@@ -19,6 +19,7 @@ const meta = {
     <Avatar {...args}>
       <AvatarImage alt="" />
       <AvatarFallback>{m.components.Avatar.story.fallback}</AvatarFallback>
+      <AvatarBadge aria-label={m.components.Avatar.story.badge} role="status" />
     </Avatar>
   ),
 } satisfies Meta<typeof Avatar>;

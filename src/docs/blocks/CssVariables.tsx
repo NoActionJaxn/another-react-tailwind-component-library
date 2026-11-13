@@ -55,7 +55,7 @@ function parse(component: ComponentKey, css: string, shared: boolean): Group[] {
     const [, attr, keyValue] = breakpoint
       ? [undefined, "breakpoint", breakpoint]
       : (selector.match(/data-([\w-]+)="([^"]+)"/) ?? []);
-    const base = part.replace(/-(content|overlay|group)$/, "");
+    const base = part.replace(/-(content|overlay|group|badge)$/, "");
     const prefix = shared
       ? `${(vars.parts as Record<string, string>)[part] ?? part} · `
       : "";

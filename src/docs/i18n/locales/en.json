@@ -43,6 +43,28 @@
     }
   },
   "components": {
+    "Accolades": {
+      "description": "A looping carousel of accolades (logo, quote and link, each optional) that advances one item at a time and snaps into place. Pauses while hovered or focused, has a pause button, and starts paused for reduced-motion users. Shows 1, 2 or 3 items depending on the window width. Needs the optional peer dependencies embla-carousel-react and embla-carousel-autoplay; import it from \"another-react-tailwind-component-library/accolades\".",
+      "props": {
+        "delay": "Milliseconds between automatic steps.",
+        "loop": "Wrap from the last item back to the first.",
+        "slideLabel": "Accessible name for each item, from its position and the total. Defaults to \"1 of 5\".",
+        "pauseLabel": "Accessible name of the button while playing.",
+        "playLabel": "Accessible name of the button while paused."
+      },
+      "story": {
+        "label": "What customers say",
+        "link": "Read the story",
+        "logoAlt": "Company {n}",
+        "quotes": [
+          "The components dropped straight into our design system. We shipped the redesign in half the time.",
+          "Accessible by default, themeable without a fight. Exactly what we needed.",
+          "Our team stopped arguing about button styles. That alone was worth it.",
+          "Clean APIs, sensible defaults, and the CSS variables make theming painless.",
+          "We replaced three internal libraries with this one."
+        ]
+      }
+    },
     "Accordion": {
       "description": "Vertically stacked headings that each reveal a section of content.",
       "props": {
@@ -101,10 +123,25 @@
       }
     },
     "Avatar": {
-      "description": "An image of a person, with a fallback (usually initials) while it loads or if it fails.",
+      "description": "An image of a person, with a fallback (usually initials) while it loads or if it fails. Add an AvatarBadge for a status dot or a count on its edge.",
       "props": {},
       "story": {
-        "fallback": "JD"
+        "fallback": "JD",
+        "badge": "Online"
+      },
+      "cssVariables": {
+        "--avatar-badge-inset": "AvatarBadge distance in from the avatar's corner (14.6% puts it on a circle's edge; use 0% for square avatars)",
+        "--avatar-badge-ring": "Ring color around the AvatarBadge, separating it from the image",
+        "--avatar-badge-ring-width": "Ring width around the AvatarBadge"
+      }
+    },
+    "Badge": {
+      "description": "A small label for a status, category or count.",
+      "props": {
+        "asChild": "Render the child element (e.g. a link) with badge styles instead of a <span>."
+      },
+      "story": {
+        "children": "New"
       }
     },
     "Button": {
@@ -629,7 +666,16 @@
         "title-font-weight": "Title font weight",
         "title-font-size": "Title font size",
         "title-text": "Title color",
-        "min-height": "Minimum height"
+        "min-height": "Minimum height",
+        "badge-dot-size": "AvatarBadge dot size",
+        "item-basis": "Width of each item, as a share of the carousel",
+        "item-padding": "Item padding",
+        "item-bg": "Item background",
+        "image-height": "Logo height",
+        "quote-font-size": "Quote font size",
+        "quote-text": "Quote color",
+        "link-font-size": "Link font size",
+        "controls-gap": "Space between the items and the pause button"
       },
       "parts": {
         "menu-content": "Menu (shared with DropdownMenu, ContextMenu, Menubar and Select)",
@@ -642,7 +688,8 @@
         "hover-card-content": "All",
         "tooltip-content": "All",
         "toggle": "Toggle (shared with Toggle, ToggleGroup and Toolbar)",
-        "container": "Container (shared with Container, FlexContainer and GridContainer)"
+        "container": "Container (shared with Container, FlexContainer and GridContainer)",
+        "avatar-badge": "AvatarBadge"
       }
     }
   }
