@@ -10,7 +10,7 @@ import {
 } from "./NavigationMenu";
 
 const meta = {
-  title: "Components/NavigationMenu",
+  title: "Navigation/NavigationMenu",
   component: NavigationMenu,
   parameters: docsParameters("NavigationMenu", { layout: "padded" }),
   args: { colorScheme: "default" },

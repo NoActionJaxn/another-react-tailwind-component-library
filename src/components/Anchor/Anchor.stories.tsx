@@ -3,7 +3,7 @@ import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Anchor } from "./Anchor";
 
 const meta = {
-  title: "Components/Anchor",
+  title: "Navigation/Anchor",
   component: Anchor,
   parameters: docsParameters("Anchor", { layout: "centered" }),
   args: {

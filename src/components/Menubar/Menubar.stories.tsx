@@ -18,7 +18,7 @@ import {
 } from "./Menubar";
 
 const meta = {
-  title: "Components/Menubar",
+  title: "Navigation/Menubar",
   component: Menubar,
   parameters: docsParameters("Menubar", { layout: "centered" }),
   args: { colorScheme: "default" },

@@ -4,7 +4,7 @@ import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Code } from "./Code";
 
 const meta = {
-  title: "Components/Code",
+  title: "Typography/Code",
   component: Code,
   parameters: docsParameters("Code", { layout: "centered" }),
   args: {

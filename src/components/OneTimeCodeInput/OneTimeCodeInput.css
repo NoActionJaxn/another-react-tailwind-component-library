@@ -1,0 +1,16 @@
+/* Each cell is styled by TextInput: its --text-input-* variables apply too. */
+@layer components {
+  [data-one-time-code-input] {
+    --_cell-width: var(--one-time-code-input-cell-width, 2.5em);
+    --_cell-gap: var(--one-time-code-input-cell-gap, calc(var(--spacing) * 2));
+  }
+
+  [data-one-time-code-input-field] {
+    --_label-gap: var(
+      --one-time-code-input-label-gap,
+      calc(var(--spacing) * 1.5)
+    );
+    --_label-width: var(--one-time-code-input-label-width, auto);
+    --_required: var(--one-time-code-input-required, var(--color-red-600));
+  }
+}

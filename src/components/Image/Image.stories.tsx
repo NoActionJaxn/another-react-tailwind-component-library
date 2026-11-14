@@ -8,7 +8,7 @@ const src = `data:image/svg+xml,${encodeURIComponent(
 )}`;
 
 const meta = {
-  title: "Components/Image",
+  title: "Data Display/Image",
   component: Image,
   parameters: docsParameters("Image", { layout: "centered" }),
   args: {

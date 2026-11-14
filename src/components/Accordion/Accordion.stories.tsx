@@ -8,7 +8,7 @@ import {
 } from "./Accordion";
 
 const meta = {
-  title: "Components/Accordion",
+  title: "Data Display/Accordion",
   component: Accordion,
   parameters: docsParameters("Accordion", { layout: "centered" }),
   args: { type: "single", collapsible: true, colorScheme: "default" },

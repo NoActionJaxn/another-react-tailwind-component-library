@@ -3,7 +3,7 @@ import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Progress } from "./Progress";
 
 const meta = {
-  title: "Components/Progress",
+  title: "Data Display/Progress",
   component: Progress,
   parameters: docsParameters("Progress", { layout: "centered" }),
   args: {

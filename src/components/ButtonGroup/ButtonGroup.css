@@ -1,0 +1,9 @@
+@layer components {
+  [data-button-group] {
+    --_overlap: var(--button-group-overlap, 1px);
+    --_divider: var(
+      --button-group-divider,
+      color-mix(in oklab, currentColor 30%, transparent)
+    );
+  }
+}

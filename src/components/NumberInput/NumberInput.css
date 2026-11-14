@@ -1,0 +1,13 @@
+/* Builds on TextInput: its --text-input-* variables apply too. */
+@layer components {
+  [data-number-input] {
+    --_stepper-width: var(--number-input-stepper-width, 1.25em);
+    --_stepper-height: var(--number-input-stepper-height, 1.5em);
+    --_stepper-icon-size: var(--number-input-stepper-icon-size, 0.875em);
+    --_stepper-inset: var(--number-input-stepper-inset, 0.375em);
+    --_stepper-bg-hover: var(
+      --number-input-stepper-bg-hover,
+      var(--scheme-100)
+    );
+  }
+}

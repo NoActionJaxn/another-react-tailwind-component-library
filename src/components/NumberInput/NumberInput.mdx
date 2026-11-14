@@ -1,0 +1,9 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ComponentDocs } from "../../docs/blocks/ComponentDocs";
+import * as Stories from "./NumberInput.stories";
+import css from "./NumberInput.css?raw";
+import shared0 from "../TextInput/TextInput.css?raw";
+
+<Meta of={Stories} />
+
+<ComponentDocs component="NumberInput" css={[css]} sharedCss={[shared0]} />

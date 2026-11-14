@@ -4,7 +4,7 @@ import { Separator } from "../Separator";
 import { ScrollArea } from "./ScrollArea";
 
 const meta = {
-  title: "Components/ScrollArea",
+  title: "Containers/ScrollArea",
   component: ScrollArea,
   parameters: docsParameters("ScrollArea", { layout: "centered" }),
   args: { colorScheme: "default" },

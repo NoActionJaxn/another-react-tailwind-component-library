@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback } from "../Avatar";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./HoverCard";
 
 const meta = {
-  title: "Components/HoverCard",
+  title: "Overlays/HoverCard",
   component: HoverCard,
   parameters: docsParameters("HoverCard", { layout: "centered" }),
   args: {},

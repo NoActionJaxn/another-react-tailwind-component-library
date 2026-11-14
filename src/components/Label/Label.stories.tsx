@@ -4,7 +4,7 @@ import { TextInput } from "../TextInput";
 import { Label } from "./Label";
 
 const meta = {
-  title: "Components/Label",
+  title: "Forms/Label",
   component: Label,
   parameters: docsParameters("Label", { layout: "centered" }),
   args: {

@@ -3,7 +3,7 @@ import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Badge } from "./Badge";
 
 const meta = {
-  title: "Components/Badge",
+  title: "Data Display/Badge",
   component: Badge,
   parameters: docsParameters("Badge", { layout: "centered" }),
   args: {

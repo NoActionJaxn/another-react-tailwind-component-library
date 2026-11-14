@@ -3,7 +3,7 @@ import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Separator } from "./Separator";
 
 const meta = {
-  title: "Components/Separator",
+  title: "Containers/Separator",
   component: Separator,
   parameters: docsParameters("Separator", { layout: "centered" }),
   args: { decorative: true, orientation: "horizontal", colorScheme: "default" },

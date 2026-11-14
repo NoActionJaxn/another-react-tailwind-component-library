@@ -4,7 +4,7 @@ import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { CodeBlock } from "./CodeBlock";
 
 const meta = {
-  title: "Components/CodeBlock",
+  title: "Typography/CodeBlock",
   component: CodeBlock,
   parameters: docsParameters("CodeBlock", { layout: "padded" }),
   args: {

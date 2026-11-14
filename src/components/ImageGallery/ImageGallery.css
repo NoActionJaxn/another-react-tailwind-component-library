@@ -1,0 +1,42 @@
+/* --_* vars resolve on the gallery and are inherited by its thumbnails. */
+@layer components {
+  [data-image-gallery] {
+    --_gap: var(--image-gallery-gap, calc(var(--spacing) * 3));
+    --_radius: var(--image-gallery-radius, var(--radius-md));
+    --_min-column-width: var(
+      --image-gallery-min-column-width,
+      calc(var(--spacing) * 40)
+    );
+    --_play-size: var(--image-gallery-play-size, calc(var(--spacing) * 10));
+    --_play-bg: var(--image-gallery-play-bg, white);
+    --_play-text: var(--image-gallery-play-text, var(--scheme-900));
+    --_focus-color: var(--image-gallery-focus-color, var(--scheme-400));
+    --_focus-width: var(--image-gallery-focus-width, 4px);
+    --_focus-offset: var(--image-gallery-focus-offset, 0px);
+    /* Up to `columns` thumbnails per row; fewer when one would drop below the minimum. */
+    --_column-share: calc(
+      (100% - (var(--_columns) - 1) * var(--_gap)) / var(--_columns)
+    );
+    --_responsive-columns: repeat(
+      auto-fill,
+      minmax(
+        min(100%, max(var(--_min-column-width), var(--_column-share))),
+        1fr
+      )
+    );
+  }
+
+  /* The lightbox has no panel: the media, then the controls, on the overlay. */
+  [data-image-gallery-dialog] {
+    --dialog-bg: transparent;
+    --dialog-border: transparent;
+    --dialog-shadow: none;
+    --dialog-padding: 0px;
+    --dialog-max-width: none;
+    --_close-size: var(
+      --image-gallery-dialog-close-size,
+      calc(var(--spacing) * 8)
+    );
+    --_counter-text: var(--image-gallery-dialog-counter-text, white);
+  }
+}

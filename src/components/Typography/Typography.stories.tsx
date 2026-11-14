@@ -3,7 +3,7 @@ import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Typography } from "./Typography";
 
 const meta = {
-  title: "Components/Typography",
+  title: "Typography/Typography",
   component: Typography,
   parameters: docsParameters("Typography", { layout: "centered" }),
   args: {

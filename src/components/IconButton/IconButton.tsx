@@ -9,7 +9,7 @@ export interface IconButtonProps extends Omit<ButtonProps, "block"> {
 
 /** A square Button for a single icon; same variants, sizes and states as Button. */
 export function IconButton({
-  size = "md",
+  size,
   round = false,
   className,
   ...props

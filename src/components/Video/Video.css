@@ -1,0 +1,35 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-video] {
+    --_radius: var(--video-radius, var(--radius-md));
+    --_bg: var(--video-bg, var(--scheme-100));
+    --_icon: var(--video-icon, var(--scheme-500));
+    --_icon-size: var(--video-icon-size, calc(var(--spacing) * 6));
+    --_zoom-scale: var(--video-zoom-scale, 1.1);
+    --_zoom-duration: var(--video-zoom-duration, 300ms);
+    --_play-size: var(--video-play-size, calc(var(--spacing) * 14));
+    --_play-bg: var(--video-play-bg, white);
+    --_play-text: var(--video-play-text, var(--scheme-900));
+    --_focus-color: var(--video-focus-color, var(--scheme-400));
+    --_focus-width: var(--video-focus-width, 4px);
+    --_focus-offset: var(--video-focus-offset, 0px);
+  }
+
+  [data-video][data-variant="ghost"] {
+    --_border: var(--video-ghost-border, transparent);
+  }
+
+  [data-video][data-variant="outline"] {
+    --_border: var(--video-outline-border, var(--scheme-300));
+  }
+
+  /* The pop-out has no panel: just the video on the overlay. */
+  [data-video-dialog] {
+    --dialog-bg: transparent;
+    --dialog-border: transparent;
+    --dialog-shadow: none;
+    --dialog-padding: 0px;
+    --dialog-max-width: none;
+    --_close-size: var(--video-dialog-close-size, calc(var(--spacing) * 8));
+  }
+}

@@ -4,7 +4,7 @@ import {
   ChevronUpIcon,
 } from "@radix-ui/react-icons";
 import * as SelectPrimitive from "@radix-ui/react-select";
-import type { ComponentProps } from "react";
+import { useContext, type ComponentProps } from "react";
 import { schemeStyle, tw, type ColorScheme } from "../../utils";
 import {
   menuContent,
@@ -13,6 +13,7 @@ import {
   menuLabel,
   menuSeparator,
 } from "../_menu/classes";
+import { InputGroupContext } from "../InputGroup/context";
 
 export const Select = SelectPrimitive.Root;
 export const SelectGroup = SelectPrimitive.Group;
@@ -37,12 +38,14 @@ const sizes = {
 export function SelectTrigger({
   variant = "outline",
   colorScheme,
-  size = "md",
+  size: sizeProp,
   className,
   style,
   children,
   ...props
 }: SelectTriggerProps) {
+  const group = useContext(InputGroupContext);
+  const size = sizeProp ?? group?.size ?? "md";
   return (
     <SelectPrimitive.Trigger
       data-select

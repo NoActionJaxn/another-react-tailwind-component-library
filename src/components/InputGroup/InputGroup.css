@@ -1,0 +1,5 @@
+@layer components {
+  [data-input-group] {
+    --_overlap: var(--input-group-overlap, 1px);
+  }
+}

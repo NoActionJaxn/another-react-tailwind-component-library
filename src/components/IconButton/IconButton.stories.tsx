@@ -5,7 +5,7 @@ import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { IconButton } from "./IconButton";
 
 const meta = {
-  title: "Components/IconButton",
+  title: "Actions/IconButton",
   component: IconButton,
   parameters: docsParameters("IconButton", { layout: "centered" }),
   args: {

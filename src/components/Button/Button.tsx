@@ -1,6 +1,7 @@
 import { Slot } from "@radix-ui/react-slot";
-import type { ButtonHTMLAttributes } from "react";
+import { useContext, type ButtonHTMLAttributes } from "react";
 import { schemeVars, tw, type ColorScheme } from "../../utils";
+import { ButtonGroupContext } from "./context";
 
 export type ButtonVariant = "solid" | "soft" | "outline" | "ghost";
 export type ButtonSize = "sm" | "md" | "lg";
@@ -19,9 +20,9 @@ const sizes = {
 };
 
 export function Button({
-  variant = "solid",
+  variant: variantProp,
   colorScheme,
-  size = "md",
+  size: sizeProp,
   asChild = false,
   block = false,
   type,
@@ -32,6 +33,10 @@ export function Button({
   style,
   ...props
 }: ButtonProps) {
+  // Inside a ButtonGroup, the group's variant and size are the defaults.
+  const group = useContext(ButtonGroupContext);
+  const variant = variantProp ?? group?.variant ?? "solid";
+  const size = sizeProp ?? group?.size ?? "md";
   const Comp = asChild ? Slot : "button";
   // Links etc. can't be `disabled`: use aria-disabled and block clicks/focus instead.
   const childDisabled = asChild && disabled;

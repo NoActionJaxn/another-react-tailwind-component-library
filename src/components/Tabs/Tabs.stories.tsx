@@ -3,7 +3,7 @@ import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./Tabs";
 
 const meta = {
-  title: "Components/Tabs",
+  title: "Navigation/Tabs",
   component: Tabs,
   parameters: docsParameters("Tabs", { layout: "centered" }),
   args: {

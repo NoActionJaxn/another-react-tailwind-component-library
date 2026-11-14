@@ -40,6 +40,17 @@ import {
 } from "another-react-tailwind-component-library/accolades";
 ```
 
+PhoneInput uses [libphonenumber-js](https://gitlab.com/catamphetamine/libphonenumber-js)
+to format numbers as they're typed. It's optional in the same way:
+
+```sh
+npm install libphonenumber-js
+```
+
+```tsx
+import { PhoneInput } from "another-react-tailwind-component-library/phone-input";
+```
+
 ## Add the CSS
 
 The library's stylesheet includes Tailwind itself, so it replaces
@@ -125,5 +136,6 @@ and Roboto Mono. Use them in your own markup as usual, or redefine
 
 - [Theming](?path=/docs/theming--docs): replace the default colors, add your own
   color schemes and override per-component variables.
-- The **Components** section: every component, with live controls, its props
-  and its CSS variables.
+- The sidebar sections (Actions, Forms, Navigation, Data Display, Typography,
+  Overlays, Dialogs, Containers, Cards and Blocks): every component, with live
+  controls, its props and its CSS variables.

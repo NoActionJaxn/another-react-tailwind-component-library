@@ -12,7 +12,7 @@ import {
 } from "./Select";
 
 const meta = {
-  title: "Components/Select",
+  title: "Forms/Select",
   component: SelectTrigger,
   parameters: docsParameters("Select", { layout: "centered" }),
   args: {

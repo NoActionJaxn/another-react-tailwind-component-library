@@ -14,7 +14,7 @@ import {
 } from "./Toast";
 
 const meta = {
-  title: "Components/Toast",
+  title: "Overlays/Toast",
   component: Toast,
   parameters: docsParameters("Toast", { layout: "centered" }),
   args: { colorScheme: "default" },

@@ -3,7 +3,7 @@ import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Slider } from "./Slider";
 
 const meta = {
-  title: "Components/Slider",
+  title: "Forms/Slider",
   component: Slider,
   parameters: docsParameters("Slider", { layout: "centered" }),
   args: {

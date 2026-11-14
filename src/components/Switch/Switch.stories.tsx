@@ -3,7 +3,7 @@ import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Switch } from "./Switch";
 
 const meta = {
-  title: "Components/Switch",
+  title: "Forms/Switch",
   component: Switch,
   parameters: docsParameters("Switch", { layout: "centered" }),
   args: {

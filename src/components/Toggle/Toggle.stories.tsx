@@ -4,7 +4,7 @@ import { FontBoldIcon } from "@radix-ui/react-icons";
 import { Toggle } from "./Toggle";
 
 const meta = {
-  title: "Components/Toggle",
+  title: "Actions/Toggle",
   component: Toggle,
   parameters: docsParameters("Toggle", { layout: "centered" }),
   args: {

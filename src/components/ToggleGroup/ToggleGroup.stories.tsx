@@ -8,7 +8,7 @@ import {
 import { ToggleGroup, ToggleGroupItem } from "./ToggleGroup";
 
 const meta = {
-  title: "Components/ToggleGroup",
+  title: "Actions/ToggleGroup",
   component: ToggleGroup,
   parameters: docsParameters("ToggleGroup", { layout: "centered" }),
   args: {

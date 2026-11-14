@@ -1,0 +1,8 @@
+/* The field itself is a TextInput inside an InputGroup: their variables apply too. */
+@layer components {
+  [data-phone-input-field] {
+    --_label-gap: var(--phone-input-label-gap, calc(var(--spacing) * 1.5));
+    --_label-width: var(--phone-input-label-width, auto);
+    --_required: var(--phone-input-required, var(--color-red-600));
+  }
+}

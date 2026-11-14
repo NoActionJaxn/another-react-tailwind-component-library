@@ -3,7 +3,7 @@ import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { AspectRatio } from "./AspectRatio";
 
 const meta = {
-  title: "Components/AspectRatio",
+  title: "Containers/AspectRatio",
   component: AspectRatio,
   parameters: docsParameters("AspectRatio", { layout: "centered" }),
   args: { ratio: 16 / 9 },

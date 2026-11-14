@@ -22,7 +22,7 @@ const iconControl = {
 } as const;
 
 const meta = {
-  title: "Components/TextInput",
+  title: "Forms/TextInput",
   component: TextInput,
   parameters: docsParameters("TextInput", { layout: "centered" }),
   args: {

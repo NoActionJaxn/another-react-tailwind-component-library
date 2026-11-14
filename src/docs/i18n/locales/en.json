@@ -186,6 +186,22 @@
         "children": "Button"
       }
     },
+    "ButtonGroup": {
+      "description": "Joins related buttons (Button or IconButton) into one control, side by side or stacked. Only the outer corners are rounded, and the group's variant and size apply to every button unless a button sets its own.",
+      "props": {
+        "variant": "Variant for every button in the group. A button's own variant wins.",
+        "size": "Size for every button in the group. A button's own size wins.",
+        "orientation": "Lay the buttons out side by side (horizontal) or stacked (vertical)."
+      },
+      "story": {
+        "label": "Date range",
+        "buttons": ["Day", "Week", "Month"]
+      },
+      "cssVariables": {
+        "--button-group-overlap": "How far neighbouring buttons overlap, so outline borders don't double",
+        "--button-group-divider": "Line between solid and soft buttons"
+      }
+    },
     "Card": {
       "description": "A container for one subject, with an optional cover image, header, description and footer. Compose only the sections you need; spacing adjusts to what's there.",
       "props": {
@@ -372,6 +388,51 @@
         "alt": "Mountains under a blue sky"
       }
     },
+    "ImageGallery": {
+      "description": "A grid of image and video thumbnails. Clicking one opens a lightbox showing it full size, with previous and next buttons, a counter and the arrow keys to step through the gallery (wrapping at the ends). Videos play with controls. The grid drops columns as space runs out, like GridContainer.",
+      "props": {
+        "items": "The images and videos, in order: `{ src, alt, thumbnail? }` for an image, `{ type: \"video\", src, label, poster? }` for a video.",
+        "columns": "Most thumbnails per row; fewer when they'd get narrower than minColumnWidth.",
+        "minColumnWidth": "Narrowest a thumbnail may get before the grid uses fewer columns (any CSS length).",
+        "aspectRatio": "Thumbnail aspect ratio, e.g. \"4 / 3\" or 1. The lightbox shows each item at its own shape.",
+        "zoomOnHover": "Zoom thumbnails inside their frame on hover.",
+        "closeLabel": "Accessible name of the lightbox's close button.",
+        "previousLabel": "Accessible name of the lightbox's previous button.",
+        "nextLabel": "Accessible name of the lightbox's next button."
+      },
+      "story": {
+        "alts": [
+          "Green hills under a blue sky",
+          "Hills at sunset",
+          "Hills at night",
+          "Spring meadow",
+          "Pink sky over hills"
+        ],
+        "videoLabel": "Test pattern animation"
+      }
+    },
+    "InputGroup": {
+      "description": "Joins inputs and buttons side by side into one control: TextInput, NumberInput, SelectTrigger, Button and IconButton. Only the outer corners are rounded, borders don't double up, and the group's size applies to every control unless it sets its own. Text inputs stretch to fill the row; number inputs, selects and buttons keep their width (set a NumberInput's width with className). Label the group (aria-label) or each control rather than using built-in labels inside it.",
+      "props": {
+        "size": "Size for every control in the group. A control's own size wins.",
+        "block": "Fill the full width of the parent."
+      },
+      "story": {
+        "label": "Search products",
+        "categoryLabel": "Category",
+        "categories": {
+          "all": "All",
+          "books": "Books",
+          "music": "Music"
+        },
+        "searchLabel": "Search",
+        "searchPlaceholder": "Search products",
+        "button": "Search"
+      },
+      "cssVariables": {
+        "--input-group-overlap": "How far neighbouring controls overlap, so borders don't double"
+      }
+    },
     "Label": {
       "description": "Text that names a form control. Clicking it focuses or toggles the control.",
       "props": {
@@ -425,6 +486,63 @@
         "analytics": "Analytics",
         "automation": "Automation",
         "pricing": "Pricing"
+      }
+    },
+    "NumberInput": {
+      "description": "A number field with up and down buttons. It has everything TextInput has: variants, sizes, icons, a built-in label (top, left or border) and the required star. The buttons and the arrow keys respect min, max and step.",
+      "props": {
+        "min": "Lowest value the buttons and arrow keys step to.",
+        "max": "Highest value the buttons and arrow keys step to.",
+        "step": "Amount each button press or arrow key changes the value by.",
+        "defaultValue": "Initial value when uncontrolled.",
+        "incrementIcon": "Icon for the increase button. Defaults to Radix ChevronUpIcon.",
+        "decrementIcon": "Icon for the decrease button. Defaults to Radix ChevronDownIcon.",
+        "incrementLabel": "Accessible name of the increase button.",
+        "decrementLabel": "Accessible name of the decrease button.",
+        "hideSteppers": "Hide the up and down buttons; the arrow keys still step.",
+        "label": "Visible label, linked to the input. Without one, pass aria-label instead.",
+        "labelPlacement": "Where the label sits: \"top\" (above the field), \"left\" (beside it) or \"border\" (on the top border, Material style).",
+        "required": "Marks the field as required: adds the required attribute and a star after the label.",
+        "prependElement": "Shown before the input, usually an icon.",
+        "appendElement": "Shown after the input and before the buttons, usually a unit or an icon."
+      },
+      "story": {
+        "label": "Guests",
+        "placeholder": "0",
+        "defaultIcon": "ChevronUpIcon / ChevronDownIcon",
+        "icons": {
+          "chevron": "Chevron (default)",
+          "plus": "Plus",
+          "minus": "Minus",
+          "arrowUp": "Arrow up",
+          "arrowDown": "Arrow down"
+        }
+      }
+    },
+    "PhoneInput": {
+      "description": "A phone number field: a calling-code select (showing \"+1\") joined to a field that formats the number as you type for the selected country, e.g. (555) 555-5555. The value it reports and submits is unformatted E.164, e.g. +15555555555. Every country formats in its own style (India 098765 43210, Japan 090-1234-5678), digits typed in other scripts (Arabic-Indic, Persian, Devanagari, full-width) are understood, and pasting an international number picks its country. Needs the optional peer dependency libphonenumber-js; import it from \"another-react-tailwind-component-library/phone-input\".",
+      "props": {
+        "value": "Phone number in E.164 format (e.g. \"+15555555555\"), when controlled.",
+        "defaultValue": "Initial phone number in E.164 format, when uncontrolled.",
+        "onValueChange": "Called with the E.164 number as the user types, or \"\" when empty.",
+        "name": "Form field name. The form submits the unformatted E.164 number under it.",
+        "countries": "Countries in the calling-code select: `{ code, dialCode, name }` objects, e.g. `{ code: \"US\", dialCode: \"+1\", name: \"United States\" }`. Replaces the default list (defaultPhoneCountries, about 50 countries from every region). Use getPhoneCountries(locale) for all ~245, with names in any language.",
+        "defaultCountry": "ISO code of the country selected at first, e.g. \"GB\". Ignored when value or defaultValue sets one.",
+        "onCountryChange": "Called with the country when the user picks another one (or pastes a number from another country).",
+        "label": "Visible label, linked to the number field.",
+        "labelPlacement": "Where the label sits: \"top\" (above) or \"left\" (beside).",
+        "required": "Marks the number as required: adds the required attribute and a star after the label.",
+        "countryLabel": "Accessible name of the calling-code select."
+      },
+      "story": {
+        "label": "Phone",
+        "placeholder": "(555) 555-5555",
+        "firstCountry": "first in countries (US)"
+      },
+      "cssVariables": {
+        "--phone-input-label-gap": "Space between the label and the field",
+        "--phone-input-label-width": "Width of a left label",
+        "--phone-input-required": "Required star color"
       }
     },
     "Popover": {
@@ -686,6 +804,78 @@
       "story": {
         "children": "The quick brown fox jumps over the lazy dog."
       }
+    },
+    "Video": {
+      "description": "A video that works like Image: a placeholder if src is missing or fails to load, optional zoom on hover, and openInDialog, which turns it into a preview with a play button that plays the video full size in a dialog.",
+      "props": {
+        "src": "Video URL.",
+        "poster": "Image shown before the video plays.",
+        "label": "Accessible name (videos have no alt text). Also names the play button and dialog.",
+        "fit": "How the video fills its box (CSS object-fit).",
+        "aspectRatio": "Box aspect ratio, e.g. \"16 / 9\". Keeps the space reserved while loading and for the fallback.",
+        "fallback": "Shown instead of the video when src is missing or fails. Defaults to Radix VideoIcon.",
+        "controls": "Show the browser's playback controls inline. Ignored with openInDialog, where the dialog shows them.",
+        "muted": "Start muted. Browsers only autoplay muted videos.",
+        "loop": "Start again from the beginning when it ends.",
+        "zoomOnHover": "Zoom the video inside its frame on hover (and keyboard focus).",
+        "openInDialog": "Show a preview with a play button; clicking it plays the video full size in a Dialog.",
+        "dialogSrc": "Video played in the dialog, e.g. a higher-quality version. Defaults to src.",
+        "openLabel": "Accessible name of the play button and dialog when there's no label.",
+        "closeLabel": "Accessible name of the dialog's close button.",
+        "children": "`<track>` elements for captions, or `<source>` elements."
+      },
+      "story": {
+        "label": "Test pattern animation"
+      }
+    },
+    "PasswordInput": {
+      "description": "A password field with a button that shows and hides what's typed, built on Radix PasswordToggleField. It has everything TextInput has: variants, sizes, icons, a built-in label (top, left or border) and the required star. Submitting or resetting the form hides the password again.",
+      "props": {
+        "autoComplete": "Tells password managers what to fill: \"current-password\" to sign in, \"new-password\" to sign up or change it.",
+        "visible": "Whether the password is shown, when controlled.",
+        "defaultVisible": "Whether the password starts shown, when uncontrolled.",
+        "onVisibilityChange": "Called with the new visibility when the toggle is pressed or the form is submitted or reset.",
+        "visibleIcon": "Toggle icon while the password is shown.",
+        "hiddenIcon": "Toggle icon while the password is hidden.",
+        "showLabel": "Accessible name of the toggle while the password is hidden.",
+        "hideLabel": "Accessible name of the toggle while the password is shown.",
+        "hideToggle": "Remove the show/hide button.",
+        "label": "Visible label, linked to the input. Without one, pass aria-label instead.",
+        "labelPlacement": "Where the label sits: \"top\" (above the field), \"left\" (beside it) or \"border\" (on the top border, Material style).",
+        "required": "Marks the field as required: adds the required attribute and a star after the label.",
+        "prependElement": "Shown before the input, usually an icon.",
+        "appendElement": "Shown after the input and before the toggle."
+      },
+      "story": {
+        "label": "Password",
+        "placeholder": "Enter your password"
+      }
+    },
+    "OneTimeCodeInput": {
+      "description": "A one-time code field with one box per character, built on Radix OneTimePasswordField. Typing moves to the next box, Backspace to the previous one, and pasting or the browser's SMS autofill fills every box. The boxes share TextInput's variants, sizes and variables.",
+      "props": {
+        "length": "Number of characters, one box each.",
+        "validationType": "Characters accepted: \"numeric\", \"alpha\", \"alphanumeric\" or \"none\" (use sanitizeValue for your own rule).",
+        "masked": "Hide the characters like a password.",
+        "autoSubmit": "Submit the form once every box is filled.",
+        "onAutoSubmit": "Called with the code just before the automatic submit.",
+        "value": "The code, when controlled.",
+        "name": "Name the code is submitted under with the form.",
+        "placeholder": "Placeholder text, one character per box (e.g. \"000000\").",
+        "label": "Visible label for the group of boxes. Without one, pass aria-label instead.",
+        "labelPlacement": "Where the label sits: \"top\" (above the boxes) or \"left\" (beside them).",
+        "required": "Marks the code as required and adds a star after the label.",
+        "cellLabel": "Builds each box's accessible name from its position and the length."
+      },
+      "story": {
+        "label": "Verification code",
+        "defaultCellLabel": "Character <position> of <length>"
+      },
+      "cssVariables": {
+        "--one-time-code-input-label-gap": "Space between the label and the boxes",
+        "--one-time-code-input-label-width": "Width of a left label. Set the same width on a form's fields so they line up.",
+        "--one-time-code-input-required": "Required star color"
+      }
     }
   },
   "docs": {
@@ -833,7 +1023,22 @@
         "bio-text": "Bio text color",
         "badge-inset": "Badge distance from the image's corner",
         "details-font-size": "Details font size",
-        "details-text": "Details text color"
+        "details-text": "Details text color",
+        "stepper-width": "Up/down button width",
+        "stepper-height": "Height of the up/down button pair",
+        "stepper-icon-size": "Up/down icon size",
+        "stepper-inset": "How far the buttons reach into the field's right padding",
+        "stepper-bg-hover": "Up/down button background on hover",
+        "play-size": "Play button size",
+        "play-bg": "Play button background",
+        "play-text": "Play button icon color",
+        "counter-text": "Lightbox counter color",
+        "toggle-size": "Show/hide button size",
+        "toggle-icon-size": "Show/hide icon size",
+        "toggle-inset": "How far the show/hide button reaches into the field's right padding",
+        "toggle-bg-hover": "Show/hide button background on hover or focus",
+        "cell-width": "Width of each box",
+        "cell-gap": "Space between boxes"
       },
       "parts": {
         "menu-content": "Menu (shared with DropdownMenu, ContextMenu, Menubar and Select)",
@@ -849,7 +1054,10 @@
         "container": "Container (shared with Container, FlexContainer and GridContainer)",
         "avatar-badge": "AvatarBadge",
         "image-dialog": "Pop-out dialog",
-        "text-input-field": "Label"
+        "text-input-field": "Label",
+        "video-dialog": "Pop-out dialog",
+        "image-gallery-dialog": "Lightbox",
+        "one-time-code-input-field": "Label"
       }
     }
   }

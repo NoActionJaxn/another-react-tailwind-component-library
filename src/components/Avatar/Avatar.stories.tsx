@@ -3,7 +3,7 @@ import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Avatar, AvatarFallback, AvatarImage } from "./Avatar";
 
 const meta = {
-  title: "Components/Avatar",
+  title: "Data Display/Avatar",
   component: Avatar,
   parameters: docsParameters("Avatar", { layout: "centered" }),
   args: {

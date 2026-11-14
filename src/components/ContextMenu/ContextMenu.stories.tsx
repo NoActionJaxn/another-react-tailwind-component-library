@@ -17,7 +17,7 @@ import {
 } from "./ContextMenu";
 
 const meta = {
-  title: "Components/ContextMenu",
+  title: "Navigation/ContextMenu",
   component: ContextMenu,
   parameters: docsParameters("ContextMenu", { layout: "centered" }),
   args: {},

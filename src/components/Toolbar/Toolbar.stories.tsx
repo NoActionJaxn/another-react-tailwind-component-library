@@ -11,7 +11,7 @@ import {
 } from "./Toolbar";
 
 const meta = {
-  title: "Components/Toolbar",
+  title: "Actions/Toolbar",
   component: Toolbar,
   parameters: docsParameters("Toolbar", { layout: "centered" }),
   args: {
