@@ -1,0 +1,35 @@
+/* The avatars are Avatars: their --avatar-* variables apply too. */
+@layer components {
+  [data-avatar-group] {
+    /* Named apart from Avatar's own --_ring (its badge ring). */
+    --_group-ring: var(--avatar-group-ring, white);
+    --_group-ring-width: var(--avatar-group-ring-width, 2px);
+  }
+
+  [data-avatar-group][data-size="sm"] {
+    --_overlap: var(--avatar-group-sm-overlap, calc(var(--spacing) * 2));
+  }
+
+  [data-avatar-group][data-size="md"] {
+    --_overlap: var(--avatar-group-md-overlap, calc(var(--spacing) * 2.5));
+  }
+
+  [data-avatar-group][data-size="lg"] {
+    --_overlap: var(--avatar-group-lg-overlap, calc(var(--spacing) * 3));
+  }
+
+  /* A ring in the page color separates the overlapping circles. */
+  [data-avatar-group] > [data-avatar] {
+    border-radius: var(--_radius);
+    box-shadow: 0 0 0 var(--_group-ring-width) var(--_group-ring);
+  }
+
+  [data-avatar-group] > [data-avatar] + [data-avatar] {
+    margin-inline-start: calc(-1 * var(--_overlap));
+  }
+
+  [data-avatar-group-overflow] {
+    --avatar-bg: var(--avatar-group-overflow-bg, var(--scheme-100));
+    --avatar-text: var(--avatar-group-overflow-text, var(--scheme-700));
+  }
+}

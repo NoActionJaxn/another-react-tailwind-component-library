@@ -1,0 +1,51 @@
+/* --_* are reset on every container so nested ones don't inherit them. */
+@layer components {
+  [data-masonry-container] {
+    --_gap: 0px;
+    --_min-column-width: var(
+      --masonry-container-min-column-width,
+      calc(var(--spacing) * 60)
+    );
+    /* Width of one column when `columns` fit side by side. */
+    --_column-share: calc(
+      (100% - (var(--_columns) - 1) * var(--_gap)) / var(--_columns)
+    );
+    /* Up to `columns` tracks; fewer when a track would drop below the minimum. */
+    --_responsive-columns: repeat(
+      auto-fill,
+      minmax(
+        min(100%, max(var(--_min-column-width), var(--_column-share))),
+        1fr
+      )
+    );
+    /* Set here, not as a utility, so placement below can turn it off. */
+    row-gap: var(--_gap);
+  }
+
+  /* Once placed, rows are 1px and the vertical gaps are built into the placement.
+     Before that (no JS yet), it's an ordinary grid. */
+  [data-masonry-container][data-placed] {
+    grid-auto-rows: 1px;
+    row-gap: 0;
+  }
+
+  [data-masonry-container][data-gap="xs"] {
+    --_gap: var(--masonry-container-xs-gap, var(--spacing));
+  }
+
+  [data-masonry-container][data-gap="sm"] {
+    --_gap: var(--masonry-container-sm-gap, calc(var(--spacing) * 2));
+  }
+
+  [data-masonry-container][data-gap="md"] {
+    --_gap: var(--masonry-container-md-gap, calc(var(--spacing) * 4));
+  }
+
+  [data-masonry-container][data-gap="lg"] {
+    --_gap: var(--masonry-container-lg-gap, calc(var(--spacing) * 6));
+  }
+
+  [data-masonry-container][data-gap="xl"] {
+    --_gap: var(--masonry-container-xl-gap, calc(var(--spacing) * 8));
+  }
+}

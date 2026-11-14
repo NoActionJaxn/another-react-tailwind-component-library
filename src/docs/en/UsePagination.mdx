@@ -1,0 +1,148 @@
+import { Meta, Unstyled } from "@storybook/addon-docs/blocks";
+import { Pagination, usePagination } from "../../components/Pagination";
+
+<Meta title="Hooks/usePagination" />
+
+export const items = Array.from({ length: 48 }, (_, i) => `Item ${i + 1}`);
+
+export function Demo() {
+  const pagination = usePagination({ total: items.length, defaultPageSize: 6 });
+  return (
+    <Unstyled>
+      <div className="my-6 flex flex-col items-start gap-3 rounded-lg border border-stone-200 p-4">
+        <ul className="grid w-full grid-cols-3 gap-2 text-sm">
+          {pagination.paginate(items).map((item) => (
+            <li key={item} className="rounded-md bg-stone-100 px-3 py-2">
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p className="text-sm text-stone-600" aria-live="polite">
+          Showing {pagination.start + 1}–{pagination.end} of {items.length}
+        </p>
+        <Pagination {...pagination.paginationProps} size="sm" />
+      </div>
+    </Unstyled>
+  );
+}
+
+# usePagination
+
+`usePagination()` keeps track of the current page and page size, works out
+the page count and which items are on the page, and returns props for the
+[Pagination](?path=/docs/navigation-pagination--docs) component. It renders
+nothing itself, so it also works with your own pager or an infinite list.
+
+```tsx
+import {
+  Pagination,
+  usePagination,
+} from "another-react-tailwind-component-library";
+
+function Products({ products }: { products: Product[] }) {
+  const pagination = usePagination({
+    total: products.length,
+    defaultPageSize: 10,
+  });
+
+  return (
+    <>
+      <ul>
+        {pagination.paginate(products).map((product) => (
+          <ProductRow key={product.id} {...product} />
+        ))}
+      </ul>
+      <p>
+        Showing {pagination.start + 1}–{pagination.end} of {products.length}
+      </p>
+      <Pagination {...pagination.paginationProps} />
+    </>
+  );
+}
+```
+
+<Demo />
+
+## Options
+
+All options are optional.
+
+- `total`: number of items. The page count is worked out from it and the page
+  size.
+- `pageCount`: number of pages, when you know that instead of `total` (e.g.
+  from a server).
+- `defaultPage` (default `1`): the first page shown, when the hook keeps the
+  page itself.
+- `page`: the current page, when you keep it yourself (e.g. in the URL). Use
+  with `onPageChange`.
+- `onPageChange`: called with the new page whenever it changes.
+- `defaultPageSize` (default `10`): items per page, when the hook keeps the
+  page size itself.
+- `pageSize`: items per page, when you keep it yourself. Use with
+  `onPageSizeChange`.
+- `onPageSizeChange`: called with the new page size whenever it changes.
+
+## What it returns
+
+- `page`: the current page, from 1. Always between 1 and `pageCount`, even if
+  the data shrinks.
+- `pageCount`: the number of pages (at least 1).
+- `pageSize`: items per page.
+- `setPage(page)`: goes to a page. Out-of-range pages are clamped.
+- `next()`, `previous()`, `first()`, `last()`: move between pages.
+- `hasPrevious`, `hasNext`: whether there's a page before or after this one.
+- `setPageSize(size)`: changes the page size and moves to the page that still
+  shows the first item you were seeing.
+- `start`, `end`: index of the first item on the page and the index after the
+  last (0-based), for `slice` or a server query.
+- `paginate(items)`: the items on the current page, `items.slice(start, end)`.
+- `paginationProps`: `page`, `pageCount` and `onPageChange`, to spread onto
+  `<Pagination>`.
+
+## Data from a server
+
+When the server pages the data, pass the page count it reports (or the total),
+and fetch with `page` and `pageSize`, or `start` as an offset:
+
+```tsx
+const pagination = usePagination({ total: data?.total, pageSize: 20 });
+const { data } = useQuery({
+  queryKey: ["orders", pagination.page],
+  queryFn: () =>
+    fetchOrders({ offset: pagination.start, limit: pagination.pageSize }),
+});
+```
+
+## Keeping the page in the URL
+
+Pass `page` and `onPageChange` to keep the page somewhere else, such as the
+query string, so it survives a reload and can be shared. With `getHref` the
+pages become real links:
+
+```tsx
+const [params, setParams] = useSearchParams();
+const pagination = usePagination({
+  total: products.length,
+  page: Number(params.get("page") ?? 1),
+  onPageChange: (page) => setParams({ page: String(page) }),
+});
+
+<Pagination
+  {...pagination.paginationProps}
+  getHref={(page) => `?page=${page}`}
+/>;
+```
+
+## Building your own pager
+
+`paginationRange(page, pageCount, siblings, boundaries)` returns the list
+Pagination draws: page numbers, with `"ellipsis-start"` and `"ellipsis-end"`
+where pages are skipped. It always has the same length once there are enough
+pages, so controls don't move as the page changes.
+
+```ts
+import { paginationRange } from "another-react-tailwind-component-library";
+
+paginationRange(10, 20); // [1, "ellipsis-start", 9, 10, 11, "ellipsis-end", 20]
+paginationRange(2, 20); // [1, 2, 3, 4, 5, "ellipsis-end", 20]
+```

@@ -482,13 +482,28 @@
       }
     },
     "NavigationMenu": {
-      "description": "Site navigation links, with optional panels that open below the list.",
-      "props": {},
+      "description": "Site navigation links, with optional panels that open below the list. Below the collapse breakpoint (md by default) the links turn into a hamburger button that opens a full-screen panel with the items stacked vertically and its own close button; submenus open in place, and the panel scrolls when the items don't fit. Escape, following a link or widening the window closes it. Inside a Header the panel opens under the header's bar instead, and the header's button closes it.",
+      "props": {
+        "collapse": "Window width below which the menu collapses into the hamburger: a Tailwind breakpoint (sm, md, lg, xl; read from your theme's `--breakpoint-*`), \"always\" or \"never\".",
+        "menuOpen": "Whether the hamburger panel is open, when controlled.",
+        "defaultMenuOpen": "Whether the hamburger panel starts open, when uncontrolled.",
+        "onMenuOpenChange": "Called when the hamburger panel opens or closes.",
+        "openMenuLabel": "Accessible name of the hamburger button while the panel is closed.",
+        "closeMenuLabel": "Accessible name of the hamburger button while the panel is open."
+      },
       "story": {
         "products": "Products",
         "analytics": "Analytics",
         "automation": "Automation",
         "pricing": "Pricing"
+      },
+      "cssVariables": {
+        "--navigation-menu-panel-bg": "Full-screen panel background",
+        "--navigation-menu-panel-padding-x": "Full-screen panel side padding",
+        "--navigation-menu-panel-padding-y": "Full-screen panel top and bottom padding",
+        "--navigation-menu-panel-max-width": "Widest the items get in the full-screen panel",
+        "--navigation-menu-panel-font-size": "Item font size in the full-screen panel",
+        "--navigation-menu-panel-z-index": "Full-screen panel stacking order"
       }
     },
     "NumberInput": {
@@ -1089,6 +1104,391 @@
         "--error-block-actions-gap": "Extra space above the actions",
         "--error-block-code-text": "Error code color"
       }
+    },
+    "Carousel": {
+      "description": "A slideshow of full-bleed slides with previous and next arrows and a pager on top of the image. Each slide is a CarouselSlide holding a CarouselImage and an optional CarouselCaption (CarouselTitle, CarouselDescription, CarouselActions) laid over it. Swipe, drag, the arrow keys and the pager all move between slides; slides that aren't showing can't be focused. Built on Embla Carousel: install `embla-carousel-react` and `embla-carousel-autoplay`, and import it from `another-react-tailwind-component-library/carousel`.",
+      "props": {
+        "aspectRatio": "Shape of the carousel, e.g. \"16 / 9\" or 2, at every window size. Unset, it's 4 / 3 on small screens and 16 / 9 from the md breakpoint (themable with `--carousel-aspect-ratio` and `--carousel-md-aspect-ratio`).",
+        "loop": "Wrap around from the last slide to the first, and back.",
+        "autoplay": "Move to the next slide on a timer. It pauses while the pointer or focus is on the carousel, adds a pause button, and starts paused for users who prefer reduced motion.",
+        "delay": "Milliseconds each slide shows when autoplay is on.",
+        "showArrows": "Show the previous and next arrows.",
+        "showPager": "Show the dots that jump to each slide.",
+        "previousLabel": "Accessible name of the previous arrow.",
+        "nextLabel": "Accessible name of the next arrow.",
+        "pauseLabel": "Accessible name of the pause button.",
+        "playLabel": "Accessible name of the play button.",
+        "slideLabel": "Builds each slide's accessible name from its position and the number of slides.",
+        "pagerLabel": "Builds each pager dot's accessible name from the slide's position and the number of slides."
+      },
+      "story": {
+        "label": "Featured destinations",
+        "alts": [
+          "Green hills under a blue sky",
+          "Red hills at sunset",
+          "Purple hills at night"
+        ],
+        "slides": [
+          {
+            "title": "Explore the valley",
+            "description": "Easy trails, quiet lakes and wide views. Perfect for a weekend away."
+          },
+          {
+            "title": "Chase the sunset",
+            "description": "Evening walks with the best light of the day."
+          },
+          {
+            "title": "Camp under the stars"
+          }
+        ],
+        "primary": "Book a trip",
+        "secondary": "Learn more",
+        "slideLabelDefault": "<index> of <total>",
+        "pagerLabelDefault": "Go to slide <index>",
+        "aspectRatioDefault": "4 / 3, then 16 / 9 from md"
+      },
+      "cssVariables": {
+        "--carousel-controls-inset": "Distance of the arrows, pager and pause button from the edges",
+        "--carousel-arrow-size": "Arrow button size",
+        "--carousel-pause-size": "Pause button size",
+        "--carousel-control-bg": "Arrow and pause button background",
+        "--carousel-control-bg-hover": "Arrow and pause button background on hover",
+        "--carousel-control-text": "Arrow and pause icon color",
+        "--carousel-dot": "Pager dot color",
+        "--carousel-dot-active": "Current pager dot color",
+        "--carousel-dot-size": "Pager dot size",
+        "--carousel-dot-active-width": "Width of the current pager dot",
+        "--carousel-dot-target": "Clickable size around each dot",
+        "--carousel-dot-gap": "Space between dot targets",
+        "--carousel-caption-text": "Caption title color",
+        "--carousel-scrim": "Gradient behind a bottom caption",
+        "--carousel-overlay": "Tint behind a centered caption",
+        "--carousel-caption-gap": "Space between the caption parts",
+        "--carousel-actions-gap": "Extra space above the actions",
+        "--carousel-bg": "Background while images load",
+        "aspect-ratio": "Shape of the carousel",
+        "caption-padding-top": "Space above a bottom caption, where its gradient fades in"
+      }
+    },
+    "ListingBlock": {
+      "description": "A product or listing detail section: an image gallery on one side and the details on the other (stacked below the md breakpoint). Compose it from ListingBlockGallery and ListingBlockDetails, which holds ListingBlockTitle (the page's `<h1>`), ListingBlockRating, ListingBlockPrice, any number of ListingBlockSections (a heading plus content, such as an UnorderedList) and ListingBlockActions for the buttons. Use only the parts you need. For a breadcrumb trail, put a Breadcrumb above the block.",
+      "props": {
+        "images": "ListingBlockGallery: the images, each with src, alt and an optional smaller thumbnail. The thumbnails switch the main image.",
+        "defaultIndex": "ListingBlockGallery: the image shown first.",
+        "aspectRatio": "ListingBlockGallery: shape of the main image. Images are fitted inside it, not cropped.",
+        "thumbnailLabel": "ListingBlockGallery: builds each thumbnail button's accessible name from its position and the number of images.",
+        "value": "ListingBlockRating: the rating; fractions fill part of a star.",
+        "max": "ListingBlockRating: the number of stars.",
+        "count": "ListingBlockRating: shown after the stars, e.g. the number of reviews.",
+        "label": "ListingBlockRating: builds the stars' accessible name from the value and max.",
+        "price": "ListingBlockPrice: the current price, formatted.",
+        "originalPrice": "ListingBlockPrice: the price before a discount, shown struck through above it.",
+        "note": "ListingBlockPrice: small print under the price, e.g. about taxes.",
+        "title": "ListingBlockSection: the section's heading (an `<h2>`)."
+      },
+      "story": {
+        "title": "Pacer Trail running shoes",
+        "reviews": "(128 reviews)",
+        "priceNote": "Taxes included. Free returns within 30 days.",
+        "aboutTitle": "About this product",
+        "about": [
+          "Breathable mesh upper",
+          "Cushioned sole for everyday runs",
+          "Available in sizes 5 to 13"
+        ],
+        "addToCart": "Add to cart",
+        "buyNow": "Buy now",
+        "alts": [
+          "Light gray running shoe, side view",
+          "Blue running shoe, side view",
+          "Gray running shoe with a blue sole",
+          "Dark running shoe, side view"
+        ]
+      },
+      "cssVariables": {
+        "--listing-block-gap": "Space between the gallery and the details",
+        "--listing-block-row-gap": "Space between the gallery and the details when they're stacked",
+        "--listing-block-muted-text": "Rating count, price notes and section text color",
+        "--listing-block-image-bg": "Background behind the images",
+        "--listing-block-thumb-size": "Thumbnail size",
+        "--listing-block-thumb-gap": "Space between the thumbnails and the main image",
+        "--listing-block-thumb-active": "Ring around the selected thumbnail",
+        "--listing-block-details-gap": "Space between the parts of the details",
+        "--listing-block-section-gap": "Extra space above sections and actions",
+        "--listing-block-rating-pull": "Pulls the rating closer to the title",
+        "--listing-block-star": "Filled star color",
+        "--listing-block-star-empty": "Empty star color",
+        "--listing-block-star-size": "Star size",
+        "--listing-block-price-font-size": "Price font size",
+        "--listing-block-price-font-weight": "Price font weight",
+        "price-font-size": "Price font size"
+      }
+    },
+    "Breadcrumb": {
+      "description": "The trail of pages leading to the current one. Fill it with BreadcrumbItems holding a BreadcrumbLink (an Anchor; use asChild for a router link) or, for the last one, a BreadcrumbPage, which is marked as the current page. Separators are added between items. With maxItems, long trails collapse to the first item, a button that expands them, and the last items.",
+      "props": {
+        "separator": "Shown between items. Defaults to Radix ChevronRightIcon, mirrored on right-to-left pages.",
+        "maxItems": "Collapse the trail when it has more items than this: the first item, an expand button, then the last maxItems - 1. Unset: never collapse.",
+        "expandLabel": "Accessible name of the button that expands a collapsed trail.",
+        "size": "Text size and the space between items."
+      },
+      "story": {
+        "items": ["Home", "Products", "Running", "Pacer Trail running shoes"],
+        "separators": {
+          "chevron": "Chevron (default)",
+          "slash": "Slash icon",
+          "text": "/ text"
+        }
+      },
+      "cssVariables": {
+        "--breadcrumb-text": "Color of items that aren't links (links use the --anchor-* variables)",
+        "--breadcrumb-current": "Current page color",
+        "--breadcrumb-current-font-weight": "Current page font weight",
+        "--breadcrumb-separator": "Separator color",
+        "--breadcrumb-separator-size": "Separator icon size",
+        "--breadcrumb-ellipsis-bg-hover": "Expand button background on hover",
+        "gap": "Space between items and separators"
+      }
+    },
+    "Footer": {
+      "description": "The page footer. FooterMain holds a FooterBrand (logo, FooterDescription and anything else, such as app store badges) next to FooterColumns of FooterLinks and FooterText; a FooterBar below a divider holds the copyright at the start and FooterSocials at the end. On small screens the brand goes full width and the columns wrap under it. For the bottom row alone, use FooterBar on its own.",
+      "props": {
+        "variant": "Background: solid (dark), soft (light tint), outline (white with a top border) or ghost (none).",
+        "title": "FooterColumn: the column's heading (an `<h2>`), which also names the column for screen readers.",
+        "icon": "FooterSocialLink: the network's icon. Pass aria-label too, to name the link.",
+        "asChild": "FooterLink: render the child element (e.g. a router link) instead of an `<a>`. FooterMain, FooterBrand and FooterDescription take it too."
+      },
+      "story": {
+        "brand": "Acme",
+        "description": "Tools for teams who build for the web. Design, ship and grow your product with one set of components.",
+        "company": "Company",
+        "companyLinks": ["Home", "About us", "Contact us", "Privacy policy"],
+        "contact": "Get in touch",
+        "address": "123 Market Street, Springfield",
+        "copyright": "Copyright 2026 © Acme Inc. All rights reserved."
+      },
+      "cssVariables": {
+        "--footer-gap": "Space between the brand and the columns, and between the bar's text and icons",
+        "--footer-row-gap": "Space between rows when the columns wrap",
+        "--footer-brand-gap": "Space between the brand's logo, description and other content",
+        "--footer-brand-max-width": "Widest the brand column gets",
+        "--footer-column-min-width": "Narrowest a link column gets before wrapping",
+        "--footer-column-gap": "Space between a column's title and its links",
+        "--footer-link-gap": "Space between links",
+        "--footer-bar-gap": "Space between the columns and the bar's divider",
+        "--footer-bar-padding-y": "Space above and below the bar's content",
+        "--footer-title-font-weight": "Column title font weight",
+        "muted-text": "Description, bar text and plain text color",
+        "link": "Link and social icon color",
+        "link-hover": "Link and social icon color on hover",
+        "divider": "Line above the bar",
+        "social-bg-hover": "Social icon background on hover",
+        "padding-y": "Space above and below the footer"
+      }
+    },
+    "FooterBar": {
+      "description": "The footer's bottom row on its own: a compact `<footer>` with text (usually the copyright) at the start and FooterSocials at the end, which wrap under each other on narrow screens. Inside a Footer it's the row under the divider instead. Theming is shared with Footer.",
+      "props": {
+        "variant": "Background: solid (dark), soft (light tint), outline (white with a top border) or ghost (none)."
+      },
+      "story": {},
+      "cssVariables": {
+        "--footer-gap": "Space between the brand and the columns, and between the bar's text and icons",
+        "--footer-row-gap": "Space between rows when the columns wrap",
+        "--footer-brand-gap": "Space between the brand's logo, description and other content",
+        "--footer-brand-max-width": "Widest the brand column gets",
+        "--footer-column-min-width": "Narrowest a link column gets before wrapping",
+        "--footer-column-gap": "Space between a column's title and its links",
+        "--footer-link-gap": "Space between links",
+        "--footer-bar-gap": "Space between the columns and the bar's divider",
+        "--footer-bar-padding-y": "Space above and below the bar's content",
+        "--footer-title-font-weight": "Column title font weight",
+        "muted-text": "Description, bar text and plain text color",
+        "link": "Link and social icon color",
+        "link-hover": "Link and social icon color on hover",
+        "divider": "Line above the bar",
+        "social-bg-hover": "Social icon background on hover",
+        "padding-y": "Space above and below the footer"
+      }
+    },
+    "Header": {
+      "description": "The site header: HeaderLogo and, optionally, a HeaderSearch at the start; HeaderNav at the end holding a NavigationMenu and, optionally, an Avatar or other controls after it. Leave out the parts you don't need. Below the menu's collapse breakpoint the menu turns into a hamburger button; opening it fills the screen under the header's bar with the menu, its items stacked vertically.",
+      "props": {
+        "variant": "Background: outline (white with a bottom border), soft (light tint), solid (dark; the menu and search switch to light-on-dark) or ghost (none).",
+        "sticky": "Stick to the top of the page while it scrolls.",
+        "asChild": "HeaderLogo and HeaderNav: render the child element (e.g. a link to the home page) instead of a `<div>`.",
+        "withSearch": "Story only: include a HeaderSearch. It's an optional part; leave it out of your header to drop it.",
+        "withAvatar": "Story only: include an Avatar after the menu. It's optional; leave it out to drop it."
+      },
+      "story": {
+        "brand": "Acme",
+        "searchPlaceholder": "Search…",
+        "navLabel": "Main",
+        "products": "Products",
+        "productLinks": ["Analytics", "Automation", "Reports"],
+        "links": ["Pricing", "Docs", "About"],
+        "initials": "JD",
+        "storyCategory": "Story only"
+      },
+      "cssVariables": {
+        "--header-height": "Height of the header bar",
+        "--header-gap": "Space between the logo, the search and the navigation",
+        "--header-nav-gap": "Space between the menu and the controls after it",
+        "--header-search-max-width": "Widest the search field gets",
+        "--header-z-index": "Stacking order when sticky"
+      }
+    },
+    "FaqBlock": {
+      "description": "A frequently asked questions section. FaqBlockHeader holds a FaqBlockTitle (an `<h2>`) and FaqBlockDescription; FaqBlockList holds a FaqBlockItem per question, each a question that opens its answer (an Accordion, so the keyboard and screen readers work as they do there); FaqBlockFooter can point to more help. Padding and title size grow from the md breakpoint.",
+      "props": {
+        "variant": "Background: ghost (none) or soft (light tint).",
+        "layout": "stacked: the header centered above the questions. split: the header on the left and the questions on the right (stacked below the md breakpoint).",
+        "multiple": "FaqBlockList: let several answers be open at once. By default opening one closes the others.",
+        "defaultValue": "FaqBlockList: values of the items open at first (give those items a value).",
+        "question": "FaqBlockItem: the question; its children are the answer.",
+        "value": "FaqBlockItem: a unique name, for defaultValue. Generated if not set.",
+        "asChild": "FaqBlockHeader, FaqBlockTitle, FaqBlockDescription and FaqBlockFooter: render the child element instead of the default."
+      },
+      "story": {
+        "title": "Frequently asked questions",
+        "description": "Everything you need to know about plans, billing and your account.",
+        "items": [
+          {
+            "question": "Is there a free trial?",
+            "answer": "Yes. Every plan starts with a 14-day free trial, and you don't need a credit card to begin."
+          },
+          {
+            "question": "Can I change my plan later?",
+            "answer": "You can upgrade or downgrade at any time from your account settings. Changes apply from your next billing date."
+          },
+          {
+            "question": "How does billing work?",
+            "answer": "Plans are billed monthly or yearly in advance. Yearly plans get two months free."
+          },
+          {
+            "question": "Can I cancel at any time?",
+            "answer": "Yes. Cancel from your account settings and you keep access until the end of the period you've paid for."
+          },
+          {
+            "question": "Do you offer support?",
+            "answer": "All plans include email support. Team and Enterprise plans also get live chat and a dedicated contact."
+          }
+        ],
+        "footer": "Still have questions?",
+        "contact": "Contact our team"
+      },
+      "cssVariables": {
+        "--faq-block-gap": "Space between the header, the questions and the footer",
+        "--faq-block-header-gap": "Space between the title and the description",
+        "--faq-block-header-max-width": "Widest the header gets",
+        "--faq-block-list-max-width": "Widest the questions get",
+        "--faq-block-question-font-size": "Question font size",
+        "--faq-block-answer-font-size": "Answer font size",
+        "--faq-block-text": "Question color"
+      }
+    },
+    "Pagination": {
+      "description": "Page navigation: previous and next arrows, the page numbers with ellipses for long ranges, and optional first and last arrows. The current page is highlighted and marked for screen readers. Pages are buttons that call onPageChange, or links when getHref is given. Pair it with the usePagination hook, which holds the page, slices your items with paginate(items) and returns paginationProps to spread onto Pagination.",
+      "props": {
+        "page": "The current page, from 1.",
+        "pageCount": "The number of pages.",
+        "onPageChange": "Called with the page the user picked.",
+        "getHref": "Builds a URL for a page. When set, the pages are links (e.g. ?page=3) instead of buttons.",
+        "siblings": "Pages shown on each side of the current page.",
+        "boundaries": "Pages always shown at the start and the end.",
+        "showFirstLast": "Add arrows that jump to the first and last page.",
+        "variant": "Style of the pages that aren't current: ghost, outline or soft. The current page is solid.",
+        "previousLabel": "Accessible name of the previous arrow.",
+        "nextLabel": "Accessible name of the next arrow.",
+        "firstLabel": "Accessible name of the first-page arrow.",
+        "lastLabel": "Accessible name of the last-page arrow.",
+        "pageLabel": "Builds each page's accessible name from its number."
+      },
+      "story": {
+        "item": "Item {number}",
+        "summary": "Showing {from}–{to} of {total}",
+        "pageLabelDefault": "Page <page>"
+      },
+      "cssVariables": {
+        "--pagination-ellipsis": "Ellipsis color",
+        "gap": "Space between the pages",
+        "ellipsis-size": "Width of an ellipsis"
+      }
+    },
+    "BottomBanner": {
+      "description": "A full-width strip fixed to the bottom of the screen, such as a newsletter sign-up or an announcement, with a dismiss button in its top corner. BottomBannerContent holds a BottomBannerTitle (which names the banner for screen readers) and BottomBannerDescription; BottomBannerActions holds the form or buttons. They sit side by side from the md breakpoint and stack below it. It slides in, slides out when dismissed, and with storageKey stays dismissed on later visits. While it's showing it covers the bottom of the page: add bottom padding to your page if content would hide behind it.",
+      "props": {
+        "variant": "Style: solid (dark; solid buttons and outline inputs inside switch to light-on-dark), soft (light tint) or outline (white with a top border).",
+        "open": "Whether it's showing, when controlled.",
+        "defaultOpen": "Whether it shows at first, when uncontrolled.",
+        "onOpenChange": "Called with false when the dismiss button is clicked.",
+        "storageKey": "A localStorage key that remembers a dismissal, so the banner stays hidden on later visits. Unset: it shows again on every visit.",
+        "fixed": "Fix it to the bottom of the screen. Set to false to place it in the page flow instead.",
+        "dismissLabel": "Accessible name of the dismiss button.",
+        "asChild": "Parts: render the child element instead of the default (`<h2>` for the title, `<p>` for the description, `<div>` otherwise)."
+      },
+      "story": {
+        "page": "Page content. The banner is fixed to the bottom of this area; dismiss it and show it again with the button.",
+        "title": "Get the monthly newsletter",
+        "description": "Product updates, tips and early access to new features. No spam, unsubscribe at any time.",
+        "emailLabel": "Email address",
+        "emailPlaceholder": "you@example.com",
+        "subscribe": "Subscribe",
+        "thanks": "Thanks for subscribing! Check your inbox to confirm.",
+        "showAgain": "Show the banner again"
+      },
+      "cssVariables": {
+        "--bottom-banner-gap": "Space between the text and the actions",
+        "--bottom-banner-actions-item-gap": "Space between the actions",
+        "--bottom-banner-padding-y": "Space above and below the content",
+        "--bottom-banner-z-index": "Stacking order",
+        "--bottom-banner-duration": "Slide duration",
+        "--bottom-banner-dismiss-inset": "Dismiss button distance from the banner's top and end edges"
+      }
+    },
+    "MasonryContainer": {
+      "description": "A Container that lays out items of different heights in columns that interlock, like a Pinterest board: each item goes into the column that's currently shortest. Items keep their order in the page, so reading and tab order stay left to right; only their position changes. It re-arranges when the window or an item's height changes (e.g. when an image loads). Like GridContainer, the number of columns drops as the container narrows. Without JavaScript it's an ordinary grid.",
+      "props": {
+        "columns": "Most columns side by side; fewer as the container narrows below columns × minColumnWidth.",
+        "minColumnWidth": "Narrowest a column may get before the layout drops to fewer columns (any CSS length). Default 15rem.",
+        "gap": "Space between the items, both across and down."
+      },
+      "story": {
+        "item": "Item {n}"
+      },
+      "cssVariables": {
+        "gap": "Space between items"
+      }
+    },
+    "AvatarGroup": {
+      "description": "A row of overlapping Avatars, such as the people on a project. The avatars take the group's size, and a ring in the page color separates them. With max, the rest collapse into a \"+N\" avatar; with total, N also counts people whose avatars you didn't pass. Give the group an aria-label, and each avatar an image alt or a labelled fallback.",
+      "props": {
+        "size": "Size of every avatar in the group (an Avatar's own size still wins).",
+        "max": "Most avatars to show, including the \"+N\" one. Unset: show them all.",
+        "total": "The full number of people, when you pass only some avatars (e.g. the first few from a server). The \"+N\" counts the rest.",
+        "overflowLabel": "Builds the \"+N\" avatar's accessible name from the number hidden.",
+        "role": "ARIA role of the row. Defaults to \"group\"; name it with aria-label."
+      },
+      "story": {
+        "label": "Project members",
+        "people": [
+          "Ada Lovelace",
+          "Grace Hopper",
+          "Katherine Johnson",
+          "Margaret Hamilton",
+          "Radia Perlman",
+          "Tim Berners-Lee",
+          "Donald Knuth"
+        ],
+        "overflowLabelDefault": "<count> more"
+      },
+      "cssVariables": {
+        "--avatar-group-ring": "Ring between overlapping avatars: match it to the background",
+        "--avatar-group-ring-width": "Ring width",
+        "--avatar-group-overflow-bg": "\"+N\" avatar background",
+        "--avatar-group-overflow-text": "\"+N\" avatar text color",
+        "overlap": "How far each avatar overlaps the one before"
+      }
     }
   },
   "docs": {
@@ -1269,7 +1669,15 @@
         "message-font-size": "Message font size",
         "message-font-weight": "Message font weight",
         "message-text": "Message color",
-        "description-max-width": "Description max width"
+        "description-max-width": "Description max width",
+        "header-gap": "Space between the title and the description",
+        "header-max-width": "Widest the header gets",
+        "list-max-width": "Widest the list gets",
+        "question-font-size": "Question font size",
+        "answer-font-size": "Answer font size",
+        "ellipsis": "Ellipsis color",
+        "ellipsis-size": "Width of an ellipsis",
+        "overlap": "How far each item overlaps the one before"
       },
       "parts": {
         "menu-content": "Menu (shared with DropdownMenu, ContextMenu, Menubar and Select)",
@@ -1290,7 +1698,8 @@
         "image-gallery-dialog": "Lightbox",
         "one-time-code-input-field": "Label",
         "drawer-overlay": "Backdrop",
-        "backdrop": "Backdrop (shared with Dialog, AlertDialog and Drawer)"
+        "backdrop": "Backdrop (shared with Dialog, AlertDialog and Drawer)",
+        "breadcrumb": "Breadcrumb"
       }
     }
   }

@@ -1,8 +1,8 @@
 import { Slot } from "@radix-ui/react-slot";
-import type { HTMLAttributes } from "react";
+import type { ComponentProps } from "react";
 import { schemeVars, tw, type ColorScheme } from "../../utils";
 
-export interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
+export interface ContainerProps extends ComponentProps<"div"> {
   colorScheme?: ColorScheme;
   asChild?: boolean;
   block?: boolean;

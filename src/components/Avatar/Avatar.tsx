@@ -1,7 +1,8 @@
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
-import type { ComponentProps } from "react";
+import { useContext, type ComponentProps } from "react";
 import { schemeStyle, tw, type ColorScheme } from "../../utils";
 import { Badge, type BadgeProps } from "../Badge";
+import { AvatarGroupContext } from "./context";
 
 export type AvatarSize = "sm" | "md" | "lg";
 export interface AvatarProps extends ComponentProps<
@@ -23,7 +24,7 @@ const sizes = {
 
 export function Avatar({
   colorScheme,
-  size = "md",
+  size: sizeProp,
   badge = false,
   badgeContent,
   badgeLabel,
@@ -33,6 +34,8 @@ export function Avatar({
   children,
   ...props
 }: AvatarProps) {
+  const group = useContext(AvatarGroupContext);
+  const size = sizeProp ?? group.size ?? "md";
   return (
     <AvatarPrimitive.Root
       data-avatar

@@ -6,4 +6,7 @@ export {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "./NavigationMenu";
-export type { NavigationMenuProps } from "./NavigationMenu";
+export type {
+  NavigationMenuCollapse,
+  NavigationMenuProps,
+} from "./NavigationMenu";

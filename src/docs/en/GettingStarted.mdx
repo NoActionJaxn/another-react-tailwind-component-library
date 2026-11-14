@@ -25,9 +25,9 @@ versions your app already has.
 
 ### Optional dependencies
 
-Accolades uses [Embla Carousel](https://www.embla-carousel.com/). It's an
-optional peer dependency, so install it only if you use Accolades, and import
-Accolades from its own entry point. The main entry never loads Embla.
+Accolades and Carousel use [Embla Carousel](https://www.embla-carousel.com/).
+It's an optional peer dependency, so install it only if you use one of them,
+and import them from their own entry points. The main entry never loads Embla.
 
 ```sh
 npm install embla-carousel-react embla-carousel-autoplay
@@ -38,6 +38,10 @@ import {
   Accolades,
   AccoladesItem,
 } from "another-react-tailwind-component-library/accolades";
+import {
+  Carousel,
+  CarouselSlide,
+} from "another-react-tailwind-component-library/carousel";
 ```
 
 PhoneInput uses [libphonenumber-js](https://gitlab.com/catamphetamine/libphonenumber-js)

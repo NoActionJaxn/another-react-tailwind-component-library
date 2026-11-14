@@ -1,0 +1,51 @@
+/* --_* vars resolve on the header and are inherited by its parts. */
+@layer components {
+  [data-header] {
+    --_height: var(--header-height, calc(var(--spacing) * 16));
+    --_gap: var(--header-gap, calc(var(--spacing) * 4));
+    --_nav-gap: var(--header-nav-gap, calc(var(--spacing) * 3));
+    --_search-max-width: var(--header-search-max-width, 20rem);
+    --_z-index: var(--header-z-index, 40);
+  }
+
+  [data-header][data-variant="outline"] {
+    --_bg: var(--header-outline-bg, white);
+    --_border: var(--header-outline-border, var(--scheme-200));
+    --_text: var(--header-outline-text, var(--scheme-900));
+    --_title-text: var(--header-outline-title-text, var(--scheme-950));
+  }
+
+  [data-header][data-variant="soft"] {
+    --_bg: var(--header-soft-bg, var(--scheme-100));
+    --_border: var(--header-soft-border, transparent);
+    --_text: var(--header-soft-text, var(--scheme-900));
+    --_title-text: var(--header-soft-title-text, var(--scheme-950));
+    --navigation-menu-item-hover-bg: var(--scheme-200);
+  }
+
+  /* Dark: the menu, its panel and the search field switch to light-on-dark. */
+  [data-header][data-variant="solid"] {
+    --_bg: var(--header-solid-bg, var(--scheme-950));
+    --_border: var(--header-solid-border, transparent);
+    --_text: var(--header-solid-text, var(--scheme-100));
+    --_title-text: var(--header-solid-title-text, white);
+    --navigation-menu-text: var(--_text);
+    --navigation-menu-item-hover-bg: var(--scheme-800);
+    --navigation-menu-panel-bg: var(--_bg);
+    --navigation-menu-bg: var(--scheme-900);
+    --navigation-menu-border: var(--scheme-700);
+    --button-ghost-text: var(--_text);
+    --button-ghost-bg-hover: var(--scheme-800);
+    --text-input-outline-border: var(--scheme-700);
+    --text-input-outline-border-hover: var(--scheme-500);
+    --text-input-outline-text: white;
+    --text-input-outline-placeholder: var(--scheme-400);
+  }
+
+  [data-header][data-variant="ghost"] {
+    --_bg: var(--header-ghost-bg, transparent);
+    --_border: var(--header-ghost-border, transparent);
+    --_text: var(--header-ghost-text, var(--scheme-900));
+    --_title-text: var(--header-ghost-title-text, var(--scheme-950));
+  }
+}

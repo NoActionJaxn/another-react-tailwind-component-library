@@ -1,0 +1,30 @@
+/* The page buttons are IconButtons: the --button-* variables apply too. */
+@layer components {
+  [data-pagination] {
+    --_ellipsis: var(--pagination-ellipsis, var(--scheme-500));
+  }
+
+  [data-pagination][data-size="sm"] {
+    --_gap: var(--pagination-sm-gap, calc(var(--spacing) * 1));
+    --_ellipsis-size: var(
+      --pagination-sm-ellipsis-size,
+      calc(var(--spacing) * 6)
+    );
+  }
+
+  [data-pagination][data-size="md"] {
+    --_gap: var(--pagination-md-gap, calc(var(--spacing) * 1));
+    --_ellipsis-size: var(
+      --pagination-md-ellipsis-size,
+      calc(var(--spacing) * 8)
+    );
+  }
+
+  [data-pagination][data-size="lg"] {
+    --_gap: var(--pagination-lg-gap, calc(var(--spacing) * 1.5));
+    --_ellipsis-size: var(
+      --pagination-lg-ellipsis-size,
+      calc(var(--spacing) * 10)
+    );
+  }
+}

@@ -1,0 +1,105 @@
+/* --_* vars resolve on the banner and are inherited by its parts. */
+@layer components {
+  [data-bottom-banner] {
+    --_padding-y: var(--bottom-banner-padding-y, calc(var(--spacing) * 5));
+    --_gap: var(--bottom-banner-gap, calc(var(--spacing) * 4));
+    --_actions-item-gap: var(
+      --bottom-banner-actions-item-gap,
+      calc(var(--spacing) * 2)
+    );
+    --_title-font-size: var(--bottom-banner-title-font-size, var(--text-base));
+    --_title-font-weight: var(
+      --bottom-banner-title-font-weight,
+      var(--font-weight-semibold)
+    );
+    --_z-index: var(--bottom-banner-z-index, 40);
+    --_duration: var(--bottom-banner-duration, 300ms);
+    /* The dismiss button follows the banner's text; resolved here, not on the button. */
+    --_dismiss: var(--_text);
+    --_dismiss-inset: var(
+      --bottom-banner-dismiss-inset,
+      calc(var(--spacing) * 2)
+    );
+    /* Room the content leaves for the dismiss button at its end. */
+    --_dismiss-room: calc(var(--spacing) * 8);
+  }
+
+  [data-bottom-banner][data-variant="solid"] {
+    --_bg: var(--bottom-banner-solid-bg, var(--scheme-900));
+    --_border: var(--bottom-banner-solid-border, transparent);
+    --_text: var(--bottom-banner-solid-text, var(--scheme-100));
+    --_title-text: var(--bottom-banner-solid-title-text, white);
+    --_description-text: var(
+      --bottom-banner-solid-description-text,
+      var(--scheme-300)
+    );
+    --_shadow: var(--bottom-banner-solid-shadow, var(--shadow-lg));
+    --_dismiss-bg-hover: color-mix(in oklab, white 15%, transparent);
+    /* Light-on-dark controls: solid buttons invert, inputs go dark. */
+    --button-solid-bg: white;
+    --button-solid-bg-hover: var(--scheme-200);
+    --button-solid-text: var(--scheme-950);
+    --text-input-outline-bg: color-mix(in oklab, white 8%, transparent);
+    --text-input-outline-border: var(--scheme-600);
+    --text-input-outline-border-hover: var(--scheme-400);
+    --text-input-outline-text: white;
+    --text-input-outline-placeholder: var(--scheme-400);
+  }
+
+  [data-bottom-banner][data-variant="soft"] {
+    --_bg: var(--bottom-banner-soft-bg, var(--scheme-100));
+    --_border: var(--bottom-banner-soft-border, var(--scheme-200));
+    --_text: var(--bottom-banner-soft-text, var(--scheme-800));
+    --_title-text: var(--bottom-banner-soft-title-text, var(--scheme-950));
+    --_description-text: var(
+      --bottom-banner-soft-description-text,
+      var(--scheme-700)
+    );
+    --_shadow: var(--bottom-banner-soft-shadow, var(--shadow-lg));
+    --_dismiss-bg-hover: var(--scheme-200);
+  }
+
+  [data-bottom-banner][data-variant="outline"] {
+    --_bg: var(--bottom-banner-outline-bg, white);
+    --_border: var(--bottom-banner-outline-border, var(--scheme-300));
+    --_text: var(--bottom-banner-outline-text, var(--scheme-800));
+    --_title-text: var(--bottom-banner-outline-title-text, var(--scheme-950));
+    --_description-text: var(
+      --bottom-banner-outline-description-text,
+      var(--scheme-600)
+    );
+    --_shadow: var(--bottom-banner-outline-shadow, var(--shadow-lg));
+    --_dismiss-bg-hover: var(--scheme-100);
+  }
+
+  [data-bottom-banner] > [data-icon-button] {
+    --button-ghost-text: var(--_dismiss);
+    --button-ghost-bg-hover: var(--_dismiss-bg-hover);
+  }
+
+  [data-bottom-banner][data-state="open"] {
+    animation: bottom-banner-in var(--_duration) cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-bottom-banner][data-state="closed"] {
+    animation: bottom-banner-out var(--_duration) ease-in forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-bottom-banner] {
+      animation: none !important;
+    }
+  }
+
+  @keyframes bottom-banner-in {
+    from {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes bottom-banner-out {
+    to {
+      transform: translateY(100%);
+    }
+  }
+}

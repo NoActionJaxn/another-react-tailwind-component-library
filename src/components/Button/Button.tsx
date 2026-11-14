@@ -1,11 +1,11 @@
 import { Slot } from "@radix-ui/react-slot";
-import { useContext, type ButtonHTMLAttributes } from "react";
+import { useContext, type ComponentProps } from "react";
 import { schemeVars, tw, type ColorScheme } from "../../utils";
 import { ButtonGroupContext } from "./context";
 
 export type ButtonVariant = "solid" | "soft" | "outline" | "ghost";
 export type ButtonSize = "sm" | "md" | "lg";
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ComponentProps<"button"> {
   variant?: ButtonVariant;
   colorScheme?: ColorScheme;
   size?: ButtonSize;

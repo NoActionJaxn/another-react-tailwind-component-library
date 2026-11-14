@@ -1,0 +1,93 @@
+/* --_* vars resolve on the carousel and are inherited by its slides. */
+@layer components {
+  [data-carousel] {
+    --_radius: var(--carousel-radius, var(--radius-lg));
+    --_bg: var(--carousel-bg, var(--scheme-200));
+    --_control-bg: var(
+      --carousel-control-bg,
+      color-mix(in oklab, white 85%, transparent)
+    );
+    --_control-bg-hover: var(--carousel-control-bg-hover, white);
+    --_control-text: var(--carousel-control-text, var(--scheme-900));
+    --_dot-size: var(--carousel-dot-size, calc(var(--spacing) * 2));
+    --_dot-active-width: var(
+      --carousel-dot-active-width,
+      calc(var(--spacing) * 6)
+    );
+    --_dot-gap: var(--carousel-dot-gap, 0px);
+    --_dot-target: var(--carousel-dot-target, calc(var(--spacing) * 6));
+    --_dot: var(--carousel-dot, color-mix(in oklab, white 60%, transparent));
+    --_dot-active: var(--carousel-dot-active, white);
+    --_focus-color: var(--carousel-focus-color, var(--scheme-400));
+    --_focus-width: var(--carousel-focus-width, 4px);
+    --_caption-text: var(--carousel-caption-text, white);
+    --_description-text: var(--carousel-description-text, var(--scheme-100));
+    --_caption-gap: var(--carousel-caption-gap, calc(var(--spacing) * 1.5));
+    --_description-max-width: var(--carousel-description-max-width, 36rem);
+    --_actions-gap: var(--carousel-actions-gap, calc(var(--spacing) * 2));
+    --_actions-item-gap: var(
+      --carousel-actions-item-gap,
+      calc(var(--spacing) * 3)
+    );
+    --_title-font-weight: var(
+      --carousel-title-font-weight,
+      var(--font-weight-bold)
+    );
+    --_scrim: var(
+      --carousel-scrim,
+      linear-gradient(
+        to top,
+        color-mix(in oklab, var(--scheme-950) 80%, transparent),
+        transparent
+      )
+    );
+    --_overlay: var(
+      --carousel-overlay,
+      color-mix(in oklab, var(--scheme-950) 50%, transparent)
+    );
+    /* The caption keeps clear of the arrows at the sides and the pager below. */
+    --_caption-padding-x: calc(var(--_controls-inset) * 2 + var(--_arrow-size));
+    --_caption-padding-bottom: calc(
+      var(--_controls-inset) + var(--_dot-target) + var(--spacing) * 2
+    );
+  }
+
+  /* Grows with the window, at Tailwind's md breakpoint. Phones get a taller
+     shape and smaller controls so a caption fits. */
+  [data-carousel] {
+    --_aspect-ratio: var(--carousel-aspect-ratio, 4 / 3);
+    --_controls-inset: var(--carousel-controls-inset, calc(var(--spacing) * 2));
+    --_arrow-size: var(--carousel-arrow-size, calc(var(--spacing) * 8));
+    --_pause-size: var(--carousel-pause-size, calc(var(--spacing) * 7));
+    --_caption-padding-top: var(
+      --carousel-caption-padding-top,
+      calc(var(--spacing) * 8)
+    );
+    --_title-font-size: var(--carousel-title-font-size, var(--text-lg));
+    --_description-font-size: var(
+      --carousel-description-font-size,
+      var(--text-sm)
+    );
+  }
+
+  @media (width >= --theme(--breakpoint-md)) {
+    [data-carousel] {
+      --_aspect-ratio: var(--carousel-md-aspect-ratio, 16 / 9);
+      --_controls-inset: var(
+        --carousel-md-controls-inset,
+        calc(var(--spacing) * 4)
+      );
+      --_arrow-size: var(--carousel-md-arrow-size, calc(var(--spacing) * 10));
+      --_pause-size: var(--carousel-md-pause-size, calc(var(--spacing) * 8));
+      --_caption-padding-top: var(
+        --carousel-md-caption-padding-top,
+        calc(var(--spacing) * 16)
+      );
+      --_title-font-size: var(--carousel-md-title-font-size, var(--text-3xl));
+      --_description-font-size: var(
+        --carousel-md-description-font-size,
+        var(--text-base)
+      );
+    }
+  }
+}

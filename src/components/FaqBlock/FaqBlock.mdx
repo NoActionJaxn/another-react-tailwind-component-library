@@ -1,0 +1,9 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ComponentDocs } from "../../docs/blocks/ComponentDocs";
+import * as Stories from "./FaqBlock.stories";
+import css from "./FaqBlock.css?raw";
+import shared0 from "../Accordion/Accordion.css?raw";
+
+<Meta of={Stories} />
+
+<ComponentDocs component="FaqBlock" css={[css]} sharedCss={[shared0]} />

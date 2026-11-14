@@ -1,0 +1,97 @@
+/* --_* vars resolve on the footer and are inherited by its parts. */
+@layer components {
+  [data-footer] {
+    --_gap: var(--footer-gap, calc(var(--spacing) * 10));
+    --_row-gap: var(--footer-row-gap, calc(var(--spacing) * 10));
+    --_brand-gap: var(--footer-brand-gap, calc(var(--spacing) * 5));
+    --_brand-max-width: var(--footer-brand-max-width, 24rem);
+    --_column-min-width: var(--footer-column-min-width, 9rem);
+    --_column-gap: var(--footer-column-gap, calc(var(--spacing) * 5));
+    --_link-gap: var(--footer-link-gap, calc(var(--spacing) * 3));
+    --_bar-gap: var(--footer-bar-gap, calc(var(--spacing) * 10));
+    --_bar-padding-y: var(--footer-bar-padding-y, calc(var(--spacing) * 6));
+    --_radius: var(--footer-radius, var(--radius-sm));
+    --_title-font-weight: var(
+      --footer-title-font-weight,
+      var(--font-weight-semibold)
+    );
+    --_focus-color: var(--footer-focus-color, var(--scheme-400));
+    --_focus-width: var(--footer-focus-width, 4px);
+    /* Social icons follow the link colors; resolved here, not on the button. */
+    --_social: var(--_link);
+  }
+
+  /* Grows with the window, at Tailwind's md breakpoint. */
+  [data-footer] {
+    --_padding-y: var(--footer-padding-y, calc(var(--spacing) * 10));
+  }
+
+  @media (width >= --theme(--breakpoint-md)) {
+    [data-footer] {
+      --_padding-y: var(--footer-md-padding-y, calc(var(--spacing) * 14));
+    }
+  }
+
+  [data-footer][data-variant="solid"] {
+    --_bg: var(--footer-solid-bg, var(--scheme-950));
+    --_border: var(--footer-solid-border, transparent);
+    --_text: var(--footer-solid-text, var(--scheme-100));
+    --_title-text: var(--footer-solid-title-text, white);
+    --_muted-text: var(--footer-solid-muted-text, var(--scheme-300));
+    --_link: var(--footer-solid-link, var(--scheme-200));
+    --_link-hover: var(--footer-solid-link-hover, white);
+    --_divider: var(--footer-solid-divider, var(--scheme-700));
+    --_social-bg-hover: var(
+      --footer-solid-social-bg-hover,
+      color-mix(in oklab, white 12%, transparent)
+    );
+  }
+
+  [data-footer][data-variant="soft"] {
+    --_bg: var(--footer-soft-bg, var(--scheme-100));
+    --_border: var(--footer-soft-border, transparent);
+    --_text: var(--footer-soft-text, var(--scheme-800));
+    --_title-text: var(--footer-soft-title-text, var(--scheme-950));
+    --_muted-text: var(--footer-soft-muted-text, var(--scheme-700));
+    --_link: var(--footer-soft-link, var(--scheme-700));
+    --_link-hover: var(--footer-soft-link-hover, var(--scheme-950));
+    --_divider: var(--footer-soft-divider, var(--scheme-300));
+    --_social-bg-hover: var(--footer-soft-social-bg-hover, var(--scheme-200));
+  }
+
+  [data-footer][data-variant="outline"] {
+    --_bg: var(--footer-outline-bg, white);
+    --_border: var(--footer-outline-border, var(--scheme-300));
+    --_text: var(--footer-outline-text, var(--scheme-800));
+    --_title-text: var(--footer-outline-title-text, var(--scheme-950));
+    --_muted-text: var(--footer-outline-muted-text, var(--scheme-600));
+    --_link: var(--footer-outline-link, var(--scheme-700));
+    --_link-hover: var(--footer-outline-link-hover, var(--scheme-950));
+    --_divider: var(--footer-outline-divider, var(--scheme-200));
+    --_social-bg-hover: var(
+      --footer-outline-social-bg-hover,
+      var(--scheme-100)
+    );
+  }
+
+  [data-footer][data-variant="ghost"] {
+    --_bg: var(--footer-ghost-bg, transparent);
+    --_border: var(--footer-ghost-border, transparent);
+    --_text: var(--footer-ghost-text, var(--scheme-800));
+    --_title-text: var(--footer-ghost-title-text, var(--scheme-950));
+    --_muted-text: var(--footer-ghost-muted-text, var(--scheme-600));
+    --_link: var(--footer-ghost-link, var(--scheme-700));
+    --_link-hover: var(--footer-ghost-link-hover, var(--scheme-950));
+    --_divider: var(--footer-ghost-divider, var(--scheme-200));
+    --_social-bg-hover: var(--footer-ghost-social-bg-hover, var(--scheme-100));
+  }
+
+  [data-footer-socials] [data-icon-button] {
+    --button-ghost-text: var(--_social);
+    --button-ghost-bg-hover: var(--_social-bg-hover);
+  }
+
+  [data-footer-socials] [data-icon-button]:hover {
+    --button-ghost-text: var(--_link-hover);
+  }
+}

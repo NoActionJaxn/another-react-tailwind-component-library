@@ -1,0 +1,9 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ComponentDocs } from "../../docs/blocks/ComponentDocs";
+import * as Stories from "./AvatarGroup.stories";
+import css from "./AvatarGroup.css?raw";
+import shared0 from "../Avatar/Avatar.css?raw";
+
+<Meta of={Stories} />
+
+<ComponentDocs component="AvatarGroup" css={[css]} sharedCss={[shared0]} />

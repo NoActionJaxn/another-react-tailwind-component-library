@@ -1,0 +1,33 @@
+/* --_* vars resolve on the nav and are inherited by its items. Links are
+   Anchors: style them with the --anchor-* variables. */
+@layer components {
+  [data-breadcrumb] {
+    --_text: var(--breadcrumb-text, var(--scheme-600));
+    --_current: var(--breadcrumb-current, var(--scheme-950));
+    --_current-font-weight: var(
+      --breadcrumb-current-font-weight,
+      var(--font-weight-semibold)
+    );
+    --_separator: var(--breadcrumb-separator, var(--scheme-400));
+    --_separator-size: var(--breadcrumb-separator-size, 1em);
+    --_radius: var(--breadcrumb-radius, var(--radius-sm));
+    --_ellipsis-bg-hover: var(
+      --breadcrumb-ellipsis-bg-hover,
+      var(--scheme-100)
+    );
+    --_focus-color: var(--breadcrumb-focus-color, var(--scheme-400));
+    --_focus-width: var(--breadcrumb-focus-width, 4px);
+  }
+
+  [data-breadcrumb][data-size="sm"] {
+    --_gap: var(--breadcrumb-sm-gap, calc(var(--spacing) * 1));
+  }
+
+  [data-breadcrumb][data-size="md"] {
+    --_gap: var(--breadcrumb-md-gap, calc(var(--spacing) * 1.5));
+  }
+
+  [data-breadcrumb][data-size="lg"] {
+    --_gap: var(--breadcrumb-lg-gap, calc(var(--spacing) * 2));
+  }
+}

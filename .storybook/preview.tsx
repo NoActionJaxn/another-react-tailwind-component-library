@@ -65,6 +65,7 @@ const preview: Preview = {
           "Cards",
           "Blocks",
           "Utilities",
+          "Hooks",
         ],
       },
     },

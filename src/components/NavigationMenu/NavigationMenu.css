@@ -11,5 +11,19 @@
     --_focus-color: var(--navigation-menu-focus-color, var(--scheme-400));
     --_focus-width: var(--navigation-menu-focus-width, 4px);
     --_focus-offset: var(--navigation-menu-focus-offset, 0px);
+    /* The full-screen panel below the collapse breakpoint. It's portaled to
+       <body> and gets these values copied from the menu when it opens. */
+    --_panel-bg: var(--navigation-menu-panel-bg, white);
+    --_panel-padding-x: var(
+      --navigation-menu-panel-padding-x,
+      calc(var(--spacing) * 4)
+    );
+    --_panel-padding-y: var(
+      --navigation-menu-panel-padding-y,
+      calc(var(--spacing) * 6)
+    );
+    --_panel-max-width: var(--navigation-menu-panel-max-width, 40rem);
+    --_panel-font-size: var(--navigation-menu-panel-font-size, var(--text-lg));
+    --_panel-z-index: var(--navigation-menu-panel-z-index, 50);
   }
 }

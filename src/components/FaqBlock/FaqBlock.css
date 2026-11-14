@@ -1,0 +1,56 @@
+/* --_* vars resolve on the section and are inherited by its parts. The
+   questions are an Accordion: its --accordion-* variables apply too. */
+@layer components {
+  [data-faq-block] {
+    --_gap: var(--faq-block-gap, calc(var(--spacing) * 10));
+    --_header-gap: var(--faq-block-header-gap, calc(var(--spacing) * 3));
+    --_header-max-width: var(--faq-block-header-max-width, 40rem);
+    --_list-max-width: var(--faq-block-list-max-width, 48rem);
+    --_title-font-weight: var(
+      --faq-block-title-font-weight,
+      var(--font-weight-bold)
+    );
+    --_title-text: var(--faq-block-title-text, var(--scheme-950));
+    --_description-text: var(--faq-block-description-text, var(--scheme-700));
+    --_text: var(--faq-block-text, var(--scheme-900));
+    --_question-font-size: var(
+      --faq-block-question-font-size,
+      var(--text-base)
+    );
+    --_answer-font-size: var(--faq-block-answer-font-size, var(--text-sm));
+  }
+
+  /* Grows with the window, at Tailwind's md breakpoint. */
+  [data-faq-block] {
+    --_padding-y: var(--faq-block-padding-y, calc(var(--spacing) * 12));
+    --_title-font-size: var(--faq-block-title-font-size, var(--text-2xl));
+    --_description-font-size: var(
+      --faq-block-description-font-size,
+      var(--text-base)
+    );
+  }
+
+  @media (width >= --theme(--breakpoint-md)) {
+    [data-faq-block] {
+      --_padding-y: var(--faq-block-md-padding-y, calc(var(--spacing) * 20));
+      --_title-font-size: var(--faq-block-md-title-font-size, var(--text-4xl));
+      --_description-font-size: var(
+        --faq-block-md-description-font-size,
+        var(--text-lg)
+      );
+    }
+  }
+
+  [data-faq-block][data-variant="ghost"] {
+    --_bg: var(--faq-block-ghost-bg, transparent);
+  }
+
+  [data-faq-block][data-variant="soft"] {
+    --_bg: var(--faq-block-soft-bg, var(--scheme-100));
+  }
+
+  /* The list's top border matches the Accordion's item borders. */
+  [data-faq-block-list] {
+    border-color: var(--_border);
+  }
+}

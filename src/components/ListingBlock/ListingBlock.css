@@ -1,0 +1,59 @@
+/* --_* vars resolve on the section and are inherited by its parts. */
+@layer components {
+  [data-listing-block] {
+    --_gap: var(--listing-block-gap, calc(var(--spacing) * 12));
+    --_row-gap: var(--listing-block-row-gap, calc(var(--spacing) * 8));
+    --_radius: var(--listing-block-radius, var(--radius-md));
+    --_text: var(--listing-block-text, var(--scheme-800));
+    --_title-text: var(--listing-block-title-text, var(--scheme-950));
+    --_muted-text: var(--listing-block-muted-text, var(--scheme-600));
+    --_image-bg: var(--listing-block-image-bg, var(--scheme-100));
+    --_thumb-size: var(--listing-block-thumb-size, calc(var(--spacing) * 20));
+    --_thumb-gap: var(--listing-block-thumb-gap, calc(var(--spacing) * 3));
+    --_thumb-active: var(--listing-block-thumb-active, var(--scheme-800));
+    --_focus-color: var(--listing-block-focus-color, var(--scheme-400));
+    --_focus-width: var(--listing-block-focus-width, 4px);
+    --_details-gap: var(--listing-block-details-gap, calc(var(--spacing) * 3));
+    --_section-gap: var(--listing-block-section-gap, calc(var(--spacing) * 3));
+    --_rating-pull: var(--listing-block-rating-pull, calc(var(--spacing) * 1));
+    --_star: var(--listing-block-star, var(--color-warning-500));
+    --_star-empty: var(--listing-block-star-empty, var(--scheme-300));
+    --_star-size: var(--listing-block-star-size, 1.125rem);
+    --_title-font-weight: var(
+      --listing-block-title-font-weight,
+      var(--font-weight-bold)
+    );
+    --_price-font-weight: var(
+      --listing-block-price-font-weight,
+      var(--font-weight-semibold)
+    );
+    --_actions-item-gap: var(
+      --listing-block-actions-item-gap,
+      calc(var(--spacing) * 3)
+    );
+  }
+
+  /* Grows with the window, at Tailwind's md breakpoint. */
+  [data-listing-block] {
+    --_padding-y: var(--listing-block-padding-y, calc(var(--spacing) * 8));
+    --_title-font-size: var(--listing-block-title-font-size, var(--text-2xl));
+    --_price-font-size: var(--listing-block-price-font-size, var(--text-2xl));
+  }
+
+  @media (width >= --theme(--breakpoint-md)) {
+    [data-listing-block] {
+      --_padding-y: var(
+        --listing-block-md-padding-y,
+        calc(var(--spacing) * 12)
+      );
+      --_title-font-size: var(
+        --listing-block-md-title-font-size,
+        var(--text-3xl)
+      );
+      --_price-font-size: var(
+        --listing-block-md-price-font-size,
+        var(--text-3xl)
+      );
+    }
+  }
+}
