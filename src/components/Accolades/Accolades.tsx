@@ -1,16 +1,13 @@
 import { PauseIcon, PlayIcon } from "@radix-ui/react-icons";
-import Autoplay from "embla-carousel-autoplay";
-import useEmblaCarousel from "embla-carousel-react";
 import {
   Children,
   useEffect,
-  useMemo,
-  useRef,
   useState,
   type HTMLAttributes,
   type ReactNode,
 } from "react";
 import { schemeVars, tw, type ColorScheme } from "../../utils";
+import { useAutoplayCarousel } from "../_autoplay/useAutoplayCarousel";
 import { Anchor, type AnchorProps } from "../Anchor";
 import { IconButton } from "../IconButton";
 import { Image, type ImageProps } from "../Image";
@@ -27,10 +24,6 @@ export interface AccoladesProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
 }
 
-const reducedMotion = () =>
-  typeof window !== "undefined" &&
-  window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-
 export function Accolades({
   animation = "none",
   delay = 4000,
@@ -44,39 +37,11 @@ export function Accolades({
   children,
   ...props
 }: AccoladesProps) {
-  const autoplay = useMemo(
-    () =>
-      Autoplay({
-        delay,
-        playOnInit: !reducedMotion(),
-        // With stopOnInteraction off, autoplay resumes when the pointer or focus leaves.
-        stopOnInteraction: false,
-        stopOnMouseEnter: true,
-        stopOnFocusIn: true,
-      }),
-    [delay],
-  );
-  const [viewportRef, api] = useEmblaCarousel(
+  const { viewportRef, api, paused, togglePaused } = useAutoplayCarousel(
+    delay,
     // A slide counts as in view once 60% of it shows, so it fades as it leaves.
     { loop, align: "start", slidesToScroll: 1, inViewThreshold: 0.6 },
-    [autoplay],
   );
-  // Paused with the button (reduced-motion users start paused). A ref, so the
-  // listener below sees a change before play() fires its event.
-  const [paused, setPaused] = useState(reducedMotion);
-  const pausedRef = useRef(paused);
-
-  useEffect(() => {
-    if (!api) return;
-    // Embla restarts autoplay when the pointer or focus leaves; undo that while paused.
-    const keepPaused = () => {
-      if (pausedRef.current) queueMicrotask(() => autoplay.stop());
-    };
-    api.on("autoplay:play", keepPaused);
-    return () => {
-      api.off("autoplay:play", keepPaused);
-    };
-  }, [api, autoplay]);
 
   const [inView, setInView] = useState<number[]>([]);
   useEffect(() => {
@@ -88,13 +53,6 @@ export function Accolades({
       api.off("slidesInView", update).off("reInit", update);
     };
   }, [api, animation]);
-
-  function toggle() {
-    pausedRef.current = !paused;
-    setPaused(!paused);
-    if (paused) autoplay.play();
-    else autoplay.stop();
-  }
 
   const items = Children.toArray(children);
   return (
@@ -127,7 +85,7 @@ export function Accolades({
         variant="ghost"
         size="sm"
         aria-label={paused ? playLabel : pauseLabel}
-        onClick={toggle}
+        onClick={togglePaused}
         className="self-end"
       >
         {paused ? <PlayIcon aria-hidden /> : <PauseIcon aria-hidden />}

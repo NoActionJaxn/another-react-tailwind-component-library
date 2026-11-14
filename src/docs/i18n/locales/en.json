@@ -701,6 +701,25 @@
         "ariaLabel": "Volume"
       }
     },
+    "Sponsors": {
+      "description": "A looping carousel of sponsor logos that advances one logo at a time. Each logo is a link that zooms on hover and focus; its alt text, the sponsor's name, is the link's name. Pauses while hovered or focused, has a pause button, and starts paused for reduced-motion users. Shows 2, 3 or 5 logos depending on the window width. Compose it with SponsorsLogo (href, src, alt, and any link attribute such as target). Needs the optional peer dependencies embla-carousel-react and embla-carousel-autoplay; import it from \"another-react-tailwind-component-library/sponsors\".",
+      "props": {
+        "delay": "Milliseconds between automatic steps.",
+        "loop": "Wrap from the last logo back to the first.",
+        "slideLabel": "Accessible name for each logo's slide, from its position and the total. Defaults to \"1 of 6\".",
+        "pauseLabel": "Accessible name of the button while playing.",
+        "playLabel": "Accessible name of the button while paused."
+      },
+      "story": {
+        "label": "Our sponsors",
+        "names": ["Acme", "Lumen", "Orbit", "Nimbus", "Quanta", "Vertex"]
+      },
+      "cssVariables": {
+        "controls-gap": "Space between the logos and the pause button",
+        "item-basis": "Width of each logo's slot, as a share of the carousel",
+        "zoom-scale": "How far a logo zooms on hover and focus"
+      }
+    },
     "Switch": {
       "description": "A control that turns a setting on or off.",
       "props": {},
@@ -1517,6 +1536,10 @@
         "spacing": "spacing × {n}"
       },
       "suffixes": {
+        "logo-height": "Height of each logo's link; the logo fits inside",
+        "logo-padding": "Space around the logo inside its link",
+        "logo-radius": "Corner radius of the logo's focus outline",
+        "viewport-padding": "Space above and below the logos, so zoomed logos aren't clipped",
         "bg": "Background color",
         "bg-hover": "Background color on hover",
         "text": "Text color",

@@ -1,0 +1,32 @@
+/* --_* vars resolve on the carousel and are inherited by its logos. */
+@layer components {
+  [data-sponsors] {
+    --_gap: var(--sponsors-gap, calc(var(--spacing) * 6));
+    --_controls-gap: var(--sponsors-controls-gap, calc(var(--spacing) * 2));
+    --_viewport-padding: var(
+      --sponsors-viewport-padding,
+      calc(var(--spacing) * 2)
+    );
+    --_item-basis: var(--sponsors-item-basis, 50%);
+    --_logo-height: var(--sponsors-logo-height, calc(var(--spacing) * 16));
+    --_logo-padding: var(--sponsors-logo-padding, calc(var(--spacing) * 2));
+    --_logo-radius: var(--sponsors-logo-radius, var(--radius-md));
+    --_zoom-scale: var(--sponsors-zoom-scale, 1.15);
+    --_zoom-duration: var(--sponsors-zoom-duration, 200ms);
+    --_focus-color: var(--sponsors-focus-color, var(--scheme-400));
+    --_focus-width: var(--sponsors-focus-width, 4px);
+    --_focus-offset: var(--sponsors-focus-offset, 0px);
+  }
+
+  @media (width >= --theme(--breakpoint-md)) {
+    [data-sponsors] {
+      --_item-basis: var(--sponsors-md-item-basis, calc(100% / 3));
+    }
+  }
+
+  @media (width >= --theme(--breakpoint-lg)) {
+    [data-sponsors] {
+      --_item-basis: var(--sponsors-lg-item-basis, 20%);
+    }
+  }
+}
