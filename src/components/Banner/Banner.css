@@ -1,0 +1,44 @@
+/* --_* vars resolve on the banner, so defaults follow its status scheme. */
+@layer components {
+  [data-banner] {
+    --_padding-x: var(--banner-padding-x, calc(var(--spacing) * 4));
+    --_padding-y: var(--banner-padding-y, calc(var(--spacing) * 2.5));
+    --_gap: var(--banner-gap, calc(var(--spacing) * 4));
+    --_icon-gap: var(--banner-icon-gap, calc(var(--spacing) * 2));
+    --_icon-size: var(--banner-icon-size, 1.25em);
+    --_max-width: var(--banner-max-width, var(--breakpoint-xl));
+    --_z-index: var(--banner-z-index, 40);
+  }
+
+  [data-banner][data-variant="soft"] {
+    --_bg: var(--banner-soft-bg, var(--scheme-100));
+    --_border: var(--banner-soft-border, var(--scheme-200));
+    --_text: var(--banner-soft-text, var(--scheme-900));
+    --_icon: var(--banner-soft-icon, var(--scheme-700));
+  }
+
+  [data-banner][data-variant="solid"] {
+    --_bg: var(--banner-solid-bg, var(--scheme-700));
+    --_border: var(--banner-solid-border, transparent);
+    --_text: var(--banner-solid-text, white);
+    --_icon: var(--banner-solid-icon, white);
+  }
+
+  [data-banner][data-variant="outline"] {
+    --_bg: var(--banner-outline-bg, white);
+    --_border: var(--banner-outline-border, var(--scheme-300));
+    --_text: var(--banner-outline-text, var(--scheme-900));
+    --_icon: var(--banner-outline-icon, var(--scheme-700));
+  }
+
+  /* The dismiss button follows the banner's colors. --_dismiss resolves on the
+     banner, since --_text on the button is the button's own. */
+  [data-banner] {
+    --_dismiss: var(--_text);
+  }
+
+  [data-banner] > [data-icon-button] {
+    --button-ghost-text: var(--_dismiss);
+    --button-ghost-bg-hover: color-mix(in oklab, currentColor 12%, transparent);
+  }
+}

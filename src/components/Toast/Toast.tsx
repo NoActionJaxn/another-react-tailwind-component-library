@@ -1,9 +1,13 @@
 import { Cross2Icon } from "@radix-ui/react-icons";
 import * as ToastPrimitive from "@radix-ui/react-toast";
-import type { ComponentProps } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import { schemeStyle, tw, type ColorScheme } from "../../utils";
 import { Button, type ButtonProps } from "../Button";
 import { IconButton } from "../IconButton";
+import type { Status } from "../_status/status";
+import { StatusIcon } from "../_status/StatusIcon";
+
+export type ToastStatus = Status;
 
 export const ToastProvider = ToastPrimitive.Provider;
 
@@ -24,19 +28,41 @@ export function ToastViewport({
 
 export interface ToastProps extends ComponentProps<typeof ToastPrimitive.Root> {
   colorScheme?: ColorScheme;
+  status?: ToastStatus;
+  icon?: ReactNode;
 }
 
-export function Toast({ colorScheme, className, style, ...props }: ToastProps) {
+export function Toast({
+  colorScheme,
+  status,
+  icon,
+  className,
+  style,
+  children,
+  ...props
+}: ToastProps) {
+  // Without a status or icon, no icon column (the original layout).
+  const withIcon = status != null || (icon != null && icon !== false);
   return (
     <ToastPrimitive.Root
       data-toast
-      style={schemeStyle(colorScheme, style)}
+      data-status={status}
+      // Urgent toasts interrupt screen readers.
+      type={
+        status === "warning" || status === "danger" ? "foreground" : undefined
+      }
+      style={schemeStyle(colorScheme ?? status, style)}
       className={tw(
-        "relative grid gap-1 rounded-(--_radius) border border-(--_border) bg-(--_bg) p-(--_padding) pr-12 text-(--_text) shadow-(--_shadow) outline-(--_focus-color) focus:outline-(length:--_focus-width) focus:outline-offset-(--_focus-offset) focus:outline-solid",
+        "relative flex items-start gap-(--_icon-gap) rounded-(--_radius) border border-(--_border) bg-(--_bg) p-(--_padding) pr-12 text-(--_text) shadow-(--_shadow) outline-(--_focus-color) focus:outline-(length:--_focus-width) focus:outline-offset-(--_focus-offset) focus:outline-solid",
         className,
       )}
       {...props}
-    />
+    >
+      {withIcon && (
+        <StatusIcon status={status} icon={icon} className="text-sm" />
+      )}
+      <div className="grid min-w-0 flex-1 gap-1">{children}</div>
+    </ToastPrimitive.Root>
   );
 }
 

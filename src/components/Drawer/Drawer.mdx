@@ -1,0 +1,9 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ComponentDocs } from "../../docs/blocks/ComponentDocs";
+import * as Stories from "./Drawer.stories";
+import css from "./Drawer.css?raw";
+import shared0 from "../Backdrop/Backdrop.css?raw";
+
+<Meta of={Stories} />
+
+<ComponentDocs component="Drawer" css={[css]} sharedCss={[shared0]} />

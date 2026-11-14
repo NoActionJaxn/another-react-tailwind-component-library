@@ -1,0 +1,86 @@
+/* --_* vars resolve on the section and are inherited by its parts. */
+@layer components {
+  [data-call-to-action] {
+    --_radius: var(--call-to-action-radius, var(--radius-2xl));
+    --_gap: var(--call-to-action-gap, calc(var(--spacing) * 6));
+    --_content-gap: var(--call-to-action-content-gap, calc(var(--spacing) * 3));
+    --_content-max-width: var(--call-to-action-content-max-width, 40rem);
+    --_actions-item-gap: var(
+      --call-to-action-actions-item-gap,
+      calc(var(--spacing) * 3)
+    );
+    --_title-font-weight: var(
+      --call-to-action-title-font-weight,
+      var(--font-weight-bold)
+    );
+  }
+
+  /* Grows with the window, at Tailwind's md breakpoint. */
+  [data-call-to-action] {
+    --_padding-y: var(--call-to-action-padding-y, calc(var(--spacing) * 10));
+    --_padding: var(--call-to-action-padding, calc(var(--spacing) * 8));
+    --_title-font-size: var(--call-to-action-title-font-size, var(--text-2xl));
+    --_description-font-size: var(
+      --call-to-action-description-font-size,
+      var(--text-base)
+    );
+  }
+
+  @media (width >= --theme(--breakpoint-md)) {
+    [data-call-to-action] {
+      --_padding-y: var(
+        --call-to-action-md-padding-y,
+        calc(var(--spacing) * 16)
+      );
+      --_padding: var(--call-to-action-md-padding, calc(var(--spacing) * 12));
+      --_title-font-size: var(
+        --call-to-action-md-title-font-size,
+        var(--text-3xl)
+      );
+      --_description-font-size: var(
+        --call-to-action-md-description-font-size,
+        var(--text-lg)
+      );
+    }
+  }
+
+  [data-call-to-action][data-variant="soft"] {
+    --_bg: var(--call-to-action-soft-bg, var(--scheme-100));
+    --_border: var(--call-to-action-soft-border, transparent);
+    --_title-text: var(--call-to-action-soft-title-text, var(--scheme-950));
+    --_description-text: var(
+      --call-to-action-soft-description-text,
+      var(--scheme-700)
+    );
+  }
+
+  [data-call-to-action][data-variant="solid"] {
+    --_bg: var(--call-to-action-solid-bg, var(--scheme-900));
+    --_border: var(--call-to-action-solid-border, transparent);
+    --_title-text: var(--call-to-action-solid-title-text, white);
+    --_description-text: var(
+      --call-to-action-solid-description-text,
+      var(--scheme-200)
+    );
+  }
+
+  [data-call-to-action][data-variant="outline"] {
+    --_bg: var(--call-to-action-outline-bg, white);
+    --_border: var(--call-to-action-outline-border, var(--scheme-300));
+    --_title-text: var(--call-to-action-outline-title-text, var(--scheme-950));
+    --_description-text: var(
+      --call-to-action-outline-description-text,
+      var(--scheme-700)
+    );
+  }
+
+  [data-call-to-action][data-variant="ghost"] {
+    --_bg: var(--call-to-action-ghost-bg, transparent);
+    --_border: var(--call-to-action-ghost-border, transparent);
+    --_title-text: var(--call-to-action-ghost-title-text, var(--scheme-950));
+    --_description-text: var(
+      --call-to-action-ghost-description-text,
+      var(--scheme-700)
+    );
+  }
+}

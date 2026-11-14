@@ -8,6 +8,7 @@
     --_focus-color: var(--button-focus-color, var(--scheme-400));
     --_focus-width: var(--button-focus-width, 4px);
     --_focus-offset: var(--button-focus-offset, 0px);
+    --_gap: var(--button-gap, 0.5em);
   }
 
   [data-button][data-size="sm"] {

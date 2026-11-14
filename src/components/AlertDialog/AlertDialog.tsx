@@ -6,9 +6,9 @@ import {
   dialogDescription,
   dialogFooter,
   dialogHeader,
-  dialogOverlay,
   dialogTitle,
 } from "../_dialog/classes";
+import { Backdrop } from "../Backdrop";
 import { Button, type ButtonProps } from "../Button";
 
 export const AlertDialog = AlertDialogPrimitive.Root;
@@ -28,11 +28,9 @@ export function AlertDialogContent({
 }: AlertDialogContentProps) {
   return (
     <AlertDialogPrimitive.Portal>
-      <AlertDialogPrimitive.Overlay
-        data-dialog-overlay
-        style={schemeStyle(colorScheme)}
-        className={dialogOverlay}
-      />
+      <AlertDialogPrimitive.Overlay asChild>
+        <Backdrop data-dialog-overlay colorScheme={colorScheme} />
+      </AlertDialogPrimitive.Overlay>
       <AlertDialogPrimitive.Content
         data-dialog-content
         style={schemeStyle(colorScheme, style)}

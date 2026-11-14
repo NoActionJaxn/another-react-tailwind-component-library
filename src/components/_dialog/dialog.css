@@ -1,9 +1,13 @@
 /* Shared by Dialog and AlertDialog. */
 @layer components {
-  [data-dialog-overlay] {
-    --_overlay: var(
+  /* A Backdrop: --backdrop-* variables apply too, --dialog-overlay wins. */
+  [data-dialog-overlay][data-backdrop] {
+    --_bg: var(
       --dialog-overlay,
-      color-mix(in oklab, var(--scheme-950) 50%, transparent)
+      var(
+        --backdrop-bg,
+        color-mix(in oklab, var(--scheme-950) 50%, transparent)
+      )
     );
   }
 

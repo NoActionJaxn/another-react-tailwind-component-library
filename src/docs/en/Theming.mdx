@@ -6,8 +6,13 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 Components get their colors from a **color scheme**: any set of
 `--color-<name>-50` … `--color-<name>-950` variables, following Tailwind's
-color format. The library ships one scheme, `default`, which uses Tailwind's
+color format. The library ships one main scheme, `default`, which uses Tailwind's
 `stone` palette.
+
+It also ships four status schemes, used by the `status` prop of Alert, Banner
+and Toast: `info` (blue), `success` (green), `warning` (amber) and `danger`
+(red). Redefine their `--color-info-*` … `--color-danger-*` variables the same
+way to change those colors everywhere, or pass any of them as a `colorScheme`.
 
 There are three ways to customize it, from broadest to most specific.
 

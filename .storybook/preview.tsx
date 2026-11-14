@@ -58,6 +58,7 @@ const preview: Preview = {
           "Navigation",
           "Data Display",
           "Typography",
+          "Feedback",
           "Overlays",
           "Dialogs",
           "Containers",

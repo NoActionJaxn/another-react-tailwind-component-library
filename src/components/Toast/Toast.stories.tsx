@@ -14,15 +14,28 @@ import {
 } from "./Toast";
 
 const meta = {
-  title: "Overlays/Toast",
+  title: "Feedback/Toast",
   component: Toast,
   parameters: docsParameters("Toast", { layout: "centered" }),
-  args: { colorScheme: "default" },
+  args: { status: "success", colorScheme: undefined },
   argTypes: docsArgTypes("Toast", ["colorScheme"], {
+    status: {
+      control: "inline-radio",
+      options: ["info", "success", "warning", "danger"],
+    },
+    icon: {
+      control: false,
+      table: {
+        defaultValue: { summary: m.components.Alert.story.iconDefault },
+      },
+    },
     colorScheme: {
       // "brand" is defined in playground/playground.css
       control: "inline-radio",
       options: ["default", "brand"],
+      table: {
+        defaultValue: { summary: m.components.Alert.story.schemeDefault },
+      },
     },
   }),
   render: function Render(args: ToastProps) {

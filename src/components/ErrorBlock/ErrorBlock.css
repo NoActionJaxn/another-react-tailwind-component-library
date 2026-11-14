@@ -1,0 +1,59 @@
+/* --_* vars resolve on the section and are inherited by its parts. */
+@layer components {
+  [data-error-block] {
+    --_gap: var(--error-block-gap, calc(var(--spacing) * 4));
+    --_actions-gap: var(--error-block-actions-gap, calc(var(--spacing) * 4));
+    --_actions-item-gap: var(
+      --error-block-actions-item-gap,
+      calc(var(--spacing) * 3)
+    );
+    --_description-max-width: var(--error-block-description-max-width, 36rem);
+    --_code-font-weight: var(
+      --error-block-code-font-weight,
+      var(--font-weight-black)
+    );
+    --_message-font-weight: var(
+      --error-block-message-font-weight,
+      var(--font-weight-bold)
+    );
+    --_code-text: var(--error-block-code-text, var(--scheme-500));
+    --_message-text: var(--error-block-message-text, var(--scheme-950));
+    --_description-text: var(--error-block-description-text, var(--scheme-700));
+  }
+
+  /* Grows with the window, at Tailwind's md breakpoint. */
+  [data-error-block] {
+    --_padding-y: var(--error-block-padding-y, calc(var(--spacing) * 12));
+    --_min-height: var(--error-block-min-height, 28rem);
+    --_code-font-size: var(--error-block-code-font-size, var(--text-7xl));
+    --_message-font-size: var(--error-block-message-font-size, var(--text-2xl));
+    --_description-font-size: var(
+      --error-block-description-font-size,
+      var(--text-base)
+    );
+  }
+
+  @media (width >= --theme(--breakpoint-md)) {
+    [data-error-block] {
+      --_padding-y: var(--error-block-md-padding-y, calc(var(--spacing) * 20));
+      --_min-height: var(--error-block-md-min-height, 36rem);
+      --_code-font-size: var(--error-block-md-code-font-size, var(--text-9xl));
+      --_message-font-size: var(
+        --error-block-md-message-font-size,
+        var(--text-4xl)
+      );
+      --_description-font-size: var(
+        --error-block-md-description-font-size,
+        var(--text-lg)
+      );
+    }
+  }
+
+  [data-error-block][data-variant="ghost"] {
+    --_bg: var(--error-block-ghost-bg, transparent);
+  }
+
+  [data-error-block][data-variant="soft"] {
+    --_bg: var(--error-block-soft-bg, var(--scheme-100));
+  }
+}

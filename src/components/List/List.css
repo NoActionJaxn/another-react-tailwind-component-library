@@ -1,0 +1,32 @@
+/* Shared by UnorderedList and OrderedList; --_* vars are inherited by the items. */
+@layer components {
+  [data-list] {
+    --_text: var(--list-text, currentColor);
+    --_marker: var(--list-marker, var(--scheme-600));
+    --_indent: var(--list-indent, 1.5em);
+    --_marker-gap: var(--list-marker-gap, 0.25em);
+    --_icon-gap: var(--list-icon-gap, 0.5em);
+    --_icon-size: var(--list-icon-size, 1em);
+  }
+
+  [data-list][data-size="sm"] {
+    --_gap: var(--list-sm-gap, calc(var(--spacing) * 1));
+    --_line-height: var(--list-sm-line-height, var(--text-sm--line-height));
+  }
+
+  [data-list][data-size="md"] {
+    --_gap: var(--list-md-gap, calc(var(--spacing) * 1.5));
+    --_line-height: var(--list-md-line-height, var(--text-base--line-height));
+  }
+
+  [data-list][data-size="lg"] {
+    --_gap: var(--list-lg-gap, calc(var(--spacing) * 2));
+    --_line-height: var(--list-lg-line-height, var(--text-lg--line-height));
+  }
+
+  /* A nested list sits one gap below its item's text. */
+  [data-list-item] > [data-list],
+  [data-list-item] > div > [data-list] {
+    margin-top: var(--_gap);
+  }
+}

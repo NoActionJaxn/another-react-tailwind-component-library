@@ -2,13 +2,13 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import type { ComponentProps } from "react";
 import { schemeStyle, tw, type ColorScheme } from "../../utils";
+import { Backdrop } from "../Backdrop";
 import { IconButton } from "../IconButton";
 import {
   dialogContent,
   dialogDescription,
   dialogFooter,
   dialogHeader,
-  dialogOverlay,
   dialogTitle,
 } from "../_dialog/classes";
 
@@ -33,14 +33,11 @@ export function DialogContent({
   children,
   ...props
 }: DialogContentProps) {
-  const scheme = schemeStyle(colorScheme);
   return (
     <DialogPrimitive.Portal>
-      <DialogPrimitive.Overlay
-        data-dialog-overlay
-        style={scheme}
-        className={dialogOverlay}
-      />
+      <DialogPrimitive.Overlay asChild>
+        <Backdrop data-dialog-overlay colorScheme={colorScheme} />
+      </DialogPrimitive.Overlay>
       <DialogPrimitive.Content
         data-dialog-content
         style={schemeStyle(colorScheme, style)}

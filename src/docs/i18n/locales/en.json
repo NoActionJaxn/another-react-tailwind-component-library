@@ -184,6 +184,9 @@
       },
       "story": {
         "children": "Button"
+      },
+      "cssVariables": {
+        "--button-gap": "Space between an icon and the text"
       }
     },
     "ButtonGroup": {
@@ -738,8 +741,12 @@
       }
     },
     "Toast": {
-      "description": "A short, temporary message. Place a ToastProvider and ToastViewport once in the app. ToastAction renders Button.",
-      "props": {},
+      "description": "A short, temporary message. Place a ToastProvider and ToastViewport once in the app. ToastAction renders Button. status adds an icon and a color scheme, as in Alert; warning and danger toasts interrupt screen readers.",
+      "props": {
+        "status": "What kind of message it is. Sets the color scheme and an icon. Unset: no icon.",
+        "icon": "Icon at the start, in place of the status icon. Pass false to hide the status icon.",
+        "colorScheme": "Color scheme, overriding the status's. The status schemes are `--color-info-*`, `--color-success-*`, `--color-warning-*` and `--color-danger-*`: redefine them to change every Alert, Banner and Toast."
+      },
       "story": {
         "trigger": "Show toast",
         "title": "Saved",
@@ -876,6 +883,212 @@
         "--one-time-code-input-label-width": "Width of a left label. Set the same width on a form's fields so they line up.",
         "--one-time-code-input-required": "Required star color"
       }
+    },
+    "Backdrop": {
+      "description": "A dimmed layer behind overlays, reused by Dialog, AlertDialog and Drawer. Use it on its own behind your own popups or loading states. It fades in and out, and stays mounted until the fade-out ends. It is hidden from assistive tech and doesn't trap focus or lock scrolling: pair it with something that does, or use Dialog or Drawer.",
+      "props": {
+        "open": "Whether it's shown. Set to false to fade it out and unmount it.",
+        "blur": "Blur what's behind it as well as dimming it.",
+        "contained": "Cover the nearest positioned parent instead of the whole window.",
+        "asChild": "Render the child element as the backdrop instead of a `<div>`, e.g. a Radix overlay part."
+      },
+      "story": {
+        "content": "The backdrop covers this box. Click it to close.",
+        "show": "Show backdrop"
+      },
+      "cssVariables": {
+        "--backdrop-bg": "Backdrop color",
+        "--backdrop-blur": "Blur strength when blur is set",
+        "--backdrop-z-index": "Stacking order",
+        "--backdrop-duration": "Fade duration"
+      }
+    },
+    "Drawer": {
+      "description": "A panel that slides in from an edge of the window over a Backdrop, built on Radix Dialog: it traps focus, closes on Escape or a click outside, and returns focus to the trigger. Compose it like a Card: DrawerHeader (DrawerTitle, DrawerDescription), DrawerBody for the content, which scrolls when it's long, and DrawerFooter for actions. A DrawerTitle is required for screen readers.",
+      "props": {
+        "side": "DrawerContent: the edge it slides in from.",
+        "size": "DrawerContent: width for left and right drawers, maximum height for top and bottom ones.",
+        "showClose": "DrawerContent: show the close button in the top corner.",
+        "closeLabel": "DrawerContent: accessible name of the close button."
+      },
+      "story": {
+        "trigger": "Edit profile",
+        "title": "Edit profile",
+        "description": "Changes are saved when you click Save.",
+        "name": "Name",
+        "email": "Email",
+        "body": "Your name and email are shown on your public profile and in emails we send you.",
+        "cancel": "Cancel",
+        "save": "Save"
+      },
+      "cssVariables": {
+        "--drawer-gap": "Space between header, body and footer",
+        "--drawer-padding": "Padding around the sections",
+        "--drawer-footer-border": "Line above the footer",
+        "--drawer-close-inset": "Close button distance from the top and end edges",
+        "--drawer-max-size": "Largest width of a left or right drawer, so some page stays visible",
+        "--drawer-duration": "Slide and fade duration",
+        "--drawer-overlay": "Backdrop color behind the drawer",
+        "size": "Width (left, right) or maximum height (top, bottom)"
+      }
+    },
+    "UnorderedList": {
+      "description": "A bulleted list (`<ul>`) of ListItems. Use a marker style, or an icon in place of the bullets (good for feature lists); give a single ListItem its own icon with its icon prop. Nest lists inside a ListItem; nested lists take their parent's size.",
+      "props": {
+        "marker": "Bullet style: \"disc\", \"circle\", \"square\" or \"none\".",
+        "icon": "Icon shown in place of the bullet on every item, e.g. a check mark. Overrides marker.",
+        "size": "Text size, line height and space between items. Nested lists take their parent's size unless they set one."
+      },
+      "story": {
+        "items": [
+          "Unlimited projects",
+          "Shared workspaces",
+          "Priority support",
+          "Daily backups"
+        ],
+        "nested": ["Up to 10 members", "Comments and mentions"],
+        "icons": {
+          "none": "None (use marker)",
+          "check": "Check",
+          "arrow": "Arrow",
+          "star": "Star"
+        }
+      },
+      "cssVariables": {
+        "--list-marker": "Bullet, number and icon color",
+        "--list-indent": "Space reserved for the markers",
+        "--list-marker-gap": "Space between a bullet or number and the text",
+        "--list-icon-gap": "Space between an icon and the text",
+        "--list-icon-size": "Icon marker size",
+        "gap": "Space between items"
+      }
+    },
+    "OrderedList": {
+      "description": "A numbered list (`<ol>`) of ListItems, with number, letter or roman numeral markers. Nest lists inside a ListItem; nested lists take their parent's size.",
+      "props": {
+        "marker": "Numbering style: \"decimal\" (1, 2, 3), \"decimal-leading-zero\" (01, 02), \"lower-alpha\" / \"upper-alpha\" (a, b / A, B) or \"lower-roman\" / \"upper-roman\" (i, ii / I, II).",
+        "start": "Number of the first item.",
+        "reversed": "Count down instead of up.",
+        "size": "Text size, line height and space between items. Nested lists take their parent's size unless they set one."
+      },
+      "story": {
+        "items": [
+          "Create an account",
+          "Verify your email",
+          "Set up your workspace",
+          "Invite your team"
+        ],
+        "nested": ["Choose a name", "Upload a logo"]
+      },
+      "cssVariables": {
+        "--list-marker": "Bullet, number and icon color",
+        "--list-indent": "Space reserved for the markers",
+        "--list-marker-gap": "Space between a bullet or number and the text",
+        "--list-icon-gap": "Space between an icon and the text",
+        "--list-icon-size": "Icon marker size",
+        "gap": "Space between items"
+      }
+    },
+    "Portal": {
+      "description": "Renders its children somewhere else in the page, at the end of `<body>` by default, using Radix Portal. Use it for anything that must escape a parent's overflow, stacking or transform, such as your own popups or floating panels. Dialog, Drawer, Popover and the other overlays already portal their content. Portaled content doesn't inherit the color scheme or variable overrides of where it's written, so pass colorScheme to keep it.",
+      "props": {
+        "container": "Element to render into instead of `<body>`.",
+        "disabled": "Render the children in place instead, e.g. inside a container that's already portaled.",
+        "asChild": "Portal the child element itself instead of wrapping it in a `<div>`."
+      },
+      "story": {
+        "source": "Written here, inside the Portal.",
+        "target": "Rendered here: the container. Without one, it goes to the end of <body>.",
+        "content": "Portaled content. Set disabled to render it where it's written."
+      }
+    },
+    "Alert": {
+      "description": "An inline message about something on the page: a result, a warning or an error. Compose it with AlertTitle and AlertDescription (or any content). status picks a color scheme (info blue, success green, warning amber, danger red) and an icon; leave it unset for a neutral alert in the inherited scheme. Pass onDismiss to show a dismiss button.",
+      "props": {
+        "variant": "Style: soft (tinted background), solid (filled) or outline (white with a border).",
+        "status": "What kind of message it is. Sets the color scheme, the default icon and the role. Unset: a neutral alert with an info icon.",
+        "colorScheme": "Color scheme, overriding the status's. The status schemes are `--color-info-*`, `--color-success-*`, `--color-warning-*` and `--color-danger-*`: redefine them to change every Alert, Banner and Toast.",
+        "icon": "Icon in place of the status icon. Pass false to show none.",
+        "onDismiss": "Called when the dismiss button is clicked. Without it there's no button; hide the alert yourself in the handler.",
+        "dismissLabel": "Accessible name of the dismiss button.",
+        "role": "ARIA role. \"alert\" interrupts screen readers when the alert appears, \"status\" waits until they're idle."
+      },
+      "story": {
+        "title": "Your trial ends in 3 days",
+        "description": "Add a payment method to keep your projects and settings.",
+        "showAgain": "Show the alert again",
+        "schemeDefault": "the status's scheme, or inherited",
+        "iconDefault": "the status's icon",
+        "roleDefault": "\"alert\" for warning and danger, otherwise \"status\""
+      },
+      "cssVariables": {
+        "--alert-content-gap": "Space between the title and the description",
+        "gap": "Space between the icon, the text and the dismiss button"
+      }
+    },
+    "Banner": {
+      "description": "A full-width strip across the top of the page or a section, for announcements and site-wide notices. The message, an optional action and the icon sit centered within a max width; the dismiss button sits at the end. status works as in Alert.",
+      "props": {
+        "variant": "Style: solid (filled), soft (tinted background) or outline (white with a border).",
+        "status": "What kind of message it is. Sets the color scheme, the default icon and the role. Unset: a neutral alert with an info icon.",
+        "colorScheme": "Color scheme, overriding the status's. The status schemes are `--color-info-*`, `--color-success-*`, `--color-warning-*` and `--color-danger-*`: redefine them to change every Alert, Banner and Toast.",
+        "icon": "Icon in place of the status icon. Pass false to show none.",
+        "action": "Shown after the message, usually a link or a small button.",
+        "sticky": "Stick to the top of the scrolling area while the page scrolls.",
+        "onDismiss": "Called when the dismiss button is clicked. Without it there's no button; hide the banner yourself in the handler.",
+        "dismissLabel": "Accessible name of the dismiss button.",
+        "role": "ARIA role. \"alert\" interrupts screen readers when the alert appears, \"status\" waits until they're idle."
+      },
+      "story": {
+        "message": "Scheduled maintenance on Sunday from 02:00 to 04:00 UTC.",
+        "action": "Read more",
+        "showAgain": "Show the banner again"
+      },
+      "cssVariables": {
+        "--banner-gap": "Space between the message, the action and the dismiss button",
+        "--banner-icon-gap": "Space between the icon and the message",
+        "--banner-max-width": "Width the content is centered within",
+        "--banner-z-index": "Stacking order when sticky"
+      }
+    },
+    "CallToAction": {
+      "description": "A section that asks the reader to do one thing: sign up, start a trial, contact sales. Compose it with CallToActionContent (CallToActionTitle, an `<h2>`, and CallToActionDescription) and CallToActionActions for the buttons. The content is wrapped in a Container; padding and text sizes grow from the md breakpoint, and the split layout stacks below it.",
+      "props": {
+        "variant": "Background: soft (light tint), solid (dark), outline (white with a border) or ghost (none).",
+        "layout": "centered: everything stacked and centered. split: text on the left and actions on the right (stacked below the md breakpoint).",
+        "fullBleed": "Stretch the background across the full width of the page, instead of a rounded panel inside the container.",
+        "asChild": "Parts: render the child element instead of the default (`<div>`, `<h2>` for the title, `<p>` for the description)."
+      },
+      "story": {
+        "title": "Ready to build your next project?",
+        "description": "Start free and upgrade when your team grows. No credit card needed.",
+        "primary": "Start free trial",
+        "secondary": "Talk to sales"
+      },
+      "cssVariables": {
+        "gap": "Space between the content and the actions",
+        "--call-to-action-content-gap": "Space between the title and the description",
+        "--call-to-action-padding": "Padding inside the panel (not used with fullBleed)",
+        "padding-y": "Space above and below the section"
+      }
+    },
+    "ErrorBlock": {
+      "description": "A page section for errors such as 404 or 500: a large ErrorBlockCode, an ErrorBlockMessage (the page's `<h1>`), an ErrorBlockDescription and ErrorBlockActions for the buttons, centered in a Container. Use only the parts you need. Padding, height and text sizes grow from the md breakpoint.",
+      "props": {
+        "variant": "Background: ghost (none) or soft (light tint).",
+        "asChild": "Parts: render the child element instead of the default (`<p>` for the code and description, `<h1>` for the message, `<div>` for the actions)."
+      },
+      "story": {
+        "message": "Page not found",
+        "description": "The page you're looking for doesn't exist or has been moved. Check the address, or head back to the home page.",
+        "primary": "Back to home",
+        "secondary": "Contact support"
+      },
+      "cssVariables": {
+        "gap": "Space between the parts",
+        "--error-block-actions-gap": "Extra space above the actions",
+        "--error-block-code-text": "Error code color"
+      }
     }
   },
   "docs": {
@@ -896,7 +1109,8 @@
         "variant": "Variant: {value}",
         "gap": "Gap: {value}",
         "layout": "Layout: {value}",
-        "breakpoint": "From the {value} breakpoint up"
+        "breakpoint": "From the {value} breakpoint up",
+        "side": "Side: {value}"
       },
       "values": {
         "scheme": "scheme {step}",
@@ -1038,7 +1252,24 @@
         "toggle-inset": "How far the show/hide button reaches into the field's right padding",
         "toggle-bg-hover": "Show/hide button background on hover or focus",
         "cell-width": "Width of each box",
-        "cell-gap": "Space between boxes"
+        "cell-gap": "Space between boxes",
+        "blur": "Blur strength",
+        "z-index": "Stacking order",
+        "footer-border": "Line above the footer",
+        "close-inset": "Close button inset",
+        "max-size": "Largest size",
+        "footer-gap": "Space between footer items",
+        "marker": "Marker color",
+        "indent": "Indent",
+        "marker-gap": "Space after the marker",
+        "icon-gap": "Space after an icon",
+        "code-font-size": "Error code font size",
+        "code-font-weight": "Error code font weight",
+        "code-text": "Error code color",
+        "message-font-size": "Message font size",
+        "message-font-weight": "Message font weight",
+        "message-text": "Message color",
+        "description-max-width": "Description max width"
       },
       "parts": {
         "menu-content": "Menu (shared with DropdownMenu, ContextMenu, Menubar and Select)",
@@ -1057,7 +1288,9 @@
         "text-input-field": "Label",
         "video-dialog": "Pop-out dialog",
         "image-gallery-dialog": "Lightbox",
-        "one-time-code-input-field": "Label"
+        "one-time-code-input-field": "Label",
+        "drawer-overlay": "Backdrop",
+        "backdrop": "Backdrop (shared with Dialog, AlertDialog and Drawer)"
       }
     }
   }

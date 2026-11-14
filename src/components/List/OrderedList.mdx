@@ -1,0 +1,8 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { ComponentDocs } from "../../docs/blocks/ComponentDocs";
+import * as Stories from "./OrderedList.stories";
+import css from "./List.css?raw";
+
+<Meta of={Stories} />
+
+<ComponentDocs component="OrderedList" css={[css]} />

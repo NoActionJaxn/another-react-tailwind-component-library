@@ -48,7 +48,7 @@ export function Button({
       type={asChild ? type : (type ?? "button")}
       style={colorScheme ? { ...schemeVars(colorScheme), ...style } : style}
       className={tw(
-        "inline-flex cursor-pointer items-center justify-center border transition-colors",
+        "inline-flex cursor-pointer items-center justify-center gap-(--_gap) border transition-colors",
         "rounded-(--_radius) px-(--_padding-x) py-(--_padding-y)",
         "font-(family-name:--_font-family) font-(--_font-weight) [text-transform:var(--_text-transform)]",
         "border-(--_border) bg-(--_bg) text-(--_text) hover:bg-(--_bg-hover)",

@@ -1,0 +1,38 @@
+/* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
+@layer components {
+  [data-backdrop] {
+    --_bg: var(
+      --backdrop-bg,
+      color-mix(in oklab, var(--scheme-950) 50%, transparent)
+    );
+    --_blur: var(--backdrop-blur, 4px);
+    --_z-index: var(--backdrop-z-index, 50);
+    --_duration: var(--backdrop-duration, 150ms);
+  }
+
+  [data-backdrop][data-state="open"] {
+    animation: backdrop-in var(--_duration) ease-out;
+  }
+
+  [data-backdrop][data-state="closed"] {
+    animation: backdrop-out var(--_duration) ease-in forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-backdrop] {
+      animation: none !important;
+    }
+  }
+
+  @keyframes backdrop-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes backdrop-out {
+    to {
+      opacity: 0;
+    }
+  }
+}

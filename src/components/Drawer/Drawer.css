@@ -1,0 +1,98 @@
+/* --_* vars resolve on the drawer and are inherited by its sections. */
+@layer components {
+  [data-drawer-content] {
+    --_bg: var(--drawer-bg, white);
+    --_text: var(--drawer-text, var(--scheme-800));
+    --_title-text: var(--drawer-title-text, var(--scheme-900));
+    --_description-text: var(--drawer-description-text, var(--scheme-700));
+    --_border: var(--drawer-border, var(--scheme-300));
+    --_footer-border: var(--drawer-footer-border, var(--scheme-200));
+    --_radius: var(--drawer-radius, 0px);
+    --_shadow: var(--drawer-shadow, var(--shadow-xl));
+    --_padding: var(--drawer-padding, calc(var(--spacing) * 6));
+    --_gap: var(--drawer-gap, calc(var(--spacing) * 4));
+    --_description-gap: var(
+      --drawer-description-gap,
+      calc(var(--spacing) * 1.5)
+    );
+    --_title-font-size: var(--drawer-title-font-size, var(--text-lg));
+    --_title-font-weight: var(
+      --drawer-title-font-weight,
+      var(--font-weight-semibold)
+    );
+    --_description-font-size: var(
+      --drawer-description-font-size,
+      var(--text-sm)
+    );
+    --_footer-gap: var(--drawer-footer-gap, calc(var(--spacing) * 2));
+    --_close-inset: var(--drawer-close-inset, calc(var(--spacing) * 4));
+    --_max-size: var(--drawer-max-size, calc(100% - var(--spacing) * 8));
+    --_duration: var(--drawer-duration, 250ms);
+    --_header-padding-end: calc(var(--_close-inset) + var(--spacing) * 10);
+  }
+
+  [data-drawer-content][data-size="sm"] {
+    --_size: var(--drawer-sm-size, 20rem);
+  }
+
+  [data-drawer-content][data-size="md"] {
+    --_size: var(--drawer-md-size, 24rem);
+  }
+
+  [data-drawer-content][data-size="lg"] {
+    --_size: var(--drawer-lg-size, 32rem);
+  }
+
+  [data-drawer-content][data-side="left"] {
+    --_offscreen: translateX(-100%);
+  }
+
+  [data-drawer-content][data-side="right"] {
+    --_offscreen: translateX(100%);
+  }
+
+  [data-drawer-content][data-side="top"] {
+    --_offscreen: translateY(-100%);
+  }
+
+  [data-drawer-content][data-side="bottom"] {
+    --_offscreen: translateY(100%);
+  }
+
+  [data-drawer-content][data-state="open"] {
+    animation: drawer-in var(--_duration) cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  [data-drawer-content][data-state="closed"] {
+    animation: drawer-out var(--_duration) ease-in forwards;
+  }
+
+  [data-drawer-overlay][data-backdrop] {
+    --_bg: var(
+      --drawer-overlay,
+      var(
+        --backdrop-bg,
+        color-mix(in oklab, var(--scheme-950) 50%, transparent)
+      )
+    );
+    --_duration: var(--drawer-duration, 250ms);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-drawer-content] {
+      animation: none !important;
+    }
+  }
+
+  @keyframes drawer-in {
+    from {
+      transform: var(--_offscreen);
+    }
+  }
+
+  @keyframes drawer-out {
+    to {
+      transform: var(--_offscreen);
+    }
+  }
+}

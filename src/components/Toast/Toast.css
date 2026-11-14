@@ -11,6 +11,18 @@
     --_focus-color: var(--toast-focus-color, var(--scheme-400));
     --_focus-width: var(--toast-focus-width, 4px);
     --_focus-offset: var(--toast-focus-offset, 0px);
+    --_icon: var(--toast-icon, var(--scheme-600));
+    --_icon-size: var(--toast-icon-size, 1.25em);
+    --_icon-gap: var(--toast-icon-gap, calc(var(--spacing) * 3));
+    --_duration: var(--toast-duration, 200ms);
+  }
+
+  [data-toast][data-state="open"] {
+    animation: toast-in var(--_duration) cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-toast][data-state="closed"] {
+    animation: toast-out var(--_duration) ease-in forwards;
   }
 
   [data-toast][data-swipe="move"] {
@@ -24,6 +36,25 @@
 
   [data-toast][data-swipe="end"] {
     animation: toast-swipe-out 150ms ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-toast] {
+      animation: none !important;
+    }
+  }
+
+  @keyframes toast-in {
+    from {
+      opacity: 0;
+      transform: translateX(calc(100% + var(--spacing) * 4));
+    }
+  }
+
+  @keyframes toast-out {
+    to {
+      opacity: 0;
+    }
   }
 
   @keyframes toast-swipe-out {

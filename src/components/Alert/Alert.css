@@ -1,0 +1,55 @@
+/* --_* vars resolve on the alert, so defaults follow its status scheme. */
+@layer components {
+  [data-alert] {
+    --_radius: var(--alert-radius, var(--radius-md));
+    --_padding: var(--alert-padding, calc(var(--spacing) * 4));
+    --_gap: var(--alert-gap, calc(var(--spacing) * 3));
+    --_content-gap: var(--alert-content-gap, calc(var(--spacing) * 1));
+    --_icon-size: var(--alert-icon-size, 1.25em);
+    --_title-font-weight: var(
+      --alert-title-font-weight,
+      var(--font-weight-semibold)
+    );
+  }
+
+  [data-alert][data-variant="soft"] {
+    --_bg: var(--alert-soft-bg, var(--scheme-50));
+    --_border: var(--alert-soft-border, var(--scheme-200));
+    --_text: var(--alert-soft-text, var(--scheme-900));
+    --_title-text: var(--alert-soft-title-text, var(--scheme-900));
+    --_description-text: var(--alert-soft-description-text, var(--scheme-800));
+    --_icon: var(--alert-soft-icon, var(--scheme-700));
+  }
+
+  [data-alert][data-variant="solid"] {
+    --_bg: var(--alert-solid-bg, var(--scheme-700));
+    --_border: var(--alert-solid-border, transparent);
+    --_text: var(--alert-solid-text, white);
+    --_title-text: var(--alert-solid-title-text, white);
+    --_description-text: var(--alert-solid-description-text, white);
+    --_icon: var(--alert-solid-icon, white);
+  }
+
+  [data-alert][data-variant="outline"] {
+    --_bg: var(--alert-outline-bg, white);
+    --_border: var(--alert-outline-border, var(--scheme-300));
+    --_text: var(--alert-outline-text, var(--scheme-900));
+    --_title-text: var(--alert-outline-title-text, var(--scheme-900));
+    --_description-text: var(
+      --alert-outline-description-text,
+      var(--scheme-700)
+    );
+    --_icon: var(--alert-outline-icon, var(--scheme-700));
+  }
+
+  /* The dismiss button follows the alert's colors. --_dismiss resolves on the
+     alert, since --_text on the button is the button's own. */
+  [data-alert] {
+    --_dismiss: var(--_text);
+  }
+
+  [data-alert] > [data-icon-button] {
+    --button-ghost-text: var(--_dismiss);
+    --button-ghost-bg-hover: color-mix(in oklab, currentColor 12%, transparent);
+  }
+}
