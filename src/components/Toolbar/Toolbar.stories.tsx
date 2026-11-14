@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { FontBoldIcon, FontItalicIcon, Link2Icon } from "@radix-ui/react-icons";
 import {
@@ -63,4 +64,29 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const text = m.components.Toolbar.story;
+
+export const Default: Story = {
+  play: async ({ canvas, userEvent }) => {
+    const toolbar = canvas.getByRole("toolbar", { name: text.ariaLabel });
+    await expect(toolbar).toBeVisible();
+    const bold = canvas.getByRole("button", { name: text.bold });
+    const italic = canvas.getByRole("button", { name: text.italic });
+    const link = canvas.getByRole("button", { name: text.insertLink });
+    // Buttons and toggles take the toolbar's size.
+    await expect(link).toHaveAttribute("data-size", "sm");
+    await expect(bold).toHaveAttribute("data-size", "sm");
+
+    await userEvent.click(bold);
+    await userEvent.click(italic);
+    await expect(bold).toHaveAttribute("aria-pressed", "true");
+    await expect(italic).toHaveAttribute("aria-pressed", "true");
+
+    // One tab stop: arrow keys move between the toolbar's controls.
+    await expect(italic).toHaveFocus();
+    await userEvent.keyboard("{ArrowRight}");
+    await expect(link).toHaveFocus();
+    await userEvent.keyboard("{ArrowRight}");
+    await expect(canvas.getByRole("link", { name: text.edited })).toHaveFocus();
+  },
+};

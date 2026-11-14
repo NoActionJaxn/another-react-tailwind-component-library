@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, screen } from "storybook/test";
+import { playOpenMenu, playSelectItem } from "../_menu/playMenu";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import {
   Menubar,
@@ -75,4 +77,35 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const text = m.components.Menubar.story;
+
+export const Default: Story = {
+  play: async ({ canvas, userEvent }) => {
+    await expect(canvas.getByRole("menubar")).toBeVisible();
+    const file = canvas.getByRole("menuitem", { name: text.file });
+    const edit = canvas.getByRole("menuitem", { name: text.edit });
+    await userEvent.click(file);
+    await expect(file).toHaveAttribute("aria-expanded", "true");
+    await playOpenMenu();
+    await expect(file).toHaveFocus();
+
+    // Arrow keys move between the bar's menus.
+    await userEvent.keyboard("{ArrowRight}");
+    await expect(edit).toHaveFocus();
+    await userEvent.keyboard("{Enter}");
+    await expect(
+      await screen.findByRole("menuitem", { name: text.undo }),
+    ).toBeVisible();
+    // With a menu open, moving along the bar opens the next one.
+    await userEvent.keyboard("{ArrowRight}");
+    await expect(
+      await screen.findByRole("menuitem", {
+        name: (name) => name.startsWith(m.common.menu.profile),
+      }),
+    ).toBeVisible();
+    await expect(
+      screen.queryByRole("menuitem", { name: text.undo }),
+    ).toBeNull();
+    await playSelectItem();
+  },
+};

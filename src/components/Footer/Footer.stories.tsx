@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { expect } from "storybook/test";
+import { expect, within } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import {
   Footer,
@@ -78,5 +78,15 @@ export const Default: Story = {
       canvas.getByRole("region", { name: text.company }),
     ).toBeVisible();
     await expect(canvas.getByRole("link", { name: "GitHub" })).toBeVisible();
+    // Each column is a section named by its heading.
+    const company = canvas.getByRole("region", { name: text.company });
+    await expect(
+      within(company).getByRole("heading", { level: 2, name: text.company }),
+    ).toBeVisible();
+    for (const link of text.companyLinks) {
+      await expect(
+        within(company).getByRole("link", { name: link }),
+      ).toBeVisible();
+    }
   },
 };

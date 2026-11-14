@@ -1,4 +1,4 @@
-/* --_* vars resolve on the banner, so defaults follow its status scheme. */
+/* --_* vars resolve on the banner, so defaults follow its scheme. */
 @layer components {
   [data-banner] {
     --_padding-x: var(--banner-padding-x, calc(var(--spacing) * 4));

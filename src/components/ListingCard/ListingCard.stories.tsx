@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { fn } from "storybook/test";
+import { expect, fn } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import { ListingCard } from "./ListingCard";
@@ -74,4 +74,39 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    await expect(
+      canvas.getByRole("heading", { level: 3, name: text.title }),
+    ).toBeVisible();
+    // An empty imageAlt makes the image decorative.
+    await expect(canvasElement.querySelector("img")).toHaveAttribute("alt", "");
+    await expect(canvas.getByText(text.badge)).toBeVisible();
+    await expect(canvas.getByText(text.price)).toHaveTextContent(
+      `${text.price} /${text.unit}`,
+    );
+    await expect(canvas.getByText(text.subtitle)).toBeVisible();
+    for (const detail of text.details) {
+      await expect(canvas.getByText(detail)).toBeVisible();
+    }
+    addToCart.mockClear();
+    await userEvent.click(canvas.getByRole("button", { name: text.addToCart }));
+    await expect(addToCart).toHaveBeenCalledTimes(1);
+  },
+};
+
+// Optional parts are left out when empty.
+export const Minimal: Story = {
+  tags: ["!dev"],
+  args: { imageSrc: "", badge: "", price: "", subtitle: undefined },
+  render: (args) => <ListingCard {...args} />,
+  play: async ({ canvas, canvasElement }) => {
+    await expect(
+      canvas.getByRole("heading", { name: text.title }),
+    ).toBeVisible();
+    await expect(canvasElement.querySelector("img")).toBeNull();
+    await expect(canvasElement.querySelector("[data-badge]")).toBeNull();
+    await expect(canvas.queryByText(`/${text.unit}`)).toBeNull();
+    await expect(canvasElement.querySelector("[data-card-footer]")).toBeNull();
+  },
+};

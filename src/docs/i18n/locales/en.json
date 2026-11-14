@@ -756,11 +756,11 @@
       }
     },
     "Toast": {
-      "description": "A short, temporary message. Place a ToastProvider and ToastViewport once in the app. ToastAction renders Button. status adds an icon and a color scheme, as in Alert; warning and danger toasts interrupt screen readers.",
+      "description": "A short, temporary message. Place a ToastProvider and ToastViewport once in the app. ToastAction renders Button. status adds an icon, as in Alert; warning and danger toasts interrupt screen readers.",
       "props": {
-        "status": "What kind of message it is. Sets the color scheme and an icon. Unset: no icon.",
+        "status": "What kind of message it is. Sets the icon. Unset: no icon.",
         "icon": "Icon at the start, in place of the status icon. Pass false to hide the status icon.",
-        "colorScheme": "Color scheme, overriding the status's. The status schemes are `--color-info-*`, `--color-success-*`, `--color-warning-*` and `--color-danger-*`: redefine them to change every Alert, Banner and Toast."
+        "colorScheme": "Color scheme. Unset, it's inherited from the parent."
       },
       "story": {
         "trigger": "Show toast",
@@ -1018,11 +1018,11 @@
       }
     },
     "Alert": {
-      "description": "An inline message about something on the page: a result, a warning or an error. Compose it with AlertTitle and AlertDescription (or any content). status picks a color scheme (info blue, success green, warning amber, danger red) and an icon; leave it unset for a neutral alert in the inherited scheme. Pass onDismiss to show a dismiss button.",
+      "description": "An inline message about something on the page: a result, a warning or an error. Compose it with AlertTitle and AlertDescription (or any content). status picks an icon and the role; the color comes from colorScheme. Pass onDismiss to show a dismiss button.",
       "props": {
         "variant": "Style: soft (tinted background), solid (filled) or outline (white with a border).",
-        "status": "What kind of message it is. Sets the color scheme, the default icon and the role. Unset: a neutral alert with an info icon.",
-        "colorScheme": "Color scheme, overriding the status's. The status schemes are `--color-info-*`, `--color-success-*`, `--color-warning-*` and `--color-danger-*`: redefine them to change every Alert, Banner and Toast.",
+        "status": "What kind of message it is. Sets the default icon and the role. Unset: an info icon.",
+        "colorScheme": "Color scheme. Unset, it's inherited from the parent.",
         "icon": "Icon in place of the status icon. Pass false to show none.",
         "onDismiss": "Called when the dismiss button is clicked. Without it there's no button; hide the alert yourself in the handler.",
         "dismissLabel": "Accessible name of the dismiss button.",
@@ -1032,7 +1032,7 @@
         "title": "Your trial ends in 3 days",
         "description": "Add a payment method to keep your projects and settings.",
         "showAgain": "Show the alert again",
-        "schemeDefault": "the status's scheme, or inherited",
+        "schemeDefault": "inherited",
         "iconDefault": "the status's icon",
         "roleDefault": "\"alert\" for warning and danger, otherwise \"status\""
       },
@@ -1045,8 +1045,8 @@
       "description": "A full-width strip across the top of the page or a section, for announcements and site-wide notices. The message, an optional action and the icon sit centered within a max width; the dismiss button sits at the end. status works as in Alert.",
       "props": {
         "variant": "Style: solid (filled), soft (tinted background) or outline (white with a border).",
-        "status": "What kind of message it is. Sets the color scheme, the default icon and the role. Unset: a neutral alert with an info icon.",
-        "colorScheme": "Color scheme, overriding the status's. The status schemes are `--color-info-*`, `--color-success-*`, `--color-warning-*` and `--color-danger-*`: redefine them to change every Alert, Banner and Toast.",
+        "status": "What kind of message it is. Sets the default icon and the role. Unset: an info icon.",
+        "colorScheme": "Color scheme. Unset, it's inherited from the parent.",
         "icon": "Icon in place of the status icon. Pass false to show none.",
         "action": "Shown after the message, usually a link or a small button.",
         "sticky": "Stick to the top of the scrolling area while the page scrolls.",

@@ -97,5 +97,52 @@ export const Default: Story = {
     await expect(canvas.getByRole("img", { name: "3 more" })).toHaveTextContent(
       "+3",
     );
+    // Avatars take the group's size.
+    for (const avatar of group.children) {
+      await expect(avatar).toHaveAttribute("data-size", "md");
+    }
+  },
+};
+
+export const NoMax: Story = {
+  tags: ["!dev"],
+  args: { max: undefined, size: "lg" },
+  play: async ({ canvas }) => {
+    const group = canvas.getByRole("group", { name: text.label });
+    await expect(group.children).toHaveLength(people.length);
+    await expect(
+      group.querySelector("[data-avatar-group-overflow]"),
+    ).toBeNull();
+    for (const avatar of group.children) {
+      await expect(avatar).toHaveAttribute("data-size", "lg");
+    }
+  },
+};
+
+// total counts people whose avatars weren't passed.
+export const Total: Story = {
+  tags: ["!dev"],
+  args: {
+    max: undefined,
+    total: 40,
+    overflowLabel: (count) => `+${count} people`,
+  },
+  play: async ({ canvas }) => {
+    await expect(
+      canvas.getByRole("img", { name: `+${40 - people.length} people` }),
+    ).toHaveTextContent(`+${40 - people.length}`);
+  },
+};
+
+// At least one avatar shows next to the "+N".
+export const MaxOne: Story = {
+  tags: ["!dev"],
+  args: { max: 1 },
+  play: async ({ canvas }) => {
+    const group = canvas.getByRole("group", { name: text.label });
+    await expect(group.children).toHaveLength(2);
+    await expect(
+      canvas.getByRole("img", { name: `${people.length - 1} more` }),
+    ).toBeVisible();
   },
 };

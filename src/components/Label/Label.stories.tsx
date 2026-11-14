@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { TextInput } from "../TextInput";
 import { Label } from "./Label";
@@ -43,4 +44,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvas, userEvent }) => {
+    const input = canvas.getByRole("textbox", {
+      name: m.components.Label.story.children,
+    });
+    await userEvent.click(canvas.getByText(m.components.Label.story.children));
+    await expect(input).toHaveFocus();
+  },
+};

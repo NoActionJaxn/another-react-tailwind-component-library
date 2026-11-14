@@ -35,7 +35,7 @@ export function Alert({
       data-variant={variant}
       data-status={status}
       role={role ?? statusRole(status)}
-      style={schemeStyle(colorScheme ?? status, style)}
+      style={schemeStyle(colorScheme, style)}
       className={tw(
         "flex items-start gap-(--_gap) rounded-(--_radius) border border-(--_border) bg-(--_bg) p-(--_padding) text-sm text-(--_text)",
         className,

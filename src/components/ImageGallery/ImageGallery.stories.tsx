@@ -81,3 +81,39 @@ export const Default: Story = {
     await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
   },
 };
+
+// Videos open in the lightbox with controls.
+export const VideoItem: Story = {
+  tags: ["!dev"],
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(
+      canvas.getByRole("button", { name: text.videoLabel }),
+    );
+    const dialog = await screen.findByRole("dialog");
+    const player = dialog.querySelector("video")!;
+    await expect(player).toHaveAttribute("aria-label", text.videoLabel);
+    await expect(player).toHaveAttribute("controls");
+    await expect(dialog).toHaveTextContent("3 / 6");
+    // ArrowLeft steps back.
+    await userEvent.keyboard("{ArrowLeft}");
+    await expect(
+      await screen.findByRole("dialog", { name: text.alts[1] }),
+    ).toHaveTextContent("2 / 6");
+    await userEvent.keyboard("{Escape}");
+    await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+  },
+};
+
+// A single item has nothing to step through.
+export const SingleItem: Story = {
+  tags: ["!dev"],
+  args: { items: items.slice(0, 1) },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: text.alts[0] }));
+    await screen.findByRole("dialog", { name: text.alts[0] });
+    await expect(screen.queryByRole("button", { name: "Next" })).toBeNull();
+    await expect(screen.queryByRole("button", { name: "Previous" })).toBeNull();
+    await userEvent.click(screen.getByRole("button", { name: "Close" }));
+    await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+  },
+};

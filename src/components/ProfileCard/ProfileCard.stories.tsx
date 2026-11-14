@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import { ProfileCard } from "./ProfileCard";
@@ -70,4 +71,38 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvas }) => {
+    await expect(
+      canvas.getByRole("heading", { level: 3, name: text.name }),
+    ).toBeVisible();
+    // No avatar image: the fallback shows the name's initials.
+    await expect(await canvas.findByText("JL")).toBeVisible();
+    await expect(canvas.getByText(text.subtitle)).toBeVisible();
+    await expect(canvas.getByText(text.bio)).toBeVisible();
+    await expect(
+      canvas.getByRole("button", { name: text.follow }),
+    ).toBeVisible();
+    await expect(
+      canvas.getByRole("button", { name: text.message }),
+    ).toBeVisible();
+  },
+};
+
+export const CustomFallback: Story = {
+  tags: ["!dev"],
+  args: { avatarFallback: "★" },
+  play: async ({ canvas }) => {
+    await expect(await canvas.findByText("★")).toBeVisible();
+    await expect(canvas.queryByText("JL")).toBeNull();
+  },
+};
+
+// Initials use the first two words only.
+export const LongName: Story = {
+  tags: ["!dev"],
+  args: { name: "mary  ann evans" },
+  play: async ({ canvas }) => {
+    await expect(await canvas.findByText("MA")).toBeVisible();
+  },
+};

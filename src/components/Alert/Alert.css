@@ -1,4 +1,4 @@
-/* --_* vars resolve on the alert, so defaults follow its status scheme. */
+/* --_* vars resolve on the alert, so defaults follow its scheme. */
 @layer components {
   [data-alert] {
     --_radius: var(--alert-radius, var(--radius-md));

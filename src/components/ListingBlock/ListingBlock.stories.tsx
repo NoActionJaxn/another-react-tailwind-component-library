@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { expect } from "storybook/test";
+import { expect, within } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import { ListItem, UnorderedList } from "../List";
@@ -94,5 +94,68 @@ export const Default: Story = {
     await expect(
       canvas.getByRole("img", { name: "Rated 4.5 out of 5" }),
     ).toBeVisible();
+    await expect(canvas.getByText(text.reviews)).toBeVisible();
+    await expect(
+      canvas.getByRole("heading", { level: 2, name: text.aboutTitle }),
+    ).toBeVisible();
+  },
+};
+
+// Ratings are clamped to 0…max, and the filled part matches the value.
+export const Rating: Story = {
+  tags: ["!dev"],
+  render: () => (
+    <>
+      <ListingBlockRating value={7} />
+      <ListingBlockRating
+        value={3}
+        max={4}
+        label={(value, max) => `${value}/${max}`}
+      />
+    </>
+  ),
+  play: async ({ canvas }) => {
+    await expect(
+      canvas.getByRole("img", { name: "Rated 5 out of 5" }),
+    ).toBeVisible();
+    const custom = canvas.getByRole("img", { name: "3/4" });
+    await expect(
+      custom.querySelector<HTMLElement>("[style]")!.style.width,
+    ).toBe("75%");
+  },
+};
+
+export const Price: Story = {
+  tags: ["!dev"],
+  render: () => <ListingBlockPrice price="$159" originalPrice="$189" />,
+  play: async ({ canvasElement }) => {
+    // The old price is struck through as a deletion.
+    await expect(canvasElement.querySelector("del")).toHaveTextContent("$189");
+    await expect(canvasElement).toHaveTextContent("$159");
+  },
+};
+
+// A single image needs no thumbnails; defaultIndex picks the first shown.
+export const Gallery: Story = {
+  tags: ["!dev"],
+  render: () => (
+    <>
+      <ListingBlockGallery data-testid="single" images={images.slice(0, 1)} />
+      <ListingBlockGallery
+        data-testid="many"
+        images={images}
+        defaultIndex={2}
+      />
+    </>
+  ),
+  play: async ({ canvas }) => {
+    await expect(
+      within(canvas.getByTestId("single")).queryByRole("button"),
+    ).toBeNull();
+    const many = within(canvas.getByTestId("many"));
+    await expect(many.getByRole("img", { name: text.alts[2] })).toBeVisible();
+    await expect(
+      many.getByRole("button", { name: "Show image 3 of 4" }),
+    ).toHaveAttribute("aria-pressed", "true");
   },
 };

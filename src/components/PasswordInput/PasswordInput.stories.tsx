@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { LockClosedIcon } from "@radix-ui/react-icons";
-import { expect } from "storybook/test";
+import { expect, fn } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { PasswordInput } from "./PasswordInput";
 
@@ -95,6 +95,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   play: async ({ canvas, userEvent }) => {
     const input = canvas.getByLabelText(text.label);
+    await expect(input).toHaveAttribute("autocomplete", "current-password");
     await userEvent.type(input, "secret");
     await expect(input).toHaveAttribute("type", "password");
     await userEvent.click(
@@ -106,5 +107,51 @@ export const Default: Story = {
       canvas.getByRole("button", { name: "Hide password" }),
     );
     await expect(input).toHaveAttribute("type", "password");
+  },
+};
+
+export const DefaultVisible: Story = {
+  tags: ["!dev"],
+  args: { defaultVisible: true, autoComplete: "new-password" },
+  play: async ({ canvas }) => {
+    const input = canvas.getByLabelText(text.label);
+    await expect(input).toHaveAttribute("type", "text");
+    await expect(input).toHaveAttribute("autocomplete", "new-password");
+    await expect(
+      canvas.getByRole("button", { name: "Hide password" }),
+    ).toBeVisible();
+  },
+};
+
+// Controlled: the toggle asks for a change, but `visible` decides.
+export const Controlled: Story = {
+  tags: ["!dev"],
+  args: { visible: false, onVisibilityChange: fn() },
+  play: async ({ args, canvas, userEvent }) => {
+    const input = canvas.getByLabelText(text.label);
+    await userEvent.click(
+      canvas.getByRole("button", { name: "Show password" }),
+    );
+    await expect(args.onVisibilityChange).toHaveBeenCalledWith(true);
+    await expect(input).toHaveAttribute("type", "password");
+  },
+};
+
+export const HideToggle: Story = {
+  tags: ["!dev"],
+  args: { hideToggle: true },
+  play: async ({ canvas }) => {
+    await expect(canvas.queryByRole("button")).toBeNull();
+  },
+};
+
+export const Disabled: Story = {
+  tags: ["!dev"],
+  args: { disabled: true },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByLabelText(text.label)).toBeDisabled();
+    await expect(
+      canvas.getByRole("button", { name: "Show password" }),
+    ).toBeDisabled();
   },
 };

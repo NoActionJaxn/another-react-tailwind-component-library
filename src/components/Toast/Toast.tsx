@@ -51,7 +51,7 @@ export function Toast({
       type={
         status === "warning" || status === "danger" ? "foreground" : undefined
       }
-      style={schemeStyle(colorScheme ?? status, style)}
+      style={schemeStyle(colorScheme, style)}
       className={tw(
         "relative flex items-start gap-(--_icon-gap) rounded-(--_radius) border border-(--_border) bg-(--_bg) p-(--_padding) pr-12 text-(--_text) shadow-(--_shadow) outline-(--_focus-color) focus:outline-(length:--_focus-width) focus:outline-offset-(--_focus-offset) focus:outline-solid",
         className,

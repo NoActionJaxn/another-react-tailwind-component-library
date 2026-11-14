@@ -1,6 +1,6 @@
 import { GearIcon } from "@radix-ui/react-icons";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { fn } from "storybook/test";
+import { expect, fn } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { IconButton } from "./IconButton";
 
@@ -60,4 +60,23 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ args, canvas, userEvent }) => {
+    const button = canvas.getByRole("button", {
+      name: m.components.IconButton.story.label,
+    });
+    await userEvent.click(button);
+    await expect(args.onClick).toHaveBeenCalledTimes(1);
+  },
+};
+
+export const Disabled: Story = {
+  tags: ["!dev"],
+  args: { disabled: true },
+  play: async ({ args, canvas, userEvent }) => {
+    const button = canvas.getByRole("button");
+    await expect(button).toBeDisabled();
+    await userEvent.click(button);
+    await expect(args.onClick).not.toHaveBeenCalled();
+  },
+};

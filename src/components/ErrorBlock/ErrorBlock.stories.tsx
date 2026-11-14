@@ -61,5 +61,28 @@ export const Default: Story = {
       canvas.getByRole("heading", { level: 1, name: text.message }),
     ).toBeVisible();
     await expect(canvas.getByText("404")).toBeVisible();
+    await expect(canvas.getByText(text.description)).toBeVisible();
+    await expect(
+      canvas.getByRole("button", { name: text.primary }),
+    ).toBeVisible();
+    await expect(
+      canvas.getByRole("button", { name: text.secondary }),
+    ).toBeVisible();
+  },
+};
+
+export const MessageAsChild: Story = {
+  tags: ["!dev"],
+  render: (args) => (
+    <ErrorBlock {...args}>
+      <ErrorBlockMessage asChild>
+        <h2>{text.message}</h2>
+      </ErrorBlockMessage>
+    </ErrorBlock>
+  ),
+  play: async ({ canvas }) => {
+    await expect(
+      canvas.getByRole("heading", { level: 2, name: text.message }),
+    ).toHaveAttribute("data-error-block-message");
   },
 };

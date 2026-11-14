@@ -60,6 +60,35 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   play: async ({ canvasElement }) => {
     const container = canvasElement.querySelector("[data-animated-container]");
+    // asChild: the grid itself is the animated container.
+    await expect(container).toHaveAttribute("data-grid-container");
+    await expect(container).toHaveAttribute("data-stagger");
     await waitFor(() => expect(container).toHaveAttribute("data-in-view"));
+  },
+};
+
+// Animates only once scrolled into view.
+export const BelowTheFold: Story = {
+  tags: ["!dev"],
+  args: { asChild: false, stagger: false },
+  render: (args) => (
+    <div>
+      <div style={{ height: "200vh" }} />
+      <AnimatedContainer {...args}>
+        {format(m.common.layout.item, { n: 1 })}
+      </AnimatedContainer>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const container = canvasElement.querySelector("[data-animated-container]")!;
+    await expect(container).not.toHaveAttribute("data-stagger");
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    await expect(container).not.toHaveAttribute("data-in-view");
+    container.scrollIntoView();
+    await waitFor(() => expect(container).toHaveAttribute("data-in-view"));
+    // Stays in view once shown, even when scrolled away again.
+    window.scrollTo(0, 0);
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    await expect(container).toHaveAttribute("data-in-view");
   },
 };

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, screen, waitFor, within } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import {
@@ -57,4 +58,38 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const text = m.components.AlertDialog.story;
+
+export const Default: Story = {
+  play: async ({ canvas, userEvent }) => {
+    const trigger = canvas.getByRole("button", { name: text.trigger });
+    await userEvent.click(trigger);
+    const dialog = await screen.findByRole("alertdialog", { name: text.title });
+    await expect(dialog).toHaveAccessibleDescription(text.description);
+    // The safe choice takes focus.
+    await expect(
+      within(dialog).getByRole("button", { name: text.cancel }),
+    ).toHaveFocus();
+
+    // A click outside doesn't dismiss it: the user has to choose.
+    await userEvent.click(document.querySelector("[data-dialog-overlay]")!);
+    await expect(screen.getByRole("alertdialog")).toBeVisible();
+
+    await userEvent.click(
+      within(dialog).getByRole("button", { name: text.cancel }),
+    );
+    await waitFor(() => expect(screen.queryByRole("alertdialog")).toBeNull());
+    await expect(trigger).toHaveFocus();
+
+    // The action closes it too, and Escape cancels.
+    await userEvent.click(trigger);
+    await userEvent.click(
+      await screen.findByRole("button", { name: text.action }),
+    );
+    await waitFor(() => expect(screen.queryByRole("alertdialog")).toBeNull());
+    await userEvent.click(trigger);
+    await screen.findByRole("alertdialog");
+    await userEvent.keyboard("{Escape}");
+    await waitFor(() => expect(screen.queryByRole("alertdialog")).toBeNull());
+  },
+};

@@ -79,5 +79,33 @@ export const Default: Story = {
     await expect(canvas.getAllByRole("listitem")).toHaveLength(
       text.items.length + text.nested.length,
     );
+    // A nested list takes its parent's size.
+    const [, nested] = canvas.getAllByRole("list");
+    await expect(nested).toHaveAttribute("data-size", "md");
+  },
+};
+
+export const NestedSize: Story = {
+  tags: ["!dev"],
+  args: { size: "lg" },
+  play: async ({ canvas }) => {
+    for (const list of canvas.getAllByRole("list")) {
+      await expect(list).toHaveAttribute("data-size", "lg");
+    }
+  },
+};
+
+// An icon replaces the marker on the list's items and is hidden from assistive tech.
+export const WithIcon: Story = {
+  tags: ["!dev"],
+  args: { icon: "check" },
+  play: async ({ canvas }) => {
+    const [outer] = canvas.getAllByRole("list");
+    const items = [...outer!.children];
+    for (const item of items) {
+      const icon = item.querySelector('[aria-hidden="true"]');
+      await expect(icon).not.toBeNull();
+    }
+    await expect(items[0]).toHaveTextContent(text.items[0]!);
   },
 };

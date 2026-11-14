@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Typography } from "./Typography";
 
@@ -37,4 +38,27 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const children = m.components.Typography.story.children;
+
+export const Default: Story = {
+  play: async ({ canvas }) => {
+    await expect(canvas.getByText(children).tagName).toBe("SPAN");
+  },
+};
+
+// asChild styles the child element, e.g. a heading.
+export const AsChild: Story = {
+  tags: ["!dev"],
+  args: { asChild: true, size: "xxl", font: "serif" },
+  render: (args) => (
+    <Typography {...args}>
+      <h1>{children}</h1>
+    </Typography>
+  ),
+  play: async ({ canvas }) => {
+    const heading = canvas.getByRole("heading", { level: 1, name: children });
+    await expect(heading).toHaveAttribute("data-typography");
+    await expect(heading).toHaveAttribute("data-size", "xxl");
+    await expect(heading).toHaveAttribute("data-font", "serif");
+  },
+};

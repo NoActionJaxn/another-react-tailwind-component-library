@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { expect } from "storybook/test";
+import { expect, fn } from "storybook/test";
 import { docsArgTypes, docsParameters, format, m } from "../../docs/i18n";
 import { Pagination } from "./Pagination";
-import { usePagination } from "./usePagination";
+import { paginationRange, usePagination } from "./usePagination";
 
 const text = m.components.Pagination.story;
 
@@ -127,5 +127,180 @@ export const Default: Story = {
     await expect(
       canvas.getByRole("button", { name: "Next page" }),
     ).toBeDisabled();
+  },
+};
+
+const pageNumbers = (canvasElement: HTMLElement) =>
+  [...canvasElement.querySelectorAll("li")].map((li) =>
+    li.getAttribute("aria-hidden") ? "…" : li.textContent,
+  );
+
+// Plain Pagination, driven by its props.
+export const Controlled: Story = {
+  tags: ["!dev"],
+  args: { page: 5, pageCount: 20, onPageChange: fn() },
+  render: (args) => <Pagination {...args} />,
+  play: async ({ args, canvas, canvasElement, userEvent }) => {
+    // Previous, 1, …, 4 5 6, …, 20, Next
+    await expect(pageNumbers(canvasElement)).toEqual([
+      "",
+      "1",
+      "…",
+      "4",
+      "5",
+      "6",
+      "…",
+      "20",
+      "",
+    ]);
+    await expect(
+      canvas.getByRole("button", { name: "Page 5" }),
+    ).toHaveAttribute("aria-current", "page");
+    await userEvent.click(canvas.getByRole("button", { name: "Next page" }));
+    await expect(args.onPageChange).toHaveBeenLastCalledWith(6);
+    await userEvent.click(
+      canvas.getByRole("button", { name: "Previous page" }),
+    );
+    await expect(args.onPageChange).toHaveBeenLastCalledWith(4);
+    await userEvent.click(canvas.getByRole("button", { name: "Page 20" }));
+    await expect(args.onPageChange).toHaveBeenLastCalledWith(20);
+    // The current page does nothing.
+    await userEvent.click(canvas.getByRole("button", { name: "Page 5" }));
+    await expect(args.onPageChange).toHaveBeenCalledTimes(3);
+  },
+};
+
+// An out-of-range page is clamped.
+export const PageOutOfRange: Story = {
+  tags: ["!dev"],
+  args: { page: 99, pageCount: 3, onPageChange: fn() },
+  render: (args) => <Pagination {...args} />,
+  play: async ({ canvas }) => {
+    await expect(
+      canvas.getByRole("button", { name: "Page 3" }),
+    ).toHaveAttribute("aria-current", "page");
+    await expect(
+      canvas.getByRole("button", { name: "Next page" }),
+    ).toBeDisabled();
+  },
+};
+
+export const FirstLast: Story = {
+  tags: ["!dev"],
+  args: { page: 1, pageCount: 10, showFirstLast: true, onPageChange: fn() },
+  render: (args) => <Pagination {...args} />,
+  play: async ({ args, canvas, userEvent }) => {
+    await expect(
+      canvas.getByRole("button", { name: "First page" }),
+    ).toBeDisabled();
+    await userEvent.click(canvas.getByRole("button", { name: "Last page" }));
+    await expect(args.onPageChange).toHaveBeenCalledWith(10);
+  },
+};
+
+// With getHref, pages are links; disabled ends stay buttons.
+export const Links: Story = {
+  tags: ["!dev"],
+  args: { page: 1, pageCount: 3, getHref: (page: number) => `#page-${page}` },
+  render: (args) => <Pagination {...args} />,
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole("link", { name: "Page 2" })).toHaveAttribute(
+      "href",
+      "#page-2",
+    );
+    await expect(
+      canvas.getByRole("link", { name: "Next page" }),
+    ).toHaveAttribute("href", "#page-2");
+    await expect(canvas.getByRole("link", { name: "Page 1" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+    await expect(
+      canvas.getByRole("button", { name: "Previous page" }),
+    ).toBeDisabled();
+  },
+};
+
+export const CustomLabels: Story = {
+  tags: ["!dev"],
+  args: {
+    page: 1,
+    pageCount: 2,
+    pageLabel: (page: number) => `Go to ${page}`,
+    nextLabel: "Forward",
+  },
+  render: (args) => <Pagination {...args} />,
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole("button", { name: "Go to 2" })).toBeVisible();
+    await expect(canvas.getByRole("button", { name: "Forward" })).toBeVisible();
+  },
+};
+
+// The page list keeps the same length as the page moves, so buttons don't jump.
+export const PageRange: Story = {
+  tags: ["!dev"],
+  args: { page: 1, pageCount: 1 },
+  render: (args) => <Pagination {...args} />,
+  play: async ({ canvas }) => {
+    // A single page: no ellipsis, both arrows disabled.
+    await expect(paginationRange(1, 1)).toEqual([1]);
+    await expect(
+      canvas.getByRole("button", { name: "Previous page" }),
+    ).toBeDisabled();
+    await expect(
+      canvas.getByRole("button", { name: "Next page" }),
+    ).toBeDisabled();
+
+    await expect(paginationRange(1, 5)).toEqual([1, 2, 3, 4, 5]);
+    await expect(paginationRange(1, 7)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+    await expect(paginationRange(1, 10)).toEqual([
+      1,
+      2,
+      3,
+      4,
+      5,
+      "ellipsis-end",
+      10,
+    ]);
+    await expect(paginationRange(5, 10)).toEqual([
+      1,
+      "ellipsis-start",
+      4,
+      5,
+      6,
+      "ellipsis-end",
+      10,
+    ]);
+    await expect(paginationRange(10, 10)).toEqual([
+      1,
+      "ellipsis-start",
+      6,
+      7,
+      8,
+      9,
+      10,
+    ]);
+    for (let page = 1; page <= 20; page++) {
+      await expect(paginationRange(page, 20)).toHaveLength(7);
+      await expect(paginationRange(page, 20)).toContain(page);
+    }
+    await expect(paginationRange(10, 20, 2, 2)).toEqual([
+      1,
+      2,
+      "ellipsis-start",
+      8,
+      9,
+      10,
+      11,
+      12,
+      "ellipsis-end",
+      19,
+      20,
+    ]);
+    await expect(paginationRange(5, 10, 0, 0)).toEqual([
+      "ellipsis-start",
+      5,
+      "ellipsis-end",
+    ]);
   },
 };

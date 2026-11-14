@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { AspectRatio } from "./AspectRatio";
 
@@ -24,4 +25,23 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+// The box keeps the ratio at any width.
+export const Default: Story = {
+  play: async ({ canvas }) => {
+    const box = canvas
+      .getByText(m.components.AspectRatio.story.content)
+      .getBoundingClientRect();
+    await expect(box.width / box.height).toBeCloseTo(16 / 9, 1);
+  },
+};
+
+export const Square: Story = {
+  tags: ["!dev"],
+  args: { ratio: 1 },
+  play: async ({ canvas }) => {
+    const box = canvas
+      .getByText(m.components.AspectRatio.story.content)
+      .getBoundingClientRect();
+    await expect(box.width).toBeCloseTo(box.height, 0);
+  },
+};

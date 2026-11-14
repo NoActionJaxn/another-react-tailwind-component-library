@@ -145,3 +145,72 @@ export const Default: Story = {
     ).toHaveAttribute("inert");
   },
 };
+
+// The arrow keys move between slides.
+export const Keyboard: Story = {
+  tags: ["!dev"],
+  play: async ({ canvas, userEvent }) => {
+    const dot = (n: number) =>
+      canvas.getByRole("button", { name: `Go to slide ${n}` });
+    await waitFor(() => expect(dot(1)).toHaveAttribute("aria-current", "true"));
+    canvas.getByRole("button", { name: "Next slide" }).focus();
+    await userEvent.keyboard("{ArrowRight}");
+    await waitFor(() => expect(dot(2)).toHaveAttribute("aria-current", "true"));
+    await userEvent.keyboard("{ArrowLeft}");
+    await waitFor(() => expect(dot(1)).toHaveAttribute("aria-current", "true"));
+  },
+};
+
+// Without loop, the arrows stop at the ends.
+export const NoLoop: Story = {
+  tags: ["!dev"],
+  args: { loop: false },
+  play: async ({ canvas, userEvent }) => {
+    const previous = canvas.getByRole("button", { name: "Previous slide" });
+    const next = canvas.getByRole("button", { name: "Next slide" });
+    await waitFor(() => expect(previous).toBeDisabled());
+    await userEvent.click(
+      canvas.getByRole("button", { name: "Go to slide 3" }),
+    );
+    await waitFor(() => expect(next).toBeDisabled());
+    await expect(previous).toBeEnabled();
+  },
+};
+
+// Autoplay advances on its own; the pause button stops it.
+export const Autoplay: Story = {
+  tags: ["!dev"],
+  args: { autoplay: true, delay: 300 },
+  play: async ({ canvas, userEvent }) => {
+    const dot = (n: number) =>
+      canvas.getByRole("button", { name: `Go to slide ${n}` });
+    await waitFor(
+      () => expect(dot(2)).toHaveAttribute("aria-current", "true"),
+      {
+        timeout: 2000,
+      },
+    );
+    await userEvent.click(canvas.getByRole("button", { name: "Pause" }));
+    const current = () =>
+      [1, 2, 3].find((n) => dot(n).getAttribute("aria-current") === "true");
+    const paused = current();
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    await expect(current()).toBe(paused);
+    await expect(canvas.getByRole("button", { name: "Play" })).toBeVisible();
+  },
+};
+
+export const NoControls: Story = {
+  tags: ["!dev"],
+  args: { showArrows: false, showPager: false },
+  play: async ({ canvas }) => {
+    await expect(
+      canvas.queryByRole("button", { name: "Next slide" }),
+    ).toBeNull();
+    await expect(
+      canvas.queryByRole("button", { name: "Go to slide 1" }),
+    ).toBeNull();
+    // No autoplay: no pause button either.
+    await expect(canvas.queryByRole("button", { name: "Pause" })).toBeNull();
+  },
+};

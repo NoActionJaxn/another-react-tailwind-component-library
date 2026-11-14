@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Separator } from "./Separator";
 
@@ -35,4 +36,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+// Decorative separators are hidden from assistive tech.
+export const Default: Story = {
+  play: async ({ canvas, canvasElement }) => {
+    await expect(canvas.queryByRole("separator")).toBeNull();
+    const separators = canvasElement.querySelectorAll("[data-separator]");
+    await expect(separators).toHaveLength(2);
+    await expect(separators[0]).toHaveAttribute("role", "none");
+    await expect(separators[1]).toHaveAttribute("data-orientation", "vertical");
+  },
+};
+
+export const Semantic: Story = {
+  tags: ["!dev"],
+  args: { decorative: false },
+  play: async ({ canvas }) => {
+    const separator = canvas.getByRole("separator");
+    await expect(separator).toHaveAttribute("data-orientation", "horizontal");
+  },
+};

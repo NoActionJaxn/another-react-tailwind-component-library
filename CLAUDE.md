@@ -50,7 +50,7 @@ All Storybook documentation text comes from `src/docs/i18n/locales/<locale>.json
 ## Design tokens
 
 - **Fonts** (`fonts.css`): Roboto / Roboto Serif / Roboto Mono replace Tailwind's `font-sans` / `font-serif` / `font-mono`.
-- **Color schemes:** a scheme is any `--color-<name>-50 … 950` set. The library ships `default` (stone) plus the status schemes `info` (blue), `success` (green), `warning` (amber) and `danger` (red), in `colors.css` with `@theme static`. Alert, Banner and Toast's `status` prop picks a status scheme (`colorScheme` overrides it) and an icon; the shared `src/components/_status/` holds the `Status` type, `statusRole()` and `StatusIcon`.
+- **Color schemes:** a scheme is any `--color-<name>-50 … 950` set. The library ships only `default` (stone), in `colors.css` with `@theme static`; don't add others. Alert, Banner and Toast's `status` prop picks an icon and role, not a color; the shared `src/components/_status/` holds the `Status` type, `statusRole()` and `StatusIcon`.
 - **Active scheme:** components read `--scheme-50 … 950`. `:root` points it at `default`; the `colorScheme` prop or `schemeVars(name)` repoints it on an element, and children inherit.
 - **Everything else** (radius, spacing, font weights) comes from Tailwind's own theme variables: `--radius-md`, `--spacing`, `--font-weight-semibold`.
 

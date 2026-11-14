@@ -60,8 +60,23 @@ export const Default: Story = {
     await userEvent.click(canvas.getByRole("button", { name: text.show }));
     const backdrop = find();
     await expect(backdrop).toHaveAttribute("data-state", "open");
+    // Decorative: hidden from assistive tech.
+    await expect(backdrop).toHaveAttribute("aria-hidden", "true");
+    // contained: covers its positioned parent, not the window.
+    await expect(getComputedStyle(backdrop!).position).toBe("absolute");
     await userEvent.click(backdrop!);
     // Unmounts once the fade-out ends.
     await waitFor(() => expect(find()).toBeNull());
+  },
+};
+
+export const FullScreen: Story = {
+  tags: ["!dev"],
+  args: { contained: false },
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: text.show }));
+    const backdrop = canvasElement.querySelector("[data-backdrop]")!;
+    await expect(getComputedStyle(backdrop).position).toBe("fixed");
+    await userEvent.click(backdrop);
   },
 };

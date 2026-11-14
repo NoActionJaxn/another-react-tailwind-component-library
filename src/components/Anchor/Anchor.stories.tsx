@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Anchor } from "./Anchor";
 
@@ -32,4 +33,31 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvas }) => {
+    await expect(
+      canvas.getByRole("link", { name: m.components.Anchor.story.children }),
+    ).toHaveAttribute("href", "#");
+  },
+};
+
+// asChild renders the child (e.g. a router link) with the anchor's props.
+export const AsChild: Story = {
+  tags: ["!dev"],
+  args: { asChild: true, underline: "hover" },
+  render: (args) => (
+    <Anchor {...args}>
+      <a href="#child" target="_blank">
+        {m.components.Anchor.story.children}
+      </a>
+    </Anchor>
+  ),
+  play: async ({ canvas, canvasElement }) => {
+    const link = canvas.getByRole("link");
+    await expect(canvasElement.querySelectorAll("a")).toHaveLength(1);
+    await expect(link).toHaveAttribute("href", "#child");
+    await expect(link).toHaveAttribute("target", "_blank");
+    await expect(link).toHaveAttribute("data-anchor");
+    await expect(link).toHaveAttribute("data-underline", "hover");
+  },
+};

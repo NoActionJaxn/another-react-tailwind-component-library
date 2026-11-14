@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import {
@@ -62,4 +63,55 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvas, canvasElement }) => {
+    await expect(
+      canvasElement.querySelector("section[data-hero]"),
+    ).toHaveAttribute("data-layout", "split");
+    // The title is the page's h1.
+    await expect(
+      canvas.getByRole("heading", { level: 1, name: text.title }),
+    ).toBeVisible();
+    await expect(canvas.getByText(text.description).tagName).toBe("P");
+    await expect(
+      canvas.getByRole("button", { name: text.primary }),
+    ).toBeVisible();
+    await expect(
+      canvas.getByRole("button", { name: text.secondary }),
+    ).toBeVisible();
+    await expect(
+      canvas.getByRole("img", { name: text.imageAlt }),
+    ).toBeVisible();
+  },
+};
+
+export const Full: Story = {
+  tags: ["!dev"],
+  args: { full: true },
+  play: async ({ canvasElement }) => {
+    await expect(canvasElement.querySelector("[data-hero]")).toHaveAttribute(
+      "data-layout",
+      "full",
+    );
+  },
+};
+
+// asChild changes the title's element, e.g. when the page already has an h1.
+export const TitleAsChild: Story = {
+  tags: ["!dev"],
+  render: (args) => (
+    <Hero {...args}>
+      <HeroContent>
+        <HeroTitle asChild>
+          <h2>{text.title}</h2>
+        </HeroTitle>
+      </HeroContent>
+    </Hero>
+  ),
+  play: async ({ canvas }) => {
+    await expect(canvas.queryByRole("heading", { level: 1 })).toBeNull();
+    await expect(
+      canvas.getByRole("heading", { level: 2, name: text.title }),
+    ).toHaveAttribute("data-hero-title");
+  },
+};

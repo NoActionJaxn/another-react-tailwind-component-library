@@ -69,5 +69,18 @@ export const Default: Story = {
     const [outer] = canvas.getAllByRole("list");
     await expect(outer!.tagName).toBe("OL");
     await expect(outer!.children).toHaveLength(text.items.length);
+    await expect(canvas.getAllByRole("listitem")).toHaveLength(
+      text.items.length + text.nested.length,
+    );
+  },
+};
+
+export const NestedSize: Story = {
+  tags: ["!dev"],
+  args: { size: "sm" },
+  play: async ({ canvas }) => {
+    for (const list of canvas.getAllByRole("list")) {
+      await expect(list).toHaveAttribute("data-size", "sm");
+    }
   },
 };

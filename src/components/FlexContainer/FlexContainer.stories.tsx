@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { docsArgTypes, docsParameters, format, m } from "../../docs/i18n";
 import { FlexContainer } from "./FlexContainer";
 
@@ -86,4 +87,36 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const items = (canvasElement: HTMLElement) =>
+  [...canvasElement.querySelector("[data-flex-container]")!.children].map(
+    (item) => item.getBoundingClientRect(),
+  );
+
+// columns: up to that many items per row, wrapping when they'd get narrower than minColumnWidth.
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    const container = canvasElement.querySelector("[data-flex-container]")!;
+    await expect(getComputedStyle(container).flexWrap).toBe("wrap");
+    const boxes = items(canvasElement);
+    const rows = new Set(boxes.map((box) => Math.round(box.top)));
+    const width = container.getBoundingClientRect().width;
+    // As many per row as fit at 15rem.
+    const perRow = Math.max(1, Math.min(3, Math.floor(width / 240)));
+    await expect(rows.size).toBe(Math.ceil(3 / perRow));
+  },
+};
+
+// Without columns, items stay on one line.
+export const NoColumns: Story = {
+  tags: ["!dev"],
+  args: { columns: undefined, direction: "column" },
+  play: async ({ canvasElement }) => {
+    const container = canvasElement.querySelector("[data-flex-container]")!;
+    await expect(getComputedStyle(container).flexWrap).toBe("nowrap");
+    await expect(container).not.toHaveAttribute("data-columns");
+    const boxes = items(canvasElement);
+    // column: stacked in order.
+    await expect(boxes[0]!.top).toBeLessThan(boxes[1]!.top);
+    await expect(boxes[1]!.top).toBeLessThan(boxes[2]!.top);
+  },
+};

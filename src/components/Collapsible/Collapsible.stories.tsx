@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fn, waitFor } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import {
@@ -37,4 +38,40 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const text = m.components.Collapsible.story;
+
+export const Default: Story = {
+  play: async ({ canvas, userEvent }) => {
+    const trigger = canvas.getByRole("button", { name: text.trigger });
+    await expect(trigger).toHaveAttribute("aria-expanded", "false");
+    await expect(canvas.queryByText(text.content)).toBeNull();
+    await userEvent.click(trigger);
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+    await expect(canvas.getByText(text.content)).toBeVisible();
+    await expect(
+      document.getElementById(trigger.getAttribute("aria-controls")!),
+    ).toContainElement(canvas.getByText(text.content));
+    await userEvent.click(trigger);
+    await waitFor(() => expect(canvas.queryByText(text.content)).toBeNull());
+  },
+};
+
+export const DefaultOpen: Story = {
+  tags: ["!dev"],
+  args: { defaultOpen: true, onOpenChange: fn() },
+  play: async ({ args, canvas, userEvent }) => {
+    await expect(canvas.getByText(text.content)).toBeVisible();
+    await userEvent.click(canvas.getByRole("button", { name: text.trigger }));
+    await expect(args.onOpenChange).toHaveBeenCalledWith(false);
+  },
+};
+
+export const Disabled: Story = {
+  tags: ["!dev"],
+  args: { disabled: true },
+  play: async ({ canvas, userEvent }) => {
+    const trigger = canvas.getByRole("button", { name: text.trigger });
+    await userEvent.click(trigger);
+    await expect(trigger).toHaveAttribute("aria-expanded", "false");
+  },
+};

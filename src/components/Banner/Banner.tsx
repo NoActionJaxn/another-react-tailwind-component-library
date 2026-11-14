@@ -39,7 +39,7 @@ export function Banner({
       data-variant={variant}
       data-status={status}
       role={role ?? statusRole(status)}
-      style={schemeStyle(colorScheme ?? status, style)}
+      style={schemeStyle(colorScheme, style)}
       className={tw(
         "flex w-full items-center gap-(--_gap) border-b border-(--_border) bg-(--_bg) px-(--_padding-x) py-(--_padding-y) text-sm text-(--_text)",
         sticky && "sticky top-0 z-(--_z-index)",

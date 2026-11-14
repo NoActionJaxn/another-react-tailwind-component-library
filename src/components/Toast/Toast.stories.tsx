@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, screen, waitFor, within } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { useState } from "react";
 import { Button } from "../Button";
@@ -64,4 +65,57 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const text = m.components.Toast.story;
+
+export const Default: Story = {
+  play: async ({ canvas, userEvent }) => {
+    await expect(screen.queryByText(text.title)).toBeNull();
+    await userEvent.click(canvas.getByRole("button", { name: text.trigger }));
+    // Toasts render in the viewport, a labelled landmark.
+    const region = screen.getByRole("region", { name: /Notifications/ });
+    await waitFor(() =>
+      expect(region.querySelector("[data-toast]")).not.toBeNull(),
+    );
+    const toast = region.querySelector<HTMLElement>("[data-toast]")!;
+    await expect(toast).toHaveAttribute("data-state", "open");
+    await expect(toast).toHaveTextContent(text.title);
+    await expect(toast).toHaveTextContent(text.description);
+    await expect(toast).toHaveAttribute("data-status", "success");
+
+    await userEvent.click(within(toast).getByRole("button", { name: "Close" }));
+    await waitFor(() => expect(screen.queryByText(text.title)).toBeNull());
+
+    // The action closes it too.
+    await userEvent.click(canvas.getByRole("button", { name: text.trigger }));
+    await userEvent.click(
+      await screen.findByRole("button", { name: text.action }),
+    );
+    await waitFor(() => expect(screen.queryByText(text.title)).toBeNull());
+  },
+};
+
+// Closes on its own once its duration passes.
+export const Duration: Story = {
+  tags: ["!dev"],
+  args: { duration: 300 },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: text.trigger }));
+    await expect(await screen.findByText(text.title)).toBeInTheDocument();
+    await waitFor(() => expect(screen.queryByText(text.title)).toBeNull(), {
+      timeout: 2000,
+    });
+  },
+};
+
+// Escape closes the toast once focus is in the viewport.
+export const KeyboardDismiss: Story = {
+  tags: ["!dev"],
+  args: { status: "danger" },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: text.trigger }));
+    const action = await screen.findByRole("button", { name: text.action });
+    action.focus();
+    await userEvent.keyboard("{Escape}");
+    await waitFor(() => expect(screen.queryByText(text.title)).toBeNull());
+  },
+};

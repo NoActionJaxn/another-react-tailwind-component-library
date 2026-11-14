@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import {
@@ -58,4 +59,33 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvas }) => {
+    await expect(
+      canvas.getByRole("heading", { level: 3, name: text.header }),
+    ).toBeVisible();
+    await expect(
+      canvas.getByRole("img", { name: text.imageAlt }),
+    ).toBeVisible();
+    await expect(canvas.getByText(text.description)).toBeVisible();
+    await expect(canvas.getAllByRole("button")).toHaveLength(2);
+  },
+};
+
+// asChild makes the child element the card, e.g. an article.
+export const AsChild: Story = {
+  tags: ["!dev"],
+  args: { asChild: true },
+  render: (args) => (
+    <Card {...args}>
+      <article aria-label={text.header}>
+        <CardDescription>{text.description}</CardDescription>
+      </article>
+    </Card>
+  ),
+  play: async ({ canvas }) => {
+    await expect(
+      canvas.getByRole("article", { name: text.header }),
+    ).toHaveAttribute("data-card");
+  },
+};

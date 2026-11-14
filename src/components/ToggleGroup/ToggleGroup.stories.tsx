@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import {
   TextAlignCenterIcon,
@@ -59,4 +60,41 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const text = m.components.ToggleGroup.story;
+
+export const Default: Story = {
+  play: async ({ canvas, userEvent }) => {
+    const left = canvas.getByRole("radio", { name: text.left });
+    const center = canvas.getByRole("radio", { name: text.center });
+    const right = canvas.getByRole("radio", { name: text.right });
+    await expect(left).toBeChecked();
+    // Items take the group's variant and size.
+    await expect(center).toHaveAttribute("data-variant", "ghost");
+    await expect(center).toHaveAttribute("data-size", "md");
+
+    // Single: pressing another item releases the first.
+    await userEvent.click(center);
+    await expect(center).toBeChecked();
+    await expect(left).not.toBeChecked();
+
+    // Arrow keys move focus between items.
+    await userEvent.keyboard("{ArrowRight}");
+    await expect(right).toHaveFocus();
+    await userEvent.keyboard(" ");
+    await expect(right).toBeChecked();
+  },
+};
+
+export const Multiple: Story = {
+  tags: ["!dev"],
+  args: { type: "multiple", defaultValue: ["left"] },
+  play: async ({ canvas, userEvent }) => {
+    const left = canvas.getByRole("button", { name: text.left });
+    const right = canvas.getByRole("button", { name: text.right });
+    await userEvent.click(right);
+    await expect(left).toHaveAttribute("aria-pressed", "true");
+    await expect(right).toHaveAttribute("aria-pressed", "true");
+    await userEvent.click(left);
+    await expect(left).toHaveAttribute("aria-pressed", "false");
+  },
+};

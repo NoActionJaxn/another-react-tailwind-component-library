@@ -16,7 +16,7 @@
     --_details-gap: var(--listing-block-details-gap, calc(var(--spacing) * 3));
     --_section-gap: var(--listing-block-section-gap, calc(var(--spacing) * 3));
     --_rating-pull: var(--listing-block-rating-pull, calc(var(--spacing) * 1));
-    --_star: var(--listing-block-star, var(--color-warning-500));
+    --_star: var(--listing-block-star, var(--color-amber-500));
     --_star-empty: var(--listing-block-star-empty, var(--scheme-300));
     --_star-size: var(--listing-block-star-size, 1.125rem);
     --_title-font-weight: var(

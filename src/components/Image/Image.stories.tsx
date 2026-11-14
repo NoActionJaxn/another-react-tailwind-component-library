@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fn, screen, waitFor, within } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Image } from "./Image";
 
@@ -57,4 +58,72 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const alt = m.components.Image.story.alt;
+
+export const Default: Story = {
+  play: async ({ canvas }) => {
+    const image = canvas.getByRole("img", { name: alt });
+    await expect(image.tagName).toBe("IMG");
+    await expect(image).toHaveAttribute("src", src);
+    await expect(canvas.queryByRole("button")).toBeNull();
+  },
+};
+
+// A broken image shows the fallback, named by alt, and still calls onError.
+export const BrokenImage: Story = {
+  tags: ["!dev"],
+  args: { src: "/missing-image.png", onError: fn() },
+  play: async ({ args, canvas, canvasElement }) => {
+    await waitFor(() =>
+      expect(canvasElement.querySelector("[data-fallback]")).not.toBeNull(),
+    );
+    const fallback = canvas.getByRole("img", { name: alt });
+    await expect(fallback.tagName).toBe("DIV");
+    await expect(args.onError).toHaveBeenCalledTimes(1);
+  },
+};
+
+// With no alt the fallback is decorative.
+export const DecorativeFallback: Story = {
+  tags: ["!dev"],
+  args: { src: undefined, alt: "" },
+  play: async ({ canvas, canvasElement }) => {
+    await expect(canvas.queryByRole("img")).toBeNull();
+    await expect(
+      canvasElement.querySelector("[data-fallback]"),
+    ).toHaveAttribute("aria-hidden", "true");
+  },
+};
+
+export const OpenInDialog: Story = {
+  tags: ["!dev"],
+  args: { openInDialog: true, dialogSrc: `${src}#large` },
+  play: async ({ canvas, userEvent }) => {
+    const button = canvas.getByRole("button", { name: alt });
+    await userEvent.click(button);
+    const dialog = await screen.findByRole("dialog", { name: alt });
+    // The dialog shows dialogSrc when given.
+    await expect(
+      within(dialog).getByRole("img", { name: alt }),
+    ).toHaveAttribute("src", `${src}#large`);
+    await userEvent.click(
+      within(dialog).getByRole("button", { name: "Close" }),
+    );
+    await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+    await expect(button).toHaveFocus();
+  },
+};
+
+// Without alt, the open button and dialog fall back to openLabel.
+export const OpenInDialogNoAlt: Story = {
+  tags: ["!dev"],
+  args: { openInDialog: true, alt: "", openLabel: "Enlarge" },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Enlarge" }));
+    await expect(
+      await screen.findByRole("dialog", { name: "Enlarge" }),
+    ).toBeVisible();
+    await userEvent.keyboard("{Escape}");
+    await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+  },
+};

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { expect } from "storybook/test";
+import { expect, fn } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import { Alert, AlertDescription, AlertTitle } from "./Alert";
@@ -66,11 +66,56 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  play: async ({ canvas, userEvent }) => {
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    // info and success wait their turn: role="status".
     const alert = canvas.getByRole("status");
     await expect(alert).toHaveTextContent(text.title);
+    await expect(alert).toHaveTextContent(text.description);
+    await expect(
+      canvasElement.querySelector("[data-status-icon]"),
+    ).toHaveAttribute("aria-hidden", "true");
     await userEvent.click(canvas.getByRole("button", { name: "Dismiss" }));
     await expect(canvas.queryByRole("status")).toBeNull();
     await userEvent.click(canvas.getByRole("button", { name: text.showAgain }));
+    await expect(canvas.getByRole("status")).toBeVisible();
+  },
+};
+
+// warning and danger interrupt screen readers: role="alert".
+export const Urgent: Story = {
+  tags: ["!dev"],
+  args: { status: "danger" },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole("alert")).toHaveTextContent(text.title);
+  },
+};
+
+// Without onDismiss there's no dismiss button; role and icon can be overridden.
+export const Static: Story = {
+  tags: ["!dev"],
+  args: { status: "warning", role: "note", icon: false },
+  render: (args) => (
+    <Alert {...args}>
+      <AlertTitle>{text.title}</AlertTitle>
+    </Alert>
+  ),
+  play: async ({ canvas, canvasElement }) => {
+    await expect(canvas.getByRole("note")).toHaveTextContent(text.title);
+    await expect(canvas.queryByRole("button")).toBeNull();
+    await expect(canvasElement.querySelector("[data-status-icon]")).toBeNull();
+  },
+};
+
+export const DismissCallback: Story = {
+  tags: ["!dev"],
+  args: { onDismiss: fn(), dismissLabel: "Close alert" },
+  render: (args) => (
+    <Alert {...args}>
+      <AlertTitle>{text.title}</AlertTitle>
+    </Alert>
+  ),
+  play: async ({ args, canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Close alert" }));
+    await expect(args.onDismiss).toHaveBeenCalledTimes(1);
   },
 };

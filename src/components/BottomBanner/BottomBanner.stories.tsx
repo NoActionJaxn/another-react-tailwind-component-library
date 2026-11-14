@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
-import { expect, waitFor } from "storybook/test";
+import { expect, fn, waitFor } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import { InputGroup } from "../InputGroup";
@@ -129,6 +129,64 @@ export const Default: Story = {
       expect(canvas.queryByRole("region", { name: text.title })).toBeNull(),
     );
     await userEvent.click(canvas.getByRole("button", { name: text.showAgain }));
+    await expect(
+      canvas.getByRole("region", { name: text.title }),
+    ).toBeVisible();
+  },
+};
+
+const storageKey = "bottom-banner-story";
+
+// With storageKey, a dismissal is remembered across visits.
+export const RememberDismissal: Story = {
+  tags: ["!dev"],
+  args: { storageKey },
+  beforeEach: () => {
+    localStorage.removeItem(storageKey);
+    return () => localStorage.removeItem(storageKey);
+  },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Dismiss" }));
+    await expect(localStorage.getItem(storageKey)).toBe("dismissed");
+  },
+};
+
+export const PreviouslyDismissed: Story = {
+  tags: ["!dev"],
+  args: { storageKey },
+  beforeEach: () => {
+    localStorage.setItem(storageKey, "dismissed");
+    return () => localStorage.removeItem(storageKey);
+  },
+  play: async ({ canvas }) => {
+    await expect(canvas.queryByRole("region", { name: text.title })).toBeNull();
+  },
+};
+
+export const DefaultClosed: Story = {
+  tags: ["!dev"],
+  args: { defaultOpen: false },
+  play: async ({ canvas }) => {
+    await expect(canvas.queryByRole("region", { name: text.title })).toBeNull();
+  },
+};
+
+// Controlled: open decides, and dismissing only asks to close.
+export const Controlled: Story = {
+  tags: ["!dev"],
+  args: { open: true, onOpenChange: fn(), fixed: false },
+  render: (args) => (
+    <BottomBanner {...args}>
+      <BottomBannerContent>
+        <BottomBannerTitle>{text.title}</BottomBannerTitle>
+      </BottomBannerContent>
+    </BottomBanner>
+  ),
+  play: async ({ args, canvas, userEvent }) => {
+    const banner = canvas.getByRole("region", { name: text.title });
+    await expect(getComputedStyle(banner).position).toBe("relative");
+    await userEvent.click(canvas.getByRole("button", { name: "Dismiss" }));
+    await expect(args.onOpenChange).toHaveBeenCalledWith(false);
     await expect(
       canvas.getByRole("region", { name: text.title }),
     ).toBeVisible();

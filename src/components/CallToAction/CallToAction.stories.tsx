@@ -78,5 +78,24 @@ export const Default: Story = {
       canvas.getByRole("heading", { level: 2, name: text.title }),
     ).toBeVisible();
     await expect(canvas.getAllByRole("button")).toHaveLength(2);
+    await expect(canvas.getByText(text.description).tagName).toBe("P");
+  },
+};
+
+export const TitleAsChild: Story = {
+  tags: ["!dev"],
+  render: (args) => (
+    <CallToAction {...args}>
+      <CallToActionContent>
+        <CallToActionTitle asChild>
+          <h3>{text.title}</h3>
+        </CallToActionTitle>
+      </CallToActionContent>
+    </CallToAction>
+  ),
+  play: async ({ canvas }) => {
+    await expect(
+      canvas.getByRole("heading", { level: 3, name: text.title }),
+    ).toHaveAttribute("data-call-to-action-title");
   },
 };

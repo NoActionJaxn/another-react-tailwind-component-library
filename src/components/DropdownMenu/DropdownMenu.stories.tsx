@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fn } from "storybook/test";
+import { playOpenMenu, playSelectItem } from "../_menu/playMenu";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import {
@@ -72,4 +74,32 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const trigger = m.components.DropdownMenu.story.trigger;
+
+export const Default: Story = {
+  play: async ({ canvas, userEvent }) => {
+    const button = canvas.getByRole("button", { name: trigger });
+    await expect(button).toHaveAttribute("aria-expanded", "false");
+    await userEvent.click(button);
+    await expect(button).toHaveAttribute("aria-expanded", "true");
+    await playOpenMenu();
+    // Closing returns focus to the trigger.
+    await expect(button).toHaveFocus();
+
+    // The keyboard opens it too.
+    await userEvent.keyboard("{Enter}");
+    await playSelectItem();
+    await expect(button).toHaveAttribute("aria-expanded", "false");
+  },
+};
+
+export const OpenChange: Story = {
+  tags: ["!dev"],
+  args: { onOpenChange: fn() },
+  play: async ({ args, canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: trigger }));
+    await expect(args.onOpenChange).toHaveBeenLastCalledWith(true);
+    await userEvent.keyboard("{Escape}");
+    await expect(args.onOpenChange).toHaveBeenLastCalledWith(false);
+  },
+};

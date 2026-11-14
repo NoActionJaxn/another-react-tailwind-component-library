@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
-import { expect } from "storybook/test";
+import { expect, within } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import { Banner } from "./Banner";
@@ -87,9 +87,42 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   play: async ({ canvas, userEvent }) => {
-    await expect(canvas.getByRole("status")).toHaveTextContent(text.message);
+    const banner = canvas.getByRole("status");
+    await expect(banner).toHaveTextContent(text.message);
+    await expect(
+      within(banner).getByRole("link", { name: text.action }),
+    ).toBeVisible();
     await userEvent.click(canvas.getByRole("button", { name: "Dismiss" }));
     await expect(canvas.queryByRole("status")).toBeNull();
     await userEvent.click(canvas.getByRole("button", { name: text.showAgain }));
+    await expect(canvas.getByRole("status")).toBeVisible();
+  },
+};
+
+export const Urgent: Story = {
+  tags: ["!dev"],
+  args: { status: "warning" },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole("alert")).toHaveTextContent(text.message);
+  },
+};
+
+// Sticky banners stay at the top of the scrolling page.
+export const Sticky: Story = {
+  tags: ["!dev"],
+  args: { sticky: true },
+  play: async ({ canvas }) => {
+    await expect(getComputedStyle(canvas.getByRole("status")).position).toBe(
+      "sticky",
+    );
+  },
+};
+
+export const NotDismissible: Story = {
+  tags: ["!dev"],
+  render: (args) => <Banner {...args}>{text.message}</Banner>,
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole("status")).toBeVisible();
+    await expect(canvas.queryByRole("button")).toBeNull();
   },
 };

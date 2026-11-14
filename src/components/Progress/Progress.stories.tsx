@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Progress } from "./Progress";
 
@@ -36,4 +37,62 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const indicator = (canvasElement: HTMLElement) =>
+  canvasElement.querySelector<HTMLElement>("[data-progress] > *")!;
+
+export const Default: Story = {
+  play: async ({ canvas, canvasElement }) => {
+    const bar = canvas.getByRole("progressbar", {
+      name: m.components.Progress.story.ariaLabel,
+    });
+    await expect(bar).toHaveAttribute("aria-valuenow", "60");
+    await expect(bar).toHaveAttribute("aria-valuemax", "100");
+    await expect(bar).toHaveAttribute("data-state", "loading");
+    // The indicator fills 60% of the track.
+    await expect(indicator(canvasElement).style.transform).toBe(
+      "translateX(-40%)",
+    );
+  },
+};
+
+export const CustomMax: Story = {
+  tags: ["!dev"],
+  args: { value: 50, max: 200 },
+  play: async ({ canvas, canvasElement }) => {
+    await expect(canvas.getByRole("progressbar")).toHaveAttribute(
+      "aria-valuemax",
+      "200",
+    );
+    await expect(indicator(canvasElement).style.transform).toBe(
+      "translateX(-75%)",
+    );
+  },
+};
+
+export const Complete: Story = {
+  tags: ["!dev"],
+  args: { value: 100 },
+  play: async ({ canvas, canvasElement }) => {
+    await expect(canvas.getByRole("progressbar")).toHaveAttribute(
+      "data-state",
+      "complete",
+    );
+    await expect(indicator(canvasElement).style.transform).toBe(
+      "translateX(0%)",
+    );
+  },
+};
+
+// No value: indeterminate, and the indicator stays empty.
+export const Indeterminate: Story = {
+  tags: ["!dev"],
+  args: { value: null },
+  play: async ({ canvas, canvasElement }) => {
+    const bar = canvas.getByRole("progressbar");
+    await expect(bar).toHaveAttribute("data-state", "indeterminate");
+    await expect(bar).not.toHaveAttribute("aria-valuenow");
+    await expect(indicator(canvasElement).style.transform).toBe(
+      "translateX(-100%)",
+    );
+  },
+};

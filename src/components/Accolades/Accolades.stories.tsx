@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { expect } from "storybook/test";
+import { expect, waitFor } from "storybook/test";
 import { docsArgTypes, docsParameters, format, m } from "../../docs/i18n";
 import {
   Accolades,
@@ -77,5 +77,34 @@ export const Default: Story = {
     await expect(canvas.getByRole("button", { name: "Play" })).toBeVisible();
     await userEvent.click(canvas.getByRole("button", { name: "Play" }));
     await expect(canvas.getByRole("button", { name: "Pause" })).toBeVisible();
+  },
+};
+
+// Each quote is a slide, named by its position.
+export const Slides: Story = {
+  tags: ["!dev"],
+  play: async ({ canvas }) => {
+    const total = text.quotes.length;
+    for (let i = 1; i <= total; i++) {
+      await expect(
+        canvas.getByRole("group", { name: `${i} of ${total}`, hidden: true }),
+      ).toHaveTextContent(text.quotes[i - 1]!);
+    }
+    await expect(
+      canvas.getByRole("region", { name: text.label }),
+    ).toHaveAttribute("aria-roledescription", "carousel");
+  },
+};
+
+// With an animation, slides on screen are marked in view.
+export const Animated: Story = {
+  tags: ["!dev"],
+  args: { animation: "fade" },
+  play: async ({ canvasElement }) => {
+    await waitFor(() =>
+      expect(
+        canvasElement.querySelector("[data-accolades-slide][data-in-view]"),
+      ).not.toBeNull(),
+    );
   },
 };

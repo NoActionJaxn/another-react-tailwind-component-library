@@ -1,5 +1,6 @@
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, screen } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import {
@@ -69,4 +70,40 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvas, userEvent }) => {
+    const group = canvas.getByRole("group", { name: text.label });
+    const category = canvas.getByRole("combobox", { name: text.categoryLabel });
+    const search = canvas.getByRole("textbox", { name: text.searchLabel });
+    const button = canvas.getByRole("button", { name: text.button });
+    for (const control of [category, search, button]) {
+      await expect(group).toContainElement(control);
+    }
+    // Each control still works on its own inside the group.
+    await expect(category).toHaveTextContent(text.categories.all);
+    await userEvent.click(category);
+    await userEvent.click(
+      await screen.findByRole("option", { name: text.categories.music }),
+    );
+    await expect(category).toHaveTextContent(text.categories.music);
+    await userEvent.type(search, "jazz");
+    await expect(search).toHaveValue("jazz");
+  },
+};
+
+// The group's size applies to every control in it.
+export const Size: Story = {
+  tags: ["!dev"],
+  args: { size: "lg" },
+  play: async ({ canvas, canvasElement }) => {
+    await expect(
+      canvas.getByRole("combobox", { name: text.categoryLabel }),
+    ).toHaveAttribute("data-size", "lg");
+    await expect(
+      canvasElement.querySelector("[data-text-input]"),
+    ).toHaveAttribute("data-size", "lg");
+    await expect(
+      canvas.getByRole("button", { name: text.button }),
+    ).toHaveAttribute("data-size", "lg");
+  },
+};

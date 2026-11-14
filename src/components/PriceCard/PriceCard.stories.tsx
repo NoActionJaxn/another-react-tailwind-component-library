@@ -1,6 +1,6 @@
 import { CheckIcon } from "@radix-ui/react-icons";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { fn } from "storybook/test";
+import { expect, fn } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { PriceCard } from "./PriceCard";
 
@@ -59,4 +59,37 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ args, canvas }) => {
+    await expect(
+      canvas.getByRole("heading", { level: 3, name: text.title }),
+    ).toBeVisible();
+    await expect(canvas.getByText(text.badge)).toBeVisible();
+    await expect(canvas.getByText(text.price).parentElement).toHaveTextContent(
+      `${text.price}/${text.unit}`,
+    );
+    await expect(canvas.getAllByRole("listitem")).toHaveLength(
+      text.features.length,
+    );
+    const button = canvas.getByRole("button", { name: text.buttonLabel });
+    button.click();
+    await expect(args.buttonProps!.onClick).toHaveBeenCalledTimes(1);
+  },
+};
+
+export const Minimal: Story = {
+  tags: ["!dev"],
+  args: { badge: undefined, unit: undefined },
+  render: (args) => <PriceCard {...args} />,
+  play: async ({ canvas, canvasElement }) => {
+    await expect(canvasElement.querySelector("[data-badge]")).toBeNull();
+    await expect(canvas.getByText(text.price).parentElement).toHaveTextContent(
+      text.price,
+      { normalizeWhitespace: true },
+    );
+    await expect(canvas.queryByText(/\//)).toBeNull();
+    await expect(
+      canvasElement.querySelector("[data-card-description]"),
+    ).toBeNull();
+  },
+};

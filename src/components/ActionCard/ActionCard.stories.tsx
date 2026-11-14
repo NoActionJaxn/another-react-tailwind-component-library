@@ -61,10 +61,59 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   play: async ({ args, canvas, userEvent }) => {
     const card = canvas.getByRole("button");
+    await expect(card).toHaveTextContent(text.header);
     await userEvent.click(card);
     await expect(args.onClick).toHaveBeenCalledTimes(1);
+    // A focusable button: Enter and Space activate it.
+    await expect(card).toHaveAttribute("tabindex", "0");
     card.focus();
     await userEvent.keyboard("{Enter}");
     await expect(args.onClick).toHaveBeenCalledTimes(2);
+    await userEvent.keyboard(" ");
+    await expect(args.onClick).toHaveBeenCalledTimes(3);
+  },
+};
+
+// onKeyDown can cancel the keyboard activation.
+export const KeyDownPrevented: Story = {
+  tags: ["!dev"],
+  args: { onKeyDown: (event) => event.preventDefault() },
+  play: async ({ args, canvas, userEvent }) => {
+    canvas.getByRole("button").focus();
+    await userEvent.keyboard("{Enter}");
+    await expect(args.onClick).not.toHaveBeenCalled();
+  },
+};
+
+// With href, the card is a link.
+export const Link: Story = {
+  tags: ["!dev"],
+  args: { href: "#alps", target: "_blank", rel: "noopener" },
+  play: async ({ canvas }) => {
+    await expect(canvas.queryByRole("button")).toBeNull();
+    const link = canvas.getByRole("link");
+    await expect(link).toHaveAttribute("href", "#alps");
+    await expect(link).toHaveAttribute("target", "_blank");
+    await expect(link).toHaveAttribute("rel", "noopener");
+    await expect(link).toHaveAttribute("data-action-card");
+  },
+};
+
+// asChild: the child (e.g. a router link) becomes the card.
+export const AsChild: Story = {
+  tags: ["!dev"],
+  args: { asChild: true },
+  render: (args) => (
+    <ActionCard {...args}>
+      <a href="#child">
+        <CardHeader>{text.header}</CardHeader>
+      </a>
+    </ActionCard>
+  ),
+  play: async ({ canvas, canvasElement }) => {
+    const link = canvas.getByRole("link", { name: text.header });
+    await expect(link).toHaveAttribute("href", "#child");
+    await expect(link).toHaveAttribute("data-card");
+    await expect(canvasElement.querySelectorAll("a")).toHaveLength(1);
   },
 };

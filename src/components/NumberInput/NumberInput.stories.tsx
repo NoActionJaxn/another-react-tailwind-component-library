@@ -6,7 +6,7 @@ import {
   MinusIcon,
   PlusIcon,
 } from "@radix-ui/react-icons";
-import { expect } from "storybook/test";
+import { expect, fn } from "storybook/test";
 import type { ReactNode } from "react";
 import { NumberInput } from "./NumberInput";
 
@@ -108,14 +108,76 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   play: async ({ canvas, userEvent }) => {
-    const input = canvas.getByRole("spinbutton");
-    await userEvent.click(canvas.getByRole("button", { name: "Increase" }));
+    const input = canvas.getByRole("spinbutton", { name: text.label });
+    const increase = canvas.getByRole("button", { name: "Increase" });
+    const decrease = canvas.getByRole("button", { name: "Decrease" });
+    // The steppers are out of the tab order: the input steps with the arrow keys.
+    await expect(increase).toHaveAttribute("tabindex", "-1");
+    await userEvent.click(increase);
     await expect(input).toHaveValue(2);
-    await userEvent.click(canvas.getByRole("button", { name: "Decrease" }));
-    await userEvent.click(canvas.getByRole("button", { name: "Decrease" }));
+    await expect(input).toHaveFocus();
+    await userEvent.click(decrease);
+    await userEvent.click(decrease);
     await expect(input).toHaveValue(0);
     // min is 0: stepping down stops there.
-    await userEvent.click(canvas.getByRole("button", { name: "Decrease" }));
+    await userEvent.click(decrease);
     await expect(input).toHaveValue(0);
+    // max is 10: stepping up stops there.
+    for (let i = 0; i < 12; i++) await userEvent.click(increase);
+    await expect(input).toHaveValue(10);
+    await userEvent.clear(input);
+    await userEvent.type(input, "7");
+    await expect(input).toHaveValue(7);
+  },
+};
+
+// Stepping reports the new value through onChange, like typing does.
+export const StepFiresChange: Story = {
+  tags: ["!dev"],
+  args: { onChange: fn(), defaultValue: 2, step: 2 },
+  play: async ({ args, canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Increase" }));
+    await expect(canvas.getByRole("spinbutton")).toHaveValue(4);
+    await expect(args.onChange).toHaveBeenCalledTimes(1);
+  },
+};
+
+export const Disabled: Story = {
+  tags: ["!dev"],
+  args: { disabled: true },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole("spinbutton")).toBeDisabled();
+    await expect(
+      canvas.getByRole("button", { name: "Increase" }),
+    ).toBeDisabled();
+    await expect(
+      canvas.getByRole("button", { name: "Decrease" }),
+    ).toBeDisabled();
+  },
+};
+
+export const ReadOnly: Story = {
+  tags: ["!dev"],
+  args: { readOnly: true },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "Increase" }));
+    await expect(canvas.getByRole("spinbutton")).toHaveValue(1);
+  },
+};
+
+export const HideSteppers: Story = {
+  tags: ["!dev"],
+  args: { hideSteppers: true },
+  play: async ({ canvas }) => {
+    await expect(canvas.queryByRole("button")).toBeNull();
+  },
+};
+
+export const CustomLabels: Story = {
+  tags: ["!dev"],
+  args: { incrementLabel: "More", decrementLabel: "Fewer" },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole("button", { name: "More" })).toBeVisible();
+    await expect(canvas.getByRole("button", { name: "Fewer" })).toBeVisible();
   },
 };

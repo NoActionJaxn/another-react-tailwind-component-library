@@ -84,14 +84,58 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  play: async ({ canvas }) => {
+  play: async ({ canvas, canvasElement }) => {
     const nav = canvas.getByRole("navigation", { name: "Breadcrumb" });
+    await expect(canvas.getByRole("list")).toBeInTheDocument();
     await expect(nav.querySelectorAll("[data-breadcrumb-item]")).toHaveLength(
       4,
     );
+    await expect(canvas.getAllByRole("listitem")).toHaveLength(4);
+    // Separators sit between items and are hidden from assistive tech.
+    const separators = canvasElement.querySelectorAll(
+      'li[role="presentation"]',
+    );
+    await expect(separators).toHaveLength(3);
+    for (const separator of separators) {
+      await expect(separator).toHaveAttribute("aria-hidden", "true");
+    }
+    await expect(canvas.getAllByRole("link")).toHaveLength(3);
     await expect(canvas.getByText(text.items[3]!)).toHaveAttribute(
       "aria-current",
       "page",
     );
+  },
+};
+
+// maxItems collapses the middle into a button that shows them all.
+export const Collapsed: Story = {
+  tags: ["!dev"],
+  args: { maxItems: 3 },
+  play: async ({ canvas, userEvent }) => {
+    await expect(canvas.getAllByRole("listitem")).toHaveLength(4);
+    await expect(canvas.queryByText(text.items[1]!)).toBeNull();
+    await expect(canvas.getByText(text.items[0]!)).toBeVisible();
+    await expect(canvas.getByText(text.items[2]!)).toBeVisible();
+    await expect(canvas.getByText(text.items[3]!)).toBeVisible();
+
+    await userEvent.click(
+      canvas.getByRole("button", { name: "Show all breadcrumbs" }),
+    );
+    await expect(canvas.queryByRole("button")).toBeNull();
+    await expect(canvas.getAllByRole("link")).toHaveLength(3);
+    // Focus moves to the first item the button revealed.
+    await expect(
+      canvas.getByRole("link", { name: text.items[1] }),
+    ).toHaveFocus();
+  },
+};
+
+// Not enough items to collapse: all are shown.
+export const MaxItemsNotReached: Story = {
+  tags: ["!dev"],
+  args: { maxItems: 4 },
+  play: async ({ canvas }) => {
+    await expect(canvas.queryByRole("button")).toBeNull();
+    await expect(canvas.getAllByRole("link")).toHaveLength(3);
   },
 };

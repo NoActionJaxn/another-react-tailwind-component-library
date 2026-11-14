@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fn, screen, waitFor, within } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Video } from "./Video";
 import poster from "./sample-poster.jpg?url";
@@ -64,4 +65,53 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const label = m.components.Video.story.label;
+
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    const video = canvasElement.querySelector("video")!;
+    await expect(video).toHaveAttribute("aria-label", label);
+    await expect(video).toHaveAttribute("controls");
+    await expect(video.muted).toBe(true);
+  },
+};
+
+export const OpenInDialog: Story = {
+  tags: ["!dev"],
+  args: { openInDialog: true },
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    // The preview is a button: no controls, out of the tab order.
+    const preview = canvasElement.querySelector("video")!;
+    await expect(preview).not.toHaveAttribute("controls");
+    await expect(preview).toHaveAttribute("tabindex", "-1");
+    const button = canvas.getByRole("button", { name: label });
+    await userEvent.click(button);
+    const dialog = await screen.findByRole("dialog", { name: label });
+    const video = dialog.querySelector("video")!;
+    await expect(video).toHaveAttribute("controls");
+    await expect(video).toHaveAttribute("aria-label", label);
+    await userEvent.click(
+      within(dialog).getByRole("button", { name: "Close" }),
+    );
+    await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+    await expect(button).toHaveFocus();
+  },
+};
+
+export const BrokenVideo: Story = {
+  tags: ["!dev"],
+  args: { src: "/missing-video.webm", onError: fn() },
+  play: async ({ args, canvas }) => {
+    await expect(await canvas.findByRole("img", { name: label })).toBeVisible();
+    await expect(args.onError).toHaveBeenCalledTimes(1);
+  },
+};
+
+export const NoSource: Story = {
+  tags: ["!dev"],
+  args: { src: undefined },
+  play: async ({ canvas, canvasElement }) => {
+    await expect(canvasElement.querySelector("video")).toBeNull();
+    await expect(canvas.getByRole("img", { name: label })).toBeVisible();
+  },
+};

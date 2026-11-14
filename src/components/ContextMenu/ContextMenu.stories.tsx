@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fn, screen } from "storybook/test";
+import { playOpenMenu, playSelectItem } from "../_menu/playMenu";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import {
   ContextMenu,
@@ -63,4 +65,29 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvas, userEvent }) => {
+    const area = canvas.getByText(m.components.ContextMenu.story.trigger);
+    // A left click doesn't open it.
+    await userEvent.click(area);
+    await expect(screen.queryByRole("menu")).toBeNull();
+    await userEvent.pointer({ keys: "[MouseRight]", target: area });
+    await playOpenMenu();
+    await userEvent.pointer({ keys: "[MouseRight]", target: area });
+    await playSelectItem();
+  },
+};
+
+export const OpenChange: Story = {
+  tags: ["!dev"],
+  args: { onOpenChange: fn() },
+  play: async ({ args, canvas, userEvent }) => {
+    await userEvent.pointer({
+      keys: "[MouseRight]",
+      target: canvas.getByText(m.components.ContextMenu.story.trigger),
+    });
+    await expect(args.onOpenChange).toHaveBeenLastCalledWith(true);
+    await userEvent.keyboard("{Escape}");
+    await expect(args.onOpenChange).toHaveBeenLastCalledWith(false);
+  },
+};

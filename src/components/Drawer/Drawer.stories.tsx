@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { expect, screen, waitFor } from "storybook/test";
+import { expect, screen, waitFor, within } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Button } from "../Button";
 import { TextInput } from "../TextInput";
@@ -79,10 +79,59 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   play: async ({ canvas, userEvent }) => {
-    await userEvent.click(canvas.getByRole("button", { name: text.trigger }));
+    const trigger = canvas.getByRole("button", { name: text.trigger });
+    await userEvent.click(trigger);
     const drawer = await screen.findByRole("dialog", { name: text.title });
     await expect(drawer).toHaveAttribute("data-side", "right");
+    await expect(drawer).toHaveAccessibleDescription(text.description);
+    await expect(
+      document.querySelector("[data-drawer-overlay]"),
+    ).not.toBeNull();
+    // Focus moves into the drawer.
+    await expect(
+      within(drawer).getByRole("textbox", { name: text.name }),
+    ).toHaveFocus();
     await userEvent.click(screen.getByRole("button", { name: "Close" }));
+    await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+    await expect(trigger).toHaveFocus();
+
+    await userEvent.click(trigger);
+    await userEvent.click(
+      await screen.findByRole("button", { name: text.cancel }),
+    );
+    await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+
+    await userEvent.click(trigger);
+    await screen.findByRole("dialog");
+    await userEvent.keyboard("{Escape}");
+    await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+  },
+};
+
+export const Left: Story = {
+  tags: ["!dev"],
+  args: { side: "left", size: "lg", showClose: false },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: text.trigger }));
+    const drawer = await screen.findByRole("dialog", { name: text.title });
+    await expect(drawer).toHaveAttribute("data-side", "left");
+    await expect(drawer).toHaveAttribute("data-size", "lg");
+    await expect(
+      within(drawer).queryByRole("button", { name: "Close" }),
+    ).toBeNull();
+    await userEvent.keyboard("{Escape}");
+    await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+  },
+};
+
+export const CloseLabel: Story = {
+  tags: ["!dev"],
+  args: { closeLabel: "Close drawer" },
+  play: async ({ canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: text.trigger }));
+    await userEvent.click(
+      await screen.findByRole("button", { name: "Close drawer" }),
+    );
     await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
   },
 };

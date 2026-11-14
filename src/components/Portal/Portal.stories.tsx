@@ -61,3 +61,14 @@ export const Default: Story = {
     await expect(canvas.getByTestId("target")).toContainElement(content);
   },
 };
+
+// Disabled: rendered where it's written.
+export const Disabled: Story = {
+  tags: ["!dev"],
+  args: { disabled: true },
+  play: async ({ canvas }) => {
+    const content = canvas.getByText(text.content);
+    await expect(canvas.getByTestId("target")).not.toContainElement(content);
+    await expect(canvas.getByText(text.source)).toContainElement(content);
+  },
+};

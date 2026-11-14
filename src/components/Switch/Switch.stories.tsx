@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, fn } from "storybook/test";
 import { docsArgTypes, docsParameters, m } from "../../docs/i18n";
 import { Switch } from "./Switch";
 
@@ -31,4 +32,41 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const label = m.components.Switch.story.label;
+
+export const Default: Story = {
+  play: async ({ canvas, userEvent }) => {
+    const control = canvas.getByRole("switch", { name: label });
+    await expect(control).not.toBeChecked();
+    await userEvent.click(control);
+    await expect(control).toBeChecked();
+    // The label toggles it too.
+    await userEvent.click(canvas.getByText(label));
+    await expect(control).not.toBeChecked();
+    await userEvent.keyboard(" ");
+    await expect(control).toBeChecked();
+  },
+};
+
+export const CheckedChange: Story = {
+  tags: ["!dev"],
+  args: { defaultChecked: true, onCheckedChange: fn() },
+  play: async ({ args, canvas, userEvent }) => {
+    const control = canvas.getByRole("switch", { name: label });
+    await expect(control).toBeChecked();
+    await userEvent.click(control);
+    await expect(args.onCheckedChange).toHaveBeenLastCalledWith(false);
+  },
+};
+
+export const Disabled: Story = {
+  tags: ["!dev"],
+  args: { disabled: true, onCheckedChange: fn() },
+  play: async ({ args, canvas, userEvent }) => {
+    const control = canvas.getByRole("switch", { name: label });
+    await expect(control).toBeDisabled();
+    await userEvent.click(control);
+    await expect(control).not.toBeChecked();
+    await expect(args.onCheckedChange).not.toHaveBeenCalled();
+  },
+};
