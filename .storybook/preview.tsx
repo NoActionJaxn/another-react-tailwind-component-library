@@ -7,6 +7,33 @@ const commonKeys: Record<string, string> = { "aria-label": "ariaLabel" };
 
 /** Fills any props-table gaps: a common description, and a default for every row. */
 // Args-only props (no argType yet) are included: Storybook adds their rows later.
+type ArgType = Parameters<
+  NonNullable<Preview["argTypesEnhancers"]>[number]
+>[0]["argTypes"][string];
+
+/**
+ * Storybook falls back to a JSON editor for props it has no type for (Radix
+ * props, ReactNode). Pick the control from the story's value instead, and turn
+ * it off for content, callbacks and styling hooks that can't be edited as text.
+ */
+function fixControl(name: string, argType: ArgType, value: unknown) {
+  if (name === "className" || name === "style") return false;
+  const control = argType.control;
+  const type = typeof control === "object" ? control?.type : control;
+  // Storybook infers controls after this enhancer, and gives props with no
+  // usable type a JSON editor. Decide for those here, from the story's value.
+  const untyped = !argType.type?.name || argType.type.name === "other";
+  if (type !== "object" && !(control === undefined && untyped)) return control;
+  if (typeof value === "boolean") return "boolean";
+  if (typeof value === "number") return "number";
+  if (typeof value === "string") return "text";
+  // Arrays and plain objects (e.g. a Slider's [value]) keep the JSON editor.
+  if (value !== null && typeof value === "object" && !("$$typeof" in value)) {
+    return control ?? "object";
+  }
+  return false;
+}
+
 const fillDocs: NonNullable<Preview["argTypesEnhancers"]>[number] = ({
   argTypes,
   initialArgs,
@@ -28,6 +55,7 @@ const fillDocs: NonNullable<Preview["argTypesEnhancers"]>[number] = ({
         name,
         {
           ...argType,
+          control: fixControl(name, argType, initialArgs?.[name]),
           description: argType.description || common,
           table: {
             ...argType.table,
@@ -52,6 +80,7 @@ const preview: Preview = {
       storySort: {
         order: [
           "Getting Started",
+          "Usage",
           "Theming",
           "Actions",
           "Forms",

@@ -7,7 +7,7 @@ const meta = {
   title: "Containers/ScrollArea",
   component: ScrollArea,
   parameters: docsParameters("ScrollArea", { layout: "centered" }),
-  args: { colorScheme: "default" },
+  args: { colorScheme: "default", scrollbars: "vertical" },
   argTypes: docsArgTypes("ScrollArea", ["colorScheme"], {
     colorScheme: {
       // "brand" is defined in playground/playground.css
@@ -17,6 +17,7 @@ const meta = {
     scrollbars: {
       control: "inline-radio",
       options: ["vertical", "horizontal", "both"],
+      table: { defaultValue: { summary: "vertical" } },
     },
   }),
   render: (args) => (

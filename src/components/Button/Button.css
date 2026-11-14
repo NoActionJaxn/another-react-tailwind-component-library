@@ -4,7 +4,7 @@
     --_radius: var(--button-radius, var(--radius-sm));
     --_font-family: var(--button-font-family, var(--font-sans));
     --_font-weight: var(--button-font-weight, var(--font-weight-semibold));
-    --_text-transform: var(--button-text-transform, uppercase);
+    --_text-transform: var(--button-text-transform, none);
     --_focus-color: var(--button-focus-color, var(--scheme-400));
     --_focus-width: var(--button-focus-width, 4px);
     --_focus-offset: var(--button-focus-offset, 0px);

@@ -14,6 +14,7 @@ const meta = {
   component: NavigationMenu,
   parameters: docsParameters("NavigationMenu", { layout: "padded" }),
   args: {
+    defaultMenuOpen: false,
     colorScheme: "default",
     collapse: "md",
     openMenuLabel: "Open menu",

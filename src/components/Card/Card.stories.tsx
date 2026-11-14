@@ -21,6 +21,7 @@ const meta = {
   component: Card,
   parameters: docsParameters("Card", { layout: "centered" }),
   args: {
+    asChild: false,
     variant: "outline",
     colorScheme: "default",
   },

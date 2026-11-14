@@ -1,0 +1,239 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Usage" />
+
+# Usage
+
+Patterns that work the same way across every component. Read
+[Getting Started](?path=/docs/getting-started--docs) first to install the
+library and add its CSS.
+
+## Imports
+
+Everything comes from the main entry, except the components that need an
+optional dependency, which have their own entry points:
+
+```tsx
+import { Button, Dialog, tw } from "another-react-tailwind-component-library";
+import { Carousel } from "another-react-tailwind-component-library/carousel";
+import { Accolades } from "another-react-tailwind-component-library/accolades";
+import { PhoneInput } from "another-react-tailwind-component-library/phone-input";
+```
+
+## Style props
+
+Most components share the same props, so once you know one you know them all:
+
+- `variant`: the look, from `solid`, `soft`, `outline` and `ghost` (each
+  component supports the ones that fit it).
+- `size`: `sm`, `md` (the default) or `lg`. Buttons and form controls of the
+  same size line up in a row.
+- `colorScheme`: the palette, such as `"brand"` or the status schemes `"info"`,
+  `"success"`, `"warning"` and `"danger"`. Unset, it's inherited from the
+  nearest parent that sets one.
+- `block`: fill the width of the parent.
+
+Containers and page blocks (Container, Hero, Header, Footer, …) have no `size`:
+they adapt to the window by themselves.
+
+## Components made of parts
+
+Larger components are split into parts you put together, so you only render
+what you need and can put your own markup between them:
+
+```tsx
+<Card>
+  <CardImage src={cover} alt="" />
+  <CardHeader>Project update</CardHeader>
+  <CardDescription>The new release is ready for review.</CardDescription>
+  <CardFooter>
+    <Button>Review</Button>
+  </CardFooter>
+</Card>
+```
+
+Leave a part out and the spacing adjusts. Each component page lists its parts.
+
+## Links and router links: `asChild`
+
+Components with `asChild` render your element instead of their own, keeping
+their styles and behavior. Use it to make a Button a link, or to plug in your
+router's link component:
+
+```tsx
+<Button asChild>
+  <a href="/pricing">See pricing</a>
+</Button>
+
+<Button asChild variant="outline">
+  <Link to="/settings">Settings</Link>
+</Button>
+```
+
+With `asChild`, `disabled` still works: the link is marked disabled, taken out
+of the tab order and its clicks are blocked, since links have no `disabled`
+attribute.
+
+## Changing one component
+
+There are three ways, from quickest to most reusable.
+
+**Classes.** `className` is applied last and merged with
+[`tw()`](?path=/docs/utilities-tw--docs), so your classes replace the
+component's own instead of competing with them:
+
+```tsx
+<Button className="rounded-full px-8">Join</Button>
+```
+
+**CSS variables.** Every component reads its colors, sizes and spacing from
+`--<component>-*` variables, listed at the bottom of its page. Set them on the
+component, on a wrapper (everything inside follows), or in your CSS:
+
+```tsx
+<Button style={{ "--button-radius": "9999px" } as CSSProperties}>Join</Button>
+```
+
+```css
+.pricing {
+  --card-radius: var(--radius-2xl);
+  --button-solid-bg: var(--color-brand-700);
+}
+```
+
+**Color schemes.** `colorScheme` re-colors a component and everything inside
+it. To re-color a whole section that isn't a library component, spread
+`schemeVars()` into its style:
+
+```tsx
+<section style={schemeVars("brand")}>…</section>
+```
+
+See [Theming](?path=/docs/theming--docs) for replacing the default colors
+everywhere.
+
+## Controlled and uncontrolled
+
+Stateful components work both ways. Pass a `default…` prop and they keep their
+own state; pass the value and its `on…Change` handler to keep it yourself:
+
+```tsx
+// Uncontrolled: the dialog opens and closes itself.
+<Dialog defaultOpen={false}>…</Dialog>;
+
+// Controlled: you decide, e.g. close it after saving.
+const [open, setOpen] = useState(false);
+<Dialog open={open} onOpenChange={setOpen}>
+  …
+</Dialog>;
+```
+
+The same goes for inputs (`value` / `defaultValue`), tabs, accordions, the
+navigation menu's hamburger panel (`menuOpen`) and pagination (see
+[usePagination](?path=/docs/hooks-usepagination--docs)).
+
+## Forms
+
+Inputs are regular form controls: give them a `name` and they submit with the
+form, and `required`, `disabled` and validation work as usual.
+
+```tsx
+<form action={signUp} className="flex flex-col gap-4">
+  <TextInput name="name" label="Name" required />
+  <PasswordInput
+    name="password"
+    label="Password"
+    autoComplete="new-password"
+    required
+  />
+  <Checkbox name="terms" label="I agree to the terms" required />
+  <Button type="submit">Create account</Button>
+</form>
+```
+
+- **Labels.** Pass `label` to TextInput, NumberInput, PasswordInput,
+  PhoneInput and OneTimeCodeInput for a built-in label (on top, to the left or
+  on the border with `labelPlacement`); `required` adds a star to it. Checkbox,
+  Radio and Switch take `label` too. Without a visible label, pass
+  `aria-label`.
+- **Submitted values.** PhoneInput shows a formatted number but submits it in
+  international format (`+15555555555`). OneTimeCodeInput submits the whole
+  code under its `name`.
+- **Joined controls.** Put inputs, selects and buttons in an InputGroup to join
+  them into one bar, like an email field with a Subscribe button.
+
+## Overlays and portals
+
+Dialogs, drawers, menus, popovers, tooltips and selects render their content at
+the end of `<body>`, so nothing on the page can clip it. That content can't
+inherit a color scheme or variables from where you wrote it, so the content
+parts take `colorScheme` themselves:
+
+```tsx
+<div style={schemeVars("brand")}>
+  <Dialog>
+    <DialogTrigger asChild>
+      <Button>Edit</Button> {/* brand, from the wrapper */}
+    </DialogTrigger>
+    <DialogContent colorScheme="brand">…</DialogContent> {/* set again */}
+  </Dialog>
+</div>
+```
+
+Use [Portal](?path=/docs/utilities-portal--docs) to do the same for your own
+floating elements.
+
+## Layout
+
+- **Container** centers content and limits its width at each breakpoint, like
+  Tailwind's `container`.
+- **FlexContainer**, **GridContainer** and **MasonryContainer** are Containers
+  that also lay out their children. Give GridContainer and MasonryContainer a
+  number of `columns` and they drop to fewer as the space narrows.
+- **Page blocks** (Header, Hero, CallToAction, FaqBlock, Footer, …) are
+  full-width sections with a Container inside. Stack them to build a page.
+
+## Accessibility
+
+The components handle keyboard use, focus and ARIA. A few things are up to
+you:
+
+- **Name icon-only controls.** IconButton requires `aria-label`. Give images
+  an `alt` (empty, `alt=""`, when they're decorative).
+- **Name landmarks and groups** when there's more than one of a kind, e.g.
+  `<NavigationMenu aria-label="Main">` and `<AvatarGroup aria-label="Project
+members">`.
+- **Keep headings in order.** Blocks use sensible defaults (the Hero, ListingBlock
+  and ErrorBlock titles are `<h1>`, other block titles `<h2>`). Change the level
+  with `asChild`:
+
+  ```tsx
+  <CallToActionTitle asChild>
+    <h3>Ready to start?</h3>
+  </CallToActionTitle>
+  ```
+
+## Translating built-in text
+
+Text a component shows or announces by itself, such as a close button's name
+or "Page 3", comes from props with English defaults. Pass your own for other
+languages:
+
+```tsx
+<DialogContent closeLabel="Fermer">…</DialogContent>
+<Pagination
+  {...pagination.paginationProps}
+  previousLabel="Page précédente"
+  nextLabel="Page suivante"
+  pageLabel={(page) => `Page ${page}`}
+/>
+<Carousel slideLabel={(index, total) => `${index} sur ${total}`}>…</Carousel>
+```
+
+Each component page lists these props with their defaults.
+
+## Server rendering
+
+Components render on the server as usual. Most use React state, so with React
+Server Components (for example the Next.js App Router), render them from a
+Client Component (a file starting with `"use client"`).
