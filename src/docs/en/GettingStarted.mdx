@@ -16,8 +16,21 @@ navigation, focus management and ARIA come built in.
 
 ## Install
 
+The package is private on GitHub Packages. To install it, ask the maintainer
+for read access to the package, then create a GitHub personal access token
+(classic) with the `read:packages` scope and add an `.npmrc` next to your app's
+`package.json`:
+
+```ini
+@noactionjaxn:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+Set `GITHUB_TOKEN` in your shell, CI and hosting provider rather than writing
+the token into the file.
+
 ```sh
-npm install another-react-tailwind-component-library
+npm install @noactionjaxn/another-react-tailwind-component-library
 ```
 
 React, React DOM and Tailwind are peer dependencies: the library uses the
@@ -37,15 +50,15 @@ npm install embla-carousel-react embla-carousel-autoplay
 import {
   Accolades,
   AccoladesItem,
-} from "another-react-tailwind-component-library/accolades";
+} from "@noactionjaxn/another-react-tailwind-component-library/accolades";
 import {
   Carousel,
   CarouselSlide,
-} from "another-react-tailwind-component-library/carousel";
+} from "@noactionjaxn/another-react-tailwind-component-library/carousel";
 import {
   Sponsors,
   SponsorsLogo,
-} from "another-react-tailwind-component-library/sponsors";
+} from "@noactionjaxn/another-react-tailwind-component-library/sponsors";
 ```
 
 PhoneInput uses [libphonenumber-js](https://gitlab.com/catamphetamine/libphonenumber-js)
@@ -56,26 +69,23 @@ npm install libphonenumber-js
 ```
 
 ```tsx
-import { PhoneInput } from "another-react-tailwind-component-library/phone-input";
+import { PhoneInput } from "@noactionjaxn/another-react-tailwind-component-library/phone-input";
 ```
 
 ## Add the CSS
 
 The library's stylesheet includes Tailwind itself, so it replaces
-`@import "tailwindcss"` in your main CSS file. Add an `@source` line so Tailwind
-also scans the library's components for the classes they use.
+`@import "tailwindcss"` in your main CSS file. It also tells Tailwind to scan the
+library's components for the classes they use, so no `@source` line is needed.
 
 ```css
-@import "another-react-tailwind-component-library/src/styles/index.css";
-@source "../node_modules/another-react-tailwind-component-library/src";
+@import "@noactionjaxn/another-react-tailwind-component-library/styles.css";
 
 /* Your own styles and theme overrides go after it. */
 ```
 
 Keep the import on the first line. It loads the Roboto fonts from Google Fonts,
-and browsers ignore a font `@import` that comes after other rules. The `@source`
-path is relative to your CSS file: adjust it if that file isn't one folder below
-`node_modules`.
+and browsers ignore a font `@import` that comes after other rules.
 
 ## Use a component
 
@@ -84,7 +94,7 @@ import {
   Button,
   Label,
   TextInput,
-} from "another-react-tailwind-component-library";
+} from "@noactionjaxn/another-react-tailwind-component-library";
 
 export function SignUp() {
   return (
@@ -120,7 +130,7 @@ import {
   ToastProvider,
   ToastViewport,
   TooltipProvider,
-} from "another-react-tailwind-component-library";
+} from "@noactionjaxn/another-react-tailwind-component-library";
 
 export function App() {
   return (

@@ -7,6 +7,7 @@ React 19 + Tailwind CSS v4 component library, built with Vite and documented in 
 - `npm run storybook`: Storybook on port 6006 in docs mode (`--docs`: docs pages only, no canvas/addon panels)
 - `npm run dev`: playground app (`playground/`)
 - `npm run build`: type-check + build the playground
+- `npm run build:lib`: build the published package into `dist/` (`vite.lib.config.ts`: one ES entry per `src/*.ts` entry, every dependency external, `"use client"` banner; then `tsconfig.lib.json` emits the `.d.ts` files). A new entry goes in both files and in `package.json` `exports`.
 - `npm test`: runs every story as a test in headless Chromium (Storybook Vitest addon + Playwright)
 - `npm run lint`: ESLint (zero warnings allowed) + `prettier --check`. `npm run lint:fix` fixes both.
 - `npm run format`: Prettier only (default style; Tailwind classes sorted, including inside `tw()`)
@@ -20,6 +21,7 @@ Tests are stories: add `play` functions to stories for interaction tests rather 
 
 - `src/index.ts`: public exports (components, their prop/variant types, `tw`, `schemeVars`, `schemeStyle`, `ColorScheme`)
 - `src/components/<Name>/`: `Name.tsx`, `Name.css`, `Name.stories.tsx`, `Name.mdx` (docs page), `index.ts`
+- `src/styles/package.css`: the published stylesheet (`exports["./styles.css"]`): imports `index.css` and adds `@source "../../dist"` so consumers' Tailwind scans the built components.
 - `src/styles/index.css`: entry. Google Fonts import → `tailwindcss` → `theme.css` (`fonts.css`, `colors.css`) → `components.css` (imports every `Name.css`)
 - `src/accolades.ts`, `src/sponsors.ts`, `src/carousel.ts`, `src/phone-input.ts`: separate entries for Accolades, Sponsors and Carousel (Embla: `embla-carousel-react`, `embla-carousel-autoplay`) and PhoneInput (`libphonenumber-js`). Components that need an optional peer dependency (listed in `peerDependenciesMeta` as optional and installed as dev dependencies) get their own entry and are never exported from `src/index.ts`.
 - `src/components/TextInput/InputField.tsx`: the internal field behind TextInput, NumberInput, PhoneInput and PasswordInput (box, icons, label, states).
@@ -30,6 +32,10 @@ Tests are stories: add `play` functions to stories for interaction tests rather 
 - `src/docs/blocks/`: `ComponentDocs` (layout of every component page) and `CssVariables` (variable tables read from the component CSS)
 - `src/docs/i18n/`: docs localization. `locales/<locale>.json` holds every docs string; `index.ts` exports `m` (typed strings for the active locale), `docsParameters`, `docsArgTypes` and `format`
 - `playground/playground.css`: library CSS + example `brand` scheme; loaded by the playground and Storybook
+
+## Publishing
+
+Published to GitHub Packages (`publishConfig.registry: https://npm.pkg.github.com`) as `@noactionjaxn/another-react-tailwind-component-library`; the package is private (repo public): installers need Read access in the package's settings plus a `read:packages` token. Never make the package public; it can't be reverted. Pushing a `v*` tag (`npm version …` then `git push --follow-tags`) publishes via `.github/workflows/publish.yml`. The package ships `dist/` plus the CSS sources (`src/styles`, `src/components/**/*.css`). `prepublishOnly` runs lint, typecheck and `build:lib`. Storybook deploys to Vercel via `vercel.json`.
 
 ## Docs localization
 

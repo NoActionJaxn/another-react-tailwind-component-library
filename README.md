@@ -3,7 +3,7 @@
 React 19 components styled with Tailwind CSS 4 and built on
 [Radix UI](https://www.radix-ui.com/primitives) primitives, so keyboard
 navigation, focus management and ARIA come built in. Every component supports
-color schemes, dark mode and per-component CSS variables.
+color schemes and per-component CSS variables.
 
 ## Components
 
@@ -30,18 +30,31 @@ color schemes, dark mode and per-component CSS variables.
 
 Requires React 19 and Tailwind CSS 4.1 or later.
 
+The package is private on GitHub Packages. To install it, ask the maintainer
+for read access to the package, then create a GitHub personal access token
+(classic) with the `read:packages` scope and add an `.npmrc` next to your app's
+`package.json`:
+
+```ini
+@noactionjaxn:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+Set `GITHUB_TOKEN` in your shell, CI and hosting provider (for example Vercel)
+rather than writing the token into the file.
+
 ```sh
-npm install another-react-tailwind-component-library
+npm install @noactionjaxn/another-react-tailwind-component-library
 ```
 
 React, React DOM and Tailwind are peer dependencies. A few components need an
 optional peer dependency and have their own entry point, so the main entry
 never loads it:
 
-| Components                    | Install                                          | Import from                                                                      |
-| ----------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------- |
-| Accolades, Sponsors, Carousel | `embla-carousel-react` `embla-carousel-autoplay` | `another-react-tailwind-component-library/accolades`, `…/sponsors`, `…/carousel` |
-| PhoneInput                    | `libphonenumber-js`                              | `another-react-tailwind-component-library/phone-input`                           |
+| Components                    | Install                                          | Import from                                                                                    |
+| ----------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| Accolades, Sponsors, Carousel | `embla-carousel-react` `embla-carousel-autoplay` | `@noactionjaxn/another-react-tailwind-component-library/accolades`, `…/sponsors`, `…/carousel` |
+| PhoneInput                    | `libphonenumber-js`                              | `@noactionjaxn/another-react-tailwind-component-library/phone-input`                           |
 
 ## Add the CSS
 
@@ -50,18 +63,21 @@ The library's stylesheet includes Tailwind, so it replaces
 loads the Roboto fonts, and browsers ignore a font `@import` after other rules.
 
 ```css
-@import "another-react-tailwind-component-library/src/styles/index.css";
-@source "../node_modules/another-react-tailwind-component-library/src";
+@import "@noactionjaxn/another-react-tailwind-component-library/styles.css";
 
 /* Your own styles and overrides go after it. */
 ```
 
-The `@source` path is relative to your CSS file.
+It also points Tailwind at the library's components, so no `@source` line is
+needed.
 
 ## Use it
 
 ```tsx
-import { Button, TextInput } from "another-react-tailwind-component-library";
+import {
+  Button,
+  TextInput,
+} from "@noactionjaxn/another-react-tailwind-component-library";
 
 export function SignUp() {
   return (
@@ -113,44 +129,41 @@ the colors:
 Use `@theme static` (or `:root`) for schemes: plain `@theme` drops variables
 that no class uses.
 
-## Dark mode
-
-Set `color-scheme` on `<html>` and give the page the scheme's colors:
-
-```css
-:root {
-  color-scheme: light dark; /* follow the system; or just `dark` */
-}
-body {
-  background: var(--scheme-0);
-  color: var(--scheme-900);
-}
-```
-
-Tailwind's `scheme-dark` / `scheme-light` classes work too, on `<html>` or on
-one section. Each scheme step uses CSS `light-dark()` and mirrors the scale in
-dark mode (50 ↔ 950), so custom schemes get dark mode with no extra setup.
-
-If you build with Vite 8, its Lightning CSS minifier rewrites `light-dark()` in
-a way that stops dark sections from working. Keep it native:
-
-```ts
-import { Features } from "lightningcss";
-
-export default defineConfig({
-  css: { lightningcss: { exclude: Features.LightDark } },
-});
-```
-
 ## Documentation
 
 The Storybook docs cover every component with live controls, a props table
 and its CSS variables, plus pages on usage patterns, theming and the hooks.
-Each component page has a Light/Dark toggle.
 
 ```sh
 npm run storybook
 ```
+
+## Releasing
+
+```sh
+npm version patch   # or minor / major: bumps package.json and tags vX.Y.Z
+git push --follow-tags
+```
+
+Pushing a `v*` tag runs `.github/workflows/publish.yml`, which publishes to
+GitHub Packages with the workflow's own token. To publish by hand instead, log
+in with a classic token that has the `write:packages` scope, then run
+`npm publish` (it runs lint, typecheck and `build:lib` first):
+
+```sh
+npm login --scope=@noactionjaxn --auth-type=legacy --registry=https://npm.pkg.github.com
+```
+
+The package is private: GitHub publishes new packages as private, and the
+repository's public visibility isn't inherited. Give people install access under
+the package's **Package settings → Manage access** (role **Read**). Never change
+its visibility to public: that can't be undone.
+
+## Deploying Storybook
+
+The Storybook site deploys to Vercel. `vercel.json` sets the build command
+(`npm run build-storybook`) and output folder (`storybook-static`), so importing
+the GitHub repository into Vercel with the default settings is enough.
 
 ## Development
 

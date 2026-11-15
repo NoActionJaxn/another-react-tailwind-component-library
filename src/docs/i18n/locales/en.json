@@ -56,7 +56,7 @@
   },
   "components": {
     "Accolades": {
-      "description": "A looping carousel of accolades (logo, quote and link, each optional) that advances one item at a time and snaps into place. Pauses while hovered or focused, has a pause button, and starts paused for reduced-motion users. Shows 1, 2 or 3 items depending on the window width. Needs the optional peer dependencies embla-carousel-react and embla-carousel-autoplay; import it from \"another-react-tailwind-component-library/accolades\".",
+      "description": "A looping carousel of accolades (logo, quote and link, each optional) that advances one item at a time and snaps into place. Pauses while hovered or focused, has a pause button, and starts paused for reduced-motion users. Shows 1, 2 or 3 items depending on the window width. Needs the optional peer dependencies embla-carousel-react and embla-carousel-autoplay; import it from \"@noactionjaxn/another-react-tailwind-component-library/accolades\".",
       "props": {
         "delay": "Milliseconds between automatic steps.",
         "loop": "Wrap from the last item back to the first.",
@@ -260,7 +260,7 @@
         "copiedLabel": "Accessible name of the copy button after copying."
       },
       "story": {
-        "children": "import { Button } from \"another-react-tailwind-component-library\";\n\nexport function App() {\n  return <Button>Hello</Button>;\n}"
+        "children": "import { Button } from \"@noactionjaxn/another-react-tailwind-component-library\";\n\nexport function App() {\n  return <Button>Hello</Button>;\n}"
       }
     },
     "Collapsible": {
@@ -538,7 +538,7 @@
       }
     },
     "PhoneInput": {
-      "description": "A phone number field: a calling-code select (showing \"+1\") joined to a field that formats the number as you type for the selected country, e.g. (555) 555-5555. The value it reports and submits is unformatted E.164, e.g. +15555555555. Every country formats in its own style (India 098765 43210, Japan 090-1234-5678), digits typed in other scripts (Arabic-Indic, Persian, Devanagari, full-width) are understood, and pasting an international number picks its country. Needs the optional peer dependency libphonenumber-js; import it from \"another-react-tailwind-component-library/phone-input\".",
+      "description": "A phone number field: a calling-code select (showing \"+1\") joined to a field that formats the number as you type for the selected country, e.g. (555) 555-5555. The value it reports and submits is unformatted E.164, e.g. +15555555555. Every country formats in its own style (India 098765 43210, Japan 090-1234-5678), digits typed in other scripts (Arabic-Indic, Persian, Devanagari, full-width) are understood, and pasting an international number picks its country. Needs the optional peer dependency libphonenumber-js; import it from \"@noactionjaxn/another-react-tailwind-component-library/phone-input\".",
       "props": {
         "value": "Phone number in E.164 format (e.g. \"+15555555555\"), when controlled.",
         "defaultValue": "Initial phone number in E.164 format, when uncontrolled.",
@@ -702,7 +702,7 @@
       }
     },
     "Sponsors": {
-      "description": "A looping carousel of sponsor logos that advances one logo at a time. Each logo is a link that zooms on hover and focus; its alt text, the sponsor's name, is the link's name. Pauses while hovered or focused, has a pause button, and starts paused for reduced-motion users. Shows 2, 3 or 5 logos depending on the window width. Compose it with SponsorsLogo (href, src, alt, and any link attribute such as target). Needs the optional peer dependencies embla-carousel-react and embla-carousel-autoplay; import it from \"another-react-tailwind-component-library/sponsors\".",
+      "description": "A looping carousel of sponsor logos that advances one logo at a time. Each logo is a link that zooms on hover and focus; its alt text, the sponsor's name, is the link's name. Pauses while hovered or focused, has a pause button, and starts paused for reduced-motion users. Shows 2, 3 or 5 logos depending on the window width. Compose it with SponsorsLogo (href, src, alt, and any link attribute such as target). Needs the optional peer dependencies embla-carousel-react and embla-carousel-autoplay; import it from \"@noactionjaxn/another-react-tailwind-component-library/sponsors\".",
       "props": {
         "delay": "Milliseconds between automatic steps.",
         "loop": "Wrap from the last logo back to the first.",
@@ -1125,7 +1125,7 @@
       }
     },
     "Carousel": {
-      "description": "A slideshow of full-bleed slides with previous and next arrows and a pager on top of the image. Each slide is a CarouselSlide holding a CarouselImage and an optional CarouselCaption (CarouselTitle, CarouselDescription, CarouselActions) laid over it. Swipe, drag, the arrow keys and the pager all move between slides; slides that aren't showing can't be focused. Built on Embla Carousel: install `embla-carousel-react` and `embla-carousel-autoplay`, and import it from `another-react-tailwind-component-library/carousel`.",
+      "description": "A slideshow of full-bleed slides with previous and next arrows and a pager on top of the image. Each slide is a CarouselSlide holding a CarouselImage and an optional CarouselCaption (CarouselTitle, CarouselDescription, CarouselActions) laid over it. Swipe, drag, the arrow keys and the pager all move between slides; slides that aren't showing can't be focused. Built on Embla Carousel: install `embla-carousel-react` and `embla-carousel-autoplay`, and import it from `@noactionjaxn/another-react-tailwind-component-library/carousel`.",
       "props": {
         "aspectRatio": "Shape of the carousel, e.g. \"16 / 9\" or 2, at every window size. Unset, it's 4 / 3 on small screens and 16 / 9 from the md breakpoint (themable with `--carousel-aspect-ratio` and `--carousel-md-aspect-ratio`).",
         "loop": "Wrap around from the last slide to the first, and back.",

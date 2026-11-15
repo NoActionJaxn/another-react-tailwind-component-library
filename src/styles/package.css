@@ -1,0 +1,3 @@
+/* Published stylesheet entry: the library CSS, plus the built components for Tailwind to scan. */
+@import "./index.css";
+@source "../../dist";

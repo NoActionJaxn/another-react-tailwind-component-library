@@ -37,7 +37,7 @@ nothing itself, so it also works with your own pager or an infinite list.
 import {
   Pagination,
   usePagination,
-} from "another-react-tailwind-component-library";
+} from "@noactionjaxn/another-react-tailwind-component-library";
 
 function Products({ products }: { products: Product[] }) {
   const pagination = usePagination({
@@ -141,7 +141,7 @@ where pages are skipped. It always has the same length once there are enough
 pages, so controls don't move as the page changes.
 
 ```ts
-import { paginationRange } from "another-react-tailwind-component-library";
+import { paginationRange } from "@noactionjaxn/another-react-tailwind-component-library";
 
 paginationRange(10, 20); // [1, "ellipsis-start", 9, 10, 11, "ellipsis-end", 20]
 paginationRange(2, 20); // [1, 2, 3, 4, 5, "ellipsis-end", 20]
