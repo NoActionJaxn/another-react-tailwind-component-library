@@ -141,23 +141,33 @@ npm run storybook
 ## Releasing
 
 ```sh
-npm version patch   # or minor / major: bumps package.json and tags vX.Y.Z
-git push --follow-tags
+npm version patch --no-git-tag-version   # or minor / major
 ```
 
-Pushing a `v*` tag runs `.github/workflows/publish.yml`, which publishes to
-GitHub Packages with the workflow's own token. To publish by hand instead, log
-in with a classic token that has the `write:packages` scope, then run
-`npm publish` (it runs lint, typecheck and `build:lib` first):
+Commit the bump and push to `main`. On every push to `main`,
+`.github/workflows/publish.yml` checks whether `package.json`'s version is
+already on GitHub Packages. If it isn't, the workflow publishes it with its own
+token and tags the commit `vX.Y.Z`. Pushes that don't change the version publish
+nothing.
+
+To publish by hand instead, log in with a classic token that has the
+`write:packages` scope, then run `npm publish` (it runs lint, typecheck and
+`build:lib` first):
 
 ```sh
 npm login --scope=@noactionjaxn --auth-type=legacy --registry=https://npm.pkg.github.com
 ```
 
-The package is private: GitHub publishes new packages as private, and the
-repository's public visibility isn't inherited. Give people install access under
-the package's **Package settings → Manage access** (role **Read**). Never change
-its visibility to public: that can't be undone.
+The package is private. A package's visibility is set when it's first
+published: one published by hand with a personal token starts private, but one
+created by the workflow would copy this public repository's visibility. So the
+first version was published by hand, and the workflow only publishes later
+versions. It needs this repository listed under the package's **Package
+settings → Manage Actions access** with the **Write** role.
+
+Give people install access under **Package settings → Manage access** (role
+**Read**). Never change the package's visibility to public: that can't be
+undone.
 
 ## Deploying Storybook
 
