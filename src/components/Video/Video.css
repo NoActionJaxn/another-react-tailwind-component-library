@@ -8,7 +8,7 @@
     --_zoom-scale: var(--video-zoom-scale, 1.1);
     --_zoom-duration: var(--video-zoom-duration, 300ms);
     --_play-size: var(--video-play-size, calc(var(--spacing) * 14));
-    --_play-bg: var(--video-play-bg, white);
+    --_play-bg: var(--video-play-bg, var(--color-white));
     --_play-text: var(--video-play-text, var(--scheme-900));
     --_focus-color: var(--video-focus-color, var(--scheme-400));
     --_focus-width: var(--video-focus-width, 4px);

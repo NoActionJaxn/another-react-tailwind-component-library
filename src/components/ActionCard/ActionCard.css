@@ -8,7 +8,7 @@
   }
 
   [data-action-card][data-variant="outline"] {
-    --_bg-hover: var(--action-card-outline-bg-hover, white);
+    --_bg-hover: var(--action-card-outline-bg-hover, var(--color-white));
     --_border-hover: var(--action-card-outline-border-hover, var(--scheme-400));
   }
 

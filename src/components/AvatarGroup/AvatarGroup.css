@@ -2,7 +2,7 @@
 @layer components {
   [data-avatar-group] {
     /* Named apart from Avatar's own --_ring (its badge ring). */
-    --_group-ring: var(--avatar-group-ring, white);
+    --_group-ring: var(--avatar-group-ring, var(--color-white));
     --_group-ring-width: var(--avatar-group-ring-width, 2px);
   }
 

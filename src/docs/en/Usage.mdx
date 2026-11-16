@@ -95,7 +95,9 @@ component's own instead of competing with them:
 component, on a wrapper (everything inside follows), or in your CSS:
 
 ```tsx
-<Button style={{ "--button-radius": "9999px" } as CSSProperties}>Join</Button>
+<Button style={{ "--button-radius": "var(--radius-4xl)" } as CSSProperties}>
+  Join
+</Button>
 ```
 
 ```css

@@ -2,7 +2,7 @@
 @layer components {
   [data-tooltip-content] {
     --_bg: var(--tooltip-bg, var(--scheme-900));
-    --_text: var(--tooltip-text, white);
+    --_text: var(--tooltip-text, var(--color-white));
     --_radius: var(--tooltip-radius, var(--radius-sm));
     --_padding-x: var(--tooltip-padding-x, calc(var(--spacing) * 2));
     --_padding-y: var(--tooltip-padding-y, var(--spacing));

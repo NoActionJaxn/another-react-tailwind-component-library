@@ -60,7 +60,7 @@
     --_label-width: var(--text-input-label-width, auto);
     --_label-overlap: var(--text-input-label-overlap, calc(var(--spacing) * 2));
     --_label-inset: var(--text-input-label-inset, calc(var(--spacing) * 2.5));
-    --_label-surface: var(--text-input-label-surface, white);
+    --_label-surface: var(--text-input-label-surface, var(--color-white));
     --_label-text: var(--text-input-label-text, var(--scheme-700));
     --_required: var(--text-input-required, var(--color-red-600));
   }

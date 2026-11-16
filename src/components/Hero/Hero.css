@@ -3,7 +3,10 @@
   [data-hero] {
     --_gap: var(--hero-gap, calc(var(--spacing) * 10));
     --_content-gap: var(--hero-content-gap, calc(var(--spacing) * 4));
-    --_content-max-width: var(--hero-content-max-width, 40rem);
+    --_content-max-width: var(
+      --hero-content-max-width,
+      calc(var(--spacing) * 160)
+    );
     --_actions-gap: var(--hero-actions-gap, calc(var(--spacing) * 2));
     --_actions-item-gap: var(--hero-actions-item-gap, calc(var(--spacing) * 3));
     --_title-font-weight: var(
@@ -17,7 +20,7 @@
   /* Grows with the window, at Tailwind's md and lg breakpoints. */
   [data-hero] {
     --_padding-y: var(--hero-padding-y, calc(var(--spacing) * 10));
-    --_min-height: var(--hero-min-height, 28rem);
+    --_min-height: var(--hero-min-height, calc(var(--spacing) * 112));
     --_title-font-size: var(--hero-title-font-size, var(--text-3xl));
     --_description-font-size: var(
       --hero-description-font-size,
@@ -28,7 +31,7 @@
   @media (width >= --theme(--breakpoint-md)) {
     [data-hero] {
       --_padding-y: var(--hero-md-padding-y, calc(var(--spacing) * 16));
-      --_min-height: var(--hero-md-min-height, 32rem);
+      --_min-height: var(--hero-md-min-height, calc(var(--spacing) * 128));
       --_title-font-size: var(--hero-md-title-font-size, var(--text-4xl));
       --_description-font-size: var(
         --hero-md-description-font-size,
@@ -40,7 +43,7 @@
   @media (width >= --theme(--breakpoint-lg)) {
     [data-hero] {
       --_padding-y: var(--hero-lg-padding-y, calc(var(--spacing) * 24));
-      --_min-height: var(--hero-lg-min-height, 40rem);
+      --_min-height: var(--hero-lg-min-height, calc(var(--spacing) * 160));
       --_title-font-size: var(--hero-lg-title-font-size, var(--text-5xl));
       --_description-font-size: var(
         --hero-lg-description-font-size,
@@ -64,7 +67,7 @@
 
   /* Text sits on the image, so it's light and the image gets a dark overlay. */
   [data-hero][data-layout="full"] {
-    --_title-text: var(--hero-full-title-text, white);
+    --_title-text: var(--hero-full-title-text, var(--color-white));
     --_description-text: var(--hero-full-description-text, var(--scheme-100));
     --_overlay: var(
       --hero-full-overlay,

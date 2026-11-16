@@ -12,7 +12,7 @@
   }
 
   [data-dialog-content] {
-    --_bg: var(--dialog-bg, white);
+    --_bg: var(--dialog-bg, var(--color-white));
     --_text: var(--dialog-text, var(--scheme-900));
     --_description: var(--dialog-description, var(--scheme-600));
     --_border: var(--dialog-border, var(--scheme-300));
@@ -20,7 +20,7 @@
     --_shadow: var(--dialog-shadow, var(--shadow-lg));
     --_padding: var(--dialog-padding, calc(var(--spacing) * 6));
     --_gap: var(--dialog-gap, calc(var(--spacing) * 4));
-    --_max-width: var(--dialog-max-width, 32rem);
+    --_max-width: var(--dialog-max-width, var(--container-lg));
     --_focus-color: var(--dialog-focus-color, var(--scheme-400));
   }
 }

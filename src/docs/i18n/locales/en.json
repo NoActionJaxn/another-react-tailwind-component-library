@@ -1516,7 +1516,7 @@
       "cssVariables": "CSS variables"
     },
     "cssVariables": {
-      "intro": "Override any of these in your CSS, globally or for a section, e.g. :root { --button-radius: 9999px; }. Defaults that use a scheme shade follow the component's color scheme.",
+      "intro": "Override any of these in your CSS, globally or for a section, e.g. :root { --button-radius: var(--radius-4xl); }. Defaults that use a scheme shade follow the component's color scheme.",
       "columns": {
         "variable": "Variable",
         "default": "Default",
@@ -1530,10 +1530,6 @@
         "layout": "Layout: {value}",
         "breakpoint": "From the {value} breakpoint up",
         "side": "Side: {value}"
-      },
-      "values": {
-        "scheme": "scheme {step}",
-        "spacing": "spacing × {n}"
       },
       "suffixes": {
         "logo-height": "Height of each logo's link; the logo fits inside",

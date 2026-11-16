@@ -13,16 +13,6 @@ interface Group {
 
 const vars = m.docs.cssVariables;
 
-/** Shows var(--scheme-600) as "scheme 600" and calc(var(--spacing) * 4) as "spacing × 4". */
-function readable(value: string) {
-  const scheme = value.match(/^var\(--scheme-(\d+)\)$/);
-  if (scheme) return format(vars.values.scheme, { step: scheme[1] });
-  const spacing = value.match(/^calc\(var\(--spacing\) \* ([\d.]+)\)$/);
-  if (spacing) return format(vars.values.spacing, { n: spacing[1] });
-  if (value === "var(--spacing)") return format(vars.values.spacing, { n: 1 });
-  return value;
-}
-
 function describe(component: ComponentKey, name: string, suffix: string) {
   const overrides =
     (m.components[component] as { cssVariables?: Record<string, string> })
@@ -140,9 +130,7 @@ export function CssVariables({
                     </code>
                   </td>
                   <td className="py-2 pr-4">
-                    <code className="font-mono text-xs" title={row.value}>
-                      {readable(row.value)}
-                    </code>
+                    <code className="font-mono text-xs">{row.value}</code>
                   </td>
                   <td className="py-2 text-default-700">{row.description}</td>
                 </tr>

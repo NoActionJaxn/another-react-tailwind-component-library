@@ -7,7 +7,7 @@
     --_border-width: var(--switch-border-width, 0px);
     --_border: var(--switch-border, var(--scheme-500));
     --_border-checked: var(--switch-border-checked, var(--scheme-600));
-    --_thumb: var(--switch-thumb, white);
+    --_thumb: var(--switch-thumb, var(--color-white));
     /* Height minus 2px padding and the border on each side. */
     --_thumb-size: calc(var(--_height) - 4px - 2 * var(--_border-width));
     --_thumb-travel: calc(var(--_width) - var(--_height));

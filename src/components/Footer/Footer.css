@@ -4,8 +4,11 @@
     --_gap: var(--footer-gap, calc(var(--spacing) * 10));
     --_row-gap: var(--footer-row-gap, calc(var(--spacing) * 10));
     --_brand-gap: var(--footer-brand-gap, calc(var(--spacing) * 5));
-    --_brand-max-width: var(--footer-brand-max-width, 24rem);
-    --_column-min-width: var(--footer-column-min-width, 9rem);
+    --_brand-max-width: var(--footer-brand-max-width, var(--container-sm));
+    --_column-min-width: var(
+      --footer-column-min-width,
+      calc(var(--spacing) * 36)
+    );
     --_column-gap: var(--footer-column-gap, calc(var(--spacing) * 5));
     --_link-gap: var(--footer-link-gap, calc(var(--spacing) * 3));
     --_bar-gap: var(--footer-bar-gap, calc(var(--spacing) * 10));
@@ -36,14 +39,14 @@
     --_bg: var(--footer-solid-bg, var(--scheme-950));
     --_border: var(--footer-solid-border, transparent);
     --_text: var(--footer-solid-text, var(--scheme-100));
-    --_title-text: var(--footer-solid-title-text, white);
+    --_title-text: var(--footer-solid-title-text, var(--color-white));
     --_muted-text: var(--footer-solid-muted-text, var(--scheme-300));
     --_link: var(--footer-solid-link, var(--scheme-200));
-    --_link-hover: var(--footer-solid-link-hover, white);
+    --_link-hover: var(--footer-solid-link-hover, var(--color-white));
     --_divider: var(--footer-solid-divider, var(--scheme-700));
     --_social-bg-hover: var(
       --footer-solid-social-bg-hover,
-      color-mix(in oklab, white 12%, transparent)
+      color-mix(in oklab, var(--color-white) 12%, transparent)
     );
   }
 
@@ -60,7 +63,7 @@
   }
 
   [data-footer][data-variant="outline"] {
-    --_bg: var(--footer-outline-bg, white);
+    --_bg: var(--footer-outline-bg, var(--color-white));
     --_border: var(--footer-outline-border, var(--scheme-300));
     --_text: var(--footer-outline-text, var(--scheme-800));
     --_title-text: var(--footer-outline-title-text, var(--scheme-950));

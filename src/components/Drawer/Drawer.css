@@ -1,7 +1,7 @@
 /* --_* vars resolve on the drawer and are inherited by its sections. */
 @layer components {
   [data-drawer-content] {
-    --_bg: var(--drawer-bg, white);
+    --_bg: var(--drawer-bg, var(--color-white));
     --_text: var(--drawer-text, var(--scheme-800));
     --_title-text: var(--drawer-title-text, var(--scheme-900));
     --_description-text: var(--drawer-description-text, var(--scheme-700));
@@ -32,15 +32,15 @@
   }
 
   [data-drawer-content][data-size="sm"] {
-    --_size: var(--drawer-sm-size, 20rem);
+    --_size: var(--drawer-sm-size, var(--container-xs));
   }
 
   [data-drawer-content][data-size="md"] {
-    --_size: var(--drawer-md-size, 24rem);
+    --_size: var(--drawer-md-size, var(--container-sm));
   }
 
   [data-drawer-content][data-size="lg"] {
-    --_size: var(--drawer-lg-size, 32rem);
+    --_size: var(--drawer-lg-size, var(--container-lg));
   }
 
   [data-drawer-content][data-side="left"] {

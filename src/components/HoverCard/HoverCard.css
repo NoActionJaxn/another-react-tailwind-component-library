@@ -1,12 +1,12 @@
 /* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
 @layer components {
   [data-hover-card-content] {
-    --_bg: var(--hover-card-bg, white);
+    --_bg: var(--hover-card-bg, var(--color-white));
     --_text: var(--hover-card-text, var(--scheme-900));
     --_border: var(--hover-card-border, var(--scheme-300));
     --_radius: var(--hover-card-radius, var(--radius-md));
     --_shadow: var(--hover-card-shadow, var(--shadow-lg));
     --_padding: var(--hover-card-padding, calc(var(--spacing) * 4));
-    --_width: var(--hover-card-width, 16rem);
+    --_width: var(--hover-card-width, var(--container-3xs));
   }
 }

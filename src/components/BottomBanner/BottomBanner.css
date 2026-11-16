@@ -28,21 +28,29 @@
     --_bg: var(--bottom-banner-solid-bg, var(--scheme-900));
     --_border: var(--bottom-banner-solid-border, transparent);
     --_text: var(--bottom-banner-solid-text, var(--scheme-100));
-    --_title-text: var(--bottom-banner-solid-title-text, white);
+    --_title-text: var(--bottom-banner-solid-title-text, var(--color-white));
     --_description-text: var(
       --bottom-banner-solid-description-text,
       var(--scheme-300)
     );
     --_shadow: var(--bottom-banner-solid-shadow, var(--shadow-lg));
-    --_dismiss-bg-hover: color-mix(in oklab, white 15%, transparent);
+    --_dismiss-bg-hover: color-mix(
+      in oklab,
+      var(--color-white) 15%,
+      transparent
+    );
     /* Light-on-dark controls: solid buttons invert, inputs go dark. */
-    --button-solid-bg: white;
+    --button-solid-bg: var(--color-white);
     --button-solid-bg-hover: var(--scheme-200);
     --button-solid-text: var(--scheme-950);
-    --text-input-outline-bg: color-mix(in oklab, white 8%, transparent);
+    --text-input-outline-bg: color-mix(
+      in oklab,
+      var(--color-white) 8%,
+      transparent
+    );
     --text-input-outline-border: var(--scheme-600);
     --text-input-outline-border-hover: var(--scheme-400);
-    --text-input-outline-text: white;
+    --text-input-outline-text: var(--color-white);
     --text-input-outline-placeholder: var(--scheme-400);
   }
 
@@ -60,7 +68,7 @@
   }
 
   [data-bottom-banner][data-variant="outline"] {
-    --_bg: var(--bottom-banner-outline-bg, white);
+    --_bg: var(--bottom-banner-outline-bg, var(--color-white));
     --_border: var(--bottom-banner-outline-border, var(--scheme-300));
     --_text: var(--bottom-banner-outline-text, var(--scheme-800));
     --_title-text: var(--bottom-banner-outline-title-text, var(--scheme-950));

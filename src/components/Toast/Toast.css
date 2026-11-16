@@ -1,7 +1,7 @@
 /* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
 @layer components {
   [data-toast] {
-    --_bg: var(--toast-bg, white);
+    --_bg: var(--toast-bg, var(--color-white));
     --_text: var(--toast-text, var(--scheme-900));
     --_description: var(--toast-description, var(--scheme-600));
     --_border: var(--toast-border, var(--scheme-300));

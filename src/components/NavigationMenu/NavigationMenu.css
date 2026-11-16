@@ -4,7 +4,7 @@
     --_text: var(--navigation-menu-text, var(--scheme-900));
     --_item-radius: var(--navigation-menu-item-radius, var(--radius-sm));
     --_item-hover-bg: var(--navigation-menu-item-hover-bg, var(--scheme-100));
-    --_bg: var(--navigation-menu-bg, white);
+    --_bg: var(--navigation-menu-bg, var(--color-white));
     --_border: var(--navigation-menu-border, var(--scheme-300));
     --_radius: var(--navigation-menu-radius, var(--radius-md));
     --_shadow: var(--navigation-menu-shadow, var(--shadow-lg));
@@ -13,7 +13,7 @@
     --_focus-offset: var(--navigation-menu-focus-offset, 0px);
     /* The full-screen panel below the collapse breakpoint. It's portaled to
        <body> and gets these values copied from the menu when it opens. */
-    --_panel-bg: var(--navigation-menu-panel-bg, white);
+    --_panel-bg: var(--navigation-menu-panel-bg, var(--color-white));
     --_panel-padding-x: var(
       --navigation-menu-panel-padding-x,
       calc(var(--spacing) * 4)
@@ -22,7 +22,10 @@
       --navigation-menu-panel-padding-y,
       calc(var(--spacing) * 6)
     );
-    --_panel-max-width: var(--navigation-menu-panel-max-width, 40rem);
+    --_panel-max-width: var(
+      --navigation-menu-panel-max-width,
+      calc(var(--spacing) * 160)
+    );
     --_panel-font-size: var(--navigation-menu-panel-font-size, var(--text-lg));
     --_panel-z-index: var(--navigation-menu-panel-z-index, 50);
   }

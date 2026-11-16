@@ -18,7 +18,7 @@
     --_rating-pull: var(--listing-block-rating-pull, calc(var(--spacing) * 1));
     --_star: var(--listing-block-star, var(--color-amber-500));
     --_star-empty: var(--listing-block-star-empty, var(--scheme-300));
-    --_star-size: var(--listing-block-star-size, 1.125rem);
+    --_star-size: var(--listing-block-star-size, calc(var(--spacing) * 4.5));
     --_title-font-weight: var(
       --listing-block-title-font-weight,
       var(--font-weight-bold)

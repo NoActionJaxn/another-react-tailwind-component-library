@@ -1,6 +1,6 @@
 {
   "name": "@noactionjaxn/another-react-tailwind-component-library",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React 19 components styled with Tailwind CSS 4 and built on Radix UI primitives.",
   "license": "UNLICENSED",
   "repository": {

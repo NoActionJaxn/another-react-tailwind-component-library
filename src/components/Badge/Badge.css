@@ -22,7 +22,7 @@
 
   [data-badge][data-variant="solid"] {
     --_bg: var(--badge-solid-bg, var(--scheme-600));
-    --_text: var(--badge-solid-text, white);
+    --_text: var(--badge-solid-text, var(--color-white));
     --_border: var(--badge-solid-border, transparent);
   }
 

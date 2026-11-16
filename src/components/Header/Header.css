@@ -4,12 +4,12 @@
     --_height: var(--header-height, calc(var(--spacing) * 16));
     --_gap: var(--header-gap, calc(var(--spacing) * 4));
     --_nav-gap: var(--header-nav-gap, calc(var(--spacing) * 3));
-    --_search-max-width: var(--header-search-max-width, 20rem);
+    --_search-max-width: var(--header-search-max-width, var(--container-xs));
     --_z-index: var(--header-z-index, 40);
   }
 
   [data-header][data-variant="outline"] {
-    --_bg: var(--header-outline-bg, white);
+    --_bg: var(--header-outline-bg, var(--color-white));
     --_border: var(--header-outline-border, var(--scheme-200));
     --_text: var(--header-outline-text, var(--scheme-900));
     --_title-text: var(--header-outline-title-text, var(--scheme-950));
@@ -28,7 +28,7 @@
     --_bg: var(--header-solid-bg, var(--scheme-950));
     --_border: var(--header-solid-border, transparent);
     --_text: var(--header-solid-text, var(--scheme-100));
-    --_title-text: var(--header-solid-title-text, white);
+    --_title-text: var(--header-solid-title-text, var(--color-white));
     --navigation-menu-text: var(--_text);
     --navigation-menu-item-hover-bg: var(--scheme-800);
     --navigation-menu-panel-bg: var(--_bg);
@@ -38,7 +38,7 @@
     --button-ghost-bg-hover: var(--scheme-800);
     --text-input-outline-border: var(--scheme-700);
     --text-input-outline-border-hover: var(--scheme-500);
-    --text-input-outline-text: white;
+    --text-input-outline-text: var(--color-white);
     --text-input-outline-placeholder: var(--scheme-400);
   }
 

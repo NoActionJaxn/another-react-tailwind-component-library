@@ -33,9 +33,9 @@ own palettes too: declare them this way before using one as a scheme.
 
 ```css
 @theme static {
-  --color-brand-50: #eff6ff;
+  --color-brand-50: var(--color-blue-50);
   /* … 100 to 900 … */
-  --color-brand-950: #172554;
+  --color-brand-950: var(--color-blue-950);
 }
 ```
 
@@ -63,7 +63,7 @@ component's color scheme.
 
 ```css
 :root {
-  --button-radius: 9999px;
+  --button-radius: var(--radius-4xl);
   --button-solid-text: var(--scheme-950);
 }
 ```

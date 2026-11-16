@@ -14,7 +14,10 @@
       calc(var(--spacing) * 2)
     );
     --_badge-size: var(--avatar-sm-badge-size, calc(var(--spacing) * 3.5));
-    --_badge-font-size: var(--avatar-sm-badge-font-size, 0.5rem);
+    --_badge-font-size: var(
+      --avatar-sm-badge-font-size,
+      calc(var(--spacing) * 2)
+    );
   }
 
   [data-avatar][data-size="md"] {
@@ -24,7 +27,10 @@
       calc(var(--spacing) * 2.5)
     );
     --_badge-size: var(--avatar-md-badge-size, calc(var(--spacing) * 4.5));
-    --_badge-font-size: var(--avatar-md-badge-font-size, 0.625rem);
+    --_badge-font-size: var(
+      --avatar-md-badge-font-size,
+      calc(var(--spacing) * 2.5)
+    );
   }
 
   [data-avatar][data-size="lg"] {
@@ -34,13 +40,13 @@
       calc(var(--spacing) * 3)
     );
     --_badge-size: var(--avatar-lg-badge-size, calc(var(--spacing) * 5));
-    --_badge-font-size: var(--avatar-lg-badge-font-size, 0.75rem);
+    --_badge-font-size: var(--avatar-lg-badge-font-size, var(--text-xs));
   }
 
   /* Centered on the avatar's edge: 14.6% in from the box is where a circle's edge crosses the diagonal. */
   [data-avatar-badge] {
     --_inset: var(--avatar-badge-inset, 14.6%);
-    --_ring: var(--avatar-badge-ring, white);
+    --_ring: var(--avatar-badge-ring, var(--color-white));
     --_ring-width: var(--avatar-badge-ring-width, 2px);
   }
 

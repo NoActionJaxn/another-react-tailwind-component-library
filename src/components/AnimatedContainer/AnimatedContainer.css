@@ -2,7 +2,7 @@
 @layer components {
   [data-animated-container] {
     --_duration: var(--animated-container-duration, 300ms);
-    --_easing: var(--animated-container-easing, ease-out);
+    --_easing: var(--animated-container-easing, var(--ease-out));
     --_stagger-delay: var(--animated-container-stagger-delay, 100ms);
     --_pop-scale: var(--animated-container-pop-scale, 0.95);
   }

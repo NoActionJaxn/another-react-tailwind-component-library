@@ -5,9 +5,9 @@
     --_bg: var(--carousel-bg, var(--scheme-200));
     --_control-bg: var(
       --carousel-control-bg,
-      color-mix(in oklab, white 85%, transparent)
+      color-mix(in oklab, var(--color-white) 85%, transparent)
     );
-    --_control-bg-hover: var(--carousel-control-bg-hover, white);
+    --_control-bg-hover: var(--carousel-control-bg-hover, var(--color-white));
     --_control-text: var(--carousel-control-text, var(--scheme-900));
     --_dot-size: var(--carousel-dot-size, calc(var(--spacing) * 2));
     --_dot-active-width: var(
@@ -16,14 +16,20 @@
     );
     --_dot-gap: var(--carousel-dot-gap, 0px);
     --_dot-target: var(--carousel-dot-target, calc(var(--spacing) * 6));
-    --_dot: var(--carousel-dot, color-mix(in oklab, white 60%, transparent));
-    --_dot-active: var(--carousel-dot-active, white);
+    --_dot: var(
+      --carousel-dot,
+      color-mix(in oklab, var(--color-white) 60%, transparent)
+    );
+    --_dot-active: var(--carousel-dot-active, var(--color-white));
     --_focus-color: var(--carousel-focus-color, var(--scheme-400));
     --_focus-width: var(--carousel-focus-width, 4px);
-    --_caption-text: var(--carousel-caption-text, white);
+    --_caption-text: var(--carousel-caption-text, var(--color-white));
     --_description-text: var(--carousel-description-text, var(--scheme-100));
     --_caption-gap: var(--carousel-caption-gap, calc(var(--spacing) * 1.5));
-    --_description-max-width: var(--carousel-description-max-width, 36rem);
+    --_description-max-width: var(
+      --carousel-description-max-width,
+      var(--container-xl)
+    );
     --_actions-gap: var(--carousel-actions-gap, calc(var(--spacing) * 2));
     --_actions-item-gap: var(
       --carousel-actions-item-gap,

@@ -78,6 +78,7 @@ All Storybook documentation text comes from `src/docs/i18n/locales/<locale>.json
 
 - Public overrides: `--<name>-<prop>`, `--<name>-<size>-<prop>`, `--<name>-<variant>-<prop>`.
 - Private `--_*` variables are resolved on the component's own element, so defaults follow the nearest `--scheme-*`. Never set the public variables' defaults on `:root`.
+- Defaults use theme variables, never literals, wherever one exists: `var(--color-white)`, `var(--container-sm)`, `calc(var(--spacing) * N)`, `var(--text-xs)`, `var(--ease-out)`, `var(--default-transition-duration)`. Keep literals only where Tailwind has no variable: `transparent`, `currentColor`, `none`, `auto`, percentages, ratios, scale factors, z-indexes, `em` sizes (they follow the text), border/outline widths (`1px`, `4px`, `0px`), durations other than 150ms, and `9999px` for fully round shapes (there is no `--radius-full`).
 
 **`Name.tsx`**:
 

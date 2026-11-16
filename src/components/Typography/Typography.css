@@ -3,7 +3,7 @@
     --_text: var(--typography-text, currentColor);
   }
   [data-typography][data-size="xxs"] {
-    --_font-size: var(--typography-xxs-font-size, 0.625rem);
+    --_font-size: var(--typography-xxs-font-size, calc(var(--spacing) * 2.5));
     --_line-height: var(--typography-xxs-line-height, calc(0.875 / 0.625));
   }
   [data-typography][data-size="xs"] {

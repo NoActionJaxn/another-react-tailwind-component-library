@@ -122,7 +122,7 @@ the colors:
 
 /* 3. Override one component's variables, globally or for a section */
 :root {
-  --button-radius: 9999px;
+  --button-radius: var(--radius-4xl);
 }
 ```
 

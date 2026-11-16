@@ -8,7 +8,7 @@
     --_border-hover: var(--checkbox-border-hover, var(--scheme-700));
     --_checked-bg: var(--checkbox-checked-bg, var(--scheme-600));
     --_checked-bg-hover: var(--checkbox-checked-bg-hover, var(--scheme-700));
-    --_indicator: var(--checkbox-indicator, white);
+    --_indicator: var(--checkbox-indicator, var(--color-white));
     --_indicator-scale: var(--checkbox-indicator-scale, 1);
     --_focus-color: var(--checkbox-focus-color, var(--scheme-400));
     --_focus-width: var(--checkbox-focus-width, 4px);

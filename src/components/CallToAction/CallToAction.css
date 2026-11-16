@@ -4,7 +4,10 @@
     --_radius: var(--call-to-action-radius, var(--radius-2xl));
     --_gap: var(--call-to-action-gap, calc(var(--spacing) * 6));
     --_content-gap: var(--call-to-action-content-gap, calc(var(--spacing) * 3));
-    --_content-max-width: var(--call-to-action-content-max-width, 40rem);
+    --_content-max-width: var(
+      --call-to-action-content-max-width,
+      calc(var(--spacing) * 160)
+    );
     --_actions-item-gap: var(
       --call-to-action-actions-item-gap,
       calc(var(--spacing) * 3)
@@ -57,7 +60,7 @@
   [data-call-to-action][data-variant="solid"] {
     --_bg: var(--call-to-action-solid-bg, var(--scheme-900));
     --_border: var(--call-to-action-solid-border, transparent);
-    --_title-text: var(--call-to-action-solid-title-text, white);
+    --_title-text: var(--call-to-action-solid-title-text, var(--color-white));
     --_description-text: var(
       --call-to-action-solid-description-text,
       var(--scheme-200)
@@ -65,7 +68,7 @@
   }
 
   [data-call-to-action][data-variant="outline"] {
-    --_bg: var(--call-to-action-outline-bg, white);
+    --_bg: var(--call-to-action-outline-bg, var(--color-white));
     --_border: var(--call-to-action-outline-border, var(--scheme-300));
     --_title-text: var(--call-to-action-outline-title-text, var(--scheme-950));
     --_description-text: var(

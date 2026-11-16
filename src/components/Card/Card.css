@@ -30,7 +30,7 @@
   }
 
   [data-card][data-variant="outline"] {
-    --_bg: var(--card-outline-bg, white);
+    --_bg: var(--card-outline-bg, var(--color-white));
     --_shadow: var(--card-outline-shadow, var(--shadow-md));
     --_border: var(--card-outline-border, var(--scheme-300));
     --_text: var(--card-outline-text, var(--scheme-800));

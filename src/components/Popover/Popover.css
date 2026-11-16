@@ -1,12 +1,12 @@
 /* --_* vars resolve on the element, so defaults follow the nearest --scheme-*. */
 @layer components {
   [data-popover-content] {
-    --_bg: var(--popover-bg, white);
+    --_bg: var(--popover-bg, var(--color-white));
     --_text: var(--popover-text, var(--scheme-900));
     --_border: var(--popover-border, var(--scheme-300));
     --_radius: var(--popover-radius, var(--radius-md));
     --_shadow: var(--popover-shadow, var(--shadow-lg));
     --_padding: var(--popover-padding, calc(var(--spacing) * 4));
-    --_width: var(--popover-width, 18rem);
+    --_width: var(--popover-width, var(--container-2xs));
   }
 }

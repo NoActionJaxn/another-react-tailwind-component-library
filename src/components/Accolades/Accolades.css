@@ -7,11 +7,11 @@
     --_item-gap: var(--accolades-item-gap, calc(var(--spacing) * 4));
     --_item-padding: var(--accolades-item-padding, calc(var(--spacing) * 6));
     --_item-radius: var(--accolades-item-radius, var(--radius-lg));
-    --_item-bg: var(--accolades-item-bg, white);
+    --_item-bg: var(--accolades-item-bg, var(--color-white));
     --_image-height: var(--accolades-image-height, calc(var(--spacing) * 16));
     --_quote-font-size: var(--accolades-quote-font-size, var(--text-sm));
     --_animation-duration: var(--accolades-animation-duration, 300ms);
-    --_animation-easing: var(--accolades-animation-easing, ease-out);
+    --_animation-easing: var(--accolades-animation-easing, var(--ease-out));
     --_pop-scale: var(--accolades-pop-scale, 0.9);
     --_quote-text: var(--accolades-quote-text, var(--scheme-800));
     --_link-font-size: var(--accolades-link-font-size, var(--text-sm));

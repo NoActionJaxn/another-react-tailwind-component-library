@@ -29,7 +29,7 @@
   [data-button][data-variant="solid"] {
     --_bg: var(--button-solid-bg, var(--scheme-600));
     --_bg-hover: var(--button-solid-bg-hover, var(--scheme-700));
-    --_text: var(--button-solid-text, white);
+    --_text: var(--button-solid-text, var(--color-white));
     --_border: var(--button-solid-border, transparent);
   }
 

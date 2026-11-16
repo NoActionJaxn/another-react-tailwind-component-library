@@ -4,8 +4,11 @@
   [data-faq-block] {
     --_gap: var(--faq-block-gap, calc(var(--spacing) * 10));
     --_header-gap: var(--faq-block-header-gap, calc(var(--spacing) * 3));
-    --_header-max-width: var(--faq-block-header-max-width, 40rem);
-    --_list-max-width: var(--faq-block-list-max-width, 48rem);
+    --_header-max-width: var(
+      --faq-block-header-max-width,
+      calc(var(--spacing) * 160)
+    );
+    --_list-max-width: var(--faq-block-list-max-width, var(--container-3xl));
     --_title-font-weight: var(
       --faq-block-title-font-weight,
       var(--font-weight-bold)

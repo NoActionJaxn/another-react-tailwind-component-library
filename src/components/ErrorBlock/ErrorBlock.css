@@ -7,7 +7,10 @@
       --error-block-actions-item-gap,
       calc(var(--spacing) * 3)
     );
-    --_description-max-width: var(--error-block-description-max-width, 36rem);
+    --_description-max-width: var(
+      --error-block-description-max-width,
+      var(--container-xl)
+    );
     --_code-font-weight: var(
       --error-block-code-font-weight,
       var(--font-weight-black)
@@ -24,7 +27,7 @@
   /* Grows with the window, at Tailwind's md breakpoint. */
   [data-error-block] {
     --_padding-y: var(--error-block-padding-y, calc(var(--spacing) * 12));
-    --_min-height: var(--error-block-min-height, 28rem);
+    --_min-height: var(--error-block-min-height, calc(var(--spacing) * 112));
     --_code-font-size: var(--error-block-code-font-size, var(--text-7xl));
     --_message-font-size: var(--error-block-message-font-size, var(--text-2xl));
     --_description-font-size: var(
@@ -36,7 +39,10 @@
   @media (width >= --theme(--breakpoint-md)) {
     [data-error-block] {
       --_padding-y: var(--error-block-md-padding-y, calc(var(--spacing) * 20));
-      --_min-height: var(--error-block-md-min-height, 36rem);
+      --_min-height: var(
+        --error-block-md-min-height,
+        calc(var(--spacing) * 144)
+      );
       --_code-font-size: var(--error-block-md-code-font-size, var(--text-9xl));
       --_message-font-size: var(
         --error-block-md-message-font-size,

@@ -3,7 +3,7 @@
   [data-slider] {
     --_track: var(--slider-track, var(--scheme-200));
     --_range: var(--slider-range, var(--scheme-600));
-    --_thumb-bg: var(--slider-thumb-bg, white);
+    --_thumb-bg: var(--slider-thumb-bg, var(--color-white));
     --_thumb-border: var(--slider-thumb-border, var(--scheme-600));
     --_focus-color: var(--slider-focus-color, var(--scheme-400));
     --_focus-width: var(--slider-focus-width, 4px);
